@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Looking without touching &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-116-sharelocal.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Where’s Waldo?" href="101-117-sharelocal2.html" />
+    <link rel="prev" title="Data integrity" href="101-115-symlinks.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-116-sharelocal/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-116-sharelocal">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Looking without touching &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-115-symlinks.html" title="previous chapter">Data integrity</a></li>
+      <li>Next: <a href="101-117-sharelocal2.html" title="next chapter">Where’s Waldo?</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="looking-without-touching">
+<span id="sharelocal1"></span><h1>Looking without touching<a class="headerlink" href="#looking-without-touching" title="Permalink to this headline">¶</a></h1>
+<p>Only now, several weeks into the DataLad-101 course does your room
+mate realize that he has enrolled in the course as well, but has not
+yet attended at all. “Oh man, can you help me catch up?” he asks
+you one day. “Sharing just your notes would be really cool for a
+start already!”</p>
+<p>“Sure thing”, you say, and decide that it’s probably best if he gets
+all of the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> course dataset. Sharing datasets was
+something you wanted to look into soon, anyway.</p>
+<p>This is one exciting aspect of DataLad datasets has yet been missing
+from this course: How does one share a dataset?
+In this section, we will cover the simplest way of sharing a dataset:
+on a local or shared file system, via an installation with a path as
+a source.</p>
+<p>In this scenario multiple people can access the very same files at the
+same time, often on the same machine (e.g., a shared workstation, or
+a server than people can “SSH” into). You might think: “What do I need
+DataLad for, if everyone can already access everything?” However,
+universal, unrestricted access can easily lead to chaos. DataLad can
+help facilitate collaboration without requiring ultimate trust and
+reliability of all participants. Essentially, with a shared dataset,
+collaborators can look and use your dataset without ever touching it.</p>
+<p>To demonstrate how to share a DataLad dataset on a common file system,
+we will pretend that your personal computer
+can be accessed by other users. Let’s pretend that
+your room mate has access, and you’re installing
+the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset in a different place in the file system
+for him to access and work with.</p>
+<p>This is indeed a common real-world use case: Two users on a shared
+file system sharing a dataset with each other.
+But as we can not easily simulate a second user in this handbook,
+for now, you will have to share your dataset with yourself.
+This endeavor serves several purposes: For one, you will experience a very easy
+way of sharing a dataset. Secondly, it will show you the installation
+of a dataset from a path (instead of a URL as shown in the section
+<a class="reference internal" href="101-105-install.html#installds"><span class="std std-ref">Install datasets</span></a>). Thirdly, <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> is a dataset that can
+showcase many different properties of a dataset already, but it will
+be an additional learning experience to see how the different parts
+of the dataset – text files, larger files, datalad subdataset,
+<strong class="command">datalad run</strong> commands – will appear upon installation when shared.
+And lastly, you will likely “share a dataset with yourself” whenever you
+will be using a particular dataset of your own creation as input for
+one or more projects.</p>
+<p>“Awesome!” exclaims your room mate as you take out your Laptop to
+share the dataset. “You’re really saving my ass
+here. I’ll make up for it when we prepare for the final”, he promises.</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> with <strong class="command">datalad install</strong> into a different part
+of your file system, navigate out of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>, and – for
+simplicity – create a new directory, <code class="docutils literal notranslate"><span class="pre">mock_user</span></code>, right next to it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ../
+<span class="gp">$</span> mkdir mock_user
+</pre></div>
+</div>
+<p>For simplicity, pretend that this is a second users’ – your room mates’ –
+home directory. Furthermore, let’s for now disregard anything about
+permissions. In a real-world example you likely would not be able to read and write
+to a different user’s directories, but we will talk about permissions later.</p>
+<p>After creation, navigate into <code class="docutils literal notranslate"><span class="pre">mock_user</span></code> and install
+the dataset <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> by specifying its path as a <code class="docutils literal notranslate"><span class="pre">--source</span></code>
+(remember, the shorter option <code class="docutils literal notranslate"><span class="pre">-s</span></code> would work as well).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> mock_user
+<span class="gp">$</span> datalad install --source ../DataLad-101 --description <span class="s2">&quot;DataLad-101 in mock_user&quot;</span>
+<span class="go">[INFO] Cloning ../DataLad-101 into &#39;/home/me/dl-101/mock_user/DataLad-101&#39; </span>
+<span class="go">install(ok): /home/me/dl-101/mock_user/DataLad-101 (dataset)</span>
+</pre></div>
+</div>
+<p>This will install your dataset <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> in your room mate’s home
+directory. Note that we have given this new
+dataset a description about its location as well. Note further that we
+have not provided a path to <strong class="command">datalad install</strong>, and hence it installed the
+dataset under its original name in the current directory.</p>
+<p>Together with your room mate, you go ahead and see what this dataset looks
+like. Before running the command, try to predict what you will see.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> DataLad-101
+<span class="gp">$</span> tree
+<span class="go">.</span>
+<span class="go">├── books</span>
+<span class="go">│   ├── byte-of-python.pdf -&gt; ../.git/annex/objects/ZZ/f1/MD5E-s4407669--32e6b03a08a6edda12ad42eb7bb06a5c.pdf/MD5E-s4407669--32e6b03a08a6edda12ad42eb7bb06a5c.pdf</span>
+<span class="go">│   ├── progit.pdf -&gt; ../.git/annex/objects/G6/Gj/MD5E-s12465653--05cd7ed561d108c9bcf96022bc78a92c.pdf/MD5E-s12465653--05cd7ed561d108c9bcf96022bc78a92c.pdf</span>
+<span class="go">│   └── TLCL.pdf -&gt; ../.git/annex/objects/jf/3M/MD5E-s2120211--06d1efcb05bb2c55cd039dab3fb28455.pdf/MD5E-s2120211--06d1efcb05bb2c55cd039dab3fb28455.pdf</span>
+<span class="go">├── code</span>
+<span class="go">│   └── list_titles.sh</span>
+<span class="go">├── notes.txt</span>
+<span class="go">└── recordings</span>
+<span class="go">    ├── interval_logo_small.jpg -&gt; ../.git/annex/objects/36/jF/MD5E-s100877--0fea9537f9fe255d827e4401a7d539e7.jpg/MD5E-s100877--0fea9537f9fe255d827e4401a7d539e7.jpg</span>
+<span class="go">    ├── longnow</span>
+<span class="go">    ├── podcasts.tsv</span>
+<span class="go">    └── salt_logo_small.jpg -&gt; ../.git/annex/objects/xJ/4G/MD5E-s260607--4e695af0f3e8e836fcfc55f815940059.jpg/MD5E-s260607--4e695af0f3e8e836fcfc55f815940059.jpg</span>
+
+<span class="go">4 directories, 8 files</span>
+</pre></div>
+</div>
+<p>There are a number of interesting things, and your room mate is the
+first to notice them:</p>
+<p>“Hey, can you explain some things to me?”, he asks. “This directory
+here, “<code class="docutils literal notranslate"><span class="pre">longnow</span></code>”, why is it empty?”
+True, the subdataset has a directory name but apart from this,
+the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> directory appears empty.</p>
+<p>“Also, why do the PDFs in <code class="docutils literal notranslate"><span class="pre">books/</span></code> and the <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> files
+appear so weird? They have
+this cryptic path right next to them, and look, if I try to open
+one of them, it fails! Did something go wrong when we installed
+the dataset?” he worries.
+Indeed, the PDFs and pictures appear just as they did in the original dataset
+on first sight: They are symlinks pointing to some location in the
+object tree. To reassure your room mate that everything is fine you
+quickly explain to him the concept of a symlink and the <a class="reference internal" href="../glossary.html#term-object-tree"><span class="xref std std-term">object-tree</span></a>
+of <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a>.</p>
+<p>“But why does the PDF not open when I try to open it?” he repeats.
+True, these files cannot be opened. This mimics our experience when
+installing the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> subdataset: Right after installation,
+the <code class="docutils literal notranslate"><span class="pre">.mp3</span></code> files also could not be opened, because their file
+content was not yet retrieved. You begin to explain to your room mate
+how DataLad retrieves only minimal metadata about which files actually
+exist in a dataset upon a <strong class="command">datalad install</strong>. “It’s really handy”,
+you tell him. “This way you can decide which book you want to read,
+and then retrieve what you need. Everything that is <em>annexed</em> is retrieved
+on demand. Note though that the text files
+contents are present, and the files can be opened – this is because
+these files are stored in <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a>. So you already have my notes,
+and you can decide for yourself whether you want to <code class="docutils literal notranslate"><span class="pre">get</span></code> the books.”</p>
+<p>To demonstrate this, you decide to examine the PDFs further.
+“Try to get one of the books”, you instruct your room mate:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad get books/progit.pdf
+<span class="go">get(ok): books/progit.pdf (file) [from origin...]</span>
+</pre></div>
+</div>
+<p>“Opening this file will work, because the content was retrieved from
+the original dataset.”, you explain, proud that this worked just as you
+thought it would. Your room mate is excited by this magical
+command. You however begin to wonder: how does DataLad know where to look for
+that original content?</p>
+<p>This information comes from Git-annex. Before getting the next PDF,
+let’s query Git-annex where its content is stored:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git annex whereis books/TLCL.pdf
+<span class="go">whereis books/TLCL.pdf (1 copy) </span>
+<span class="go">	8c154892-26d4-4130-bbe0-51c49154ad55 -- course on DataLad-101 on my private Laptop [origin]</span>
+<span class="go">ok</span>
+</pre></div>
+</div>
+<p>Oh, another <a class="reference internal" href="../glossary.html#term-shasum"><span class="xref std std-term">shasum</span></a>! This time however not in a symlink…
+“That’s hard to read – what is it?” your room mate asks.
+Luckily, there is a human-readable description next to it:
+“course on DataLad-101 on my private Laptop”.
+“This”, you exclaim, excited about your own realization,
+“is my datasets location I’m sharing it from!”</p>
+<p>This is, finally, where we see the description provided in
+<strong class="command">datalad create</strong> in section <a class="reference internal" href="101-101-create.html#createds"><span class="std std-ref">Create a dataset</span></a> becomes handy: It is
+a human-readable description of <em>where</em> file content is stored.
+This becomes especially useful when the number of repositories
+increases. If you have only one other dataset it may be easy to
+remember what and where it is. But once you have one back-up
+of your dataset on a USB-Stick, one dataset shared with
+<a class="reference external" href="dropbox.com">Dropbox</a>, and a third one on your institutions
+Gitlab instance you will be grateful for the descriptions
+you provided these locations with.</p>
+<p>The message further informs you that there is only “<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">copy)</span></code>”
+of this file content. This makes sense: There
+is only your own, original <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset in which
+this book is saved.</p>
+<p>To retrieve file content of an annexed file such as one of
+these PDFs, Git-annex will try
+to obtain it from the locations it knows to contain this content.
+It uses the checksums to identify these locations. Every copy
+of a dataset will get a unique ID with such a checksum.
+Note however that just because Git-annex knows a certain location
+where content was once it does not guarantee that retrieval will
+work. If one location is a USB-Stick that is in your bag pack instead
+of your USB port,
+a second location is a hard drive that you deleted all of its
+previous contents (including dataset content) from,
+and another location is a web server, but you are not connected
+to the internet, Git-annex will not succeed in retrieving
+contents from these locations.
+As long as there is at least one location that contains
+the file and is accessible, though, Git-annex will get the content.</p>
+<p>Let’s now turn to the fact that the subdataset <code class="docutils literal notranslate"><span class="pre">longnow</span></code> does
+not contain not only no file content, but also no file metadata
+information to explore the contents of the dataset: There are no
+subdirectories or any files under <code class="docutils literal notranslate"><span class="pre">recordings/longnow/</span></code>.
+This is behavior that you have not observed until now.</p>
+<p>To fix this and obtain file availability metadata,
+you have to run a somewhat unexpected command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad install recordings/longnow
+<span class="go">[INFO] Cloning /home/me/dl-101/DataLad-101/recordings/longnow [2 other candidates] into &#39;/home/me/dl-101/mock_user/DataLad-101/recordings/longnow&#39; </span>
+<span class="go">install(ok): /home/me/dl-101/mock_user/DataLad-101/recordings/longnow (dataset) [Installed subdataset in order to get /home/me/dl-101/mock_user/DataLad-101/recordings/longnow]</span>
+</pre></div>
+</div>
+<p>Let’s what has changed (excerpt):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tree
+<span class="go">.</span>
+<span class="go">├── books</span>
+<span class="go">│   ├── byte-of-python.pdf -&gt; ../.git/annex/objects/ZZ/f1/MD5E-s4407669--32e6b03a08a6edda12ad42eb7bb06a5c.pdf/MD5E-s4407669--32e6b03a08a6edda12ad42eb7bb06a5c.pdf</span>
+<span class="go">│   ├── progit.pdf -&gt; ../.git/annex/objects/G6/Gj/MD5E-s12465653--05cd7ed561d108c9bcf96022bc78a92c.pdf/MD5E-s12465653--05cd7ed561d108c9bcf96022bc78a92c.pdf</span>
+<span class="go">│   └── TLCL.pdf -&gt; ../.git/annex/objects/jf/3M/MD5E-s2120211--06d1efcb05bb2c55cd039dab3fb28455.pdf/MD5E-s2120211--06d1efcb05bb2c55cd039dab3fb28455.pdf</span>
+<span class="go">├── code</span>
+<span class="go">│   └── list_titles.sh</span>
+<span class="go">├── notes.txt</span>
+<span class="go">└── recordings</span>
+<span class="go">    ├── interval_logo_small.jpg -&gt; ../.git/annex/objects/36/jF/MD5E-s100877--0fea9537f9fe255d827e4401a7d539e7.jpg/MD5E-s100877--0fea9537f9fe255d827e4401a7d539e7.jpg</span>
+<span class="go">    ├── longnow</span>
+<span class="go">    │   ├── Long_Now__Conversations_at_The_Interval</span>
+<span class="go">    │   │   ├── 2017_06_09__How_Digital_Memory_Is_Shaping_Our_Future__Abby_Smith_Rumsey.mp3 -&gt; ../.git/annex/objects/8j/kQ/MD5E-s66305442--c723d53d207e6d82dd64c3909a6a93b0.mp3/MD5E-s66305442--c723d53d207e6d82dd64c3909a6a93b0.mp3</span>
+<span class="go">    │   │   ├── 2017_06_09__Pace_Layers_Thinking__Stewart_Brand__Paul_Saffo.mp3 -&gt; ../.git/annex/objects/Qk/9M/MD5E-s112801659--00a42a1a617485fb2c03cbf8482c905c.mp3/MD5E-s112801659--00a42a1a617485fb2c03cbf8482c905c.mp3</span>
+<span class="go">    │   │   ├── 2017_06_09__Proof__The_Science_of_Booze__Adam_Rogers.mp3 -&gt; ../.git/annex/objects/FP/96/MD5E-s60091960--6e48eceb5c54d458164c2d0f47b540bc.mp3/MD5E-s60091960--6e48eceb5c54d458164c2d0f47b540bc.mp3</span>
+<span class="go">    │   │   ├── 2017_06_09__Seveneves_at_The_Interval__Neal_Stephenson.mp3 -&gt; ../.git/annex/objects/Wf/5Q/MD5E-s66431897--aff90c838a1c4a363bb9d83a46fa989b.mp3/MD5E-s66431897--aff90c838a1c4a363bb9d83a46fa989b.mp3</span>
+<span class="go">    │   │   ├── 2017_06_09__Talking_with_Robots_about_Architecture__Jeffrey_McGrew.mp3 -&gt; ../.git/annex/objects/Fj/9V/MD5E-s61491081--c4e88ea062c0afdbea73d295922c5759.mp3/MD5E-s61491081--c4e88ea062c0afdbea73d295922c5759.mp3</span>
+<span class="go">    │   │   ├── 2017_06_09__The_Red_Planet_for_Real__Andy_Weir.mp3 -&gt; ../.git/annex/objects/xq/Q3/MD5E-s136924472--0d1072105caa56475df9037670d35a06.mp3/MD5E-s136924472--0d1072105caa56475df9037670d35a06.mp3</span>
+<span class="go">    │   │   ├── 2017_07_03__Transforming_Perception__One_Sense_at_a_Time__Kara_Platoni.mp3 -&gt; ../.git/annex/objects/J6/88/MD5E-s62941770--77ae65e0f84c4b1fbefe74183284c305.mp3/MD5E-s62941770--77ae65e0f84c4b1fbefe74183284c305.mp3</span>
+<span class="go">    │   │   ├── 2017_08_01__How_Climate_Will_Evolve_Government_and_Society__Kim_Stanley_Robinson.mp3 -&gt; ../.git/annex/objects/kw/PF/MD5E-s60929439--86a30b6bab51e59af52ca8aa6684498f.mp3/MD5E-s60929439--86a30b6bab51e59af52ca8aa6684498f.mp3</span>
+<span class="go">    │   │   ├── 2017_09_01__Envisioning_Deep_Time__Jonathon_Keats.mp3 -&gt; ../.git/annex/objects/W4/2q/MD5E-s57113552--82a985abe7fa362e29e4ffa3a9951cc3.mp3/MD5E-s57113552--82a985abe7fa362e29e4ffa3a9951cc3.mp3</span>
+<span class="go">    │   │   ├── 2017_10_01__Thinking_Long_term_About_the_Evolving_Global_Challenge__The_Refugee_Reality.mp3 -&gt; ../.git/annex/objects/81/qF/MD5E-s78362767--5b077807c50d1fa02bebd399ec1431e0.mp3/MD5E-s78362767--5b077807c50d1fa02bebd399ec1431e0.mp3</span>
+<span class="go">    │   │   ├── 2017_11_01__The_Web_In_An_Eye_Blink__Jason_Scott.mp3 -&gt; ../.git/annex/objects/03/4v/MD5E-s64398689--049e8d1c9288d201b275331afb71b316.mp3/MD5E-s64398689--049e8d1c9288d201b275331afb71b316.mp3</span>
+<span class="go">    │   │   ├── 2017_12_01__Ideology_in_our_Genes__The_Biological_Basis_for_Political_Traits__Rose_McDermott.mp3 -&gt; ../.git/annex/objects/x0/2j/MD5E-s59979926--05127d163371d1152b72d98263d7848a.mp3/MD5E-s59979926--05127d163371d1152b72d98263d7848a.mp3</span>
+<span class="go">    │   │   ├── 2017_12_07__Can_Democracy_Survive_the_Internet___Nathaniel_Persily.mp3 -&gt; ../.git/annex/objects/5M/Pv/MD5E-s64541470--64960bf95544bc76ed564b541ebb36bc.mp3/MD5E-s64541470--64960bf95544bc76ed564b541ebb36bc.mp3</span>
+<span class="go">    │   │   ├── 2018_01_02__The_New_Deal_You_Don_t_Know__Louis_Hyman.mp3 -&gt; ../.git/annex/objects/MZ/MP/MD5E-s61802477--8c3056079a4d3bfe1adbbf0195d57f3c.mp3/MD5E-s61802477--8c3056079a4d3bfe1adbbf0195d57f3c.mp3</span>
+<span class="go">    │   │   ├── 2018_02_01__Humanity_and_the_Deep_Ocean__James_Nestor.mp3 -&gt; ../.git/annex/objects/3G/5v/MD5E-s55707819--6bb054946ca3e3e95fd1b1792693706c.mp3/MD5E-s55707819--6bb054946ca3e3e95fd1b1792693706c.mp3</span>
+<span class="go">    │   │   ├── 2018_03_01__Our_Future_in_Algorithm_Farming__Mike_Kuniavsky.mp3 -&gt; ../.git/annex/objects/GJ/J2/MD5E-s70246964--5a9f4538aa4d7bc3163067a9e7f093ca.mp3/MD5E-s70246964--5a9f4538aa4d7bc3163067a9e7f093ca.mp3</span>
+<span class="go">    │   │   ├── 2018_04_18__The_Organized_Pursuit_of_Knowledge__Margaret_Levi.mp3 -&gt; ../.git/annex/objects/p3/k2/MD5E-s73210485--7c9aae9a75d469ba7f3f66c53b666537.mp3/MD5E-s73210485--7c9aae9a75d469ba7f3f66c53b666537.mp3</span>
+</pre></div>
+</div>
+<p>Interesting! The file metadata information is now present, and we can
+explore the file hierarchy. The file content, however, is not present yet.</p>
+<p>What has happened here?</p>
+<p>When DataLad installs a dataset, it will by default only install the
+superdataset, and not any subdatasets. The superdataset contains the
+information that a subdataset exists though – the subdataset is <em>registered</em>
+in the superdataset.  This is why the subdataset name exists as a directory.
+A subsequent <strong class="command">datalad install</strong> in <code class="docutils literal notranslate"><span class="pre">recordings/longnow/</span></code>
+or a <strong class="command">datalad install PATH/TO/longnow</strong> will install the registered dataset without
+the need to specify the source again, just as we did it in the example above.</p>
+<p>To explicitly install a dataset right away
+<em>recursively</em>, that is, all of the subdatasets inside it as well, one
+has to specify the <code class="docutils literal notranslate"><span class="pre">-r</span></code>/<code class="docutils literal notranslate"><span class="pre">--recursive</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="o">--</span><span class="n">source</span> <span class="o">../</span><span class="n">DataLad</span><span class="o">-</span><span class="mi">101</span> <span class="o">-</span><span class="n">r</span> <span class="o">--</span><span class="n">description</span> <span class="s2">&quot;DataLad-101 in mock_user&quot;</span>
+</pre></div>
+</div>
+<p>would have installed the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> subdataset as well, and the meta
+data about file hierarchies would have been available right from the
+start.</p>
+<p>So why is this behavior disabled by default?
+In <a class="reference internal" href="101-106-nesting.html#nesting"><span class="std std-ref">Dataset nesting</span></a> we learned that datasets can be nested <em>arbitrarily</em> deep.
+Upon installing a dataset you might not want to also install a few dozen levels of
+nested subdatasets right away.</p>
+<p>However, there is a middle way: The <code class="docutils literal notranslate"><span class="pre">--recursion-limit</span></code> option let’s
+you specify how many levels of subdatasets should be installed together
+with the superdataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="o">-</span><span class="n">s</span> <span class="o">../</span><span class="n">DataLad</span><span class="o">-</span><span class="mi">101</span> <span class="o">--</span><span class="n">description</span> <span class="s2">&quot;DataLad-101 in mock_user&quot;</span> <span class="o">-</span><span class="n">r</span> <span class="o">--</span><span class="n">recursion</span><span class="o">-</span><span class="n">limit</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Hence, this alternative command would have installed the subdataset right away.</p>
+<p>To summarize what you learned in this section, write a note on how to
+install a dataset using a path as a source on a common file system.
+Include the options <code class="docutils literal notranslate"><span class="pre">-r</span></code>/<code class="docutils literal notranslate"><span class="pre">--recursive</span></code> and <code class="docutils literal notranslate"><span class="pre">--recursion-limit</span></code>.</p>
+<p>Write this note in “your own” (the original) <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset, though!</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> navigate back into the original dataset
+<span class="gp">$</span> <span class="nb">cd</span> ../../DataLad-101
+<span class="gp">#</span> write the note
+<span class="gp">$</span> cat &lt;&lt; EOT &gt;&gt; notes.txt
+<span class="go">A source to install a dataset from can also be a path,</span>
+<span class="go">for example as in &quot;datalad install -s ../DataLad-101&quot;.</span>
+<span class="go">As when installing datasets before, make sure to add a</span>
+<span class="go">description on the location of the dataset to be</span>
+<span class="go">installed, and, if you want, a path to where the dataset</span>
+<span class="go">should be installed under which name.</span>
+
+<span class="go">Note that subdatasets will not be installed by default --</span>
+<span class="go">you will have to do a plain</span>
+<span class="go">&quot;datalad install PATH/TO/SUBDATASET&quot;, or specify the</span>
+<span class="go">-r/--recursive option in the install command:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r&quot;.</span>
+
+<span class="go">A recursive installation would however install all</span>
+<span class="go">installed subdatasets, so a safer way to proceed is to</span>
+<span class="go">set a decent --recursion-limit:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r --recursion-limit 2&quot;</span>
+
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<p>Save this note.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;add note about installing from paths and recursive installations&quot;</span>
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p>A dataset that is installed from an existing source, e.g., a path or URL,
+it the DataLad equivalent of a <em>clone</em> in Git.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-115-symlinks.html" title="Previous document">Data integrity</a>
+        </li>
+        <li>
+          <a href="101-117-sharelocal2.html" title="Next document">Where’s Waldo?</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

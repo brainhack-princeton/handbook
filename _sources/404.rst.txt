@@ -1,0 +1,16 @@
+:orphan:
+
+###############
+404 — Not Found
+###############
+
+**Sorry, but we could not find the page you requested.**
+
+It looks like this was the result of either:
+
+- a mistyped address
+- an out-of-date link
+
+`Click here to go back to the homepage. <http://handbook.datalad.org>`_
+
+Or, try `searching <http://handbook.datalad.org/search.html>`_.

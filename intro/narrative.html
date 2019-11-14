@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>How to use the handbook &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/intro/narrative.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation and configuration" href="installation.html" />
+    <link rel="prev" title="A brief overview of DataLad" href="philosophy.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/intro/narrative/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/intro/narrative">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="How to use the handbook &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to use the handbook</a><ul>
+<li><a class="reference internal" href="#for-whom-this-book-is-written">For whom this book is written</a></li>
+<li><a class="reference internal" href="#how-to-read-this-book">How to read this book</a><ul>
+<li><a class="reference internal" href="#what-you-will-learn-in-this-book">What you will learn in this book</a></li>
+<li><a class="reference internal" href="#the-storyline">The storyline</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#let-s-get-going">Let’s get going!</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="philosophy.html" title="previous chapter">A brief overview of DataLad</a></li>
+      <li>Next: <a href="installation.html" title="next chapter">Installation and configuration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="how-to-use-the-handbook">
+<h1>How to use the handbook<a class="headerlink" href="#how-to-use-the-handbook" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="for-whom-this-book-is-written">
+<h2>For whom this book is written<a class="headerlink" href="#for-whom-this-book-is-written" title="Permalink to this headline">¶</a></h2>
+<p>The DataLad handbook is not the DataLad documentation, and it is also
+not an explanation of the computational magic that happens in the background.
+Instead, it is a procedurally oriented, hands-on crash-course that invites
+you to fire up your terminal and follow along.</p>
+<p><strong>If you are interested in learning how to use DataLad, this handbook is for you.</strong></p>
+<p>You do not need to be a programmer, computer scientist, or Linux-crank.
+If you have never touched your computers shell before, you will be fine.
+No knowledge about <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a> or <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a> is required or necessary.
+Regardless of your background and personal use cases for DataLad, the
+handbook will show you the principles of DataLad, and from chapter 1 onwards
+you will be using them.</p>
+</div>
+<div class="section" id="how-to-read-this-book">
+<h2>How to read this book<a class="headerlink" href="#how-to-read-this-book" title="Permalink to this headline">¶</a></h2>
+<p>First of all: Be excited. DataLad can help you to manage your digital data
+workflow in various ways, and in this book you will use many of them right
+from the start.
+There are many topics you can explore, if you wish:
+Local or collaborative workflows, reproducible analyses, data publishing, … .
+If anything seems particularly exciting, you can go ahead, read it, <em>and do it</em>.
+Therefore, <strong>grab your computer, and be ready to use it</strong>.</p>
+<p>Every chapter will give you different challenges, starting from basic local
+workflows to more advanced commands, and you will see your skills increase
+with each. While learning, it will be easy to
+<strong>find use cases in your own work for the commands you come across</strong>.</p>
+<p>As the handbook is to be a practical guide it includes as many hands-on examples
+as we can fit into it. Code snippets look like this, and you should
+<strong>copy them into your own terminal to try them out</strong>, but you can also
+<strong>modify them to fit your custom needs in your own use cases</strong>.
+Note in the example below that shows the creation of a DataLad dataset how
+we distinguish <code class="docutils literal notranslate"><span class="pre">comments</span> <span class="pre">(#)</span></code> from <code class="docutils literal notranslate"><span class="pre">commands</span> <span class="pre">($)</span></code> and their output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is a comment used for additional explanations. Anything preceded by $ is a command to try.</span>
+<span class="c1"># if the line starts with neither # nor $, its the output of a command</span>
+$ datalad create myfirstrepo
+<span class="o">[</span>INFO   <span class="o">]</span> Creating a new annex repo at /home/adina/DataLad-101
+create<span class="o">(</span>ok<span class="o">)</span>: /home/adina/DataLad-101 <span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>Note: When copying code snippets into your own terminal, do not copy the leading
+<code class="docutils literal notranslate"><span class="pre">$</span></code> – this only indicates that the line is a command, and would lead to an
+error when you’d try to execute it.</p>
+<p>The book is split between two different parts. The upcoming chapters
+are a <em>Basics</em> part that intends to show you the core DataLad functionality
+and challenges you to use it. It is recommended to read this part from
+start to end and follow along.
+In the chapter <em>use cases</em> you will find concrete examples of
+DataLad applications for general inspiration – this is the second part of this book.
+Pick whatever you find interesting, and disregard the rest.
+In general, we recommend to read the Basics first. Afterwards,
+you might even consider <a class="reference internal" href="../contributing.html#contribute"><span class="std std-ref">Contributing</span></a> to this book by sharing your own use case.</p>
+<p>Note that many challenges can have straightforward and basic solutions,
+but a lot of additional options or improvements are possible.
+Sometimes one could get lost in all of the available DataLad functionality,
+or in some interesting backgrounds about a command.
+For this reason we put all of the basics in plain sight, and those basics
+will let you master a given task and get along comfortably.
+Having the basics will be your multi-purpose swiss army knife.
+But if you want to have the special knowledge for a very peculiar type
+of problem set or that extra increase in skill or understanding,
+you’ll have to do a detour into some of the <em>hidden</em> parts of the book:
+When there are command options or explanations that go beyond basics and
+best practices, we hide them in foldable book sections in order
+to not be too distracting for anyone only interested in the basics.
+You can decide for yourself whether you want to check them out:</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>Click here to show/hide further commands</p>
+</div>
+<p>Sections like this contain content that goes beyond the basics
+necessary to complete a challenge.</p>
+</div>
+<p>Note further that…</p>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p>DataLad uses <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a> and <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a> underneath the hood. Readers that
+are familiar with these tools can find occasional notes on how a DataLad
+command links to a Git(-annex) command or concept in boxes like this.
+There is, however, absolutely no knowledge of Git or Git-annex necessary
+to follow this book. You will, though, encounter Git commands throughout
+the book when there is no better alternative, and executing those commands will
+suffice to follow along.</p>
+</div>
+<p>Apart from core DataLad commands (introduced in the second part of this book),
+DataLad also comes with many extensions and advanced commands not (yet) referenced
+in this handbook. The development of many of these features
+is ongoing, and this handbook will incorporate all DataLad commands and extensions
+<em>once they are stable</em> (that is, once the command(-structure) is likely to not
+change in the future anymore). If you are looking for a feature but cannot find it in this
+handbook, please take a look at the <a class="reference external" href="http://docs.datalad.org">documentation</a>,
+<a class="reference external" href="http://handbook.datalad.org/en/latest/contributing.html">write</a> or
+<a class="reference external" href="https://github.com/datalad-handbook/book/issues/new">request</a>
+an additional chapter if you believe it’s a worthwhile addition, or
+<a class="reference external" href="https://neurostars.org/latest">ask a question on Neurostars.org</a>
+with a <strong class="command">datalad</strong> tag if you need help.</p>
+<div class="section" id="what-you-will-learn-in-this-book">
+<h3>What you will learn in this book<a class="headerlink" href="#what-you-will-learn-in-this-book" title="Permalink to this headline">¶</a></h3>
+<p>This handbook will teach you simple and yet advanced principles of data
+management for reproducible, comprehensible, transparent, and
+<a class="reference external" href="https://www.go-fair.org/fair-principles/">FAIR</a> data
+projects. It does so with hands-on tool use of DataLad and its
+underlying software, blended with clear explanations of relevant
+theoretical backgrounds whenever necessary, and by demonstrating
+organizational and procedural guidelines and standards for data
+related projects on concrete examples.</p>
+<p>You will learn how to create, consume, structure, share, publish, and use
+<em>DataLad datasets</em>: modular, reusable components that can be version-controlled,
+linked, and that are able to capture and track full provenance of their
+contents, if used correctly.</p>
+<p>At the end of the <code class="docutils literal notranslate"><span class="pre">Basics</span></code> section, these are some of the main
+things you will know how to do, and understand why doing them is useful:</p>
+<ul class="simple">
+<li><p><strong>Version-control</strong> data objects, regardless of size, keep track of
+and <strong>update</strong> (from) their sources and shared copies, and capture the
+<strong>provenance</strong> of all data objects whether you consume them from any source
+or create them yourself.</p></li>
+<li><p><strong>Build up complete projects</strong> with data as independent, version-controlled,
+provenance-tracked, and linked DataLad dataset(s) that allow <strong>distribution</strong>,
+modular <strong>reuse</strong>, and are <strong>transparent</strong> both in their structure and their
+development to their current and future states.</p></li>
+<li><p><strong>Bind</strong> modular components into complete data analysis projects, and comply
+to procedural and organizational principles that will help to create transparent
+and comprehensible projects to ease <strong>collaboration</strong> and <strong>reproducibility</strong>.</p></li>
+<li><p><strong>Share</strong> complete data objects, version-controlled as a whole, but including
+modular components such as data in a way that preserves the history,
+provenance, and linkage of its components.</p></li>
+</ul>
+<p>At the end of this handbook, you will find it easy to create, build up, and
+share intuitively structured and version-controlled data projects that
+fulfill high standards for reproducibility and FAIRness. You are able to
+decide for yourself into how much of the DataLad world you want to dive in
+based on your individual use cases, and with every section you will learn
+more about state-of-the-art data management.</p>
+</div>
+<div class="section" id="the-storyline">
+<h3>The storyline<a class="headerlink" href="#the-storyline" title="Permalink to this headline">¶</a></h3>
+<p>Most of the sections in the upcoming chapter follow a continuous <strong>narrative</strong>.
+This narrative aims to be as domain-agnostic and relatable as possible, but
+it also needs to be able to showcase all of the principles and commands
+of DataLad. Therefore, we will build up together a DataLad project for the
+fictional educational course <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>.</p>
+<p>Envision yourself in the last educational course you took or taught:
+Probably, you’ve created some files with notes you took, a directory
+with slides or books for further reading, and a place where you stored
+assignments and their solutions in. This is what we will be doing as well.
+This project will start with creating the necessary directory structures,
+populating them by <code class="docutils literal notranslate"><span class="pre">installing</span></code> and <code class="docutils literal notranslate"><span class="pre">creating</span></code> several
+<a class="reference internal" href="../glossary.html#term-datalad-subdataset"><span class="xref std std-term">DataLad subdataset</span></a>s, adding files and changing their content,
+and executing simple scripts with input data to create results we can
+share and publish with DataLad.</p>
+<p>If you do not want to follow along and only read, there will be a
+finished DataLad-101 project for you to download and explore in the future.
+The dataset will contain tags that relate different states of it to the
+respective book sections.</p>
+</div>
+</div>
+<div class="section" id="let-s-get-going">
+<h2>Let’s get going!<a class="headerlink" href="#let-s-get-going" title="Permalink to this headline">¶</a></h2>
+<p>If you have DataLad installed, you can dive straight into chapter 1, <a class="reference internal" href="../basics/101-101-create.html#createds"><span class="std std-ref">Create a dataset</span></a>.
+For everyone new, there are the sections <a class="reference internal" href="howto.html#howto"><span class="std std-ref">General prerequisites</span></a> as a minimal tutorial
+to using the shell and <a class="reference internal" href="installation.html#install"><span class="std std-ref">Installation and configuration</span></a> to get your DataLad installation set up.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="philosophy.html" title="Previous document">A brief overview of DataLad</a>
+        </li>
+        <li>
+          <a href="installation.html" title="Next document">Installation and configuration</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

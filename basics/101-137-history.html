@@ -1,0 +1,1098 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Back and forth in time &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-137-history.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="101-180-FAQ.html" />
+    <link rel="prev" title="Miscellaneous file system operations" href="101-136-filesystem.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-137-history/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-137-history">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Back and forth in time &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Back and forth in time</a><ul>
+<li><a class="reference internal" href="#fixing-empty-commit-messages">Fixing (empty) commit messages</a></li>
+<li><a class="reference internal" href="#untracking-accidentally-saved-contents-tracked-in-git">Untracking accidentally saved contents (tracked in Git)</a></li>
+<li><a class="reference internal" href="#untracking-accidentally-saved-contents-stored-in-git-annex">Untracking accidentally saved contents (stored in Git-annex)</a></li>
+<li><a class="reference internal" href="#viewing-previous-versions-of-files-and-datasets">Viewing previous versions of files and datasets</a></li>
+<li><a class="reference internal" href="#undoing-latest-modifications-of-files">Undoing latest modifications of files</a></li>
+<li><a class="reference internal" href="#undoing-past-modifications-of-files">Undoing past modifications of files</a></li>
+<li><a class="reference internal" href="#oh-no-i-m-in-a-merge-conflict">Oh no! I’m in a merge conflict!</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-136-filesystem.html" title="previous chapter">Miscellaneous file system operations</a></li>
+      <li>Next: <a href="101-180-FAQ.html" title="next chapter">Frequently Asked Questions</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="back-and-forth-in-time">
+<span id="history"></span><h1>Back and forth in time<a class="headerlink" href="#back-and-forth-in-time" title="Permalink to this headline">¶</a></h1>
+<p>Almost everyone inadvertently deleted or overwrote files at some point with
+a hasty operation that caused data fatalities or at least troubles to
+re-obtain or restore data.
+With DataLad, no mistakes are forever: One powerful feature of datasets
+is the ability to revert data to a previous state and thus view earlier content or
+correct mistakes. As long as the content was version controlled (i.e., tracked),
+it is possible to look at previous states of the data, or revert changes –
+even years after they happened – thanks to the underlying version control
+system <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a>.</p>
+<p>To get a glimpse into how to work with the history of a dataset, today’s lecture
+has an external Git-expert as a guest lecturer.
+“I do not have enough time to go through all the details in only
+one lecture. But I’ll give you the basics, and an idea of what is possible.
+Always remember: Just google what you need. You will find thousands of helpful tutorials
+or questions on <a class="reference external" href="https.stackoverflow.com">Stackoverflow</a> right away.
+Even experts will <em>constantly</em> seek help to find out which Git command to
+use, and how to use it.”, he reassures with a wink.</p>
+<p>The basis of working with the history is to <em>look at it</em> with tools such
+as <a class="reference internal" href="../glossary.html#term-tig"><span class="xref std std-term">tig</span></a>, <a class="reference internal" href="../glossary.html#term-gitk"><span class="xref std std-term">gitk</span></a>, or simply the <strong class="command">git log</strong> command.
+The most important information in an entry (commit) in the history is
+the <a class="reference internal" href="../glossary.html#term-shasum"><span class="xref std std-term">shasum</span></a> (or hash) associated with it.
+This hash is how dataset modifications in the history are identified,
+and with this hash you can communicate with DataLad or <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a> about these
+modifications or version states<a class="footnote-reference brackets" href="#f1" id="id1">1</a>.
+Here is an excerpt from the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> history to show a
+few abbreviated hashes of the 15 most recent commits<a class="footnote-reference brackets" href="#f2" id="id2">2</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -15 --oneline
+<span class="go">110f3d9 add note on DataLads procedures</span>
+<span class="go">dd613a0 add note on configurations and git config</span>
+<span class="go">4ef993d Add note on adding siblings</span>
+<span class="go">db8aa3a Merge remote-tracking branch &#39;refs/remotes/roommate/master&#39;</span>
+<span class="go">834615c Include nesting demo from datalad website</span>
+<span class="go">0e85c3e add note about datalad update</span>
+<span class="go">2e7a3ad add note on git annex whereis</span>
+<span class="go">73f44c4 add note about installing from paths and recursive installations</span>
+<span class="go">dd6fef5 add note on clean datasets</span>
+<span class="go">d9d0872 [DATALAD RUNCMD] Resize logo for slides</span>
+<span class="go">36a9cfd [DATALAD RUNCMD] Resize logo for slides</span>
+<span class="go">244c234 add additional notes on run options</span>
+<span class="go">e3277e9 [DATALAD RUNCMD] convert -resize 450x450 recordings/longn...</span>
+<span class="go">257130b resized picture by hand</span>
+<span class="go">6e624f5 [DATALAD RUNCMD] convert -resize 400x400 recordings/longn...</span>
+</pre></div>
+</div>
+<p>“I’ll let you people direct this lecture”, the guest lecturer proposes.
+“You tell me what you would be interested in doing, and I’ll show you how it’s
+done. For the rest of the lecture, call me Google!”</p>
+<div class="section" id="fixing-empty-commit-messages">
+<h2>Fixing (empty) commit messages<a class="headerlink" href="#fixing-empty-commit-messages" title="Permalink to this headline">¶</a></h2>
+<p>From the back of the lecture hall comes a question you’re really glad
+someone asked: “It has happened to me that I accidentally did a
+<strong class="command">datalad save</strong> and forgot to specify the commit message,
+how can I fix this?”.
+The room nods in agreement – apparently, others have run into this
+premature slip of the <code class="docutils literal notranslate"><span class="pre">Enter</span></code> key as well.</p>
+<p>Let’s demonstrate a simple example. First, let’s create some random files.
+Do this right in your dataset.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat &lt;&lt; EOT &gt; Gitjoke1.txt
+<span class="go">Git knows what you did last summer!</span>
+<span class="go">EOT</span>
+
+<span class="gp">$</span> cat &lt;&lt; EOT &gt; Gitjoke2.txt
+<span class="go">Knock knock. Who&#39;s there? Git.</span>
+<span class="go">Git-who?</span>
+<span class="go">Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+<span class="go">EOT</span>
+
+<span class="gp">$</span> cat &lt;&lt; EOT &gt; Gitjoke3.txt
+<span class="go">In Soviet Russia, git commits YOU!</span>
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<p>This will generate three new files in your dataset. Run a
+<strong class="command">datalad status</strong> to verify this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke2.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+</pre></div>
+</div>
+<p>And now:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save
+<span class="go">add(ok): Gitjoke1.txt (file)</span>
+<span class="go">add(ok): Gitjoke2.txt (file)</span>
+<span class="go">add(ok): Gitjoke3.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 3)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Whooops! A <strong class="command">datalad save</strong> without a
+commit message that saved all of the files.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -p -1
+<span class="go">commit 767cfdbefd18f6206cfbbc01e7ab999e069c38c8</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:06:00 2019 +0100</span>
+
+<span class="hll"><span class="go">    [DATALAD] Recorded changes</span>
+</span>
+<span class="go">diff --git a/Gitjoke1.txt b/Gitjoke1.txt</span>
+<span class="go">new file mode 100644</span>
+<span class="go">index 0000000..d7e1359</span>
+<span class="go">--- /dev/null</span>
+<span class="go">+++ b/Gitjoke1.txt</span>
+<span class="go">@@ -0,0 +1 @@</span>
+<span class="go">+Git knows what you did last summer!</span>
+<span class="go">diff --git a/Gitjoke2.txt b/Gitjoke2.txt</span>
+<span class="go">new file mode 100644</span>
+<span class="go">index 0000000..51beecb</span>
+<span class="go">--- /dev/null</span>
+<span class="go">+++ b/Gitjoke2.txt</span>
+<span class="go">@@ -0,0 +1,3 @@</span>
+<span class="go">+Knock knock. Who&#39;s there? Git.</span>
+<span class="go">+Git-who?</span>
+<span class="go">+Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+<span class="go">diff --git a/Gitjoke3.txt b/Gitjoke3.txt</span>
+<span class="go">new file mode 100644</span>
+<span class="go">index 0000000..7b83d95</span>
+<span class="go">--- /dev/null</span>
+<span class="go">+++ b/Gitjoke3.txt</span>
+<span class="go">@@ -0,0 +1 @@</span>
+<span class="go">+In Soviet Russia, git commits YOU!</span>
+</pre></div>
+</div>
+<p>As expected, all of the modifications present prior to the
+command are saved into the most recent commit, and the commit
+message DataLad provides by default, <code class="docutils literal notranslate"><span class="pre">[DATALAD]</span> <span class="pre">Recorded</span> <span class="pre">changes</span></code>,
+is not very helpful.</p>
+<p>Changing the commit message of the most recent commit can be done with
+the command <strong class="command">git commit --amend</strong>. Running this command will open
+an editor (the default, as configured in Git), and allow you
+to change the commit message.</p>
+<p>Try running the <strong class="command">git commit --amend</strong> command right now and give
+the commit a new commit message (you can just delete the one created by
+DataLad in the editor)!</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>Changing the commit messages of not-the-most-recent commits</p>
+</div>
+<p>The <strong class="command">git commit --amend</strong> commands will let you
+rewrite the commit message of the most recent commit. If you
+however need to rewrite commit messages of older commits, you
+can do so during a so-called “interactive rebase”<a class="footnote-reference brackets" href="#f4" id="id3">4</a>. The command
+for this is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git rebase -i HEAD~N
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> specifies how far back you want to rewrite commits.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span> <span class="pre">HEAD~3</span></code> for example lets you apply changes to the
+any number of commit messages within the last three commits.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Be aware that an interactive rebase lets you <em>rewrite</em> history.
+This can lead to confusion or worse if the history you are rewriting
+is shared with others, e.g., in a collaborative project. Be also aware
+that rewriting history that is <em>pushed</em>/<em>published</em> (e.g., to Github)
+will require a force-push!</p>
+</div>
+<p>Running this command gives you a list of the N most recent commits
+in your text editor (which may be <a class="reference internal" href="../glossary.html#term-vim"><span class="xref std std-term">vim</span></a>!), sorted with
+the most recent commit on the bottom.
+This is how it may look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pick 8503f26 Add note on adding siblings
+pick 23f0a52 add note on configurations and git config
+pick c42cba4 add note on DataLads procedures
+
+<span class="c1"># Rebase b259ce8..c42cba4 onto b259ce8 (3 commands)</span>
+<span class="c1">#</span>
+<span class="c1"># Commands:</span>
+<span class="c1"># p, pick &lt;commit&gt; = use commit</span>
+<span class="c1"># r, reword &lt;commit&gt; = use commit, but edit the commit message</span>
+<span class="c1"># e, edit &lt;commit&gt; = use commit, but stop for amending</span>
+<span class="c1"># s, squash &lt;commit&gt; = use commit, but meld into previous commit</span>
+<span class="c1"># f, fixup &lt;commit&gt; = like &quot;squash&quot;, but discard this commit&#39;s log message</span>
+<span class="c1"># x, exec &lt;command&gt; = run command (the rest of the line) using shell</span>
+<span class="c1"># b, break = stop here (continue rebase later with &#39;git rebase --continue&#39;)</span>
+<span class="c1"># d, drop &lt;commit&gt; = remove commit</span>
+<span class="c1"># l, label &lt;label&gt; = label current HEAD with a name</span>
+</pre></div>
+</div>
+<p>An interactive rebase allows to apply various modifying actions to any
+number of commits in the list. Below the list are descriptions of these
+different actions. Among them is “reword”, which lets you “edit the commit
+message”. To apply this action and reword the top-most commit message in this list
+(<code class="docutils literal notranslate"><span class="pre">8503f26</span> <span class="pre">Add</span> <span class="pre">note</span> <span class="pre">on</span> <span class="pre">adding</span> <span class="pre">siblings</span></code>, three commits back in the history),
+exchange the word <code class="docutils literal notranslate"><span class="pre">pick</span></code> in the beginning of the line with the word
+<code class="docutils literal notranslate"><span class="pre">reword</span></code> or simply <code class="docutils literal notranslate"><span class="pre">r</span></code> like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="mi">8503</span><span class="n">f26</span> <span class="n">Add</span> <span class="n">note</span> <span class="n">on</span> <span class="n">adding</span> <span class="n">siblings</span>
+</pre></div>
+</div>
+<p>If you want to reword more than one commit message, exchange several
+<code class="docutils literal notranslate"><span class="pre">pick</span></code>s. Any commit with the word <code class="docutils literal notranslate"><span class="pre">pick</span></code> at the beginning of the line will
+be kept as is. Once you are done, save and close the editor. This will
+sequentially open up a new editor for each commit you want to reword. In
+it, you will be able to change the commit message. Save to proceed to
+the next commit message until the rebase is complete.
+But be careful not to delete any lines in the above editor view –
+<strong>An interactive rebase can be dangerous, and if you remove a line, this commit will be lost!</strong><a class="footnote-reference brackets" href="#f5" id="id4">5</a></p>
+</div>
+</div>
+<div class="section" id="untracking-accidentally-saved-contents-tracked-in-git">
+<h2>Untracking accidentally saved contents (tracked in Git)<a class="headerlink" href="#untracking-accidentally-saved-contents-tracked-in-git" title="Permalink to this headline">¶</a></h2>
+<p>The next question comes from the front:
+“It happened that I forgot to give a path to the <strong class="command">datalad save</strong>
+command when I wanted to only start tracking a very specific file.
+Other times I just didn’t remember that
+additional, untracked files existed in the dataset and saved unaware of
+those. I know that it is good practice to only save
+those changes together that belong together, so is there a way to
+disentangle an accidental <strong class="command">datalad save</strong> again?”</p>
+<p>Let’s say instead of saving <em>all three</em> previously untracked Git jokes
+you intended to save <em>only one</em> of those files. What we
+want to achieve is to keep all of the files and their contents
+in the dataset, but get them out of the history into an
+<em>untracked</em> state again, and save them <em>individually</em> afterwards.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Note that this is a case with <em>text files</em> (stored in Git)! For
+accidental annexing of files, please make sure to check out
+the next paragraph!</p>
+</div>
+<p>This is a task for the <strong class="command">git reset</strong> command. It essentially allows to
+undo commits by resetting the history of a dataset to an earlier version.
+<strong class="command">git reset</strong> comes with several <em>modes</em> that determine the
+exact behavior it, but the relevant one for this aim is <code class="docutils literal notranslate"><span class="pre">--mixed</span></code><a class="footnote-reference brackets" href="#f3" id="id5">3</a>.
+Specifying the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">mixed</span> <span class="n">COMMIT</span>
+</pre></div>
+</div>
+<p>will preserve all changes made to files until the specified
+commit in the dataset, but remove them from the datasets history.
+This means the commits <em>until</em> <code class="docutils literal notranslate"><span class="pre">COMMIT</span></code> (not <em>including</em> <code class="docutils literal notranslate"><span class="pre">COMMIT</span></code>)
+will not be in your history anymore, and instead “untracked files” or
+“unsaved changes”. In other words, the modifications
+you made in these commits that are “undone” will still be present
+in your dataset – just not written to the history anymore. Let’s
+try this to get a feel for it.</p>
+<p>The COMMIT in the command can either be a hash or a reference
+with the HEAD pointer. Let’s stay with the hash, and reset to the
+commit prior to saving the Gitjokes.</p>
+<p>First, find out the shasum, and afterwards, reset it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -3 --oneline
+<span class="go">767cfdb [DATALAD] Recorded changes</span>
+<span class="go">110f3d9 add note on DataLads procedures</span>
+<span class="go">dd613a0 add note on configurations and git config</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git reset --mixed 110f3d9893158cc63972a97bde63efd1c2de07b7
+</pre></div>
+</div>
+<p>Let’s see what has happened. First, let’s check the history:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -2 --oneline
+<span class="go">110f3d9 add note on DataLads procedures</span>
+<span class="go">dd613a0 add note on configurations and git config</span>
+</pre></div>
+</div>
+<p>As you can see, the commit in which the jokes were tracked
+is not in the history anymore! Go on to see what <strong class="command">datalad status</strong>
+reports:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke2.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+</pre></div>
+</div>
+<p>Nice, the files are present, and untracked again. Do they contain
+the content still? We will read all of them with <strong class="command">cat</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat Gitjoke*
+<span class="go">Git knows what you did last summer!</span>
+<span class="go">Knock knock. Who&#39;s there? Git.</span>
+<span class="go">Git-who?</span>
+<span class="go">Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+<span class="go">In Soviet Russia, git commits YOU!</span>
+</pre></div>
+</div>
+<p>Great. Now we can go ahead and save only the file we intended
+to track:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;save my favourite Git joke&quot;</span> Gitjoke2.txt
+<span class="go">add(ok): Gitjoke2.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Finally, lets check how the history looks afterwards:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -2
+<span class="go">commit 928c260c00e04724f2684d85c28b78c11ef91fb2</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:06:00 2019 +0100</span>
+
+<span class="go">    save my favourite Git joke</span>
+
+<span class="go">commit 110f3d9893158cc63972a97bde63efd1c2de07b7</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:05:44 2019 +0100</span>
+
+<span class="go">    add note on DataLads procedures</span>
+</pre></div>
+</div>
+<p>Wow! You have rewritten history<a class="footnote-reference brackets" href="#f4" id="id6">4</a> !</p>
+</div>
+<div class="section" id="untracking-accidentally-saved-contents-stored-in-git-annex">
+<h2>Untracking accidentally saved contents (stored in Git-annex)<a class="headerlink" href="#untracking-accidentally-saved-contents-stored-in-git-annex" title="Permalink to this headline">¶</a></h2>
+<p>The previous <strong class="command">git reset</strong> undid the tracking of <em>text</em> files.
+However, those files are stored in Git, and thus their content
+is also stored in Git. Files that are annexed, however, have
+their content stored in Git-annex, and not the file itself is stored
+in the history, but a symlink pointing to the location of the file
+content in the dataset’s annex. This has consequences for
+a <strong class="command">git reset</strong> command: Reverting a save of a file that is
+annexed would revert the save of the symlink into Git, but it will
+not revert the <em>annexing</em> of the file.
+Thus, what will be left in the dataset is an untracked symlink.</p>
+<p>To undo an accidental save that annexed a file, the annexed file
+has to be “unannexed” first with a <strong class="command">datalad unlock</strong> command.</p>
+<p>We will simulate such a situation by creating a PDF file that
+gets annexed with an accidental <strong class="command">datalad save</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> create an empty pdf file
+<span class="gp">$</span> convert xc:none -page Letter apdffile.pdf
+<span class="gp">#</span> accidentally save it
+<span class="gp">$</span> datalad save
+<span class="go">add(ok): Gitjoke1.txt (file)</span>
+<span class="go">add(ok): Gitjoke3.txt (file)</span>
+<span class="go">add(ok): apdffile.pdf (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 3)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>This accidental <strong class="command">save</strong> has thus added both text files
+stored in Git, but also a PDF file to the history of the dataset.
+As an <strong class="command">ls -l</strong> reveals, the PDF file has been annexed and is
+thus a <a class="reference internal" href="../glossary.html#term-symlink"><span class="xref std std-term">symlink</span></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -l apdffile.pdf
+<span class="go">lrwxrwxrwx 1 adina adina 122 Nov 12 15:06 apdffile.pdf -&gt; .git/annex/objects/x5/V6/MD5E-s1842--103dcc3acb8ee555f97413f58c36e4c5.pdf/MD5E-s1842--103dcc3acb8ee555f97413f58c36e4c5.pdf</span>
+</pre></div>
+</div>
+<p>Prior to resetting, the PDF file has to be unannexed.
+To unannex files, i.e., get the contents out of the object tree,
+the <strong class="command">datalad unlock</strong> command is relevant:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad unlock apdffile.pdf
+<span class="go">unlock(ok): apdffile.pdf (file)</span>
+</pre></div>
+</div>
+<p>The file is now no longer symlinked:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -l apdffile.pdf
+<span class="go">-rw-r--r-- 1 adina adina 1842 Nov 12 15:06 apdffile.pdf</span>
+</pre></div>
+</div>
+<p>Finally, <strong class="command">git reset --mixed</strong> can be used to revert the
+accidental <strong class="command">save</strong>. Again, find out the shasum first, and
+afterwards, reset it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -3 --oneline
+<span class="go">de40146 [DATALAD] Recorded changes</span>
+<span class="go">928c260 save my favourite Git joke</span>
+<span class="go">110f3d9 add note on DataLads procedures</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git reset --mixed 928c260c00e04724f2684d85c28b78c11ef91fb2
+</pre></div>
+</div>
+<p>To see what has happened, let’s check the history:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -2 --oneline
+<span class="go">928c260 save my favourite Git joke</span>
+<span class="go">110f3d9 add note on DataLads procedures</span>
+</pre></div>
+</div>
+<p>… and also the status of the dataset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+<span class="go">untracked: apdffile.pdf (file)</span>
+</pre></div>
+</div>
+<p>The accidental save has been undone, and the file is present
+as untracked content again.
+As before, this action has not been recorded in your history.</p>
+</div>
+<div class="section" id="viewing-previous-versions-of-files-and-datasets">
+<h2>Viewing previous versions of files and datasets<a class="headerlink" href="#viewing-previous-versions-of-files-and-datasets" title="Permalink to this headline">¶</a></h2>
+<p>The next question is truly magical: How does one <em>see</em>
+data as it was at a previous state in history?</p>
+<p>This magic trick can be performed with the <strong class="command">git checkout</strong>.
+It is a very heavily used command for various tasks, but among
+many it can send you back in time to view the state of a dataset
+at the time of a specific commit.</p>
+<p>Let’s say you want to find out which notes you took in the first
+few chapters of the handbook. Find a commit <a class="reference internal" href="../glossary.html#term-shasum"><span class="xref std std-term">shasum</span></a> in your history
+to specify the point in time you want to go back to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -20 --oneline
+<span class="go">928c260 save my favourite Git joke</span>
+<span class="go">110f3d9 add note on DataLads procedures</span>
+<span class="go">dd613a0 add note on configurations and git config</span>
+<span class="go">4ef993d Add note on adding siblings</span>
+<span class="go">db8aa3a Merge remote-tracking branch &#39;refs/remotes/roommate/master&#39;</span>
+<span class="go">834615c Include nesting demo from datalad website</span>
+<span class="go">0e85c3e add note about datalad update</span>
+<span class="go">2e7a3ad add note on git annex whereis</span>
+<span class="go">73f44c4 add note about installing from paths and recursive installations</span>
+<span class="go">dd6fef5 add note on clean datasets</span>
+<span class="go">d9d0872 [DATALAD RUNCMD] Resize logo for slides</span>
+<span class="go">36a9cfd [DATALAD RUNCMD] Resize logo for slides</span>
+<span class="go">244c234 add additional notes on run options</span>
+<span class="go">e3277e9 [DATALAD RUNCMD] convert -resize 450x450 recordings/longn...</span>
+<span class="go">257130b resized picture by hand</span>
+<span class="go">6e624f5 [DATALAD RUNCMD] convert -resize 400x400 recordings/longn...</span>
+<span class="go">327fd83 add note on basic datalad run and datalad rerun</span>
+<span class="go">4e3fb6e add note datalad and git diff</span>
+<span class="go">d26a29b [DATALAD RUNCMD] create a list of podcast titles</span>
+<span class="go">d04c4af BF: list both directories content</span>
+</pre></div>
+</div>
+<p>Let’s go 15 commits back in time:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout 327fd8340f54ee432b96653cbabb7bc35ab21369
+<span class="go">Note: checking out &#39;327fd8340f54ee432b96653cbabb7bc35ab21369&#39;.</span>
+
+<span class="go">You are in &#39;detached HEAD&#39; state. You can look around, make experimental</span>
+<span class="go">changes and commit them, and you can discard any commits you make in this</span>
+<span class="go">state without impacting any branches by performing another checkout.</span>
+
+<span class="go">If you want to create a new branch to retain commits you create, you may</span>
+<span class="go">do so (now or later) by using -b with the checkout command again. Example:</span>
+
+<span class="go">  git checkout -b &lt;new-branch-name&gt;</span>
+
+<span class="go">HEAD is now at 327fd83 add note on basic datalad run and datalad rerun</span>
+</pre></div>
+</div>
+<p>How did your <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> file look at this point?</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat notes.txt
+<span class="go">One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go">The dataset is created empty</span>
+
+<span class="go">The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">(modifications) to history. Note to self:</span>
+<span class="go">Always use informative, concise commit messages.</span>
+
+<span class="go">The command &#39;datalad install [--source] PATH&#39;</span>
+<span class="go">installs a dataset from e.g., a URL or a path.</span>
+<span class="go">If you install a dataset into an existing</span>
+<span class="go">dataset (as a subdataset), remember to specify the</span>
+<span class="go">root of the superdataset with the &#39;-d&#39; option.</span>
+
+<span class="go">There are two useful functions to display changes between two</span>
+<span class="go">states of a dataset: &quot;datalad diff -f/--from COMMIT -t/--to COMMIT&quot;</span>
+<span class="go">and &quot;git diff COMMIT COMMIT&quot;, where COMMIT is a shasum of a commit</span>
+<span class="go">in the history.</span>
+
+<span class="go">The datalad run command can record the impact a script or command has on a Dataset.</span>
+<span class="go">In its simplest form, datalad run only takes a commit message and the command that</span>
+<span class="go">should be executed.</span>
+
+<span class="go">Any datalad run command can be re-executed by using its commit shasum as an argument</span>
+<span class="go">in datalad rerun CHECKSUM. DataLad will take information from the run record of the original</span>
+<span class="go">commit, and re-execute it. If no changes happen with a rerun, the command will not be written</span>
+<span class="go">to history. Note: you can also rerun a datalad rerun command!</span>
+</pre></div>
+</div>
+<p>Neat, isn’t it? By checking out a commit shasum you can explore a previous
+state of a datasets history. And this does not only apply to simple text
+files, but every type of file in your dataset, regardless of size.
+The checkout command however led to something that Git calls a “detached HEAD state”.
+While this sounds scary, a <strong class="command">git checkout master</strong> will bring you
+back into the most recent version of your dataset and get you out of the
+“detached HEAD state”:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master
+<span class="go">Previous HEAD position was 327fd83 add note on basic datalad run and datalad rerun</span>
+<span class="go">Switched to branch &#39;master&#39;</span>
+</pre></div>
+</div>
+<p>Note one very important thing: The previously untracked files are still
+there.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+<span class="go">untracked: apdffile.pdf (file)</span>
+</pre></div>
+</div>
+<p>The contents of <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> will now be the most recent version again:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat notes.txt
+<span class="go">One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go">The dataset is created empty</span>
+
+<span class="go">The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">(modifications) to history. Note to self:</span>
+<span class="go">Always use informative, concise commit messages.</span>
+
+<span class="go">The command &#39;datalad install [--source] PATH&#39;</span>
+<span class="go">installs a dataset from e.g., a URL or a path.</span>
+<span class="go">If you install a dataset into an existing</span>
+<span class="go">dataset (as a subdataset), remember to specify the</span>
+<span class="go">root of the superdataset with the &#39;-d&#39; option.</span>
+
+<span class="go">There are two useful functions to display changes between two</span>
+<span class="go">states of a dataset: &quot;datalad diff -f/--from COMMIT -t/--to COMMIT&quot;</span>
+<span class="go">and &quot;git diff COMMIT COMMIT&quot;, where COMMIT is a shasum of a commit</span>
+<span class="go">in the history.</span>
+
+<span class="go">The datalad run command can record the impact a script or command has on a Dataset.</span>
+<span class="go">In its simplest form, datalad run only takes a commit message and the command that</span>
+<span class="go">should be executed.</span>
+
+<span class="go">Any datalad run command can be re-executed by using its commit shasum as an argument</span>
+<span class="go">in datalad rerun CHECKSUM. DataLad will take information from the run record of the original</span>
+<span class="go">commit, and re-execute it. If no changes happen with a rerun, the command will not be written</span>
+<span class="go">to history. Note: you can also rerun a datalad rerun command!</span>
+
+<span class="go">You should specify all files that a command takes as input with an -i/--input flag. These</span>
+<span class="go">files will be retrieved prior to the command execution. Any content that is modified or</span>
+<span class="go">produced by the command should be specified with an -o/--output flag. Upon a run or rerun</span>
+<span class="go">of the command, the contents of these files will get unlocked so that they can be modified.</span>
+
+<span class="go">Important! If the dataset is not &quot;clean&quot; (a datalad status output is empty),</span>
+<span class="go">datalad run will not work - you will have to save modifications present in your</span>
+<span class="go">dataset.</span>
+<span class="go">A suboptimal alternative is the --explicit flag,</span>
+<span class="go">used to record only those changes done</span>
+<span class="go">to the files listed with --output flags.</span>
+
+<span class="go">A source to install a dataset from can also be a path,</span>
+<span class="go">for example as in &quot;datalad install -s ../DataLad-101&quot;.</span>
+<span class="go">As when installing datasets before, make sure to add a</span>
+<span class="go">description on the location of the dataset to be</span>
+<span class="go">installed, and, if you want, a path to where the dataset</span>
+<span class="go">should be installed under which name.</span>
+
+<span class="go">Note that subdatasets will not be installed by default --</span>
+<span class="go">you will have to do a plain</span>
+<span class="go">&quot;datalad install PATH/TO/SUBDATASET&quot;, or specify the</span>
+<span class="go">-r/--recursive option in the install command:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r&quot;.</span>
+
+<span class="go">A recursive installation would however install all</span>
+<span class="go">installed subdatasets, so a safer way to proceed is to</span>
+<span class="go">set a decent --recursion-limit:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r --recursion-limit 2&quot;</span>
+
+<span class="go">The command &quot;git annex whereis PATH&quot; lists the repositories that have</span>
+<span class="go">the file content of an annexed file. When using &quot;datalad get&quot; to retrieve</span>
+<span class="go">file content, those repositories will be queried.</span>
+
+<span class="go">To update a shared dataset, run the command &quot;datalad update --merge&quot;.</span>
+<span class="go">This command will query its origin for changes, and integrate the</span>
+<span class="go">changes into the dataset.</span>
+
+<span class="go">To update from a dataset with a shared history, you</span>
+<span class="go">need to add this dataset as a sibling to your dataset.</span>
+<span class="go">&quot;Adding a sibling&quot; means providing DataLad with info about</span>
+<span class="go">the location of a dataset, and a name for it. Afterwards,</span>
+<span class="go">a &quot;datalad update --merge -s name&quot; will integrate the changes</span>
+<span class="go">made to the sibling into the dataset.</span>
+<span class="go">A safe step in between is to do a &quot;datalad update -s name&quot;</span>
+<span class="go">and checkout the changes with &quot;git/datalad diff&quot;</span>
+<span class="go">to remotes/origin/master</span>
+
+<span class="go">Configurations for datasets exist on different levels</span>
+<span class="go">(systemwide, global, and local), and in different types</span>
+<span class="go">of files (not version controlled (git)config files, or</span>
+<span class="go">version controlled .datalad/config, .gitattributes, or</span>
+<span class="go">gitmodules files), or environment variables.</span>
+<span class="go">With the exception of .gitattributes, all configuration</span>
+<span class="go">files share a common structure, and can be modified with</span>
+<span class="go">the git config command, but also with an editor by hand.</span>
+
+<span class="go">Depending on whether a configuration file is version</span>
+<span class="go">controlled or not, the configurations will be shared together</span>
+<span class="go">with the dataset. More specific configurations and not-shared</span>
+<span class="go">configurations will always take precedence over more global or</span>
+<span class="go">shared configurations, and environment variables take precedence</span>
+<span class="go">over configurations in files.</span>
+
+<span class="go">The git config --list --show-origin command is a useful tool</span>
+<span class="go">to give an overview over existing configurations. Particularly</span>
+<span class="go">important may be the .gitattributes file, in which one can set</span>
+<span class="go">rules for Git-annex about which files should be version-controlled</span>
+<span class="go">with Git instead of being annexed.</span>
+
+<span class="go">It can be useful to use pre-configured procedures that can apply</span>
+<span class="go">configurations, create files or file hierarchies, or perform</span>
+<span class="go">arbitrary tasks in datasets. They can be shipped with DataLad,</span>
+<span class="go">its extensions, or datasets, and you can even write your own</span>
+<span class="go">procedures and distribute them. The &quot;datalad run-procedure&quot;</span>
+<span class="go">command is used to apply such a procedure to a dataset. Procedures</span>
+<span class="go">shipped with DataLad or its extensions starting with a &quot;cfg&quot; prefix</span>
+<span class="go">can also be applied at the creation of a dataset with</span>
+<span class="go">&quot;datalad create -c &lt;PROC-NAME&gt; &lt;PATH&gt;&quot; (omitting the &quot;cfg&quot; prefix).</span>
+</pre></div>
+</div>
+<p>… Wow! You travelled back and forth in time!
+But an even more magical way to see the contents of files in previous
+versions is Git’s <strong class="command">cat-file</strong> command: Among many other things, it lets
+you read a file’s contents as of any point in time in the history, without a
+prior <strong class="command">git checkout</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git cat-file --textconv 327fd8340f54ee432b96653cbabb7bc35ab21369:notes.txt
+<span class="go">One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go">The dataset is created empty</span>
+
+<span class="go">The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">(modifications) to history. Note to self:</span>
+<span class="go">Always use informative, concise commit messages.</span>
+
+<span class="go">The command &#39;datalad install [--source] PATH&#39;</span>
+<span class="go">installs a dataset from e.g., a URL or a path.</span>
+<span class="go">If you install a dataset into an existing</span>
+<span class="go">dataset (as a subdataset), remember to specify the</span>
+<span class="go">root of the superdataset with the &#39;-d&#39; option.</span>
+
+<span class="go">There are two useful functions to display changes between two</span>
+<span class="go">states of a dataset: &quot;datalad diff -f/--from COMMIT -t/--to COMMIT&quot;</span>
+<span class="go">and &quot;git diff COMMIT COMMIT&quot;, where COMMIT is a shasum of a commit</span>
+<span class="go">in the history.</span>
+
+<span class="go">The datalad run command can record the impact a script or command has on a Dataset.</span>
+<span class="go">In its simplest form, datalad run only takes a commit message and the command that</span>
+<span class="go">should be executed.</span>
+
+<span class="go">Any datalad run command can be re-executed by using its commit shasum as an argument</span>
+<span class="go">in datalad rerun CHECKSUM. DataLad will take information from the run record of the original</span>
+<span class="go">commit, and re-execute it. If no changes happen with a rerun, the command will not be written</span>
+<span class="go">to history. Note: you can also rerun a datalad rerun command!</span>
+</pre></div>
+</div>
+<p>The cat-file command is very versatile, and
+<a class="reference external" href="https://git-scm.com/docs/git-cat-file">it’s documentation</a> will list all
+of its functionality. To use it to see the contents of a file at a previous
+state as done above, this is how the general structure looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git cat-file --textconv SHASUM:&lt;path/to/file&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="undoing-latest-modifications-of-files">
+<h2>Undoing latest modifications of files<a class="headerlink" href="#undoing-latest-modifications-of-files" title="Permalink to this headline">¶</a></h2>
+<p>Previously, we saw how to remove files from a datasets history that
+were accidentally saved and thus tracked for the first time.
+How does one undo a <em>modification</em> to a tracked file?</p>
+<p>Let’s modify the saved <code class="docutils literal notranslate"><span class="pre">Gitjoke1.txt</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;this is by far my favourite joke!&quot;</span> &gt;&gt; Gitjoke2.txt
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat Gitjoke2.txt
+<span class="go">Knock knock. Who&#39;s there? Git.</span>
+<span class="go">Git-who?</span>
+<span class="go">Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+<span class="go">this is by far my favourite joke!</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+<span class="go">untracked: apdffile.pdf (file)</span>
+<span class="go"> modified: Gitjoke2.txt (file)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;add joke evaluation to joke&quot;</span> Gitjoke2.txt
+<span class="go">add(ok): Gitjoke2.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>How could this modification to <code class="docutils literal notranslate"><span class="pre">Gitjoke2.txt</span></code> be undone?
+With the <strong class="command">git reset</strong> command again. If you want to
+“unsave” the modification but keep it in the file, use
+<strong class="command">git reset --mixed</strong> as before. However, if you want to
+get rid of the modifications entirely, use the option <code class="docutils literal notranslate"><span class="pre">--hard</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">--mixed</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -2 --oneline
+<span class="go">53b0737 add joke evaluation to joke</span>
+<span class="go">928c260 save my favourite Git joke</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git reset --hard 928c260c00e04724f2684d85c28b78c11ef91fb2
+<span class="go">HEAD is now at 928c260 save my favourite Git joke</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat Gitjoke2.txt
+<span class="go">Knock knock. Who&#39;s there? Git.</span>
+<span class="go">Git-who?</span>
+<span class="go">Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+</pre></div>
+</div>
+<p>The change has been undone completely. This method will work with
+files stored in Git and annexed files.</p>
+<p>Note that this operation only restores this one file, because the commit that
+was undone only contained modifications to this one file. This is a
+demonstration of one of the reasons why one should strive for commits to
+represent meaningful logical units of change – if necessary, they can be
+undone easily.</p>
+</div>
+<div class="section" id="undoing-past-modifications-of-files">
+<h2>Undoing past modifications of files<a class="headerlink" href="#undoing-past-modifications-of-files" title="Permalink to this headline">¶</a></h2>
+<p>What <strong class="command">git reset</strong> did was to undo commits from
+the most recent version of your dataset. How
+would one undo a change that happened a while ago, though,
+with important changes being added afterwards that you want
+to keep?</p>
+<p>Let’s save a bad modification to <code class="docutils literal notranslate"><span class="pre">Gitjoke2.txt</span></code>,
+but also a modification to <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;bad modification&quot;</span> &gt;&gt; Gitjoke2.txt
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;did a bad modification&quot;</span> Gitjoke2.txt
+<span class="go">add(ok): Gitjoke2.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat &lt;&lt; EOT &gt; notes.txt
+
+<span class="go">Git has many handy tools to go back in forth in</span>
+<span class="go">time and work with the history of datasets.</span>
+<span class="go">Among many other things you can rewrite commit</span>
+<span class="go">messages, undo changes, or look at previous versions</span>
+<span class="go">of datasets. A superb resource to find out more about</span>
+<span class="go">this and practice such Git operations is this</span>
+<span class="go">chapter in the Pro-git book:</span>
+<span class="go">https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History</span>
+
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;add note on helpful git resource&quot;</span> notes.txt
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>The objective is to remove the first, “bad” modification, but
+keep the more recent modification of <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>. A <strong class="command">git reset</strong>
+command is not convenient, because resetting would need to reset
+the most recent, “good” modification as well.</p>
+<p>One way to accomplish it is with an <em>interactive rebase</em>, using the
+<strong class="command">git rebase -i</strong> command<a class="footnote-reference brackets" href="#f5" id="id7">5</a>. Experienced Git-users will know
+under which situations and how to perform such an interactive rebase.</p>
+<p>However, outlining an interactive rebase here in the handbook could lead to
+problems for readers without (much) Git experience: An interactive rebase,
+even if performed successfully, can lead to many problems if it is applied with
+too little experience, for example in any collaborative real-world project.</p>
+<p>Instead, we demonstrate a different, less intrusive way to revert one or more
+changes at any point in the history of a dataset: the <strong class="command">git revert</strong>
+command.
+Instead of <em>rewriting</em> the history, it will add an additional commit in which
+the changes of an unwanted commit are reverted.</p>
+<p>The command looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git revert SHASUM
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">SHASUM</span></code> specifies the commit hash of the modification that should
+be reverted.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>Reverting more than a single commit</p>
+</div>
+<p>Alternatively, you can also specify a range of commits modify commits, for
+example like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git revert OLDER_SHASUM..NEWERSHASUM
+</pre></div>
+</div>
+<p>This command will revert all commits starting with the one after
+<code class="docutils literal notranslate"><span class="pre">OLDER_SHASUM</span></code> (i.e. <strong>not including</strong> this commit) until and <strong>including</strong>
+the one specified with <code class="docutils literal notranslate"><span class="pre">NEWERSHASUM</span></code>.
+For each reverted commit, one new commit will be added to the history that
+reverts it. Thus, if you revert a range of three commits, there will be three
+reversal commits. If you however want the reversal of a range of commits
+saved in a single commit, supply the <code class="docutils literal notranslate"><span class="pre">--no-commit</span></code> option as in</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git revert --no-commit OLDER_SHASUM..NEWERSHASUM
+</pre></div>
+</div>
+<p>After running this command, run a single <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> to conclude the
+reversal and save it in a single commit.</p>
+</div>
+<p>Let’s see how it looks like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git revert f692cff44bfc0b97251b067a7a7af4708c6b1f24
+<span class="go">[master d95c45c] Revert &quot;did a bad modification&quot;</span>
+<span class="go"> Date: Tue Nov 12 15:06:03 2019 +0100</span>
+<span class="go"> 1 file changed, 1 deletion(-)</span>
+</pre></div>
+</div>
+<p>This is the state of the file in which we reverted a modification:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat Gitjoke2.txt
+<span class="go">Knock knock. Who&#39;s there? Git.</span>
+<span class="go">Git-who?</span>
+<span class="go">Sorry, &#39;who&#39; is not a git command - did you mean &#39;show&#39;?</span>
+</pre></div>
+</div>
+<p>It does not contain the bad modification anymore. And this is what happened in
+the history of the dataset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -3
+<span class="go">commit d95c45cbaa5960d1d139e4610f050f774a0efb8c</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:06:03 2019 +0100</span>
+
+<span class="hll"><span class="go">    Revert &quot;did a bad modification&quot;</span>
+</span><span class="hll"><span class="go">    </span>
+</span><span class="hll"><span class="go">    This reverts commit f692cff44bfc0b97251b067a7a7af4708c6b1f24.</span>
+</span>
+<span class="go">commit bf125dd945e4491b6a52fc44faaff42ada81a8eb</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:06:02 2019 +0100</span>
+
+<span class="go">    add note on helpful git resource</span>
+
+<span class="go">commit f692cff44bfc0b97251b067a7a7af4708c6b1f24</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:06:02 2019 +0100</span>
+
+<span class="hll"><span class="go">    did a bad modification</span>
+</span></pre></div>
+</div>
+<p>The commit that introduced the bad modification is still present, but it
+transparently gets undone with the most recent commit. At the same time, the
+good modification of <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> was not influenced in any way. The
+<strong class="command">git revert</strong> command is thus a transparent and safe way of undoing past
+changes. Note though that this command can only be used efficiently if the
+commits in your datasets history are meaningful, independent units – having
+several unrelated modifications in a single commit may make an easy solution
+with <strong class="command">git revert</strong> impossible and instead require a complex
+<strong class="command">checkout</strong>, <strong class="command">revert</strong>, or <strong class="command">rebase</strong> operation.</p>
+<p>Finally, let’s take a look at the state of the dataset after this operation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+<span class="go">untracked: apdffile.pdf (file)</span>
+</pre></div>
+</div>
+<p>As you can see, unsurprisingly, the <strong class="command">git revert</strong> command had no
+effects on anything else but the specified commit, and previously untracked
+files are still present.</p>
+</div>
+<div class="section" id="oh-no-i-m-in-a-merge-conflict">
+<h2>Oh no! I’m in a merge conflict!<a class="headerlink" href="#oh-no-i-m-in-a-merge-conflict" title="Permalink to this headline">¶</a></h2>
+<p>When working with the history of a dataset, especially when rewriting
+the history with an interactive rebase or when reverting commits, it is
+possible to run into so-called <em>merge conflicts</em>.
+Merge conflicts happen when Git needs assistance in deciding
+which changes to keep and which to apply. It will require
+you to edit the file the merge conflict is happening in with
+a text editor, but such merge conflict are by far not as scary as
+they may seem during the first few times of solving merge conflicts.</p>
+<p>This section is not a guide on how to solve merge-conflicts, but a broad
+overview on the necessary steps, and a pointer to a more comprehensive guide.</p>
+<ul class="simple">
+<li><p>The first thing to do if you end up in a merge conflict is
+to read the instructions Git is giving you – they are a useful guide.</p></li>
+<li><p>Also, it is reassuring to remember that you can always get out of
+a merge conflict by aborting the operation that led to it (e.g.,
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></code>.</p></li>
+<li><p>To actually solve a merge conflict, you will have to edit files: In the
+documents the merge conflict applies to, Git marks the sections it needs
+help with with markers that consists of <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">=</span></code>
+signs and commit shasums or branch names.
+There will be two marked parts, and you have to delete the one you do not
+want to keep, as well as all markers.</p></li>
+<li><p>Afterwards, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;path/to/file</span></code> and finally a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>.</p></li>
+</ul>
+<p>An excellent resource on how to deal with merge conflicts is
+<a class="reference external" href="https://help.github.com/en/articles/resolving-a-merge-conflict-using-the-command-line">this post</a>.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This guest lecture has given you a glimpse into how to work with the
+history of your DataLad datasets.
+To conclude this section, let’s remove all untracked contents from
+the dataset. This can be done with <strong class="command">git reset</strong> as well: The command
+<strong class="command">git reset --hard master</strong> (where <code class="docutils literal notranslate"><span class="pre">master</span></code> is a branch name)
+swipes your dataset clean and removes anything that is untracked or
+modified but not saved yet.
+<strong>Careful! This is not revertible, and content lost with this commands can not be recovered!</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git reset --hard master
+<span class="go">HEAD is now at d95c45c Revert &quot;did a bad modification&quot;</span>
+</pre></div>
+</div>
+<p>Afterwards, the <strong class="command">datalad status</strong> returns nothing, indicating a
+clean dataset state with no untracked files or modifications.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: Gitjoke1.txt (file)</span>
+<span class="go">untracked: Gitjoke3.txt (file)</span>
+<span class="go">untracked: apdffile.pdf (file)</span>
+</pre></div>
+</div>
+<p>Finally, if you want, apply you’re new knowledge about reverting commits
+to remove the <code class="docutils literal notranslate"><span class="pre">Gitjoke2.txt</span></code> file.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>For example, the <strong class="command">datalad rerun</strong> command introduced in section
+<a class="reference internal" href="101-109-rerun.html#run2"><span class="std std-ref">DataLad, Re-Run!</span></a> takes such a hash as an argument, and re-executes
+the <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">rerun</span></code> <a class="reference internal" href="../glossary.html#term-run-record"><span class="xref std std-term">run record</span></a> associated with
+this hash. Likewise, the <strong class="command">git diff</strong> can work with commit hashes.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>There are other alternatives to reference commits in the history of a dataset,
+for example “counting” ancestors of the most recent commit using the notation
+<code class="docutils literal notranslate"><span class="pre">HEAD~2</span></code>, <code class="docutils literal notranslate"><span class="pre">HEAD^2</span></code> or <code class="docutils literal notranslate"><span class="pre">HEAD&#64;{2}</span></code>. However, using hashes to reference
+commits is a very fail-save method and saves you from accidentally miscounting.</p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p>The option <code class="docutils literal notranslate"><span class="pre">--mixed</span></code> is the default mode for a <strong class="command">git reset</strong>
+command, omitting it (i.e., running just <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code>) leads to the
+same behavior. It is explicitly stated in this book to make the mode
+clear, though.</p>
+</dd>
+<dt class="label" id="f4"><span class="brackets">4</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id6">2</a>)</span></dt>
+<dd><p>Note though that rewriting history can be dangerous, and you should
+be aware of what you are doing. For example, rewriting parts of the
+dataset’s history that have been published (e.g., to a Github repository)
+already or that other people have copies of, is not advised.</p>
+</dd>
+<dt class="label" id="f5"><span class="brackets">5</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id7">2</a>)</span></dt>
+<dd><p>When in need to interactively rebase, please consult further documentation
+and tutorials. It is out of the scope of this handbook to be a complete
+guide on rebasing, and not all interactive rebasing operations are
+complication-free. However, you can always undo mistakes that occur
+during rebasing with the help of the <a class="reference external" href="https://git-scm.com/docs/git-reflog">reflog</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-136-filesystem.html" title="Previous document">Miscellaneous file system operations</a>
+        </li>
+        <li>
+          <a href="101-180-FAQ.html" title="Next document">Frequently Asked Questions</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

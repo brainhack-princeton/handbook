@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Install datasets &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-105-install.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dataset nesting" href="101-106-nesting.html" />
+    <link rel="prev" title="Modify content" href="101-103-modify.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-105-install/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-105-install">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Install datasets &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Install datasets</a><ul>
+<li><a class="reference internal" href="#dataset-content-identity-and-availability-information">Dataset content identity and availability information</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-103-modify.html" title="previous chapter">Modify content</a></li>
+      <li>Next: <a href="101-106-nesting.html" title="next chapter">Dataset nesting</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="install-datasets">
+<span id="installds"></span><h1>Install datasets<a class="headerlink" href="#install-datasets" title="Permalink to this headline">¶</a></h1>
+<p>So far, we have created a <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> course dataset. We saved some additional readings
+into the dataset, and have carefully made and saved notes on the DataLad
+commands we discovered. Up to this point, we therefore know the typical, <em>local</em>
+workflow to create and populate a dataset from scratch.</p>
+<p>But we’ve been told that with DataLad we could very easily get vast amounts of data to our
+computer. Rumor has it that this would be only a single command in the terminal!
+Therefore, everyone in today’s lecture excitedly awaits today’s topic: Installing datasets.</p>
+<p>“With DataLad, users can <em>install</em> existing
+DataLad datasets from paths, URLs, or open-data collections.” our lecturer begins.
+“This makes accessing data fast and easy. A dataset that others could install can be
+created by anyone, without a need for additional software. Your own Datasets can be
+installed by others, should you want that, for example. Therefore, not only accessing
+data becomes fast and easy, but also <em>sharing</em>.”
+“That’s so cool!”, you think. “Exam preparation will be a piece of cake if all of us
+can share our mid-term and final projects easily!”
+“But today, let’s only focus on how to install a dataset”, she continuous.
+“Damn it! Can we not have longer lectures?”, you think and set alarms to all of the
+upcoming lecture dates in your calendar.
+There is so much exciting stuff to come, you can not miss a single one.</p>
+<p id="index-0">Installing an existing dataset is done with the <strong class="command">datalad install</strong> command
+(<em class="manpage"><a class="manpage reference external" href="http://docs.datalad.org/generated/man/datalad-install.html">datalad-install</a></em>).
+The command takes a location of an existing dataset (the <em>source</em>), and a path to where you want
+the dataset to be installed. The source can be a URL or a path to a local directory,
+or an SSH server<a class="footnote-reference brackets" href="#f1" id="id1">1</a>.</p>
+<p>“Psst!” your fellow student from the row behind reaches over. “There are
+a bunch of audio recordings of a really cool podcast, and they have been shared in the form
+of a DataLad dataset! Shall we try whether we can install that?”</p>
+<p>“Perfect! What a great way to learn how to install a dataset. Doing it
+now instead of looking at slides for hours is my preferred type of learning anyway”,
+you think as you fire up your terminal and navigate into your <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset.</p>
+<p>In this demonstration, we’re using one of the many openly available datasets that
+DataLad provides in a public registry that anyone can access. One of these datasets is a
+collection of audio recordings of a great podcast, the longnow seminar series<a class="footnote-reference brackets" href="#f2" id="id2">2</a>.
+It consists of audio recordings about long-term thinking, and while the DataLad-101
+course is not a long-term thinking seminar, those recordings are nevertheless a
+good addition to the large stash of yet-to-read text books we piled up (and also, we
+can wholeheartedly recommend them for their worldly wisdoms and compelling, thoughtful
+ideas). Let’s install this dataset into our existing <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset.</p>
+<p>To keep the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset neat and organized, we first create a new directory,
+called recordings.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> we are in the root of DataLad-101
+<span class="gp">$</span> mkdir recordings
+</pre></div>
+</div>
+<p>Let’s install the longnow podcasts in this new directory.
+Because we are installing a dataset (the podcasts) within an existing dataset (the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>
+dataset), we supply the <code class="docutils literal notranslate"><span class="pre">-d</span></code> (<code class="docutils literal notranslate"><span class="pre">--dataset</span></code>) flag.
+This specifies the dataset to perform the operation on. Because we are in the root
+of the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset, the pointer to the dataset is a <code class="docutils literal notranslate"><span class="pre">.</span></code> (which is Unix’
+way for saying “current directory”). The dataset to be installed lives on Github, and
+we can give its Github URL as a source (<code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">--source</span></code>). Note that we line
+break these examples with a <code class="docutils literal notranslate"><span class="pre">\</span></code>. You can copy them as they are presented here into
+your terminal, but in your own work you can write commands like this into a single
+line.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad install --dataset . <span class="se">\</span>
+--source https://github.com/datalad-datasets/longnow-podcasts.git recordings/longnow
+
+<span class="gp">#</span> or, alternatively, using the shorter options:
+<span class="gp">$</span> datalad install -d . <span class="se">\</span>
+-s https://github.com/datalad-datasets/longnow-podcasts.git recordings/longnow
+<span class="go">[INFO] Cloning https://github.com/datalad-datasets/longnow-podcasts.git [1 other candidates] into &#39;/home/me/dl-101/DataLad-101/recordings/longnow&#39; </span>
+<span class="go">[INFO]   Remote origin not usable by git-annex; setting annex-ignore </span>
+<span class="go">install(ok): recordings/longnow (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 2)</span>
+<span class="go">  install (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>This command copied the repository found at the URL <a class="reference external" href="https://github.com/datalad-datasets/longnow-podcasts.git">https://github.com/datalad-datasets/longnow-podcasts.git</a>
+into the existing <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset, into the directory <code class="docutils literal notranslate"><span class="pre">recordings/longnow</span></code>.</p>
+<p>Note: if we had not specified the path <code class="docutils literal notranslate"><span class="pre">recordings/longnow</span></code>, the command would have installed the
+dataset in the root of the directory and cleverly used the name of the remote repository
+“<code class="docutils literal notranslate"><span class="pre">longnow-podcasts</span></code>”. Alternatively, you could have also installed the dataset from within
+the <code class="docutils literal notranslate"><span class="pre">recordings</span></code>, or <code class="docutils literal notranslate"><span class="pre">books</span></code> directory. Important: If you are installing <em>within</em> a dataset,
+but execute the command not from the root of this dataset, your <code class="docutils literal notranslate"><span class="pre">-d</span></code> option needs to specify
+the path to the root of the dataset, and the path needs to start from the directory root. For example,
+if you navigate into <code class="docutils literal notranslate"><span class="pre">recordings</span></code> the command would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="o">-</span><span class="n">d</span> <span class="o">../</span> <span class="o">-</span><span class="n">s</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">datalad</span><span class="o">-</span><span class="n">datasets</span><span class="o">/</span><span class="n">longnow</span><span class="o">-</span><span class="n">podcasts</span><span class="o">.</span><span class="n">git</span> <span class="n">recordings</span><span class="o">/</span><span class="n">longnow</span>
+</pre></div>
+</div>
+<p>Note that the path did not change, but <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">.</span></code> changed to <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">../</span></code>
+(the Unix expression for <code class="docutils literal notranslate"><span class="pre">parent</span> <span class="pre">directory</span></code>, i.e.,  “one-directory-up”).
+Later in this book there is a dedicated section that explains what this <code class="docutils literal notranslate"><span class="pre">-d</span></code>/<code class="docutils literal notranslate"><span class="pre">--dataset</span></code> option
+does and why it is important, but for now just be mindful of the instruction above.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>What if I do not install into an existing dataset?</p>
+</div>
+<p>If you do not install inside an existing dataset, you only need to omit the <code class="docutils literal notranslate"><span class="pre">dataset</span></code>
+option. You can try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="o">-</span><span class="n">s</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">datalad</span><span class="o">-</span><span class="n">datasets</span><span class="o">/</span><span class="n">longnow</span><span class="o">-</span><span class="n">podcasts</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>anywhere outside of your <code class="docutils literal notranslate"><span class="pre">Datalad-101</span></code> dataset to install the dataset into a new directory
+called <code class="docutils literal notranslate"><span class="pre">longnow-podcasts</span></code>.</p>
+</div>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p>The <strong class="command">datalad install</strong> command uses <strong class="command">git clone</strong>.</p>
+</div>
+<p>Here is the repository structure:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tree -d   <span class="c1"># we limit the output to directories</span>
+<span class="go">.</span>
+<span class="go">├── books</span>
+<span class="go">└── recordings</span>
+<span class="go">    └── longnow</span>
+<span class="go">        ├── Long_Now__Conversations_at_The_Interval</span>
+<span class="go">        └── Long_Now__Seminars_About_Long_term_Thinking</span>
+
+<span class="go">5 directories</span>
+</pre></div>
+</div>
+<p>We can see that recordings has one subdirectory, our newly installed <code class="docutils literal notranslate"><span class="pre">longnow</span></code>
+dataset. Within the dataset are two other directories, <code class="docutils literal notranslate"><span class="pre">Long_Now__Conversations_at_The_Interval</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Long_Now__Seminars_About_Long_term_Thinking</span></code>.
+If we navigate into one of them and list its content, we’ll see many <code class="docutils literal notranslate"><span class="pre">.mp3</span></code> files (here is an
+excerpt).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> recordings/longnow/Long_Now__Seminars_About_Long_term_Thinking
+<span class="gp">$</span> ls
+<span class="go">2003_11_15__Brian_Eno__The_Long_Now.mp3</span>
+<span class="go">2003_12_13__Peter_Schwartz__The_Art_Of_The_Really_Long_View.mp3</span>
+<span class="go">2004_01_10__George_Dyson__There_s_Plenty_of_Room_at_the_Top__Long_term_Thinking_About_Large_scale_Computing.mp3</span>
+<span class="go">2004_02_14__James_Dewar__Long_term_Policy_Analysis.mp3</span>
+<span class="go">2004_03_13__Rusty_Schweickart__The_Asteroid_Threat_Over_the_Next_100_000_Years.mp3</span>
+<span class="go">2004_04_10__Daniel_Janzen__Third_World_Conservation__It_s_ALL_Gardening.mp3</span>
+<span class="go">2004_05_15__David_Rumsey__Mapping_Time.mp3</span>
+<span class="go">2004_06_12__Bruce_Sterling__The_Singularity__Your_Future_as_a_Black_Hole.mp3</span>
+<span class="go">2004_07_10__Jill_Tarter__The_Search_for_Extra_terrestrial_Intelligence__Necessarily_a_Long_term_Strategy.mp3</span>
+<span class="go">2004_08_14__Phillip_Longman__The_Depopulation_Problem.mp3</span>
+<span class="go">2004_09_11__Danny_Hillis__Progress_on_the_10_000_year_Clock.mp3</span>
+<span class="go">2004_10_16__Paul_Hawken__The_Long_Green.mp3</span>
+<span class="go">2004_11_13__Michael_West__The_Prospects_of_Human_Life_Extension.mp3</span>
+</pre></div>
+</div>
+<div class="section" id="dataset-content-identity-and-availability-information">
+<h2>Dataset content identity and availability information<a class="headerlink" href="#dataset-content-identity-and-availability-information" title="Permalink to this headline">¶</a></h2>
+<p>Surprised you turn to your fellow student and wonder about
+how fast the dataset was installed. Should
+a download of that many <code class="docutils literal notranslate"><span class="pre">.mp3</span></code> files not take much more time?</p>
+<p>Here you can see another import feature of DataLad datasets
+and the <strong class="command">datalad install</strong> command:</p>
+<p>Upon installation of a DataLad dataset, DataLad retrieves only small files
+(for example text files or markdown files) and (small) metadata
+information about the dataset. It does not, however, download any large files
+(yet). The metadata exposes the dataset’s file hierarchy
+for exploration (note how you are able to list the dataset contents with <code class="docutils literal notranslate"><span class="pre">ls</span></code>),
+and downloading only this metadata speeds up the installation of a DataLad dataset
+of many TB in size to a few seconds. Just now, after installation, the dataset is
+small in size:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ../      <span class="c1"># in longnow/</span>
+<span class="gp">$</span> du -sh      <span class="c1"># Unix command to show size of contents</span>
+<span class="go">3.7M	.</span>
+</pre></div>
+</div>
+<p>This is tiny indeed!</p>
+<p>If you executed the previous <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in your own terminal, you might have seen
+the <code class="docutils literal notranslate"><span class="pre">.mp3</span></code> files highlighted in a different color than usually.
+On your computer, try to open
+one of the <code class="docutils literal notranslate"><span class="pre">.mp3</span></code> files.</p>
+<p>You will notice that you cannot open any of the
+audio files. This is not your fault: <em>None of these files exist on your computer yet</em>.</p>
+<p>Wait, what?</p>
+<p>This sounds strange, but it has many advantages. Apart from a fast installation,
+it allows you to retrieve precisely the content you need, instead of all the contents
+of a dataset. Thus, even if you install a dataset that is many TB in size,
+it takes up only few MB of space after installation, and you can retrieve only those
+components of the dataset that you need.</p>
+<p>Let’s see how large the dataset would be in total if all of the files were present.
+For this, we supply an additional option to <strong class="command">datalad status</strong>. Make sure to be
+(anywhere) inside of the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> dataset to execute the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status --annex
+<span class="go">236 annex&#39;d files (15.4 GB recorded total size)</span>
+</pre></div>
+</div>
+<p>Woah! More than 200 files, totaling more than 15 GB?
+You begin to appreciate that DataLad did not
+download all of this data right away! That would have taken hours given the crappy
+internet connection in the lecture hall, and you aren’t even sure whether your
+hard drive has much space left…</p>
+<p>But you nevertheless are curious on how to actually listen to one of these <code class="docutils literal notranslate"><span class="pre">.mp3</span></code>s now.
+So how does one actually “get” the files?</p>
+<p id="index-1">The command to retrieve file content is <strong class="command">datalad get</strong> (<em class="manpage"><a class="manpage reference external" href="http://docs.datalad.org/generated/man/datalad-get.html">datalad-get</a></em> manual).
+You can specify one or more
+specific files, or <code class="docutils literal notranslate"><span class="pre">get</span></code> all of the dataset by specifying <strong class="command">datalad get .</strong> (with <code class="docutils literal notranslate"><span class="pre">.</span></code>
+denoting “current directory”).</p>
+<p>First, we get one of the recordings in the dataset – take any one of your choice
+(here, its the first).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad get Long_Now__Seminars_About_Long_term_Thinking/2003_11_15__Brian_Eno__The_Long_Now.mp3
+<span class="go">get(ok): Long_Now__Seminars_About_Long_term_Thinking/2003_11_15__Brian_Eno__The_Long_Now.mp3 (file) [from web...]</span>
+</pre></div>
+</div>
+<p>Try to open it – it will now work.</p>
+<p>If you would want to get the rest of the missing data, instead of specifying all files individually,
+we can use <code class="docutils literal notranslate"><span class="pre">.</span></code> to refer to <em>all</em> of the dataset like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datalad get .
+</pre></div>
+</div>
+<p>(However, with a total size of more than 15GB, this might take a while, so do not do that now.
+If you did execute the command above, interrupt it by pressing <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> – Do not worry,
+this will not break anything)</p>
+<p>Isn’t that easy?</p>
+<p>Let’s see how much data is now present locally. For this, <strong class="command">datalad status --annex all</strong>
+has a nice summary:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status --annex all
+<span class="go">236 annex&#39;d files (35.7 MB/15.4 GB present/total size)</span>
+</pre></div>
+</div>
+<p>This shows you how much data of the total data is present locally. With one file,
+it is only a fraction of the total size.</p>
+<p>Let’s <code class="docutils literal notranslate"><span class="pre">get</span></code> a few more recordings, just because it was so mesmerizing to watch
+DataLad’s fancy progress bars.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad get Long_Now__Seminars_About_Long_term_Thinking/2003_11_15__Brian_Eno__The_Long_Now.mp3 <span class="se">\</span>
+Long_Now__Seminars_About_Long_term_Thinking/2003_12_13__Peter_Schwartz__The_Art_Of_The_Really_Long_View.mp3 <span class="se">\</span>
+Long_Now__Seminars_About_Long_term_Thinking/2004_01_10__George_Dyson__There_s_Plenty_of_Room_at_the_Top__Long_term_Thinking_About_Large_scale_Computing.mp3
+<span class="go">get(ok): Long_Now__Seminars_About_Long_term_Thinking/2004_01_10__George_Dyson__There_s_Plenty_of_Room_at_the_Top__Long_term_Thinking_About_Large_scale_Computing.mp3 (file) [from web...]</span>
+<span class="go">get(ok): Long_Now__Seminars_About_Long_term_Thinking/2003_12_13__Peter_Schwartz__The_Art_Of_The_Really_Long_View.mp3 (file) [from web...]</span>
+<span class="go">action summary:</span>
+<span class="go">  get (notneeded: 1, ok: 2)</span>
+</pre></div>
+</div>
+<p>Note that any data that is already retrieved (the first file) is not downloaded again.
+Datalad summarizes the outcome of the execution of <code class="docutils literal notranslate"><span class="pre">get</span></code> in the end and informs
+that the download of one file was <code class="docutils literal notranslate"><span class="pre">notneeded</span></code> and the retrieval of the other files was <code class="docutils literal notranslate"><span class="pre">ok</span></code>.</p>
+<p>You have now experienced how easy it is to obtain shared data with DataLad.
+But beyond simply sharing the <em>data</em> in the dataset, when sharing or installing
+a DataLad dataset, all copies also include the datasets <em>history</em>.</p>
+<p>For example, we can find out who created the dataset in the first place
+(the output shows an excerpt of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--reverse</span></code>, which displays the
+history from first to most recent commit):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log --reverse
+<span class="go">commit 8df130bb825f99135c34b8bf0cbedb1b05edd581</span>
+<span class="hll"><span class="go">Author: Michael Hanke &lt;michael.hanke@gmail.com&gt;</span>
+</span><span class="go">Date:   Mon Jul 16 16:08:23 2018 +0200</span>
+
+<span class="go">    [DATALAD] Set default backend for all files to be MD5E</span>
+
+<span class="go">commit 3d0dc8f5e9e4032784bc5a08d243995ad5cf92f9</span>
+<span class="go">Author: Michael Hanke &lt;michael.hanke@gmail.com&gt;</span>
+<span class="go">Date:   Mon Jul 16 16:08:24 2018 +0200</span>
+
+<span class="go">    [DATALAD] new dataset</span>
+</pre></div>
+</div>
+<p>But that’s not all. The seminar series is ongoing, and more recordings can get added
+to the original repository shared on Github.
+Because an installed dataset knows the dataset it was installed from,
+the locally installed dataset can simply be updated, and thus get the new recordings,
+should there be some. But we will see examples of this later in this handbook.</p>
+<p>Now you can not only create datasets and work with them locally, you can also consume
+existing datasets by installing them. Because that’s cool, and because you will use this
+command frequently, make a note of it into your <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>, and <strong class="command">datalad save</strong> the
+modification.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> in the root of DataLad-101:
+<span class="gp">$</span> <span class="nb">cd</span> ../../
+<span class="gp">$</span> cat &lt;&lt; EOT &gt;&gt; notes.txt
+<span class="go">The command &#39;datalad install [--source] PATH&#39;</span>
+<span class="go">installs a dataset from e.g., a URL or a path.</span>
+<span class="go">If you install a dataset into an existing</span>
+<span class="go">dataset (as a subdataset), remember to specify the</span>
+<span class="go">root of the superdataset with the &#39;-d&#39; option.</span>
+
+<span class="go">EOT</span>
+<span class="gp">$</span> datalad save -m <span class="s2">&quot;Add note on datalad install&quot;</span>
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Listing files directly after an installation of a dataset will
+work if done in a terminal with <code class="docutils literal notranslate"><span class="pre">ls</span></code>.
+However, certain file managers (such as OSX’s Finder<a class="footnote-reference brackets" href="#f3" id="id3">3</a>) may fail to
+display files that are not yet present locally (i.e., before a
+<strong class="command">datalad get</strong> was run). Therefore, be  mindful when exploring
+a dataset hierarchy with a file manager – it might not show you
+the available but not yet retrieved files. More about why this is will be
+explained in section <a class="reference internal" href="101-115-symlinks.html#symlink"><span class="std std-ref">Data integrity</span></a>.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Additionally, a source  can also be a pointer to an open-data collection,
+for example <a class="reference internal" href="../glossary.html#term-the-datalad-superdataset"><span class="xref std std-term">the DataLad superdataset ///</span></a> – more on what this is and how to
+use it later, though.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>The longnow podcasts are lectures and conversations on long-term thinking produced by
+the LongNow foundation. Subscribe to the podcasts at <a class="reference external" href="http://longnow.org/seminars/podcast">http://longnow.org/seminars/podcast</a>.
+Support the foundation by becoming a member: <a class="reference external" href="https://longnow.org/membership">https://longnow.org/membership</a>. <a class="reference external" href="http://longnow.org">http://longnow.org</a></p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>You can also upgrade your file manager to display file types in a
+DataLad datasets (e.g., with the
+<a class="reference external" href="https://github.com/andrewringler/git-annex-turtle">git-annex-turtle extension</a>
+for Finder)</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-103-modify.html" title="Previous document">Modify content</a>
+        </li>
+        <li>
+          <a href="101-106-nesting.html" title="Next document">Dataset nesting</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>An automatically reproducible analysis of public neuroimaging data &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/usecases/reproducible_neuroimaging_analysis.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Glossary" href="../glossary.html" />
+    <link rel="prev" title="Student supervision in a research project" href="supervision.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/usecases/reproducible_neuroimaging_analysis/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/usecases/reproducible_neuroimaging_analysis">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="An automatically reproducible analysis of public neuroimaging data &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">An automatically reproducible analysis of public neuroimaging data</a><ul>
+<li><a class="reference internal" href="#the-challenge">The Challenge</a></li>
+<li><a class="reference internal" href="#the-datalad-approach">The DataLad Approach</a></li>
+<li><a class="reference internal" href="#step-by-step">Step-by-Step</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="supervision.html" title="previous chapter">Student supervision in a research project</a></li>
+      <li>Next: <a href="../glossary.html" title="next chapter">Glossary</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="an-automatically-reproducible-analysis-of-public-neuroimaging-data">
+<span id="usecase-reproduce-neuroimg"></span><h1>An automatically reproducible analysis of public neuroimaging data<a class="headerlink" href="#an-automatically-reproducible-analysis-of-public-neuroimaging-data" title="Permalink to this headline">¶</a></h1>
+<p>This use case sketches the basics of an analysis that can be
+automatically reproduced by anyone:</p>
+<ol class="arabic simple">
+<li><p>Public open data stems from <a class="reference internal" href="../glossary.html#term-the-datalad-superdataset"><span class="xref std std-term">the DataLad superdataset ///</span></a>.</p></li>
+<li><p>Automatic data retrieval can be ensured by using DataLad’s
+commands in the analysis scripts, or the <code class="docutils literal notranslate"><span class="pre">--input</span></code> specification of
+<strong class="command">datalad run</strong>,</p></li>
+<li><p>Analyses are executed using <strong class="command">datalad run</strong> and
+<strong class="command">datalad rerun</strong> commands to capture everything relevant to
+reproduce the analysis.</p></li>
+<li><p>The final dataset can be kept as lightweight as possible by dropping input
+that can be easily re-obtained.</p></li>
+<li><p>A complete reproduction of the computation (including input retrieval),
+is possible with a single <strong class="command">datalad rerun</strong> command.</p></li>
+</ol>
+<p>This use case is a specialization of <a class="reference internal" href="reproducible-paper.html#usecase-reproducible-paper"><span class="std std-ref">Writing a reproducible paper</span></a>:
+It is a data analysis that requires and creates large data files,
+uses specialized analysis software, and is fully automated using solely
+DataLad commands and tools.
+While exact data types, analysis methods, and software mentioned
+in this use case belong to the scientific field of neuroimaging, the
+basic workflow is domain-agnostic.</p>
+<div class="section" id="the-challenge">
+<h2>The Challenge<a class="headerlink" href="#the-challenge" title="Permalink to this headline">¶</a></h2>
+<p>Creating reproducible (scientific) analyses seems to require so much:
+One needs to share data, scripts, results, and instructions on how to
+use data and scripts to obtain the results.
+A researcher at any stage of their career can struggle to remember
+which script needs to be run in which order,
+or to create comprehensible instructions for others
+on where and how to obtain data and how to run which script
+at what point in time.
+This leads to failed replications, a loss of confidence in results,
+and major time requirements for anyone trying to reproduce others
+or even their own analyses.</p>
+</div>
+<div class="section" id="the-datalad-approach">
+<h2>The DataLad Approach<a class="headerlink" href="#the-datalad-approach" title="Permalink to this headline">¶</a></h2>
+<p>Scientific studies should be reproducible, and with the increasing accessibility
+of data, there is not much excuse for a lack of reproducibility anymore.
+DataLad can help with the technical aspects of reproducible science.</p>
+<p>For neuroscientific studies, <a class="reference internal" href="../glossary.html#term-the-datalad-superdataset"><span class="xref std std-term">the DataLad superdataset ///</span></a> provides unified
+access to a large amount of data. Using it to install datasets into an
+analysis-superdataset makes it easy to share this data together with the analysis.
+By ensuring that all relevant data is downloaded via <strong class="command">datalad get</strong>
+via DataLad’s command line tools in the analysis scripts, or <code class="docutils literal notranslate"><span class="pre">--input</span></code> specifications
+in a <strong class="command">datalad run</strong>, an analysis can retrieve all required
+inputs fully automatically during execution.
+Recording executed commands with <strong class="command">datalad run</strong> allows to rerun
+complete analysis workflows with a single command, even if input data does not exist
+locally. Combining these three steps allows to share fully automatically reproducible
+analyses as lightweight datasets.</p>
+</div>
+<div class="section" id="step-by-step">
+<h2>Step-by-Step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h2>
+<p>It always starts with a dataset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad create -c yoda demo
+<span class="go">[INFO] Creating a new annex repo at /home/me/usecases/repro/demo </span>
+<span class="go">[INFO] Running procedure cfg_yoda </span>
+<span class="go">[INFO] == Command start (output follows) ===== </span>
+<span class="go">[INFO] == Command exit (modification check follows) ===== </span>
+<span class="go">create(ok): /home/me/usecases/repro/demo (dataset)</span>
+</pre></div>
+</div>
+<p>For this demo we are using two public brain imaging datasets that were published on
+<a class="reference external" href="https://legacy.openfmri.org/">OpenFMRI.org</a>, and are available from
+<a class="reference internal" href="../glossary.html#term-the-datalad-superdataset"><span class="xref std std-term">the DataLad superdataset ///</span></a> (datasets.datalad.org). When installing datasets
+from this superdataset, we can use its abbreviation <code class="docutils literal notranslate"><span class="pre">///</span></code>.
+The two datasets, <a class="reference external" href="https://legacy.openfmri.org/dataset/ds000001/">ds000001</a> and
+<a class="reference external" href="https://legacy.openfmri.org/dataset/ds000002/">ds000002</a>, are installed into the
+subdirectory <code class="docutils literal notranslate"><span class="pre">inputs/</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> demo
+<span class="gp">$</span> datalad install -d . -s ///openfmri/ds000001 inputs/ds000001
+<span class="go">[INFO] Cloning http://datasets.datalad.org/openfmri/ds000001 [1 other candidates] into &#39;/home/me/usecases/repro/demo/inputs/ds000001&#39; </span>
+<span class="go">install(ok): inputs/ds000001 (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 2)</span>
+<span class="go">  install (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> demo
+<span class="gp">$</span> datalad install -d . -s ///openfmri/ds000002 inputs/ds000002
+<span class="go">[INFO] Cloning http://datasets.datalad.org/openfmri/ds000002 [1 other candidates] into &#39;/home/me/usecases/repro/demo/inputs/ds000002&#39; </span>
+<span class="go">install(ok): inputs/ds000002 (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 2)</span>
+<span class="go">  install (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Both datasets are now registered as subdatasets, and their precise versions
+(e.g. in the form of the commit shasum of the lastest commit) are on record:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad --output-format <span class="s1">&#39;{path}: {gitshasum}&#39;</span> subdatasets
+<span class="go">/home/me/usecases/repro/demo/inputs/ds000001: f7fe2e38852915e7042ca1755775fcad0ff166e5</span>
+<span class="go">/home/me/usecases/repro/demo/inputs/ds000002: 6b16eff0c9e8d443ee551784981ddd954f657071</span>
+</pre></div>
+</div>
+<p>DataLad datasets are fairly lightweight in size, they only contain
+pointers to data and history information in their minimal form.
+Thus, so far very little data were actually downloaded:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> du -sh inputs/
+<span class="go">14M	inputs/</span>
+</pre></div>
+</div>
+<p>Both datasets would actually be several gigabytes in size, once the
+dataset content gets downloaded:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad -C inputs/ds000001 status --annex
+<span class="gp">$</span> datalad -C inputs/ds000002 status --annex
+<span class="go">130 annex&#39;d files (2.3 GB recorded total size)</span>
+<span class="go">274 annex&#39;d files (2.7 GB recorded total size)</span>
+</pre></div>
+</div>
+<p>Both datasets contain brain imaging data, and are compliant with the
+<a class="reference external" href="https://bids.neuroimaging.io/">BIDS standard</a>.
+This makes it really easy to locate particular images
+and perform analysis across datasets.</p>
+<p>Here we will use a small script that performs ‘brain extraction’ using
+<a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL">FSL</a> as a stand-in for
+a full analysis pipeline. The script will be stored inside of the
+<code class="docutils literal notranslate"><span class="pre">code/</span></code> directory that the yoda-procedure created that at the time of
+dataset-creation.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat &lt;&lt; EOT &gt; code/brain_extraction.sh
+<span class="gp">#</span> <span class="nb">enable</span> FSL
+<span class="go">. /etc/fsl/5.0/fsl.sh</span>
+
+<span class="gp">#</span> obtain all inputs
+<span class="hll"><span class="go">datalad get \$@</span>
+</span><span class="gp">#</span> perform brain extraction
+<span class="go">count=1</span>
+<span class="go">for nifti in \$@; do</span>
+<span class="go">   subdir=&quot;sub-\$(printf %03d \$count)&quot;</span>
+<span class="go">   mkdir -p \$subdir</span>
+<span class="go">   echo &quot;Processing \$nifti&quot;</span>
+<span class="go">   bet \$nifti \$subdir/anat -m</span>
+<span class="go">   count=\$((count + 1))</span>
+<span class="go">done</span>
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<p>Note that this script uses the <strong class="command">datalad get</strong> command which automatically
+obtains the required files from their remote source – we will see this in
+action shortly.</p>
+<p>We are saving this script in the dataset. This way, we will know exactly
+which code was used for the analysis. Everything inside of <code class="docutils literal notranslate"><span class="pre">code/</span></code>
+is tracked with Git thanks to the yoda-procedure, so we can see more easily
+how it was edited over time. In addition, we will “tag” this state of the
+dataset with the tag <code class="docutils literal notranslate"><span class="pre">setup_done</span></code> to mark the repository state at which the
+analysis script was completed. This is optional, but it can help to identify
+important milestones more easily.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save --version-tag setup_done -m <span class="s2">&quot;Brain extraction script&quot;</span> code/brain_extraction.sh
+<span class="go">add(ok): code/brain_extraction.sh (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Now we can run our analysis code to produce results. However, instead of
+running it directly, we will run it with DataLad – this will automatically
+create a record of exactly how this script was executed.</p>
+<p>For this demo we will just run it on the structural images (T1w) of the first
+subject (sub-01) from each dataset.
+The uniform structure of the datasets makes this very easy.
+Of course we could run it on all subjects; we are simply saving some time for
+this demo. While the command runs, you should notice a few things:</p>
+<ol class="arabic simple">
+<li><p>We run this command with ‘bash -e’ to stop at any failure that may occur</p></li>
+<li><p>You’ll see the required data files being obtained as they are needed – and
+only those that are actually required will be downloaded (because of the
+appropriate <code class="docutils literal notranslate"><span class="pre">--input</span></code> specification of the <strong class="command">datalad run</strong> – but
+as a <strong class="command">datalad get</strong> is also included in the bash script, forgetting
+an <code class="docutils literal notranslate"><span class="pre">--input</span></code> specification would not be problem).</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad run -m <span class="s2">&quot;run brain extract workflow&quot;</span> <span class="se">\</span>
+  --input <span class="s2">&quot;inputs/ds*/sub-01/anat/sub-01_T1w.nii.gz&quot;</span> <span class="se">\</span>
+  --output <span class="s2">&quot;sub-*/anat&quot;</span> <span class="se">\</span>
+  bash -e code/brain_extraction.sh inputs/ds*/sub-01/anat/sub-01_T1w.nii.gz
+<span class="go">[INFO] Making sure inputs are available (this may take some time) </span>
+<span class="go">[INFO] == Command start (output follows) ===== </span>
+<span class="go">action summary:</span>
+<span class="go">  get (notneeded: 2)</span>
+<span class="go">Processing inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">Processing inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">[INFO] == Command exit (modification check follows) ===== </span>
+<span class="go">get(ok): inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz (file) [from web...]</span>
+<span class="go">get(ok): inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz (file) [from web...]</span>
+<span class="go">add(ok): sub-001/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-001/anat_mask.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat_mask.nii.gz (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 4)</span>
+<span class="go">  get (ok: 2)</span>
+<span class="go">  save (notneeded: 2, ok: 1)</span>
+</pre></div>
+</div>
+<p>The analysis step is done, all generated results were saved in the dataset.
+All changes, including the command that caused them are on record:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git show --stat
+<span class="go">commit 6318a4fbd6a480bcbc8b69d937837e8c5d461455</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Oct 8 15:32:11 2019 +0200</span>
+
+<span class="go">    [DATALAD RUNCMD] run brain extract workflow</span>
+<span class="go">    </span>
+<span class="go">    === Do not change lines below ===</span>
+<span class="go">    {</span>
+<span class="go">     &quot;chain&quot;: [],</span>
+<span class="go">     &quot;cmd&quot;: &quot;bash -e code/brain_extraction.sh inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz&quot;,</span>
+<span class="go">     &quot;dsid&quot;: &quot;f084b1ac-e9cf-11e9-b64e-e86a64c8054c&quot;,</span>
+<span class="go">     &quot;exit&quot;: 0,</span>
+<span class="go">     &quot;extra_inputs&quot;: [],</span>
+<span class="go">     &quot;inputs&quot;: [</span>
+<span class="go">      &quot;inputs/ds*/sub-01/anat/sub-01_T1w.nii.gz&quot;</span>
+<span class="go">     ],</span>
+<span class="go">     &quot;outputs&quot;: [</span>
+<span class="go">      &quot;sub-*/anat&quot;</span>
+<span class="go">     ],</span>
+<span class="go">     &quot;pwd&quot;: &quot;.&quot;</span>
+<span class="go">    }</span>
+<span class="go">    ^^^ Do not change lines above ^^^</span>
+
+<span class="go"> sub-001/anat.nii.gz      | 1 +</span>
+<span class="go"> sub-001/anat_mask.nii.gz | 1 +</span>
+<span class="go"> sub-002/anat.nii.gz      | 1 +</span>
+<span class="go"> sub-002/anat_mask.nii.gz | 1 +</span>
+<span class="go"> 4 files changed, 4 insertions(+)</span>
+</pre></div>
+</div>
+<p>DataLad has enough information stored to be able to re-run a command.</p>
+<p>On command exit, it will inspect the results and save them again, but
+only if they are different.
+In our case, the re-run yields bit-identical results, hence nothing
+new is saved.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad rerun
+<span class="go">[INFO] Making sure inputs are available (this may take some time) </span>
+<span class="go">[INFO] == Command start (output follows) ===== </span>
+<span class="go">action summary:</span>
+<span class="go">  get (notneeded: 2)</span>
+<span class="go">Processing inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">Processing inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">[INFO] == Command exit (modification check follows) ===== </span>
+<span class="go">unlock(ok): sub-001/anat.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-001/anat_mask.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-002/anat.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-002/anat_mask.nii.gz (file)</span>
+<span class="go">add(ok): sub-001/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-001/anat_mask.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat_mask.nii.gz (file)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 4)</span>
+<span class="go">  get (notneeded: 2)</span>
+<span class="go">  save (notneeded: 3)</span>
+<span class="go">  unlock (notneeded: 4, ok: 4)</span>
+</pre></div>
+</div>
+<p>Now that we are done, and have checked that we can reproduce the results
+ourselves, we can clean up. DataLad can easily verify if any part of our
+input dataset was modified since we configured our analysis, using
+<strong class="command">datalad diff</strong> and the tag we provided:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad diff setup_done inputs
+</pre></div>
+</div>
+<p>Nothing was changed.</p>
+<p>With DataLad with don’t have to keep those inputs around – without losing
+the ability to reproduce an analysis.
+Let’s uninstall them, and check the size on disk before and after.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> du -sh
+<span class="go">26M	.</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad uninstall inputs/*
+<span class="go">drop(ok): /home/me/usecases/repro/demo/inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz (file) [checking http://openneuro.s3.amazonaws.com/ds000002/ds000002_R2.0.0/uncompressed/sub-01/anat/sub-01_T1w.nii.gz?versionId=vXK2.bQ360phhPqbVV_n6RMYqaWAy4Dg...]</span>
+<span class="go">drop(ok): /home/me/usecases/repro/demo/inputs/ds000002 (directory)</span>
+<span class="go">uninstall(ok): /home/me/usecases/repro/demo/inputs/ds000002 (dataset)</span>
+<span class="go">drop(ok): /home/me/usecases/repro/demo/inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz (file) [checking http://openneuro.s3.amazonaws.com/ds000001/ds000001_R1.1.0/uncompressed/sub001/anatomy/highres001.nii.gz?versionId=8TJ17W9WInNkQPdiQ9vS7wo8ZJ9llF80...]</span>
+<span class="go">drop(ok): /home/me/usecases/repro/demo/inputs/ds000001 (directory)</span>
+<span class="go">uninstall(ok): /home/me/usecases/repro/demo/inputs/ds000001 (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  drop (ok: 4)</span>
+<span class="go">  uninstall (ok: 2)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> du -sh
+<span class="go">3.1M	.</span>
+</pre></div>
+</div>
+<p>The dataset is substantially smaller as all inputs are gone…</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls inputs/*
+<span class="go">inputs/ds000001:</span>
+
+<span class="go">inputs/ds000002:</span>
+</pre></div>
+</div>
+<p>But as these inputs were registered in the dataset when we installed
+them, getting them back is very easy.
+Only the remaining data (our code and the results) need to be kept and
+require a backup for long term archival. Everything else can be
+re-obtained as needed, when needed.</p>
+<p>As DataLad knows everything needed about the inputs, including where
+to get the right version, we can re-run the analysis with a single command.
+Watch how DataLad re-obtains all required data, re-runs the code, and checks
+that none of the results changed and need saving.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad rerun
+<span class="go">[INFO] Making sure inputs are available (this may take some time) </span>
+<span class="go">[INFO] Cloning http://datasets.datalad.org/openfmri/ds000001/.git into &#39;/home/me/usecases/repro/demo/inputs/ds000001&#39; </span>
+<span class="go">[INFO] Cloning http://datasets.datalad.org/openfmri/ds000002/.git into &#39;/home/me/usecases/repro/demo/inputs/ds000002&#39; </span>
+<span class="go">[INFO] == Command start (output follows) ===== </span>
+<span class="go">action summary:</span>
+<span class="go">  get (notneeded: 2)</span>
+<span class="go">Processing inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">Processing inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz</span>
+<span class="go">[INFO] == Command exit (modification check follows) ===== </span>
+<span class="go">install(ok): inputs/ds000001 (dataset) [Installed subdataset in order to get /home/me/usecases/repro/demo/inputs/ds000001]</span>
+<span class="go">install(ok): inputs/ds000002 (dataset) [Installed subdataset in order to get /home/me/usecases/repro/demo/inputs/ds000002]</span>
+<span class="go">get(ok): inputs/ds000001/sub-01/anat/sub-01_T1w.nii.gz (file) [from web...]</span>
+<span class="go">get(ok): inputs/ds000002/sub-01/anat/sub-01_T1w.nii.gz (file) [from web...]</span>
+<span class="go">unlock(ok): sub-001/anat.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-001/anat_mask.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-002/anat.nii.gz (file)</span>
+<span class="go">unlock(ok): sub-002/anat_mask.nii.gz (file)</span>
+<span class="go">add(ok): sub-001/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-001/anat_mask.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat.nii.gz (file)</span>
+<span class="go">add(ok): sub-002/anat_mask.nii.gz (file)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 4)</span>
+<span class="go">  get (ok: 2)</span>
+<span class="go">  install (ok: 2)</span>
+<span class="go">  save (notneeded: 3)</span>
+<span class="go">  unlock (notneeded: 4, ok: 4)</span>
+</pre></div>
+</div>
+<p>Reproduced!</p>
+<p>This dataset could now be published and shared as a lightweight yet fully
+reproducible resource and enable anyone to replicate the exact
+same analysis – with a single command.
+Public data and reproducible execution for the win!</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="supervision.html" title="Previous document">Student supervision in a research project</a>
+        </li>
+        <li>
+          <a href="../glossary.html" title="Next document">Glossary</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

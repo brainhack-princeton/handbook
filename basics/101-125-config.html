@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>DIY configurations &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-125-config.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="More on DIY configurations" href="101-126-config2.html" />
+    <link rel="prev" title="Summary" href="101-120-summary.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-125-config/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-125-config">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="DIY configurations &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DIY configurations</a><ul>
+<li><a class="reference internal" href="#git-config-files">Git config files</a></li>
+<li><a class="reference internal" href="#git-config-versus-other-configuration-files"><code class="docutils literal notranslate"><span class="pre">.git/config</span></code> versus other (configuration) files</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-120-summary.html" title="previous chapter">Summary</a></li>
+      <li>Next: <a href="101-126-config2.html" title="next chapter">More on DIY configurations</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="diy-configurations">
+<span id="config"></span><h1>DIY configurations<a class="headerlink" href="#diy-configurations" title="Permalink to this headline">¶</a></h1>
+<p>Back in section <a class="reference internal" href="101-114-txt2git.html#text2git"><span class="std std-ref">Data safety</span></a>, you already learned that there
+are dataset configurations, and that these configurations can
+be modified, for example with the <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">text2git</span></code> option.
+This option applies a configuration template to store text
+files in <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a> instead of <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a>, and thereby
+modifies the DataLad dataset’s default configuration to store
+every file in Git-annex.</p>
+<p>The lecture today focuses entirely on the topic of configurations,
+and aims to equip everyone with the basics to configure
+their general and dataset specific setup to their needs.
+This is not only a handy way to tune a dataset to one’s
+wishes, but also helpful to understand potential differences in
+command execution and file handling between two users,
+computers, or datasets.</p>
+<p>“First of all, when we talk about configurations, we have
+to differentiate between different scopes of configuration,
+and different tools the configuration belongs or applies to”,
+our lecturer starts. “In DataLad datasets, different tools can
+have a configuration: <a class="reference internal" href="../glossary.html#term-git"><span class="xref std std-term">Git</span></a>, <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a>, and
+obviously DataLad itself. Because these tools are all
+combined by DataLad to help you manage your data,
+it is important to understand how the configuration of one
+software is used by or influences a second tool, or the overall
+dataset performance.”</p>
+<p>“Oh crap, one of these theoretical lectures again” mourns a
+student from the row behind you. Personally, you’d also
+be much more excited
+about any hands-on lecture filled with commands. But the
+recent lecture about <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">Git-annex</span></a> and the <a class="reference internal" href="../glossary.html#term-object-tree"><span class="xref std std-term">object-tree</span></a>
+was surprisingly captivating, so you’re actually looking forward to today.
+“Shht! I want to hear this!”, you shush him with a wink.</p>
+<p>“We will start by looking into the very first configuration
+you did, already before the course started: The <em>global</em>
+Git configuration.” the lecturer says.</p>
+<p>At one point in time, you likely followed instructions such as
+in <a class="reference internal" href="../intro/installation.html#install"><span class="std std-ref">Installation and configuration</span></a> and configured your
+<em>Git identity</em> with the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">add</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Elena Piscopia&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">add</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="n">elena</span><span class="nd">@example</span><span class="o">.</span><span class="n">net</span>
+</pre></div>
+</div>
+<p>“What the above commands do is very simple: They search for
+a specific configuration file, and set the variables specified
+in the command – in this case user name and user email address
+– to the values provided with the command.” she explains.</p>
+<p>“This general procedure, specifying a value for a configuration
+variable in a configuration file, is how you can configure the
+different tools to your needs. The configuration, therefore,
+is really easy. Even if you are only used to ticking boxes
+in the <code class="docutils literal notranslate"><span class="pre">settings</span></code> tab of a software tool so far, it’s intuitive
+to understand how a configuration file in principle works and also
+how to use it. The only piece of information you will need
+are the necessary files, or the command that writes to them, and
+the available options for configuration, that’s it. And what’s
+really cool is that all tools we’ll be looking at – Git, Git-annex,
+and DataLad – can be configured using the <strong class="command">git config</strong>
+command<a class="footnote-reference brackets" href="#f1" id="id1">1</a>. Therefore, once you understand the syntax of this
+command, you already know half of what’s relevant. The other half
+is understanding what you’re doing. Now then, let’s learn <em>how</em>
+to configure settings, but also <em>understand</em> what we’re doing
+with these configurations.”</p>
+<p>“This seems easy enough”, you think. Let’s see what types of
+configurations there are.</p>
+<div class="section" id="git-config-files">
+<h2>Git config files<a class="headerlink" href="#git-config-files" title="Permalink to this headline">¶</a></h2>
+<p>The user name and email configuration
+is a <em>user-specific</em> configuration (called <em>global</em>
+configuration by Git), and therefore applies to your user account.
+Where ever on your computer <em>you</em> run a Git, Git-annex, or DataLad
+command, this global configuration will
+associate the name and email address you supplied in
+the <strong class="command">git config</strong> commands above with this action.
+For example, whenever you
+<code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code>, the information in this file is used for the
+history entry about commit author and email.</p>
+<p>Apart from <em>global</em> Git configurations, there are also <em>system-wide</em><a class="footnote-reference brackets" href="#f2" id="id2">2</a>
+and <em>repository</em> configurations. Each of these configurations
+resides in its own file. The global configuration is stored in a file called
+<code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code> in your home directory. Among
+your name and email address, this file can store general
+per-user configurations, such as a default editor<a class="footnote-reference brackets" href="#f3" id="id3">3</a>, or highlighting
+options.</p>
+<p>The <em>repository-specific</em> configurations apply to each individual
+repository. Their scope is more limited than the <em>global</em>
+configuration (namely to a single repository), but it can overrule global
+configurations: The more specific the scope of a configuration file is, the more
+important it is, and the variables in the more specific configuration
+will take precedence over variables in less specific configuration files.
+One could for example have <a class="reference internal" href="../glossary.html#term-vim"><span class="xref std std-term">vim</span></a> configured to be the default editor
+on a global scope, but could overrule this by setting the editor to nano
+in a given repository. For this reason, the repository-specific configuration
+does not reside in a file in your home directory, but in <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>
+within every Git repository (and thus DataLad dataset).</p>
+<p>Thus, there are three different scopes of Git configuration, and each is defined
+in a <code class="docutils literal notranslate"><span class="pre">config</span></code> file in a different location. The configurations will determine
+how Git behaves. In principle, all of these files can configure
+the same variables differently, but more specific scopes take precedence over broader
+scopes. Conveniently, not only can DataLad and Git-annex be configured with
+the same command as Git, but in many cases they will also use exactly the same
+files as Git for their own configurations.</p>
+<p>Let’s find out how the repository-specific configuration file in the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>
+superdataset looks like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat .git/config
+<span class="go">[core]</span>
+<span class="go">	repositoryformatversion = 0</span>
+<span class="go">	filemode = true</span>
+<span class="go">	bare = false</span>
+<span class="go">	logallrefupdates = true</span>
+<span class="go">[annex]</span>
+<span class="go">	uuid = 8c154892-26d4-4130-bbe0-51c49154ad55</span>
+<span class="go">	version = 5</span>
+<span class="go">	backends = MD5E</span>
+<span class="go">[submodule &quot;recordings/longnow&quot;]</span>
+<span class="go">	url = https://github.com/datalad-datasets/longnow-podcasts.git</span>
+<span class="go">	active = true</span>
+<span class="go">[remote &quot;roommate&quot;]</span>
+<span class="go">	url = ../mock_user/DataLad-101</span>
+<span class="go">	fetch = +refs/heads/*:refs/remotes/roommate/*</span>
+<span class="go">	annex-uuid = 00a600d7-8535-4f76-abf5-93639b0f4ad5</span>
+<span class="go">	annex-ignore = false</span>
+</pre></div>
+</div>
+<p>This file consists of so called “sections” with the section names
+in square brackets (e.g., <code class="docutils literal notranslate"><span class="pre">core</span></code>). Occasionally, a section can have
+subsections: This is indicated by subsection names in
+quotation marks after the section name. For example, <code class="docutils literal notranslate"><span class="pre">roommate</span></code> is a subsection
+of the section <code class="docutils literal notranslate"><span class="pre">remote</span></code>.
+Within each section, <code class="docutils literal notranslate"><span class="pre">variable</span> <span class="pre">=</span> <span class="pre">value</span></code> pairs specify configurations
+for the given (sub)section.</p>
+<p>The first section is called <code class="docutils literal notranslate"><span class="pre">core</span></code> – as the name suggests,
+this configures core Git functionality. There are
+<a class="reference external" href="https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefileMode">many more</a>
+configurations than the ones in this config file, but
+they are related to Git, and less related or important to the configuration of
+a DataLad dataset. We will use this section to showcase the anatomy of the
+<strong class="command">git config</strong> command. If for example you would want to specifically
+configure <a class="reference internal" href="../glossary.html#term-nano"><span class="xref std std-term">nano</span></a> to be the default editor in this dataset, you
+can do it like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git config --local --add core.editor <span class="s2">&quot;nano&quot;</span>
+</pre></div>
+</div>
+<p>The command consists of the base command <strong class="command">git config</strong>,
+a specification of the scope of the configuration with the <code class="docutils literal notranslate"><span class="pre">--local</span></code>
+flag, a <code class="docutils literal notranslate"><span class="pre">name</span></code> specification consisting of section and key with the
+notation <code class="docutils literal notranslate"><span class="pre">section.variable</span></code> (here: <code class="docutils literal notranslate"><span class="pre">core.editor</span></code>), and finally the value
+specification <code class="docutils literal notranslate"><span class="pre">&quot;nano&quot;</span></code>.</p>
+<p>Let’s see what has changed:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat .git/config
+<span class="go">[core]</span>
+<span class="go">	repositoryformatversion = 0</span>
+<span class="go">	filemode = true</span>
+<span class="go">	bare = false</span>
+<span class="go">	logallrefupdates = true</span>
+<span class="hll"><span class="go">	editor = nano</span>
+</span><span class="go">[annex]</span>
+<span class="go">	uuid = 8c154892-26d4-4130-bbe0-51c49154ad55</span>
+<span class="go">	version = 5</span>
+<span class="go">	backends = MD5E</span>
+<span class="go">[submodule &quot;recordings/longnow&quot;]</span>
+<span class="go">	url = https://github.com/datalad-datasets/longnow-podcasts.git</span>
+<span class="go">	active = true</span>
+<span class="go">[remote &quot;roommate&quot;]</span>
+<span class="go">	url = ../mock_user/DataLad-101</span>
+<span class="go">	fetch = +refs/heads/*:refs/remotes/roommate/*</span>
+<span class="go">	annex-uuid = 00a600d7-8535-4f76-abf5-93639b0f4ad5</span>
+<span class="go">	annex-ignore = false</span>
+</pre></div>
+</div>
+<p>With this additional line in your repositories Git configuration, nano will
+be used as a default editor regardless of the configuration in your global
+or system-wide configuration. Note that the flag <code class="docutils literal notranslate"><span class="pre">--local</span></code> applies the
+configuration to your repository’s <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> file, whereas <code class="docutils literal notranslate"><span class="pre">--global</span></code>
+would apply it as a user specific configuration, and <code class="docutils literal notranslate"><span class="pre">--system</span></code> as a
+system-wide configuration.
+If you would want to change this existing line in your <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>
+file, you would replace <code class="docutils literal notranslate"><span class="pre">--add</span></code> with <code class="docutils literal notranslate"><span class="pre">--replace-all</span></code> such as in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="o">--</span><span class="n">replace</span><span class="o">-</span><span class="nb">all</span> <span class="n">core</span><span class="o">.</span><span class="n">editor</span> <span class="s2">&quot;vim&quot;</span>
+</pre></div>
+</div>
+<p>to configure <a class="reference internal" href="../glossary.html#term-vim"><span class="xref std std-term">vim</span></a> to be your default editor.</p>
+<p>(Note that while being a good toy example, it is not a common thing to
+configure repository-specific editors)</p>
+<p>This example demonstrated the structure of a <strong class="command">git config</strong>
+command. By specifying the <code class="docutils literal notranslate"><span class="pre">name</span></code> option with <code class="docutils literal notranslate"><span class="pre">section.variable</span></code>
+(or <code class="docutils literal notranslate"><span class="pre">section.subsection.variable</span></code> if there is a subsection), and
+a value, one can configure Git, Git-annex, and DataLad.
+<em>Most</em> of these configurations will be written to a <code class="docutils literal notranslate"><span class="pre">config</span></code> file
+of Git, depending on the scope (local, global, system-wide)
+specified in the command.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>If things go wrong</p>
+</div>
+<p>If something goes wrong during the <strong class="command">git config</strong> command,
+for example you end up having two keys of the same name because you
+added a key instead of replacing an existing one, you can use the
+<code class="docutils literal notranslate"><span class="pre">--unset</span></code> option to remove the line. Alternatively, you can also open
+the config file in an editor and remove or change sections by hand.</p>
+</div>
+<p>The only information you need, therefore, is the name of a section and
+variable to configure, and the value you want to specify. But in many cases
+it is also useful to find out which configurations are already set in
+which way and where. For this, the <strong class="command">git config --list --show-origin</strong>
+is useful. It will display all configurations and their location:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --list --show-origin
+file:/home/bob/.gitconfig   user.name<span class="o">=</span>Bob McBobface
+file:/home/bob/.gitconfig   user.email<span class="o">=</span>bob@mcbobface.com
+file:/home/bob/.gitconfig   core.editor<span class="o">=</span>vim
+file:/home/bob/.gitconfig   annex.security.allowed-url-schemes<span class="o">=</span>http https file
+file:.git/config    core.repositoryformatversion<span class="o">=</span><span class="m">0</span>
+file:.git/config    core.filemode<span class="o">=</span><span class="nb">true</span>
+file:.git/config    core.bare<span class="o">=</span><span class="nb">false</span>
+file:.git/config    core.logallrefupdates<span class="o">=</span><span class="nb">true</span>
+file:.git/config    annex.uuid<span class="o">=</span>1f83595e-bcba-4226-aa2c-6f0153eb3c54
+file:.git/config    annex.version<span class="o">=</span><span class="m">5</span>
+file:.git/config    annex.backends<span class="o">=</span>MD5E
+file:.git/config    submodule.recordings/longnow.url<span class="o">=</span>https://github.com/datalad-datasets/longnow-podcasts.git
+file:.git/config    submodule.recordings/longnow.active<span class="o">=</span><span class="nb">true</span>
+file:.git/config    remote.roommate.url<span class="o">=</span>../mock_user/onemoredir/DataLad-101
+file:.git/config    remote.roommate.fetch<span class="o">=</span>+refs/heads/*:refs/remotes/roommate/*
+file:.git/config    remote.roommate.annex-uuid<span class="o">=</span>a5ae24de-1533-4b09-98b9-cd9ba6bf303c
+file:.git/config    remote.roommate.annex-ignore<span class="o">=</span><span class="nb">false</span>
+file:.git/config    submodule.longnow.url<span class="o">=</span>https://github.com/datalad-datasets/longnow-podcasts.git
+file:.git/config    submodule.longnow.active<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This example shows some configurations in the global <code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code>
+file, and the configurations within <code class="docutils literal notranslate"><span class="pre">DataLad-101/.git/config</span></code>.
+The command is very handy to display all configurations at once to identify
+configuration problems, find the right configuration file to make a change to,
+or simply remind oneself of the existing configurations, and it is a useful
+helper to keep in the back of your head.</p>
+<p>At this point you may feel like many of these configurations or the configuration file
+inside of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> do not appear to be
+intuitively understandable enough to confidently apply changes to them,
+or identify necessary changes. And indeed, most of the sections and variables
+or values in there are irrelevant for understanding the book, your dataset,
+or DataLad, and can just be left as they are. The previous section merely served
+to de-mystify the <strong class="command">git config</strong> command and the configuration files.
+Nevertheless, it might be helpful to get an overview about the meaning of the
+remaining sections in that file, and the following hidden section can give
+you a glimpse of this.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>More on this config file</p>
+</div>
+<p>The second section of <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> is a Git-annex configuration.
+As mentioned above, Git-annex will use the
+<a class="reference internal" href="../glossary.html#term-git-config-file"><span class="xref std std-term">Git config file</span></a> for some of its configurations.
+For example, it lists the repository as a
+“version 5 repository”, and gives the dataset its own Git-annex
+UUID. While the “annex-uuid”<a class="footnote-reference brackets" href="#f4" id="id4">4</a> looks like yet another cryptic
+random string of characters, you have seen a UUID like this before:
+A <strong class="command">git annex whereis</strong> displays information about where the
+annexed content in a dataset is with these UUIDs.
+This section also specifies the supported backends in this dataset.
+If you have read the hidden section in the section
+<a class="reference internal" href="101-115-symlinks.html#symlink"><span class="std std-ref">Data integrity</span></a> you will recognize the name “MD5E”. This is the
+hash function used to generate the annexed files keys and thus
+paths in the object tree. All backends specified in this file (it
+can be a list) can be used to hash your files.</p>
+<p>You may recognize the third part of the configuration, the subsection
+<code class="docutils literal notranslate"><span class="pre">&quot;recordings/longnow&quot;</span></code> in the section <code class="docutils literal notranslate"><span class="pre">submodule</span></code>.
+Clearly, this is a reference to the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> podcasts
+we installed as a subdataset. The name <em>submodule</em> is Git
+terminology, and describes a Git repository inside of
+another Git repository – just like
+the super- and subdataset principles you discovered in the
+section <a class="reference internal" href="101-106-nesting.html#nesting"><span class="std std-ref">Dataset nesting</span></a>. When you install a DataLad dataset
+as a subdataset, it gets <em>registered</em> in this file.
+For each subdataset, an individual submodule entry
+will store the information about the subdataset’s
+<code class="docutils literal notranslate"><span class="pre">--source</span></code> or <em>origin</em> (the “url”).
+Thus, every subdataset (and sub-subdataset, and so forth) in your dataset
+will be listed in this file.
+If you want, go back to section <a class="reference internal" href="101-105-install.html#installds"><span class="std std-ref">Install datasets</span></a> to see that the
+“url” is the same URL we installed the longnow dataset from, and
+go back to section <a class="reference internal" href="101-116-sharelocal.html#sharelocal1"><span class="std std-ref">Looking without touching</span></a> to remind yourself of
+how installing a dataset with subdatasets looked and felt like.</p>
+<p>Another interesting part is the last section, “remote”.
+Here we can find the <a class="reference internal" href="../glossary.html#term-sibling"><span class="xref std std-term">sibling</span></a> “roommate” we defined
+in <a class="reference internal" href="101-121-siblings.html#sibling"><span class="std std-ref">Networking</span></a>. The term <a class="reference internal" href="../glossary.html#term-remote"><span class="xref std std-term">remote</span></a> is Git-terminology and is
+used to describe other repositories or DataLad datasets that the
+repository knows about and tracks.
+This file, therefore, is where DataLad <em>registered</em> the sibling
+with <strong class="command">datalad siblings add</strong>, and thanks to it you can
+collaborate with your room mate.
+Note the <em>path</em> given as a value to the <code class="docutils literal notranslate"><span class="pre">url</span></code> variable. If at any point
+either your superdataset or the remote moves on your file system,
+the association between the two datasets breaks – this can be fixed by adjusting this
+path, and a demonstration of this is in section <a class="reference internal" href="101-136-filesystem.html#filesystem"><span class="std std-ref">Miscellaneous file system operations</span></a>.
+<cite>fetch</cite> contains a specification which parts of the repository are
+updated – in this case everything (all of the branches).
+Lastly, the <code class="docutils literal notranslate"><span class="pre">annex-ignore</span> <span class="pre">=</span> <span class="pre">false</span></code> configuration allows Git-annex
+to query the remote when it tries to retrieve data from annexed content.</p>
+</div>
+</div>
+<div class="section" id="git-config-versus-other-configuration-files">
+<h2><code class="docutils literal notranslate"><span class="pre">.git/config</span></code> versus other (configuration) files<a class="headerlink" href="#git-config-versus-other-configuration-files" title="Permalink to this headline">¶</a></h2>
+<p>One crucial aspect distinguishes the <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> file from many other files
+in your dataset: Even though it is part of your dataset, it won’t be shared together
+with the dataset. The reason for this is that this file is not version
+controlled, as it lies within the <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory.
+Repository-specific configurations within your <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>
+file are thus not written to history. Any local configuration in <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>
+applies to the dataset, but it does not <em>stick</em> to the dataset.
+One can have the misconception that because the configurations were made <em>in</em>
+the dataset, these configurations will also be shared together with the dataset.
+<code class="docutils literal notranslate"><span class="pre">.git/config</span></code>, however, behaves just as your global or system-wide configurations.
+These configurations are in effect on a system, or for a user, or for a dataset,
+but are not shared.
+A <strong class="command">datalad install</strong> command of someone’s dataset will not get your their
+editor configuration, should they have included one in their config file.
+Instead, upon a <strong class="command">datalad install</strong>, a new config file will be created.</p>
+<p>This means, however, that configurations that should “stick” to a dataset
+need to be defined in different files – files that are version controlled.
+The next section will talk about them.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>As an alternative to a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span></code> command, you could also run configuration
+templates or procedures (see <a class="reference internal" href="101-127-procedures.html#procedures"><span class="std std-ref">Configurations to go</span></a>) that apply predefined configurations or in some cases even
+add the information to the configuration file by hand and save it using an editor of your choice.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>The third scope of a Git configuration are the system wide configurations.
+These are stored (if they exist) in <code class="docutils literal notranslate"><span class="pre">/etc/gitconfig</span></code> and contain settings that would
+apply to every user on the computer you are using. These configurations
+are not relevant for DataLad-101, and we will thus skip them. You can
+read more about Git’s configurations and different files
+<a class="reference external" href="https://git-scm.com/docs/git-config">here</a>.</p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>If your default editor is <a class="reference internal" href="../glossary.html#term-vim"><span class="xref std std-term">vim</span></a> and you do not like this, now can be the time
+to change it! Chose either of two options:</p>
+<p>1) Open up the file with an editor for your choice (e.g.,
+<a class="reference external" href="https://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/">nano</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">gitconfig</span>
+</pre></div>
+</div>
+<p>and either paste the following configuration or edit it if it already exists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">core</span><span class="p">]</span>
+    <span class="n">editor</span> <span class="o">=</span> <span class="n">nano</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>run the following command, but exchange <code class="docutils literal notranslate"><span class="pre">nano</span></code> with an editor of your choice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">add</span> <span class="n">core</span><span class="o">.</span><span class="n">editor</span> <span class="s2">&quot;nano&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>A UUID is a universally unique identifier – a 128-bit number
+that unambiguously identifies information.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-120-summary.html" title="Previous document">Summary</a>
+        </li>
+        <li>
+          <a href="101-126-config2.html" title="Next document">More on DIY configurations</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

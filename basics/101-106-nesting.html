@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dataset nesting &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-106-nesting.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Summary" href="101-107-summary.html" />
+    <link rel="prev" title="Install datasets" href="101-105-install.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-106-nesting/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-106-nesting">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Dataset nesting &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-105-install.html" title="previous chapter">Install datasets</a></li>
+      <li>Next: <a href="101-107-summary.html" title="next chapter">Summary</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="dataset-nesting">
+<span id="nesting"></span><h1>Dataset nesting<a class="headerlink" href="#dataset-nesting" title="Permalink to this headline">¶</a></h1>
+<p>Without noticing, the previous section demonstrated another core principle
+and feature of DataLad datasets: <em>Nesting</em>.</p>
+<p>Within DataLad datasets one can <em>nest</em> other DataLad
+datasets arbitrarily deep. We for example just installed one dataset, the
+<code class="docutils literal notranslate"><span class="pre">longnow</span></code> podcast, <em>into</em> another dataset, the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset.
+This does not seem particularly spectacular –
+after all, any directory on a file system can have other directories inside of it.</p>
+<p>The possibility for nested Datasets, however, is one of many advantages
+DataLad datasets have:</p>
+<p>One aspect of nested datasets is that any lower-level DataLad dataset
+(the <em>subdataset</em>) has a stand-alone
+history. The top-level DataLad dataset (the <em>superdataset</em>) only stores
+<em>which version</em> of the subdataset is currently used.</p>
+<p>Let’s dive into that.
+Remember how we had to navigate into <code class="docutils literal notranslate"><span class="pre">recordings/longnow</span></code> to see the history,
+and how this history was completely independent of the <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>
+superdataset history? This was the subdataset’s own history.</p>
+<p>But now let’s also check out how the <em>superdataset’s</em> (<code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>) history
+looks like after the installation of a subdataset. To do this, make sure you are
+<em>outside</em> of the subdataset <code class="docutils literal notranslate"><span class="pre">longnow</span></code> (note that the first commit is our recent
+addition to <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>, so we’ll look at the second most recent commit in
+this excerpt).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -p -n <span class="m">2</span>
+<span class="go">commit 49e85d196f5bfaf09567c10008fc71c212cdbb1d</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:05:08 2019 +0100</span>
+
+<span class="go">    [DATALAD] Recorded changes</span>
+
+<span class="go">diff --git a/.gitmodules b/.gitmodules</span>
+<span class="go">new file mode 100644</span>
+<span class="go">index 0000000..1b59b8c</span>
+<span class="go">--- /dev/null</span>
+<span class="go">+++ b/.gitmodules</span>
+<span class="go">@@ -0,0 +1,4 @@</span>
+<span class="go">+[submodule &quot;recordings/longnow&quot;]</span>
+<span class="go">+	path = recordings/longnow</span>
+<span class="go">+	url = https://github.com/datalad-datasets/longnow-podcasts.git</span>
+<span class="go">+	datalad-id = b3ca2718-8901-11e8-99aa-a0369f7c647e</span>
+<span class="go">diff --git a/recordings/longnow b/recordings/longnow</span>
+<span class="go">new file mode 160000</span>
+<span class="go">index 0000000..dcc34fb</span>
+<span class="go">--- /dev/null</span>
+<span class="go">+++ b/recordings/longnow</span>
+<span class="go">@@ -0,0 +1 @@</span>
+<span class="hll"><span class="go">+Subproject commit dcc34fbe669b06ced84ced381ba0db21cf5e665f</span>
+</span></pre></div>
+</div>
+<p>We have highlighted the important part of this rather long commit summary.
+Note that you can not see any <code class="docutils literal notranslate"><span class="pre">.mp3</span></code>s being added to the dataset,
+as was previously the case when we <strong class="command">datalad save</strong>d PDFs that we
+downloaded into <code class="docutils literal notranslate"><span class="pre">books/</span></code>. Instead,
+DataLad stores what it calls a <em>subproject commit</em> of the subdataset.
+The cryptic character sequence in this line is the <a class="reference internal" href="../glossary.html#term-shasum"><span class="xref std std-term">shasum</span></a> we have briefly
+mentioned before, and it is
+how DataLad internally identifies files and changes to files. Exactly this
+shasum is what describes the state of the subdataset.</p>
+<p>This highlights a different aspect as well: Note that the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> dataset
+is a completely independent, standalone dataset that was once created and
+published. Nesting allows for a modular re-use of any other DataLad dataset,
+and this re-use is possible and simple precisely because all of the information
+is kept within a (sub)dataset.</p>
+<p>Navigate back into <code class="docutils literal notranslate"><span class="pre">longnow</span></code> and try to find the highlighted shasum in the
+subdataset’s history:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> recordings/longnow
+<span class="gp">$</span> git log --oneline
+<span class="hll"><span class="go">dcc34fb Update aggregated metadata</span>
+</span><span class="go">36a30a1 [DATALAD RUNCMD] Update from feed</span>
+<span class="go">bafdc04 Uniformize JSON-LD context with DataLad&#39;s internal extractors</span>
+<span class="go">004e484 [DATALAD RUNCMD] .datalad/maint/make_readme.py</span>
+<span class="go">7ee3ded Sort episodes newest-first</span>
+<span class="go">e829615 Link to the handbook as a source of wisdom</span>
+<span class="go">4b37790 Fix README generator to parse correct directory</span>
+<span class="go">43fdea1 Add script to generate a README from DataLad metadata</span>
+<span class="go">997e07a Update aggregated metadata</span>
+<span class="go">8031017 Consolidate all metadata-related files under .datalad</span>
+<span class="go">8053eed Add annexed feed logos</span>
+<span class="go">1a396a6 Prepare to annex big feed logos</span>
+<span class="go">75d7f3f Rename metadata directory</span>
+<span class="go">5dd7772 Manually place extracted metadata in Git</span>
+<span class="go">b9c517e Make sure extracted metadata is directly in Git</span>
+<span class="go">0553111 content removed from git annex</span>
+<span class="go">39226e9 Update aggregated metadata</span>
+<span class="go">740fa14 [DATALAD RUNCMD] Update from feed</span>
+<span class="go">61f46fc Add base dataset metadata</span>
+<span class="go">3e96466 More diff-able</span>
+<span class="go">979bd25 Single update maintainer script</span>
+<span class="go">ead809e Be resilient with different delimiters</span>
+<span class="go">9bece59 Add duration to the metadata</span>
+<span class="go">f0831b9 Script to convert the RSS feed metadata into JSON-LD metadata</span>
+<span class="go">e64d00f Prepare for addition of RSS feed metadata on episodes</span>
+<span class="go">e1bf31e [DATALAD RUNCMD] Update SALT series</span>
+<span class="go">21d9290 [DATALAD RUNCMD] Update Interval seminar series</span>
+<span class="go">7f36dea Update from feed</span>
+<span class="go">ff00713 Update from feed</span>
+<span class="go">a052af9 Include publication date in the filename</span>
+<span class="go">9f3127f Import Interval feed</span>
+<span class="go">b81bdea Import SALT feed</span>
+<span class="go">3d0dc8f [DATALAD] new dataset</span>
+<span class="go">8df130b [DATALAD] Set default backend for all files to be MD5E</span>
+</pre></div>
+</div>
+<p>We can see that it is the most recent commit shasum of the subdataset
+(albeit we can see only the first seven characters here – a <strong class="command">git log</strong>
+would show you the full shasum).
+This is what is meant by “the top-level DataLad dataset (the <em>superdataset</em>) only stores
+<em>which version</em> of the subdataset is currently used”.</p>
+<p>Importantly, once we learn how to make use of the history of a dataset,
+we can set subdatasets to previous states, or <em>update</em> them.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>Do I have to navigate into the subdataset to see it’s history?</p>
+</div>
+<p>Previously, we used <strong class="command">cd</strong> to navigate into the subdataset, and
+subsequently opened the Git log. This is necessary, because a <strong class="command">git log</strong>
+in the superdataset would only return the superdatasets history. There is one
+trick, though: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">-C</span></code> lets you perform any Git command in a provided path.
+Thus, from the root of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>, this command would have given you the
+subdatasets history as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git -C recordings/longnow log --oneline
+</pre></div>
+</div>
+</div>
+<p>In the upcoming sections, we’ll experience the perks of dataset nesting
+frequently, and everything that might seem vague at this point will become
+clearer. To conclude this demonstration,
+the figure below illustrates the current state of the dataset
+and nesting schematically:</p>
+<div class="figure align-default">
+<img alt="Virtual directory tree of a nested DataLad dataset" src="../_images/virtual_dstree_dl101.svg" /></div>
+<p>Thus, without being consciously aware of it, by taking advantage of dataset
+nesting, we took a dataset <code class="docutils literal notranslate"><span class="pre">longnow</span></code> and installed it as a
+subdataset within the superdataset  <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>.</p>
+<p>If you have executed the above code snippets, make sure to go back into the
+root of the dataset again:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ../../
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-105-install.html" title="Previous document">Install datasets</a>
+        </li>
+        <li>
+          <a href="101-107-summary.html" title="Next document">Summary</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

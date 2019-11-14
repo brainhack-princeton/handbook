@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Modify content &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-103-modify.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Install datasets" href="101-105-install.html" />
+    <link rel="prev" title="Populate a dataset" href="101-102-populate.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-103-modify/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-103-modify">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Modify content &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-102-populate.html" title="previous chapter">Populate a dataset</a></li>
+      <li>Next: <a href="101-105-install.html" title="next chapter">Install datasets</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="modify-content">
+<span id="modify"></span><h1>Modify content<a class="headerlink" href="#modify-content" title="Permalink to this headline">¶</a></h1>
+<p>So far, we’ve only added new content to the dataset. And we have not done
+much to that content up to this point, to be honest. Let’s see what happens if
+we add content, and then modify it.</p>
+<p>For this, in the root of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>, create a simple text file
+called <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>. It will contain all of the notes that you take
+throughout the course.</p>
+<p>Use an editor of your choice and write a short summary of how to create
+a DataLad dataset from scratch. The code below contains the note within
+the start and end part of a <a class="reference external" href="https://en.wikipedia.org/wiki/Here_document">here document</a>:</p>
+<blockquote>
+<div><p>“One can create a new dataset with ‘datalad create
+[–description] PATH’. The dataset is created empty”.</p>
+</div></blockquote>
+<p>This is meant to be a note you would take in an educational course.
+You can take this note and write it to a file with an editor.
+But you can also copy the full code snippet, starting
+from <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">&lt;&lt;</span> <span class="pre">EOT</span> <span class="pre">&gt;</span> <span class="pre">notes.txt</span></code>, including the <code class="docutils literal notranslate"><span class="pre">EOT</span></code> in the last line, in your
+terminal to write this note into <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>How does a here-document work?</p>
+</div>
+<p>The code snippet below makes sure to write lines of text into a
+file (that so far does not exist) called <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>.</p>
+<p>To do this, the content of the “document” is wrapped in between
+<em>delimiting identifiers</em>. Here, these identifiers are <em>EOT</em> (short
+for “end of text”), but naming is arbitrary as long as the two identifiers
+are identical. The first “EOT” identifies the start of the text stream, and
+the second “EOT” terminates the text stream.</p>
+<p>The characters <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> redirect the text stream into
+<a class="reference external" href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)">“standard input” (stdin)</a>,
+the standard location that provides the <em>input</em> for a command.
+Thus, the text stream becomes the input for the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Cat_(Unix)">cat command</a>, which takes
+the input and writes it to
+<a class="reference external" href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">“standard output” (stdout)</a>.</p>
+<p>Lastly, the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> character takes <code class="docutils literal notranslate"><span class="pre">stdout</span></code> can creates a new file
+<code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> with <code class="docutils literal notranslate"><span class="pre">stdout</span></code> as its contents.</p>
+<p>It might seem like a slightly convoluted way to create a text file with
+a simple note in it. But it allows to write notes from the terminal, enabling
+this book to create commands you can execute with nothing other than your terminal.
+You are free to copy-paste the snippets with the here-documents,
+or find a workflow that suites you better. The only thing important is that
+you create and modify a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file over the course of the Basics part of this
+handbook.</p>
+</div>
+<p>Running the command below will create <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> in the
+root of your <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat &lt;&lt; EOT &gt; notes.txt
+<span class="go">One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go">The dataset is created empty</span>
+
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<p>Run <strong class="command">datalad status</strong> to confirm that there is a new, untracked file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go">untracked: notes.txt (file)</span>
+</pre></div>
+</div>
+<p>Save current state of this file in DataLad version history. Because it is the only modification
+in the dataset, there is no need to specify a path.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;Add notes on datalad create&quot;</span>
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Modify this file by adding another note. After all, you already know how to use
+<strong class="command">datalad save</strong>, so write a short summary on that as well.</p>
+<p>Again, the example below uses Unix commands (<code class="docutils literal notranslate"><span class="pre">cat</span></code> and redirecting, this time however
+with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> to <em>append</em> new content to the existing file)
+to accomplish this, but you can take any editor of your choice.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat &lt;&lt; EOT &gt;&gt; notes.txt
+<span class="go">The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">(modifications) to history. Note to self:</span>
+<span class="go">Always use informative, concise commit messages.</span>
+
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<p>Let’s check the dataset’s current state:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad status
+<span class="go"> modified: notes.txt (file)</span>
+</pre></div>
+</div>
+<p>and save the file in DataLad:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad save -m <span class="s2">&quot;add note on datalad save&quot;</span>
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>Let’s take another look into our history to see the development of this file.
+We’re using <strong class="command">git log -p -n 2</strong> to see last two commits and explore
+the difference to the previous state of a file within each commit.
+Note: git log may be opened in a <a class="reference external" href="https://en.wikipedia.org/wiki/Terminal_pager">pager</a>.
+You can get out of it by pressing <code class="docutils literal notranslate"><span class="pre">q</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log -p -n <span class="m">2</span>
+<span class="go">commit 5f98f2b0582fab3a7033dfcdffaa13995404be8a</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:05:06 2019 +0100</span>
+
+<span class="hll"><span class="go">    add note on datalad save</span>
+</span>
+<span class="go">diff --git a/notes.txt b/notes.txt</span>
+<span class="go">index 3a7a1fe..bfa64d7 100644</span>
+<span class="go">--- a/notes.txt</span>
+<span class="go">+++ b/notes.txt</span>
+<span class="go">@@ -1,3 +1,7 @@</span>
+<span class="go"> One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go"> The dataset is created empty</span>
+<span class="go"> </span>
+<span class="go">+The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">+(modifications) to history. Note to self:</span>
+<span class="go">+Always use informative, concise commit messages.</span>
+<span class="go">+</span>
+
+<span class="go">commit b72b237b63a26391d4eeccd077d33100e334a506</span>
+<span class="go">Author: Elena Piscopia &lt;elena@example.net&gt;</span>
+<span class="go">Date:   Tue Nov 12 15:05:05 2019 +0100</span>
+
+<span class="hll"><span class="go">    Add notes on datalad create</span>
+</span>
+<span class="hll"><span class="go">diff --git a/notes.txt b/notes.txt</span>
+</span><span class="go">new file mode 100644</span>
+</pre></div>
+</div>
+<p>We can see that the history can not only show us the commit message attached to
+a commit, but also the precise change that occurred in the text file in the commit.
+Additions are marked with a <code class="docutils literal notranslate"><span class="pre">+</span></code>, and deletions would be shown with a leading <code class="docutils literal notranslate"><span class="pre">-</span></code>.
+That’s quite neat, isn’t it?</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>git log has many more useful options</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, as many other <code class="docutils literal notranslate"><span class="pre">git</span></code> commands, has a good number of options
+which you can discover if you run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--help</span></code>.  Those options could
+help to find specific changes (e.g., which added or removed a specific word
+with <code class="docutils literal notranslate"><span class="pre">-S</span></code>), or change how git log output will look (e.g.,
+<code class="docutils literal notranslate"><span class="pre">--word-diff</span></code> to highlight individual word changes in the <code class="docutils literal notranslate"><span class="pre">-p</span></code> output).</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-102-populate.html" title="Previous document">Populate a dataset</a>
+        </li>
+        <li>
+          <a href="101-105-install.html" title="Next document">Install datasets</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

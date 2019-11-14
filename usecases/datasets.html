@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>A Neuroimaging Datasets &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/usecases/datasets.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Code from chapter: 02_reproducible_execution" href="../code_from_chapters/02_reproducible_execution_code.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/usecases/datasets/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/usecases/datasets">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="A Neuroimaging Datasets &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A Neuroimaging Datasets</a><ul>
+<li><a class="reference internal" href="#dataset-content-identity-and-availability-information">Dataset content identity and availability information</a></li>
+<li><a class="reference internal" href="#dataset-nesting">Dataset Nesting</a></li>
+<li><a class="reference internal" href="#creating-your-own-dataset-yourself">Creating your own dataset yourself</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../code_from_chapters/02_reproducible_execution_code.html" title="previous chapter">Code from chapter: 02_reproducible_execution</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="a-neuroimaging-datasets">
+<span id="usecase-neuroimaging-datasets"></span><h1>A Neuroimaging Datasets<a class="headerlink" href="#a-neuroimaging-datasets" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Currently, this is a left over. Later, we can rework this into something,
+but its unclear yet what ;-)</p>
+</div>
+<p>This section is a concise demonstration of what a DataLad dataset is,
+showcased on a dataset from the field of neuroimaging.
+A DataLad dataset is the core data type of DataLad. We will explore the concepts
+of it with one public example dataset, the studyforrest phase 2 data (studyforrest.org).
+Note that this is just one type and use of a Datalad dataset, and you throughout there are
+many more flavors of using DataLad datasets in the basics or in upcoming use cases.</p>
+<p>Please follow along and run the commands below in your own terminal for
+a hands-on experience.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad install https://github.com/psychoinformatics-de/studyforrest-data-phase2.git
+<span class="go">[INFO] Cloning https://github.com/psychoinformatics-de/studyforrest-data-phase2.git [1 other candidates] into &#39;/home/me/studyforrest/studyforrest-data-phase2&#39; </span>
+<span class="go">[INFO]   Remote origin not usable by git-annex; setting annex-ignore </span>
+<span class="go">install(ok): /home/me/studyforrest/studyforrest-data-phase2 (dataset)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Once installed, a DataLad dataset looks like any other directory on your filesystem:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> studyforrest-data-phase2
+<span class="gp">$</span> ls <span class="c1"># output below is only an excerpt from ls</span>
+<span class="go">Makefile</span>
+<span class="go">participants.tsv</span>
+<span class="go">README.rst</span>
+<span class="go">recording-cardresp_physio.json</span>
+<span class="go">recording-eyegaze_physio.json</span>
+<span class="go">src</span>
+<span class="go">stimuli</span>
+<span class="go">sub-01</span>
+<span class="go">sub-02</span>
+<span class="go">sub-03</span>
+<span class="go">sub-04</span>
+</pre></div>
+</div>
+<p>However, all files and directories within the DataLad dataset can be
+tracked (should you want them to be tracked), regardless of their size.
+Large content is tracked in an <em>annex</em> that is automatically
+created and handled by DataLad. Whether text files or larger files change,
+all of these changes can be written to your DataLad datasets history.</p>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p>A DataLad dataset is a Git repository. Large file content in the
+dataset in the annex is tracked with Git-annex. An <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code>
+reveals that Git is secretly working in the background:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -a <span class="c1"># show also hidden files (excerpt)</span>
+<span class="go">code</span>
+<span class="hll"><span class="go">.datalad</span>
+</span><span class="go">dataset_description.json</span>
+<span class="hll"><span class="go">.git</span>
+</span><span class="hll"><span class="go">.gitattributes</span>
+</span><span class="go">.gitignore</span>
+<span class="hll"><span class="go">.gitmodules</span>
+</span><span class="go">participants.tsv</span>
+<span class="go">README.rst</span>
+<span class="go">recording-cardresp_physio.json</span>
+<span class="go">recording-eyegaze_physio.json</span>
+<span class="go">src</span>
+<span class="go">stimuli</span>
+<span class="go">sub-01</span>
+<span class="go">sub-02</span>
+<span class="go">sub-03</span>
+<span class="go">sub-04</span>
+<span class="go">sub-05</span>
+</pre></div>
+</div>
+</div>
+<p>Users can <em>create</em> new DataLad datasets from scratch, or install existing
+DataLad datasets from paths, urls, or open-data collections. This makes
+sharing and accessing data fast and easy. Moreover, when sharing or installing
+a DataLad dataset, all copies also include the datasets history. An installed DataLad
+dataset knows the dataset it was installed from, and if changes
+in this original DataLad dataset happen, the installed dataset can simply be updated.</p>
+<p>You can view the DataLad datasets history with tools of your choice.
+The code block below is used to illustrate the history and is an exempt
+from <strong class="command">git log</strong>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git log --oneline --graph --decorate
+<span class="go">* a6623bff (HEAD -&gt; master, origin/master, origin/HEAD) [DATALAD] dataset aggregate metadata update</span>
+<span class="go">* 72d535d5 Enable DataLad metadata extractors</span>
+<span class="go">* 9c15094e [DATALAD] new dataset</span>
+<span class="go">* d97455f5 [DATALAD] Set default backend for all files to be MD5E</span>
+<span class="go">* e2a2cf1c Update changelog for 1.5</span>
+<span class="go">* 6da25fb6 BF: Re-import respiratory trace after bug fix in converter (fixes gh-11)</span>
+<span class="go">* 131edcb7 Fix type in physio log converter (fixes gh-11)</span>
+<span class="go">* fbb5d619 ENH: Report per-stimulus events (fixes gh-6)</span>
+<span class="go">* d6f3fcd2 Add BIDS-compatible stimuli/ directory (with symlinks)</span>
+</pre></div>
+</div>
+<div class="section" id="dataset-content-identity-and-availability-information">
+<h2>Dataset content identity and availability information<a class="headerlink" href="#dataset-content-identity-and-availability-information" title="Permalink to this headline">¶</a></h2>
+<p>Upon installation of a DataLad dataset, DataLad retrieves only (small) metadata
+information about the dataset. This exposes the datasets file hierarchy
+for exploration, and speeds up the installation of a DataLad dataset
+of many TB in size to a few seconds. Just after installation, the dataset is
+small in size:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> du -sh
+<span class="go">17M	.</span>
+</pre></div>
+</div>
+<p>This is because only small files are present locally – for shits and giggles, you can try
+opening both a small <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> file in the root of the dataset,
+and a larger compressed <code class="docutils literal notranslate"><span class="pre">nifti</span></code> (<code class="docutils literal notranslate"><span class="pre">nii.gz</span></code>) in one of the subdirectories in this dataset.
+A small <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> (1.9K) file exists and can be opened locally,
+but what would be a large, compressed <code class="docutils literal notranslate"><span class="pre">nifti</span></code> file
+is not. In this state, one cannot open or work with the nifti file, but you can
+explore which files exist without the potentially large download.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls participants.tsv  sub-01/ses-movie/func/sub-01_ses-movie_task-movie_run-1_bold.nii.gz
+<span class="go">participants.tsv</span>
+<span class="hll"><span class="go">sub-01/ses-movie/func/sub-01_ses-movie_task-movie_run-1_bold.nii.gz</span>
+</span></pre></div>
+</div>
+<p>The retrieval of the actual, potentially large
+file content can happen at any later time for the full dataset or subsets
+of files. Let’s get the nifti file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad get sub-01/ses-movie/func/sub-01_ses-movie_task-movie_run-1_bold.nii.gz
+<span class="go">get(ok): /home/me/studyforrest/studyforrest-data-phase2/sub-01/ses-movie/func/sub-01_ses-movie_task-movie_run-1_bold.nii.gz (file) [from mddatasrc...]</span>
+</pre></div>
+</div>
+<p>Wasn’t this easy?</p>
+</div>
+<div class="section" id="dataset-nesting">
+<h2>Dataset Nesting<a class="headerlink" href="#dataset-nesting" title="Permalink to this headline">¶</a></h2>
+<p>Within DataLad datasets one can <em>nest</em> other DataLad
+datasets arbitralily deep. This does not seem particulary spectacular -
+after all, any directory on a filesystem can have other directories inside it.
+The possibility for nested Datasets, however, is one of many advantages
+DataLad datasets have:
+Any lower-level DataLad dataset (the <em>subdataset</em>) has a stand-alone
+history. The top-level DataLad dataset (the <em>superdataset</em>) only stores
+<em>which version</em> of the subdataset is currently used.</p>
+<p>By taking advantage of dataset nesting, one can take datasets such as the
+studyforrest phase-2 data and install it as a subdataset within a
+superdataset containing analysis code and results computed from the
+studyforrest data. Should the studyforrest data get extended or changed,
+its subdataset can be updated to include the changes easily. More
+detailed examples of this can be found in the use cases in the last
+section (for example in <a class="reference internal" href="reproducible-paper.html#usecase-reproducible-paper"><span class="std std-ref">Writing a reproducible paper</span></a>).</p>
+<p>The figure below illustrates dataset nesting in a neuroimaging context
+schematically:</p>
+<div class="figure align-default">
+<img alt="Virtual directory tree of a nested DataLad dataset" src="../_images/virtual_dirtree.svg" /></div>
+</div>
+<div class="section" id="creating-your-own-dataset-yourself">
+<h2>Creating your own dataset yourself<a class="headerlink" href="#creating-your-own-dataset-yourself" title="Permalink to this headline">¶</a></h2>
+<p>Anyone can create, populate, and optionally share a <em>new</em> DataLad dataset.
+A new DataLad dataset is always created empty, even if the target
+directory already contains additional files or directories. After creation,
+arbitralily large amounts of data can be added. Once files are added and
+saved to the dataset, any changes done to these data files can be saved
+to the history.</p>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p>Creation of datasets relies on the <strong class="command">git init</strong> and <strong class="command">git annex init</strong> commands.</p>
+</div>
+<p>As already shown, already existing datalad dataset can be simply installed
+from a url or path, or from the datalad open-data collection.</p>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p><strong class="command">datalad install</strong> used the <strong class="command">git clone</strong> command.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="../code_from_chapters/02_reproducible_execution_code.html" title="Previous document">Code from chapter: 02_reproducible_execution</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

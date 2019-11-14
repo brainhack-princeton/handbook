@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contributing &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/contributing.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code from chapter: 01_dataset_basics" href="code_from_chapters/01_dataset_basics_code.html" />
+    <link rel="prev" title="Glossary" href="glossary.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/contributing/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/contributing">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Contributing &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contributing</a><ul>
+<li><a class="reference internal" href="#software-setup">Software setup</a></li>
+<li><a class="reference internal" href="#directives-and-casts">Directives and casts</a><ul>
+<li><a class="reference internal" href="#easy-pull-requests">Easy pull requests</a></li>
+<li><a class="reference internal" href="#desired-structure-of-the-book">Desired structure of the book</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#basics">Basics</a></li>
+<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
+<li><a class="reference internal" href="#acknowledging-contributors">Acknowledging Contributors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="glossary.html" title="previous chapter">Glossary</a></li>
+      <li>Next: <a href="code_from_chapters/01_dataset_basics_code.html" title="next chapter">Code from chapter: 01_dataset_basics</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="contributing">
+<span id="contribute"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>Thanks for being curious about contributing!
+We greatly appreciate and welcome contributions to this book, be it in the form
+of an <a class="reference external" href="https://github.com/datalad-handbook/book/issues/new">issue</a>, a pull request,
+or a discussion you had with anyone on the team via a non-Github communication channel!
+To find out how we acknowledge contributions, please read the paragraph
+<a class="reference internal" href="#acknowledge"><span class="std std-ref">Acknowledging Contributors</span></a> at the bottom of
+this page.</p>
+<p>If you are considering doing a pull request: Great! Every contribution is valuable,
+from fixing typos to writing full chapters.
+The steps below outline how the book “works”. It is recommended to also create an issue
+to discuss changes or additions you plan to make in advance.</p>
+<div class="section" id="software-setup">
+<h2>Software setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the size of your contribution, you may want to be able to build the book
+locally to test and preview your changes. If you are fixing typos, tweak the
+language, or rewrite a paragraph or two, this should not be necessary, and you can safely
+skip this paragraph and instead take a look into the paragraph
+<a class="reference internal" href="#easy"><span class="std std-ref">Easy pull requests</span></a>.
+If you want to be able to build the book locally, though, please follow these instructions:</p>
+<ul class="simple">
+<li><p>datalad install the repository recursively. This ensures that dependent subdatasets are installed as well</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datalad install -r https://github.com/datalad-handbook/book.git
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>optional, but recommended: Create a virtual environment</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv --python<span class="o">=</span>python3 ~/env/handbook
+$ . ~/env/handbook/bin/activate
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>install the requirements and a custom Python helper for the handbook</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># navigate into the installed dataset</span>
+$ <span class="nb">cd</span> book
+<span class="c1"># install required software</span>
+$ pip install -r requirements.txt
+$ pip install -e .
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>install <code class="docutils literal notranslate"><span class="pre">librsvg2-bin</span></code> (a tool to render <code class="docutils literal notranslate"><span class="pre">.svgs</span></code>) with your package manager</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install librsvg2-bin
+</pre></div>
+</div>
+<p>The code examples that need to be executed to build the book (see also the paragraph “Code” in
+<a class="reference internal" href="#directive"><span class="std std-ref">Directives and casts</span></a> to learn more about this) are executed inside of
+the directory <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>. This means that <em>this directory needs to exist</em> on your machine.
+Essentially, <code class="docutils literal notranslate"><span class="pre">/home/me</span></code> is a mock directory set up in order to have identical paths
+in code snippets regardless of the machine the book is build on: Else, code snippets
+created on one machine might have the path <code class="docutils literal notranslate"><span class="pre">/home/adina</span></code>, and others created on
+a second machine <code class="docutils literal notranslate"><span class="pre">/home/mih</span></code>, for example, leading to some potential confusion for readers.
+Therefore, you need to create this directory, and also –
+for consistency in the Git logs as well – a separate, mock Git identity
+(we chose <a class="reference external" href="https://en.wikipedia.org/wiki/Elena_Cornaro_Piscopia">Elena Piscopia</a>, the first
+woman to receive a PhD – do not worry, this does not mess with your own Git identity):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mkdir /home/me
+$ sudo chown <span class="nv">$USER</span>:<span class="nv">$USER</span> /home/me
+$ <span class="nv">HOME</span><span class="o">=</span>/home/me git config --global user.name <span class="s2">&quot;Elena Piscopia&quot;</span>
+$ <span class="nv">HOME</span><span class="o">=</span>/home/me git config --global user.email <span class="s2">&quot;elena@example.net&quot;</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>remove separate Git identity until <a class="reference external" href="https://github.com/datalad/datalad/issues/3750">https://github.com/datalad/datalad/issues/3750</a>
+is fixed</p>
+</div>
+<p>Once this is configured, you can build the book locally by running <code class="docutils literal notranslate"><span class="pre">make</span></code> in the root
+of the repository, and open it in your browser, for example with
+<code class="docutils literal notranslate"><span class="pre">firefox</span> <span class="pre">docs/_build/html/index.html</span></code>.</p>
+</div>
+<div class="section" id="directives-and-casts">
+<span id="directive"></span><h2>Directives and casts<a class="headerlink" href="#directives-and-casts" title="Permalink to this headline">¶</a></h2>
+<p>If you are writing larger sections that contain code, <code class="docutils literal notranslate"><span class="pre">gitusernote</span></code>s, <code class="docutils literal notranslate"><span class="pre">findoutmore</span></code>s,
+or other special directives, please make sure that you read this paragraph.</p>
+<p>The book is build with a number of custom directives. If applicable, please
+use them in the same way they are used throughout the book.</p>
+<p><strong>Code:</strong> For code that runs inside a dataset such as <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>,
+working directories exist inside of <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>. The <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>
+dataset for example lives in <code class="docutils literal notranslate"><span class="pre">/home/me/dl-101</span></code>. This comes with the advantage
+that code is tested immediately – if the code snippet contains an error, this error will
+be written into the book, and thus prevent faulty commands from being published.
+Running code in a working directory will furthermore build up on the existing history
+of this dataset, which is very useful if some code relies on working with previously
+created content or dataset history. Build code snippets that add to these working directories
+by using the <code class="docutils literal notranslate"><span class="pre">runrecord</span></code> directive. Commands wrapped in these will write the output
+of a command into example files stored inside of the DataLad Handbook repository clone
+in <code class="docutils literal notranslate"><span class="pre">docs/PART/_examples</span></code> (where <code class="docutils literal notranslate"><span class="pre">PART</span></code> is <code class="docutils literal notranslate"><span class="pre">basics</span></code> or <code class="docutils literal notranslate"><span class="pre">usecases</span></code>).
+Make sure to name this files according to the following
+schema, because they are executed sequentially:
+<code class="docutils literal notranslate"><span class="pre">_examples/DL-101-1&lt;nr-of-section&gt;-1&lt;nr-of-example&gt;</span></code>, e.g.,
+<code class="docutils literal notranslate"><span class="pre">_examples/DL-101-101-101</span></code> for the first example in the first section
+of the given part.
+Here is how a <code class="docutils literal notranslate"><span class="pre">runrecord</span></code> directive can look like:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">runrecord</span><span class="p">::</span> _examples/DL-101-101-101   # give the path to the resulting file, start with _examples
+   <span class="nc">:language:</span> <span class="nf">console</span>
+   <span class="nc">:workdir:</span> <span class="nf">dl-101/DataLad-101    # specify a working directory here. This translates to /home/me/dl-101/DataLad-101</span>
+
+   # this is a comment
+   $ this line will be executed
+</pre></div>
+</div>
+<p>Afterwards, the resulting example files need to be committed into Git. To clear existing
+examples in <code class="docutils literal notranslate"><span class="pre">docs/PART/_examples</span></code> and the mock directories in <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> and
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean-examples</span></code>.</p>
+<p>However, for simple code snippets outside of the narrative of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>,
+simple <code class="docutils literal notranslate"><span class="pre">code-block::</span></code> directives are sufficient.</p>
+<p><strong>Other custom directives:</strong> Other custom directives are <code class="docutils literal notranslate"><span class="pre">gitusernote</span></code>
+(for additional Git-related information for Git-users), and <code class="docutils literal notranslate"><span class="pre">findoutmore</span></code>
+(foldable sections that contain content that goes beyond the basics). Make use
+of them, if applicable to your contribution.</p>
+<p><strong>Creating code live casts out of runrecord directives</strong>:
+The book has the capability to turn code snippets into a script that the tool
+<a class="reference external" href="https://github.com/datalad/datalad/blob/master/tools/cast_live">cast_live</a>
+can use to cast and execute it in a demonstration shell. This feature is
+intended for educational courses and other types of demonstrations. The
+following prerequisites exist:</p>
+<ul>
+<li><p>A snippet only gets added to a cast, if the <code class="docutils literal notranslate"><span class="pre">:cast:</span></code> option in the
+<code class="docutils literal notranslate"><span class="pre">runrecord</span></code> specifies a filename where to save the cast to (it does not
+need to be an existing file).</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">:realcommand:</span></code> options are specified, they will become the executable
+part of the cast. If note, the code snippet in the code-block of the
+<code class="docutils literal notranslate"><span class="pre">runrecord</span></code> will become the executable part of the cast.</p></li>
+<li><p>An optional <code class="docutils literal notranslate"><span class="pre">:notes:</span></code> lets you add “speakernotes” for the cast.</p></li>
+<li><p>Casts are produced upon <code class="docutils literal notranslate"><span class="pre">make</span></code>, but only if the environment variable
+<code class="docutils literal notranslate"><span class="pre">CAST_DIR</span></code> is set.
+This should be a path that points to any directory in which casts should be
+created and saved. An invocation could look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ CAST_DIR=/home/me/casts make
+</pre></div>
+</div>
+</li>
+</ul>
+<p>This is a fully specified <code class="docutils literal notranslate"><span class="pre">runrecord</span></code>:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">runrecord</span><span class="p">::</span> _examples/DL-101-101-101
+   <span class="nc">:language:</span> <span class="nf">console</span>
+   <span class="nc">:workdir:</span> <span class="nf">dl-101/DataLad-101</span>
+   <span class="nc">:cast:</span> <span class="nf">dataset_basics   # name of the cast file (will be created/extended in CAST_DIR)</span>
+   <span class="nc">:notes:</span> <span class="nf">This is an optional speaker note only visible to presenter during the cast</span>
+
+   # this is a comment and will be written to the cast
+   $ this line will be executed and written to the cast
+</pre></div>
+</div>
+<p><strong>IMPORTANT!</strong> Code snippets will be turned into casts in the order of
+execution of <code class="docutils literal notranslate"><span class="pre">runrecords</span></code>. If you are adding code into an existing cast,
+i.e., in between two snippets that get written to the same cast, make sure that
+the cast will still run smoothly afterwards!</p>
+<p><strong>Running code live casts from created casts</strong>:
+If you have created a cast, you can use the tool <code class="docutils literal notranslate"><span class="pre">live_cast</span></code> in <code class="docutils literal notranslate"><span class="pre">tools/</span></code> in
+the <a class="reference external" href="https://github.com/datalad-handbook/course">DataLad Course</a> to
+execute them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~ course$ tools/cast_live path/to/casts
+</pre></div>
+</div>
+<div class="section" id="easy-pull-requests">
+<span id="easy"></span><h3>Easy pull requests<a class="headerlink" href="#easy-pull-requests" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to do a pull request is within the web-interface that Github
+and <a class="reference external" href="https://readthedocs.org">readthedocs</a> provide. If you visit the rendered
+version of the handbook at <a class="reference external" href="http://handbook.datalad.org/">handbook.datalad.org</a>
+and click on the small, floating <code class="docutils literal notranslate"><span class="pre">v:latest</span></code> element at the lower
+right-hand side, the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> option will take you straight to an editor that
+lets you make your changes and submit a pull request.</p>
+<div class="figure align-default" id="id2" style="width: 100%">
+<img alt="Access the Github interface to submit a pull request right from within Readthedocs." src="_images/contrib.png" />
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">You can find an easy way to submit a pull request right from within the handbook.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>But you of course are also welcome to submit a pull request with whichever
+other workflow suites you best.</p>
+</div>
+<div class="section" id="desired-structure-of-the-book">
+<h3>Desired structure of the book<a class="headerlink" href="#desired-structure-of-the-book" title="Permalink to this headline">¶</a></h3>
+<p>The book consists of three major parts: Introduction, Basics, and Use Cases,
+plus an appendix. Purpose and desired content of these parts are outlined
+below. When contributing to one of these sections, please make sure that your
+contribution stays in the scope of the respective section.</p>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An introduction to DataLad, and the problems it aims to be a solution for.</p></li>
+<li><p>This part is practically free of hands-on content, i.e., no
+instructions, no demos. Instead, it is about concepts, analogies, general
+problems.</p></li>
+<li><p>In order to avoid too much of a mental split between a reader’s desire to
+learn how to actually do things vs. conceptual information, the introduction
+is purposefully kept short and serves as a narrated table of contents with
+plenty of references to other parts of the book.</p></li>
+</ul>
+</div>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This part contains hands-on-style content on skills that are crucial for
+using DataLad productively. Any non-essential information is not in basics,
+but collected in an appendix.</p></li>
+<li><p>The order of topics in this part is determined by the order in which they
+become relevant for a novice DataLad user.</p></li>
+<li><p>Content should be written in a way that explicitly encourages executing the
+shown commands, up to simple challenges (such as: “find out who the author of
+the first commit in the installed subdataset XY is”).</p></li>
+</ul>
+</div>
+<div class="section" id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Topics that do not fit into the introduction or basics parts, but are
+DataLad-centric, go into this part. Ideal content are concrete examples of
+how DataLad’s concepts and building blocks can be combined to implement
+a solution to a problem.</p></li>
+<li><p>Any chapter is written as a more-or-less self-contained document that can
+make frequent references to introduction and basics, but only few, and more
+general ones to other use cases. This should help with long-term maintenance
+of the content, as the specifics of how to approach a particular use case
+optimally may evolve over time, and cross-references to specific
+functionality might become invalid.</p></li>
+<li><p>There is no inherent order in this part, but chapters may be grouped by
+domain, skill-level, or DataLad functionality involved (or combinations of
+those).</p></li>
+<li><p>Any content in this part can deviate from the examples and narrative used for
+introduction and basics whenever necessary (e.g., concrete domain specific use
+cases). However, if possible, common example datasets, names, terms should be
+adopted, and the broadest feasible target audience should be assumed. Such
+more generic content should form the early chapters in this part.</p></li>
+<li><p>Unless there is reason to deviate, the following structure should be adopted:</p>
+<ol class="arabic simple">
+<li><p>Summary/Abstract (no dedicated heading)</p></li>
+<li><p><em>The Challenge</em>: description what problem will be solved, or which conditions
+are present when DataLad is not used</p></li>
+<li><p><em>The DataLad Approach</em>: high-level description how DataLad can be used to
+address the problem at hand.</p></li>
+<li><p><em>Step-by-Step</em>: More detailed illustration on how the “DataLad approach” can
+be implemented, ideally with concrete code examples.</p></li>
+</ol>
+</li>
+</ul>
+<div class="section" id="acknowledging-contributors">
+<span id="acknowledge"></span><h3>Acknowledging Contributors<a class="headerlink" href="#acknowledging-contributors" title="Permalink to this headline">¶</a></h3>
+<p>If you have helped this project, we would like to acknowledge your contribution in the
+<a class="reference external" href="https://github.com/datalad-handbook/book">Github repository</a> in our README with
+<a class="reference external" href="https://allcontributors.org/">allcontributors.org</a>, and the project’s
+<a class="reference external" href="https://github.com/datalad-handbook/book/blob/master/.zenodo.json">.zenodo</a> and
+<a class="reference external" href="https://github.com/datalad-handbook/book/blob/master/CONTRIBUTORS.md">CONTRIBUTORS.md</a>
+files. The <a class="reference external" href="https://github.com/all-contributors">allcontributors bot</a> will give credit
+for <a class="reference external" href="https://allcontributors.org/docs/en/emoji-key">various types of contributions</a>.
+We may ask you to open a PR to add yourself to all of our contributing acknowledgements
+or do it ourselves and let you know.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="glossary.html" title="Previous document">Glossary</a>
+        </li>
+        <li>
+          <a href="code_from_chapters/01_dataset_basics_code.html" title="Next document">Code from chapter: 01_dataset_basics</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

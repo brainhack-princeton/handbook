@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Writing a reproducible paper &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/usecases/reproducible-paper.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Student supervision in a research project" href="supervision.html" />
+    <link rel="prev" title="Basic provenance tracking" href="provenance_tracking.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/usecases/reproducible-paper/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/usecases/reproducible-paper">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Writing a reproducible paper &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Writing a reproducible paper</a><ul>
+<li><a class="reference internal" href="#the-challenge">The Challenge</a></li>
+<li><a class="reference internal" href="#the-datalad-approach">The DataLad Approach</a></li>
+<li><a class="reference internal" href="#step-by-step">Step-by-Step</a></li>
+<li><a class="reference internal" href="#automation-with-existing-tools">Automation with existing tools</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="provenance_tracking.html" title="previous chapter">Basic provenance tracking</a></li>
+      <li>Next: <a href="supervision.html" title="next chapter">Student supervision in a research project</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="writing-a-reproducible-paper">
+<span id="usecase-reproducible-paper"></span><h1>Writing a reproducible paper<a class="headerlink" href="#writing-a-reproducible-paper" title="Permalink to this headline">¶</a></h1>
+<p>This use case demonstrates how to use nested DataLad datasets to create a fully
+reproducible paper by linking</p>
+<ol class="arabic simple">
+<li><p>(different) DataLad dataset sources with</p></li>
+<li><p>the code needed to compute results and</p></li>
+<li><p>LaTeX files to compile the resulting paper.</p></li>
+</ol>
+<p>The different components each exist in individual DataLad datasets and are
+aggregated into a single <a class="reference internal" href="../glossary.html#term-datalad-superdataset"><span class="xref std std-term">DataLad superdataset</span></a> complying to the YODA principles
+for data analysis projects<a class="footnote-reference brackets" href="#f1" id="id1">1</a>. The resulting superdataset can be publicly
+shared, data can be obtained effortlessly on demand by anyone that has the superdataset,
+and results and paper can be generated and recomputed everywhere on demand.</p>
+<div class="section" id="the-challenge">
+<h2>The Challenge<a class="headerlink" href="#the-challenge" title="Permalink to this headline">¶</a></h2>
+<p>Over the past year, Steve worked on the implementation of an algorithm as a software package.
+For testing purposes, he used one of his own data collections, and later also included a publicly shared
+data collection. After completion, he continued to work on validation analyses to
+prove the functionality and usefulness of his software. Next to a directory in which he developed
+his code, and directories with data he tested his code on, he now also has other directories
+with different data sources used for validation analyses.
+“This can not take too long!” Steve thinks optimistically when he finally sits down to write up a paper.</p>
+<p>His scripts run his algorithm on the different data collections, create derivatives of his raw data,
+pretty figures, and impressive tables.
+Just after he hand-copies and checks the last decimal of the final result in the very
+last table of his manuscript, he realizes that the script specified the wrong parameter
+values, and all of the results need to be recomputed - and obviously updated in his manuscript.
+When writing the discussion, he finds a paper that reports an error in the publicly shared
+data collection he uses. After many more days of updating tables and fixing data columns
+by hand, he finally submits the paper. Trying to stand with his values of
+open and reproducible science, he struggles to bundle all scripts, algorithm code, and data
+he used in a shareable form, and frankly, with all the extra time this manuscript took
+him so far, he lacks motivation and time. In the end, he writes a three page long README
+file in his Github code repository, includes his email for data requests, and
+secretly hopes that no-one will want to recompute his results, because by now even he
+himself forgot which script ran on which dataset and what data was fixed in which way,
+or whether he was careful enough to copy all of the results correctly. In the review process,
+reviewer 2 demands that the figures his software produces need to get a new color scheme,
+which requires updates in his software package, and more recomputations.</p>
+</div>
+<div class="section" id="the-datalad-approach">
+<h2>The DataLad Approach<a class="headerlink" href="#the-datalad-approach" title="Permalink to this headline">¶</a></h2>
+<p>Steve sets up a DataLad dataset and calls it <code class="docutils literal notranslate"><span class="pre">algorithm-paper</span></code>. In this
+dataset, he creates several subdirectories to collate everything that is relevant for
+the manuscript: Data, code, a manuscript backbone without results.
+<code class="docutils literal notranslate"><span class="pre">code/</span></code> contains a Python script that he uses for validation analyses, and
+prior to computing results, the script
+attempts to download the data should the files need to be obtained using DataLads Python API.
+<code class="docutils literal notranslate"><span class="pre">data/</span></code> contains a separate DataLad subdataset for every dataset he uses. An
+<code class="docutils literal notranslate"><span class="pre">algorithm/</span></code> directory is a DataLad dataset containing a clone of his software repository,
+and within it, in the directory <code class="docutils literal notranslate"><span class="pre">test/data/</span></code>, are additional DataLad subdatasets that
+contain the data he used for testing.
+Lastly, the DataLad superdataset contains a <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code> <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file with the text of the manuscript.
+When everything is set up, a single command line call triggers (optional) data retrieval
+from Github repositories of the datasets, computation of
+results and figures, automatic embedding of results and figures into his manuscript
+upon computation, and PDF compiling.
+When he notices the error in his script, his manuscript is recompiled and updated
+with a single command line call, and when he learns about the data error,
+he updates the respective DataLad dataset
+to the fixed state while preserving the history of the data repository.</p>
+<p>He makes his superdataset a public repository on Github, and anyone who clones it can obtain the
+data automatically and recompute and recompile the full manuscript with all results.
+Steve never had more confidence in his research results and proudly submits his manuscript.
+During review, the color scheme update in his algorithm sourcecode is integrated with a simple
+update of the <code class="docutils literal notranslate"><span class="pre">algorithm/</span></code> subdataset, and upon command-line invocation his manuscript updates
+itself with the new figures.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The actual manuscript this use case is based on can be found
+<a class="reference external" href="https://github.com/psychoinformatics-de/paper-remodnav/">here</a>:
+<a class="reference external" href="https://github.com/psychoinformatics-de/paper-remodnav/">https://github.com/psychoinformatics-de/paper-remodnav/</a>. <strong class="command">datalad install</strong>
+the repository and follow the few instructions in the README to experience the
+DataLad approach described above.</p>
+</div>
+</div>
+<div class="section" id="step-by-step">
+<h2>Step-by-Step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h2>
+<p><strong class="command">datalad create</strong> a DataLad dataset. In this example, it is named “algorithm-paper”,
+and <strong class="command">datalad create</strong> uses the yoda procedure<a class="footnote-reference brackets" href="#f1" id="id2">1</a> to apply useful configurations
+for a data analysis project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datalad create -c yoda algorithm-paper
+
+<span class="o">[</span>INFO   <span class="o">]</span> Creating a new annex repo at /home/adina/repos/testing/algorithm-paper
+create<span class="o">(</span>ok<span class="o">)</span>: /home/adina/repos/testing/algorithm-paper <span class="o">(</span>dataset<span class="o">)</span>
+</pre></div>
+</div>
+<p>This newly created directory already has a <code class="docutils literal notranslate"><span class="pre">code/</span></code> directory that will be tracked with Git
+and some <code class="docutils literal notranslate"><span class="pre">README.md</span></code> and <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> files
+thanks to the yoda procedure applied above. Additionally, create a subdirectory <code class="docutils literal notranslate"><span class="pre">data/</span></code> within
+the dataset. This project thus already has a comprehensible structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> algorithm-paper
+$ mkdir data
+
+<span class="c1"># You can checkout the directory structure with the tree command</span>
+
+$ tree
+algorithm-paper
+├── CHANGELOG.md
+├── code
+│   └── README.md
+├── data
+└── README.md
+</pre></div>
+</div>
+<p>All of your analyses scripts should live in the <code class="docutils literal notranslate"><span class="pre">code/</span></code> directory, and all input data should
+live in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
+<p>To populate the DataLad dataset, add all the
+data collections you want to perform analyses on as individual DataLad subdatasets within
+<code class="docutils literal notranslate"><span class="pre">data/</span></code>.
+In this example, all data collections are already DataLad datasets or git repositories and hosted on Github.
+<strong class="command">datalad install</strong> therefore installs them as subdatasets. <code class="docutils literal notranslate"><span class="pre">-s</span></code> specifies the source,
+and <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">../</span></code> registers them as subdatasets to the superdataset<a class="footnote-reference brackets" href="#f2" id="id3">2</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> data
+<span class="c1"># install existing git repositories with data (-s specifies the source, in this case, Github repositories)</span>
+<span class="c1"># -d points to the root of the superdataset</span>
+datalad install -d ../ -s https://github.com/psychoinformatics-de/studyforrest-data-phase2.git
+
+<span class="o">[</span>INFO   <span class="o">]</span> Cloning https://github.com/psychoinformatics-de/studyforrest-data-phase2.git <span class="o">[</span><span class="m">1</span> other candidates<span class="o">]</span> into <span class="s1">&#39;/home/adina/repos/testing/algorithm-paper/data/raw_eyegaze&#39;</span>
+install<span class="o">(</span>ok<span class="o">)</span>: /home/adina/repos/testing/algorithm-paper/data/raw_eyegaze <span class="o">(</span>dataset<span class="o">)</span>
+
+$ datalad install -d ../ -s git@github.com:psychoinformatics-de/studyforrest-data-eyemovementlabels.git
+
+<span class="o">[</span>INFO   <span class="o">]</span> Cloning git@github.com:psychoinformatics-de/studyforrest-data-eyemovementlabels.git into <span class="s1">&#39;/home/adina/repos/testing/algorithm-paper/data/studyforrest-data-eyemovementlabels&#39;</span>
+Cloning <span class="o">(</span>compressing objects<span class="o">)</span>:  <span class="m">45</span>% <span class="m">1</span>.80k/4.00k <span class="o">[</span><span class="m">00</span>:01&lt;<span class="m">00</span>:01, <span class="m">1</span>.29k objects/s
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+<p>Any script we need for the analysis should live inside <code class="docutils literal notranslate"><span class="pre">code/</span></code>. During script writing, save any changes
+to you want to record in your history with <strong class="command">datalad save</strong>.</p>
+<p>The eventual outcome of this work is a Github repository that anyone can use to get the data
+and recompute all results
+when running the script after cloning and setting up the necessary software.
+This requires minor preparation:</p>
+<ul class="simple">
+<li><p>The final analysis should be able to run on anyone’s filesystem.
+It is therefore important to reference datafiles with the scripts in <code class="docutils literal notranslate"><span class="pre">code/</span></code> as
+<a class="reference internal" href="../glossary.html#term-relative-path"><span class="xref std std-term">relative path</span></a>s instead of hard-coding <a class="reference internal" href="../glossary.html#term-absolute-path"><span class="xref std std-term">absolute path</span></a>s.</p></li>
+<li><p>After cloning the <code class="docutils literal notranslate"><span class="pre">algorithm-paper</span></code> repository, data files are not yet present
+locally. To spare users the work of a manual <strong class="command">datalad get</strong>, you can have your
+script take care of data retrieval via DataLad’s Python API.</p></li>
+</ul>
+<p>These two preparations can be seen in this excerpt from the Python script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import Datalads API</span>
+<span class="kn">from</span> <span class="nn">datalad.api</span> <span class="kn">import</span> <span class="n">get</span>
+
+<span class="c1"># note that the datapath is relative</span>
+<span class="n">datapath</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;studyforrest-data-eyemovementlabels&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;sub*&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;*run-2*.tsv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">datapath</span><span class="p">))</span>
+
+<span class="c1"># this will get the data if it is not yet retrieved</span>
+<span class="n">get</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lastly, <strong class="command">datalad install</strong> the software repository as a subdataset in the
+root of the superdataset<a class="footnote-reference brackets" href="#f3" id="id4">3</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># in the root of ``algorithm-paper`` run</span>
+$ datalad install -d . -s git@github.com:psychoinformatics-de/remodnav.git
+</pre></div>
+</div>
+<p>This repository has also subdatasets in which the datasets used for testing live (<code class="docutils literal notranslate"><span class="pre">tests/data/</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tree
+<span class="o">[</span>...<span class="o">]</span>
+
+<span class="p">|</span>   ├── remodnav
+│   ├── clf.py
+│   ├── __init__.py
+│   ├── __main__.py
+│   └── tests
+│       ├── data
+│       │   ├── anderson_etal
+│       │   └── studyforrest
+</pre></div>
+</div>
+<p>At this stage, a public <code class="docutils literal notranslate"><span class="pre">algorithm-paper</span></code> repository shares code and data, and changes to any
+dataset can easily be handled by updating the respective subdataset.
+This already is a big leap towards open and reproducible science. Thanks to DataLad, code,
+data, and the history of all code and data are easily shared - with exact versions of all
+components and bound together in a single, fully tracked research object.
+By making use of the Python API of DataLad and <a class="reference internal" href="../glossary.html#term-relative-path"><span class="xref std std-term">relative path</span></a>s in scripts,
+data retrieval is automated, and scripts can run on any other computer.</p>
+</div>
+<div class="section" id="automation-with-existing-tools">
+<h2>Automation with existing tools<a class="headerlink" href="#automation-with-existing-tools" title="Permalink to this headline">¶</a></h2>
+<p>To go beyond that and include freshly computed results in a manuscript on the fly does not
+require DataLad anymore, only some understanding of Python, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code>, and Makefiles. As with most things,
+its a surprisingly simple challenge if one has just seen how to do it once.
+This last section will therefore outline how to compile the results into a PDF manuscript and
+automate this process.
+In principle, the challenge boils down to:</p>
+<ol class="arabic simple">
+<li><p>have the script output results (only requires <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements)</p></li>
+<li><p>capture these results automatically (done with a single line of Unix commands)</p></li>
+<li><p>embed the captured results in the PDF (done with one line in the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file and
+some clever referencing)</p></li>
+<li><p>automate as much as possible to keep it as simple as possible (done with a Makefile)</p></li>
+</ol>
+<p>That does not sound too bad, does it?
+Let’s start by revealing how this magic trick works. Everything relies on printing
+the results in the form of user-defined <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code> definitions (using the <code class="docutils literal notranslate"><span class="pre">\newcommand</span></code>
+command), referencing those definitions in your manuscript where the
+results should end up, and bind the <code class="docutils literal notranslate"><span class="pre">\newcommand</span></code>s as <code class="docutils literal notranslate"><span class="pre">\input{}</span></code> to your <code class="docutils literal notranslate"><span class="pre">.tex</span></code>
+file. But lets get there in small steps.</p>
+<p>First, if you want to read up on the <code class="docutils literal notranslate"><span class="pre">\newcommand</span></code>, please see
+<a class="reference external" href="https://en.wikibooks.org/wiki/LaTeX/Macros">its documentation</a>.
+The command syntax looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">\newcommand{\name}[num]{definition}</span></code></p>
+<p>What we want to do, expressed in the most human-readable form, is this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">\newcommand{\Table1Cell1Row1}{0.67}</span></code></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">0.67</span></code> would be a single result computed by your script.
+This requires <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements that look like this in the most simple
+form (excerpt from script):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">newcommand{</span><span class="se">\\</span><span class="s1">maxmclf}{{</span><span class="si">%.2f</span><span class="s1">}}&#39;</span> <span class="o">%</span> <span class="n">max_mclf</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">max_mclf</span></code> is a variable that stores the value of one computation.</p>
+<p>Tables and references to results within the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> files then do not contain the
+specific value <code class="docutils literal notranslate"><span class="pre">0.67</span></code> (this value would change if the data changes, or other parameters),
+but <code class="docutils literal notranslate"><span class="pre">\maxmclf</span></code> (and similar, unique names for other results).
+For full tables, one can come up with naming schemes that make it easy
+to fill tables with unique names with minimal work, for example like this (excerpt):</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>table<span class="nb">}</span>[tbp]
+  <span class="k">\caption</span><span class="nb">{</span>Cohen&#39;s Kappa reliability between human coders (MN, RA),
+  and <span class="k">\remodnav\ </span>(AL) with each of the human coders.
+  <span class="nb">}</span>
+  <span class="k">\label</span><span class="nb">{</span>tab:kappa<span class="nb">}</span>
+  <span class="k">\begin</span><span class="nb">{</span>tabular*<span class="nb">}{</span>0.5<span class="k">\textwidth</span><span class="nb">}{</span>c @<span class="nb">{</span><span class="k">\extracolsep</span><span class="nb">{</span><span class="k">\fill</span><span class="nb">}}</span>llll<span class="nb">}</span>
+    <span class="k">\textbf</span> <span class="nb">{</span>Fixations<span class="nb">}</span> <span class="nb">&amp;</span>                  <span class="nb">&amp;</span>                   <span class="k">\\</span>
+    <span class="k">\hline\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    Comparison          <span class="nb">&amp;</span> Images           <span class="nb">&amp;</span> Dots              <span class="k">\\</span>
+    <span class="k">\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span><span class="k">\hline\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    MN versus RA        <span class="nb">&amp;</span> <span class="k">\kappaRAMNimgFix</span> <span class="nb">&amp;</span> <span class="k">\kappaRAMNdotsFix</span> <span class="k">\\</span>
+    AL versus RA        <span class="nb">&amp;</span> <span class="k">\kappaALRAimgFix</span> <span class="nb">&amp;</span> <span class="k">\kappaALRAdotsFix</span> <span class="k">\\</span>
+    AL versus MN        <span class="nb">&amp;</span> <span class="k">\kappaALMNimgFix</span> <span class="nb">&amp;</span> <span class="k">\kappaALMNdotsFix</span> <span class="k">\\</span>
+    <span class="k">\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    <span class="k">\textbf</span><span class="nb">{</span>Saccades<span class="nb">}</span>   <span class="nb">&amp;</span>                  <span class="nb">&amp;</span>                   <span class="k">\\</span>
+    <span class="k">\hline\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    Comparison          <span class="nb">&amp;</span> Images           <span class="nb">&amp;</span> Dots              <span class="k">\\</span>
+    <span class="k">\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span><span class="k">\hline\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    MN versus RA        <span class="nb">&amp;</span> <span class="k">\kappaRAMNimgSac</span> <span class="nb">&amp;</span> <span class="k">\kappaRAMNdotsSac</span> <span class="k">\\</span>
+    AL versus RA        <span class="nb">&amp;</span> <span class="k">\kappaALRAimgSac</span> <span class="nb">&amp;</span> <span class="k">\kappaALRAdotsSac</span> <span class="k">\\</span>
+    AL versus MN        <span class="nb">&amp;</span> <span class="k">\kappaALMNimgSac</span> <span class="nb">&amp;</span> <span class="k">\kappaALMNdotsSac</span> <span class="k">\\</span>
+    <span class="k">\noalign</span><span class="nb">{</span><span class="k">\smallskip</span><span class="nb">}</span>
+    <span class="c">% [..] more content ommitted</span>
+  <span class="k">\end</span><span class="nb">{</span>tabular*<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>table<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Without diving into the context of the paper, this table contains results for three
+three comparisons (“MN versus RA”, “AL versus RA”, “AL versus MN”), for three
+event types (Fixations, Saccades, and post-saccadic oscillations (PSO)), and three different
+stimulus types (Images, Dots, and Videos). The latter event and stimulus are omitted for
+better readability of the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> excerpt. Here is how this table looks like in the manuscript
+(cropped to match the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> snippet):</p>
+<div class="figure align-default">
+<img alt="../_images/remodnav.png" src="../_images/remodnav.png" />
+</div>
+<p>It might appear tedious to write scripts that output results for such tables with individual names.
+However, <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements to fill those tables can utilize Pythons string concatenation methods
+and loops to keep the code within a few lines for a full table, such as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over stimulus categories</span>
+<span class="k">for</span> <span class="n">stim</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="s1">&#39;dots&#39;</span><span class="p">,</span> <span class="s1">&#39;video&#39;</span><span class="p">]:</span>
+   <span class="c1"># iterate over event categories</span>
+   <span class="k">for</span> <span class="n">ev</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Fix&#39;</span><span class="p">,</span> <span class="s1">&#39;Sac&#39;</span><span class="p">,</span> <span class="s1">&#39;PSO&#39;</span><span class="p">]:</span>
+
+   <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+      <span class="c1"># create the combinations</span>
+      <span class="k">for</span> <span class="n">rating</span><span class="p">,</span> <span class="n">comb</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;RAMN&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">RA_res_flat</span><span class="p">,</span> <span class="n">MN_res_flat</span><span class="p">]),</span>
+                        <span class="p">(</span><span class="s1">&#39;ALRA&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">RA_res_flat</span><span class="p">,</span> <span class="n">AL_res_flat</span><span class="p">]),</span>
+                        <span class="p">(</span><span class="s1">&#39;ALMN&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">MN_res_flat</span><span class="p">,</span> <span class="n">AL_res_flat</span><span class="p">])]:</span>
+         <span class="n">kappa</span> <span class="o">=</span> <span class="n">cohen_kappa_score</span><span class="p">(</span><span class="n">comb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">comb</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+         <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;kappa{}{}{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">stim</span><span class="p">,</span> <span class="n">ev</span><span class="p">)</span>
+         <span class="c1"># print the result</span>
+         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">newcommand{</span><span class="se">\\</span><span class="si">%s</span><span class="s1">}{</span><span class="si">%s</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kappa</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Running the python script will hence print plenty of LaTeX commands to your screen (try it out
+in the actual manuscript, if you want!). This was step number 1 of 4.</p>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>How about figures?</p>
+</div>
+<p>To include figures, the figures just need to be saved into a dedicated location (for example
+a directory <code class="docutils literal notranslate"><span class="pre">img/</span></code>) and included into the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file with standard <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code> syntax.
+Larger figures with subfigures can be created by combining several figures:</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>figure*<span class="nb">}</span>[tbp]
+  <span class="k">\includegraphics</span><span class="na">[trim=0 8mm 3mm 0,clip,width=.5\textwidth]</span><span class="nb">{</span>img/mainseq<span class="nb">_</span>lab<span class="nb">}</span>
+  <span class="k">\includegraphics</span><span class="na">[trim=8mm 8mm 0 0,clip,width=.5\textwidth-3.3mm]</span><span class="nb">{</span>img/mainseq<span class="nb">_</span>sub<span class="nb">_</span>lab<span class="nb">}</span> <span class="k">\\</span>
+  <span class="k">\includegraphics</span><span class="na">[trim=0 0 3mm 0,clip,width=.5\textwidth]</span><span class="nb">{</span>img/mainseq<span class="nb">_</span>mri<span class="nb">}</span>
+  <span class="k">\includegraphics</span><span class="na">[trim=8mm 0 0 0,clip,width=.5\textwidth-3.3mm]</span><span class="nb">{</span>img/mainseq<span class="nb">_</span>sub<span class="nb">_</span>mri<span class="nb">}</span>
+
+  <span class="k">\caption</span><span class="nb">{</span>Main sequence of eye movement events during one 15 minute sequence of
+  the movie (segment 2) for lab (top), and MRI participants (bottom). Data
+  across all participants per dataset is shown on the left, and data for a single
+  exemplary participant on the right.<span class="nb">}</span>
+
+  <span class="k">\label</span><span class="nb">{</span>fig:overallComp<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>figure*<span class="nb">}</span>
+</pre></div>
+</div>
+<p>This figure looks like this in the manuscript:</p>
+<div class="figure align-default">
+<img alt="../_images/remodnav2.png" src="../_images/remodnav2.png" />
+</div>
+</div>
+<p>For step 2 and 3, the print statements need to be captured and bound to the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file.
+The <a class="reference external" href="https://en.wikipedia.org/wiki/Tee_(command)">tee</a> command can write all of the output to
+a file (called <code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">code</span><span class="o">/</span><span class="n">mk_figuresnstats</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">results_def</span><span class="o">.</span><span class="n">tex</span>
+</pre></div>
+</div>
+<p>This will redirect every print statement the script wrote to the terminal into a file called
+<code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code>. This file will hence be full of <code class="docutils literal notranslate"><span class="pre">\newcommand</span></code> definitions that contain
+the results of the computations.</p>
+<p>For step 3, one can include this file as an input source into the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file with</p>
+<div class="highlight-tex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="k">\input</span><span class="nb">{</span>results<span class="nb">_</span>def.tex<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Upon compilation of the <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file into a PDF, the results of the
+computations captured with <code class="docutils literal notranslate"><span class="pre">\newcommand</span></code> definitions are inserted into the respective part
+of the manuscript.</p>
+<p>The last step is to automate this procedure. So far, the script would need to be executed
+with a command line call, and the PDF compilation would require another commandline call.
+One way to automate this process are <a class="reference external" href="https://en.wikipedia.org/wiki/Make_(software)">Makefiles</a>.
+<code class="docutils literal notranslate"><span class="pre">make</span></code> is a decades-old tool known to many and bears the important advantage that is will
+deliver results regardless of what actually needs to be done with a single <code class="docutils literal notranslate"><span class="pre">make</span></code> call –
+whether it is executing a Python script, running bash commands, or rendering figures, or all of this.
+Here is the one used for the manuscript:</p>
+<div class="highlight-make notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span> <span class="n">main</span>.<span class="n">pdf</span>
+
+<span class="nf">main.pdf</span><span class="o">:</span> <span class="n">main</span>.<span class="n">tex</span> <span class="n">tools</span>.<span class="n">bib</span> <span class="n">EyeGaze</span>.<span class="n">bib</span> <span class="n">results_def</span>.<span class="n">tex</span> <span class="n">figures</span>
+    latexmk -pdf -g $&lt;
+
+<span class="nf">results_def.tex</span><span class="o">:</span> <span class="n">code</span>/<span class="n">mk_figuresnstats</span>.<span class="n">py</span>
+    bash -c <span class="s1">&#39;set -o pipefail; code/mk_figuresnstats.py -s | tee results_def.tex&#39;</span>
+
+<span class="nf">figures</span><span class="o">:</span> <span class="n">figures</span>-<span class="n">stamp</span>
+
+<span class="nf">figures-stamp</span><span class="o">:</span> <span class="n">code</span>/<span class="n">mk_figuresnstats</span>.<span class="n">py</span>
+    code/mk_figuresnstats.py -f -r -m
+    <span class="k">$(</span>MAKE<span class="k">)</span> -C img
+    touch <span class="nv">$@</span>
+
+<span class="nf">clean</span><span class="o">:</span>
+    rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk example.eps img/*eps-converted-to.pdf texput.log results_def.tex figures-stamp
+    <span class="k">$(</span>MAKE<span class="k">)</span> -C img clean
+</pre></div>
+</td></tr></table></div>
+<p>One can read a Makefile as a recipe:</p>
+<ul class="simple">
+<li><p>Line 1: “The overall target should be <code class="docutils literal notranslate"><span class="pre">main.pdf</span></code> (the final PDF of
+the manuscript).”</p></li>
+<li><p>Line 2-3: “To make the target <code class="docutils literal notranslate"><span class="pre">main.pdf</span></code>, the following files are required:
+<code class="docutils literal notranslate"><span class="pre">main.tex</span></code> (the manuscript’s <code class="docutils literal notranslate"><span class="pre">.tex</span></code> file), <code class="docutils literal notranslate"><span class="pre">tools.bib</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">EyeGaze.bib</span></code> (bibliography files), <code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code>
+(the results definitions), and figures (a section not covered here, about rendering figures
+with inkscape prior to including them in the manuscript). If all of these files are present,
+the target <code class="docutils literal notranslate"><span class="pre">main.pdf</span></code> can be made by running the command <code class="docutils literal notranslate"><span class="pre">latexmk</span> <span class="pre">-pdf</span> <span class="pre">-g</span></code>”</p></li>
+<li><p>Line 5-6: “To make the target <code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code>, the script <code class="docutils literal notranslate"><span class="pre">code/mk_figuresnstats.py</span></code> is
+required. If the file is present, the target <code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code> can be made by running the
+command <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">-c</span> <span class="pre">'set</span> <span class="pre">-o</span> <span class="pre">pipefail;</span> <span class="pre">code/mk_figuresnstats.py</span> <span class="pre">-s</span> <span class="pre">|</span> <span class="pre">tee</span> <span class="pre">results_def.tex'</span></code>”</p></li>
+</ul>
+<p>This triggers the execution of the script, collection of results in <code class="docutils literal notranslate"><span class="pre">results_def.tex</span></code>, and PDF
+compilation upon typing <code class="docutils literal notranslate"><span class="pre">make</span></code>.
+The last three lines define that a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> removes all computed files, and also all
+images.</p>
+<p>Finally, by wrapping <code class="docutils literal notranslate"><span class="pre">make</span></code> in a <strong class="command">datalad run</strong> command, the computation of results
+and compiling of the manuscript with all generated output can be written to the history of
+the superdataset. <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">run</span> <span class="pre">make</span></code> will thus capture all provenance for the results
+and the final PDF.</p>
+<p>Thus, by using DataLad and its Python API, a few clever Unix and <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code> tricks,
+and Makefiles, anyone can create a reproducible paper. This saves time, increases your own
+trust in the results, and helps to make a more convincing case with your research.
+If you have not yet, but are curious, checkout the
+<a class="reference external" href="http://github.com/psychoinformatics-de/paper-remodnav/">manuscript this use case is based on</a>.
+Any questions can be asked by <a class="reference external" href="https://github.com/psychoinformatics-de/paper-remodnav/issues/new">opening an issue</a>.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>You can read up on the YODA principles again in section <a class="reference internal" href="../basics/101-123-yoda.html#yoda"><span class="std std-ref">YODA: Best practices for data analyses in a dataset</span></a></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>You can read up on installing datasets as subdatasets again in section <a class="reference internal" href="../basics/101-105-install.html#installds"><span class="std std-ref">Install datasets</span></a>.</p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p>Note that the software repository may just as well be installed within <code class="docutils literal notranslate"><span class="pre">data/</span></code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="provenance_tracking.html" title="Previous document">Basic provenance tracking</a>
+        </li>
+        <li>
+          <a href="supervision.html" title="Next document">Student supervision in a research project</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

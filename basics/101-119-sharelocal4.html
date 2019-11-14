@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stay up to date &#8212; The DataLad Handbook</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="canonical" href="http://handbook.datalad.org/basics/101-119-sharelocal4.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Networking" href="101-121-siblings.html" />
+    <link rel="prev" title="Retrace and reenact" href="101-118-sharelocal3.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/basics/101-119-sharelocal4/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/basics/101-119-sharelocal4">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Stay up to date &#8212; The DataLad Handbook">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/logo.png" title="The DataLad Handbook"/>
+  </a>
+</p>
+
+<p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="101-118-sharelocal3.html" title="previous chapter">Retrace and reenact</a></li>
+      <li>Next: <a href="101-121-siblings.html" title="next chapter">Networking</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="stay-up-to-date">
+<span id="update"></span><span id="sharelocal4"></span><h1>Stay up to date<a class="headerlink" href="#stay-up-to-date" title="Permalink to this headline">¶</a></h1>
+<p>All of what you have seen about sharing dataset was really
+cool, and for the most part also surprisingly intuitive.
+<strong class="command">datalad run</strong> commands or file retrieval worked exactly as
+you imagined it to work, and you begin to think that slowly but
+steadily you’re getting a feel about how DataLad really works.</p>
+<p>But to be honest, so far, sharing the dataset with DataLad was
+also remarkably unexciting given that you already knew most of
+the dataset magic that your room mate currently is still
+mesmerized about.
+To be honest, you’re not yet certain whether
+sharing data with DataLad really improves your life up
+until this point. After all, you could have just copied
+your directory into your <code class="docutils literal notranslate"><span class="pre">mock_user</span></code> directory and
+this would have resulted in about the same output, right?</p>
+<p>What we will be looking into now is how shared DataLad
+datasets can be updated.</p>
+<p>Remember that you added some notes on <strong class="command">datalad install</strong>
+and <strong class="command">git annex whereis</strong> into the original <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>?</p>
+<p>This is a change that is not reflected in your “shared”
+installation in <code class="docutils literal notranslate"><span class="pre">../mock_user/DataLad-101</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># we are inside the installed copy
+$ cat notes.txt
+One can create a new dataset with &#39;datalad create [--description] PATH&#39;.
+The dataset is created empty
+
+The command &quot;datalad save [-m] PATH&quot; saves the file
+(modifications) to history. Note to self:
+Always use informative, concise commit messages.
+
+The command &#39;datalad install [--source] PATH&#39;
+installs a dataset from e.g., a URL or a path.
+If you install a dataset into an existing
+dataset (as a subdataset), remember to specify the
+root of the superdataset with the &#39;-d&#39; option.
+
+There are two useful functions to display changes between two
+states of a dataset: &quot;datalad diff -f/--from COMMIT -t/--to COMMIT&quot;
+and &quot;git diff COMMIT COMMIT&quot;, where COMMIT is a shasum of a commit
+in the history.
+
+The datalad run command can record the impact a script or command has on a Dataset.
+In its simplest form, datalad run only takes a commit message and the command that
+should be executed.
+
+Any datalad run command can be re-executed by using its commit shasum as an argument
+in datalad rerun CHECKSUM. DataLad will take information from the run record of the original
+commit, and re-execute it. If no changes happen with a rerun, the command will not be written
+to history. Note: you can also rerun a datalad rerun command!
+
+You should specify all files that a command takes as input with an -i/--input flag. These
+files will be retrieved prior to the command execution. Any content that is modified or
+produced by the command should be specified with an -o/--output flag. Upon a run or rerun
+of the command, the contents of these files will get unlocked so that they can be modified.
+
+Important! If the dataset is not &quot;clean&quot; (a datalad status output is empty),
+datalad run will not work - you will have to save modifications present in your
+dataset.
+A suboptimal alternative is the --explicit flag,
+used to record only those changes done
+to the files listed with --output flags.
+
+</pre></div>
+</div>
+<p>But the original intention of sharing the dataset with
+your room mate was to give him access to your notes.
+How does he get the notes that you have added in the last
+two sections, for example?</p>
+<p>This installed copy of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> knows its <code class="docutils literal notranslate"><span class="pre">origin</span></code>, i.e.
+the place it was installed from. Using this information,
+it can query the original dataset whether any changes
+happened since the last time it checked, and if so, retrieve and
+integrate them.</p>
+<p id="index-0">This is done with the <strong class="command">datalad update --merge</strong>
+command (<em class="manpage"><a class="manpage reference external" href="http://docs.datalad.org/generated/man/datalad-update.html">datalad-update</a></em> manual).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> datalad update --merge
+<span class="go">[INFO] Fetching updates for &lt;Dataset path=/home/me/dl-101/mock_user/DataLad-101&gt; </span>
+<span class="go">[INFO] Applying updates to &lt;Dataset path=/home/me/dl-101/mock_user/DataLad-101&gt; </span>
+<span class="go">update(ok): . (dataset)</span>
+</pre></div>
+</div>
+<p>Importantly, run this command either within the specific
+(sub)dataset you are interested in, or provide a path to
+the root of the dataset you are interested in with the
+<code class="docutils literal notranslate"><span class="pre">-d</span></code>/<code class="docutils literal notranslate"><span class="pre">--dataset</span></code> flag. If you would run the command
+within the <code class="docutils literal notranslate"><span class="pre">longnow</span></code> subdataset, you would query this
+subdatasets’ <code class="docutils literal notranslate"><span class="pre">origin</span></code> for updates, not the original
+<code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset.</p>
+<p>Let’s check the contents in <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> to see whether
+the previously missing changes are now present:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat notes.txt
+<span class="go">One can create a new dataset with &#39;datalad create [--description] PATH&#39;.</span>
+<span class="go">The dataset is created empty</span>
+
+<span class="go">The command &quot;datalad save [-m] PATH&quot; saves the file</span>
+<span class="go">(modifications) to history. Note to self:</span>
+<span class="go">Always use informative, concise commit messages.</span>
+
+<span class="go">The command &#39;datalad install [--source] PATH&#39;</span>
+<span class="go">installs a dataset from e.g., a URL or a path.</span>
+<span class="go">If you install a dataset into an existing</span>
+<span class="go">dataset (as a subdataset), remember to specify the</span>
+<span class="go">root of the superdataset with the &#39;-d&#39; option.</span>
+
+<span class="go">There are two useful functions to display changes between two</span>
+<span class="go">states of a dataset: &quot;datalad diff -f/--from COMMIT -t/--to COMMIT&quot;</span>
+<span class="go">and &quot;git diff COMMIT COMMIT&quot;, where COMMIT is a shasum of a commit</span>
+<span class="go">in the history.</span>
+
+<span class="go">The datalad run command can record the impact a script or command has on a Dataset.</span>
+<span class="go">In its simplest form, datalad run only takes a commit message and the command that</span>
+<span class="go">should be executed.</span>
+
+<span class="go">Any datalad run command can be re-executed by using its commit shasum as an argument</span>
+<span class="go">in datalad rerun CHECKSUM. DataLad will take information from the run record of the original</span>
+<span class="go">commit, and re-execute it. If no changes happen with a rerun, the command will not be written</span>
+<span class="go">to history. Note: you can also rerun a datalad rerun command!</span>
+
+<span class="go">You should specify all files that a command takes as input with an -i/--input flag. These</span>
+<span class="go">files will be retrieved prior to the command execution. Any content that is modified or</span>
+<span class="go">produced by the command should be specified with an -o/--output flag. Upon a run or rerun</span>
+<span class="go">of the command, the contents of these files will get unlocked so that they can be modified.</span>
+
+<span class="go">Important! If the dataset is not &quot;clean&quot; (a datalad status output is empty),</span>
+<span class="go">datalad run will not work - you will have to save modifications present in your</span>
+<span class="go">dataset.</span>
+<span class="go">A suboptimal alternative is the --explicit flag,</span>
+<span class="go">used to record only those changes done</span>
+<span class="go">to the files listed with --output flags.</span>
+
+<span class="go">A source to install a dataset from can also be a path,</span>
+<span class="go">for example as in &quot;datalad install -s ../DataLad-101&quot;.</span>
+<span class="go">As when installing datasets before, make sure to add a</span>
+<span class="go">description on the location of the dataset to be</span>
+<span class="go">installed, and, if you want, a path to where the dataset</span>
+<span class="go">should be installed under which name.</span>
+
+<span class="go">Note that subdatasets will not be installed by default --</span>
+<span class="go">you will have to do a plain</span>
+<span class="go">&quot;datalad install PATH/TO/SUBDATASET&quot;, or specify the</span>
+<span class="go">-r/--recursive option in the install command:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r&quot;.</span>
+
+<span class="go">A recursive installation would however install all</span>
+<span class="go">installed subdatasets, so a safer way to proceed is to</span>
+<span class="go">set a decent --recursion-limit:</span>
+<span class="go">&quot;datalad install -s ../DataLad-101 -r --recursion-limit 2&quot;</span>
+
+<span class="go">The command &quot;git annex whereis PATH&quot; lists the repositories that have</span>
+<span class="go">the file content of an annexed file. When using &quot;datalad get&quot; to retrieve</span>
+<span class="go">file content, those repositories will be queried.</span>
+</pre></div>
+</div>
+<p>Wohoo, the contents are here!</p>
+<p>Therefore, sharing DataLad datasets by installing them
+enables you to update the datasets content should the
+original datasets’ content change – in only a single
+command. How cool is that?!</p>
+<p>Conclude this section by adding a note about updating a
+dataset to your own <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code> dataset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> navigate back:
+<span class="gp">$</span> <span class="nb">cd</span> ../../DataLad-101
+
+<span class="gp">#</span> write the note
+<span class="gp">$</span> cat &lt;&lt; EOT &gt;&gt; notes.txt
+<span class="go">To update a shared dataset, run the command &quot;datalad update --merge&quot;.</span>
+<span class="go">This command will query its origin for changes, and integrate the</span>
+<span class="go">changes into the dataset.</span>
+
+<span class="go">EOT</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> save the changes
+
+<span class="gp">$</span> datalad save -m <span class="s2">&quot;add note about datalad update&quot;</span>
+<span class="go">add(ok): notes.txt (file)</span>
+<span class="go">save(ok): . (dataset)</span>
+<span class="go">action summary:</span>
+<span class="go">  add (ok: 1)</span>
+<span class="go">  save (ok: 1)</span>
+</pre></div>
+</div>
+<p>PS: You might wonder whether there is also a sole
+<strong class="command">datalad update</strong> command. Yes, there is – if you are
+a Git-user and know about branches and merging you can read the
+<code class="docutils literal notranslate"><span class="pre">Note</span> <span class="pre">for</span> <span class="pre">Git-users</span></code> below. However, a thorough explanation
+and demonstration will be in the next section.</p>
+<div class="admonition gitusernote">
+<p class="admonition-title">Note for Git users</p>
+<p><strong class="command">datalad update</strong> is the DataLad equivalent of a <strong class="command">git fetch</strong>,
+<strong class="command">datalad update --merge</strong> is the DataLad equivalent of a
+<strong class="command">git pull</strong>.
+Upon a simple <strong class="command">datalad update</strong>, the remote information
+is available on a branch separate from the master branch
+– in most cases this will be <code class="docutils literal notranslate"><span class="pre">remotes/origin/master</span></code>.
+You can <strong class="command">git checkout</strong> this branch or run <strong class="command">git diff</strong> to
+explore the changes and identify potential merge conflicts.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="101-118-sharelocal3.html" title="Previous document">Retrace and reenact</a>
+        </li>
+        <li>
+          <a href="101-121-siblings.html" title="Next document">Networking</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>
