@@ -1,31 +1,31 @@
 
 .. meta::
-   :description: Some summary
+   :description: Princeton Handbook for Reproducible fMRI Neuroimaging
 
 
-####################
-The DataLad Handbook
-####################
+####################################################
+The Princeton Handbook for Reproducible Neuroimaging
+####################################################
 
-.. only:: html
+.. .. only:: html
 
-   .. figure:: img/datalad-animated.gif
-      :scale: 100%
-      :alt: Virtual directory tree of a nested DataLad dataset
+..    .. figure:: img/datalad-animated.gif
+..       :scale: 100%
+..       :alt: Virtual directory tree of a nested DataLad dataset
 
 
 .. important::
 
-   **Welcome to the DataLad handbook!**
+   **Are you trying to run your first fMRI experiment? Or your fifth?**
 
-   We are happy about and greatly appreciate your interest in the handbook.
-   Currently, the handbook is under initial development. You are welcome to
-   check out the existing content, but please consider the handbook to be in
-   alpha stage -- expect thourough changes and developments in all aspects of
-   the book until further notice. Please also note that all examples are based
-   on **DataLad version 0.12**.
+   Well, this is the place for you! We understand that running functional magnetic resonance imaging (fMRI) studies is *not* trivial, and there are a lot of many questions along the way. Here, you will find good principles in fMRI data analysis where they exist and thoughts/suggestions where there aren't set standards. We hope that this handbook will be useful as you embark on your own journey doing fMRI experiments! 
 
-   If you would be willing to provide feedback on this, or a future beta version, please
-   `get in touch <https://github.com/datalad-handbook/book/issues/new>`_.
+   Currently, this handbook is still under initial development. `Please contact us <https://github.com/brainhack-princeton/handbook/issues/new>`_ if you have any questions, feedback, or suggestions!
 
 .. include:: contents.rst.inc
+
+.. |copy|   unicode:: U+000A9 .. COPYRIGHT SIGN
+.. |BogusMegaCorp (TM)| unicode:: BogusMegaCorp U+2122
+   .. with trademark sign
+
+Copyright |copy| 2003, |BogusMegaCorp (TM)|.
