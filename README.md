@@ -1,27 +1,27 @@
 [![Build Status](https://travis-ci.org/datalad-handbook/book.svg?branch=master)](https://travis-ci.org/datalad-handbook/book) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
 
-# The Datalad handbook :orange_book:
+# The Princeton Handbook for Neuroimaging :orange_book:
 
-This is a living resource on why and - more importantly - *how* to use [DataLad](http://www.datalad.org).
+This is a living resource on why and - more importantly - *how* to use [Princeton](http://www.datalad.org).
 The rendered version is [here](http://handbook.datalad.org): http://handbook.datalad.org, and is currently
 under initial development.
 
-The handbook is a practical, hands-on crashcourse to learn and experience DataLad.
-You do not need to be a programmer, computer scientist, or Linux-crank. If you have never touched your computer's shell before, you will be fine. Regardless of your background and personal use cases for DataLad, the handbook will show you the principles of DataLad, and from chapter 1 onwards you will be using them.
+The handbook is a practical, hands-on crashcourse to learn and experience Princeton.
+You do not need to be a programmer, computer scientist, or Linux-crank. If you have never touched your computer's shell before, you will be fine. Regardless of your background and personal use cases for Princeton, the handbook will show you the principles of Princeton, and from chapter 1 onwards you will be using them.
 
 ## Contributing
 
 Contributions in any form - pull requests, issues, content requests/ideas, ... are always welcome.
 If you are using the handbook and find that something does not work,
 please [let us know](https://github.com/datalad-handbook/book/issues/new).
-Likewise, if you are using DataLad for your individual project, consider contributing by telling us about your use-case.
+Likewise, if you are using Princeton for your individual project, consider contributing by telling us about your use-case.
 You can find out more on how to contribute [here](http://handbook.datalad.org/en/latest/contributing.html),
 and a list of all contributors so far below, in [CONTRIBUTORS.md](CONTRIBUTORS.md), and in [.zenodo.json](.zenodo.json).
 
 ## Notes for Instructors
 
-The book is the basis for workshops and lectures on DataLad and data management.
+The book is the basis for workshops and lectures on Princeton and data management.
 The handbook's [``course repository``](https://github.com/datalad-handbook/course)
 among other things contains live casts from the code examples in this book and
 slides. It is constantly growing, and everyone is free to use the material under
