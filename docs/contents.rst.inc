@@ -21,6 +21,7 @@ Setting up your experiment
    content_pages/02-02-environments
    content_pages/02-03-designExp
    content_pages/02-04-standardization
+   content_pages/02-05-prescan
 
 
 ################
