@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/datalad-handbook/book.svg?branch=master)](https://travis-ci.org/datalad-handbook/book) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
 
-# The Datalad handbook :orange_book:
+# The Princeton Handbook for Reproducible Neuroimaging :orange_book:
 
 This is a living resource on why and - more importantly - *how* to use [DataLad](http://www.datalad.org).
 The rendered version is [here](http://handbook.datalad.org): http://handbook.datalad.org, and is currently
