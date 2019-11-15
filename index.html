@@ -17,7 +17,7 @@
     <link rel="canonical" href="http://handbook.datalad.org/index.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A brief overview of DataLad" href="intro/philosophy.html" />
+    <link rel="next" title="How to use this handbook" href="content_pages/01-01-howto.html" />
   
 
   
@@ -65,7 +65,7 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper"><p class="logo">
   <a href="#">
-    <img class="logo" src="_static/logo_placeholder.png" title="The DataLad Handbook"/>
+    <img class="logo" src="_static/logo_placeholder.png" title="The Princeton Handbook on Reproducible Neuroimaging"/>
   </a>
 </p>
 
@@ -141,128 +141,28 @@
 <h1>The Princeton Handbook for Reproducible Neuroimaging<a class="headerlink" href="#the-princeton-handbook-for-reproducible-neuroimaging" title="Permalink to this headline">¶</a></h1>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><strong>Are you trying to run your first fMRI experiment? Or your fifth?</strong></p>
-<p>Well, this is the place for you! We understand that running functional magnetic resonance imaging (fMRI) studies is <em>not</em> trivial, and there are a lot of many questions along the way. Here, you will find good principles in fMRI data analysis where they exist and thoughts/suggestions where there aren’t set standards. We hope that this handbook will be useful as you embark on your own journey doing fMRI experiments!</p>
+<p>Welcome to the Princeton Handbook for Reproducible Neuroimaging! The handbook is currently under active development—expect substantial changes in the near future. The goal of this handbook is to provide a reference for best practices in reproducible fMRI research. There’s no single “right” answer for many questions in fMRI, but here we try to provide helpful references and recommendations. Many elements of the handbook are specific to the Princeton Neuroscience Institute computing infrastructure, but the principles are widely applicable. This document will be updated over time as best practices evolve. We hope that this handbook will be useful as you embark on your own journey doing fMRI experiments!</p>
 <p>Currently, this handbook is still under initial development. <a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new">Please contact us</a> if you have any questions, feedback, or suggestions!</p>
 </div>
 </div>
 <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">What DataLad is all about</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="intro/philosophy.html">A brief overview of DataLad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro/narrative.html">How to use the handbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro/installation.html">Installation and configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro/howto.html">General prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-01-howto.html">How to use this handbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-02-openNeuro.html">Best practices in open neuroimaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-03-prereqs.html">General prerequisites</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="datalad-datasets">
-<h1>DataLad datasets<a class="headerlink" href="#datalad-datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-up-your-experiment">
+<h1>Setting up your experiment<a class="headerlink" href="#setting-up-your-experiment" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Exploring DataLad's core data structure</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-101-create.html">Create a dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-102-populate.html">Populate a dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-103-modify.html">Modify content</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-105-install.html">Install datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-106-nesting.html">Dataset nesting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-107-summary.html">Summary</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="datalad-run">
-<h1>Datalad, Run!<a class="headerlink" href="#datalad-run" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">How DataLad records provenance of dataset modifications</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-108-run.html">Keeping track</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-109-rerun.html">DataLad, Re-Run!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-110-run2.html">Input and output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-112-run4.html">Clean desk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-113-summary.html">Summary</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="under-the-hood-git-annex">
-<h1>Under the hood: Git-annex<a class="headerlink" href="#under-the-hood-git-annex" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">A closer look at how and why things work</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-114-txt2git.html">Data safety</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-115-symlinks.html">Data integrity</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="collaboration">
-<h1>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Sharing on shared file systems</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-116-sharelocal.html">Looking without touching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-117-sharelocal2.html">Where’s Waldo?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-118-sharelocal3.html">Retrace and reenact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-119-sharelocal4.html">Stay up to date</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-121-siblings.html">Networking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-120-summary.html">Summary</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="tuning-datasets-to-your-needs">
-<h1>Tuning datasets to your needs<a class="headerlink" href="#tuning-datasets-to-your-needs" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Various types and methods for dataset configurations</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-125-config.html">DIY configurations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-126-config2.html">More on DIY configurations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-127-procedures.html">Configurations to go</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-128-summary.html">Summary</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="help-yourself">
-<h1>Help yourself<a class="headerlink" href="#help-yourself" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">What to do if things go wrong</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-135-help.html">How to get help</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-136-filesystem.html">Miscellaneous file system operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-137-history.html">Back and forth in time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-180-FAQ.html">Frequently Asked Questions</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="make-the-most-out-of-datasets">
-<h1>Make the most out of datasets<a class="headerlink" href="#make-the-most-out-of-datasets" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Organizational principles and best practices for data analyses</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-122-intro.html">A Data Analysis Project with DataLad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-123-yoda.html">YODA: Best practices for data analyses in a dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-124-summary.html">Summary: YODA principles</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="further-options">
-<h1>Further options<a class="headerlink" href="#further-options" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Small pieces of advice and helpful additional options</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/101-179-gitignore.html">How to hide content from DataLad</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="use-cases">
-<h1>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Hands-on real-world applications with step-by-step recipes...</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="usecases/collaborative_data_management.html">A typical collaborative data management workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usecases/provenance_tracking.html">Basic provenance tracking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usecases/reproducible-paper.html">Writing a reproducible paper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usecases/supervision.html">Student supervision in a research project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usecases/reproducible_neuroimaging_analysis.html">An automatically reproducible analysis of public neuroimaging data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-01-overview.html">Overview of fMRI analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-02-environments.html">Reproducible computing environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-03-designExp.html">Designing your fMRI experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-04-standardization.html">Standardizing data acquisition with ReproIn</a></li>
 </ul>
 </div>
 </div>
@@ -273,8 +173,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_from_chapters/01_dataset_basics_code.html">Code from chapter: 01_dataset_basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_from_chapters/02_reproducible_execution_code.html">Code from chapter: 02_reproducible_execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/website_info.html">Website info</a></li>
 </ul>
 </div>
 <ul class="simple">
@@ -283,7 +182,6 @@
 </ul>
 <div class="toctree-wrapper compound">
 </div>
-<p>Copyright © 2003, BogusMegaCorp™.</p>
 </div>
 
 
@@ -293,7 +191,7 @@
   <nav id="rellinks">
     <ul>
         <li>
-          <a href="intro/philosophy.html" title="Next document">A brief overview of DataLad</a>
+          <a href="content_pages/01-01-howto.html" title="Next document">How to use this handbook</a>
           &rarr;
         </li>
     </ul>
