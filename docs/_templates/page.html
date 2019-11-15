@@ -1,6 +1,12 @@
 {% extends "!page.html" %}
 
 {% block footer %}
+<div class="footer">
+  <div style="text-align: left;" id="waldo-tag-2171"></div>
+  {% if show_copyright %}<p>&copy;{{ copyright }}</p>{% endif %}
+</div>
+
+
  <script type="text/javascript">
     $(document).ready(function() {
         $(".toggle > *").hide();

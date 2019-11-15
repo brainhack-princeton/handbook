@@ -93,7 +93,8 @@ master_doc = 'index'
 # General information about the project.
 current_year = datetime.datetime.now().year
 project = u'datalad-handbook'
-copyright = (u'2019-{} CC-BY-SA').format(current_year)
+# copyright = (u'2019-{} CC-BY-SA').format(current_year)
+copyright = (u'{} CC-BY-SA').format(current_year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
