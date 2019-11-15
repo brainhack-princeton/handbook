@@ -3,5 +3,13 @@
 Overview of fMRI analysis
 -------------------------
 
-Add here!
+
+.. image:: ../images/FlowChart1.svg
+  :width: 700
+  :alt: flowchart!
+
+
+.. image:: ../images/FlowChart2.svg
+  :width: 700
+  :alt: flowchart!
 
