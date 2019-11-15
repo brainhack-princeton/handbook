@@ -1,7 +1,7 @@
 .. _registration:
 
-Quality control with MRIQC
---------------------------
+Registration and resampling
+---------------------------
 
 Add here!
 

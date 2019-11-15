@@ -1,7 +1,7 @@
 .. _visualization:
 
-Preprocessing with fMRIprep
----------------------------
+Visualization software
+----------------------
 
 Add here!
 

@@ -1,7 +1,7 @@
 .. _surfaceBased:
 
-Preprocessing with fMRIprep
----------------------------
+Surface-based analysis
+----------------------
 
 Add here!
 

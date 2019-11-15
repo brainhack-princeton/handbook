@@ -1,6 +1,6 @@
 .. _fileFormats:
 
-One standard to rule them all
+Input/output and file formats
 -----------------------------
 
 Add here!

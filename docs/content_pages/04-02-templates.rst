@@ -1,7 +1,7 @@
 .. _templates:
 
-Converting data to BIDS
------------------------
+Templates and atlases
+---------------------
 
 Add here!
 
