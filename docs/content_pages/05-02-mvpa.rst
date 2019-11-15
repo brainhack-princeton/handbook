@@ -1,0 +1,7 @@
+.. _mvpa:
+
+Multivariate pattern analysis
+-----------------------------
+
+Add here!
+
