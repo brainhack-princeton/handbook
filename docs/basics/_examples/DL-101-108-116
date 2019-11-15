@@ -1,2 +1,0 @@
-$ datalad diff --to HEAD~1
- modified: recordings/podcasts.tsv (file)

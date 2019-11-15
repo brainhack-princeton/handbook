@@ -1,3 +1,0 @@
-#in Bobs home directory
-$ datalad siblings add -s alice --url '/bobs_analysis'
-.: alice(+) [../bobs_analysis (git)]
