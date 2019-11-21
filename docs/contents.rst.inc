@@ -8,6 +8,7 @@ Introduction
    content_pages/01-01-howto
    content_pages/01-02-openNeuro
    content_pages/01-03-prereqs
+   content_pages/01-04-glossary
 
 ##########################
 Setting up your experiment
@@ -73,7 +74,6 @@ Appendix
 
    contributing
    faq
-   glossary
    references
    resources
    
