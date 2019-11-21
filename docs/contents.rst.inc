@@ -9,7 +9,6 @@ Introduction
    content_pages/01-02-openNeuro
    content_pages/01-03-prereqs
 
-
 ##########################
 Setting up your experiment
 ##########################

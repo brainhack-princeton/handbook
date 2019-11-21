@@ -20,5 +20,6 @@ The Princeton Handbook for Reproducible Neuroimaging
 
    Currently, this handbook is still under initial development. `Please contact us <https://github.com/brainhack-princeton/handbook/issues/new>`_ if you have any questions, feedback, or suggestions!
 
+
 .. include:: contents.rst.inc
 
