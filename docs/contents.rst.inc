@@ -63,6 +63,7 @@ Into the Wild West
    content_pages/05-01-univariate
    content_pages/05-02-mvpa
    content_pages/05-03-group
+   content_pages/05-04-physiology
 
 
 
