@@ -9,6 +9,7 @@ Introduction
    content_pages/01-02-openNeuro
    content_pages/01-03-prereqs
    content_pages/01-04-glossary
+   content_pages/01-05-sampleProject
 
 ##########################
 Setting up your experiment
@@ -18,10 +19,11 @@ Setting up your experiment
    :maxdepth: 1
 
    content_pages/02-01-overview
-   content_pages/02-02-environments
-   content_pages/02-03-designExp
-   content_pages/02-04-standardization
-   content_pages/02-05-prescan
+   content_pages/02-02-faq
+   content_pages/02-03-environments
+   content_pages/02-04-designExp
+   content_pages/02-05-reproin
+   content_pages/02-06-prescan
 
 
 ################
@@ -73,7 +75,6 @@ Appendix
    :caption: Further information and references
 
    contributing
-   faq
    references
    resources
    

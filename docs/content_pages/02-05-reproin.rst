@@ -1,4 +1,4 @@
-.. _standardization:
+.. _reproin:
 
 Standardizing data acquisition with ReproIn
 -------------------------------------------
