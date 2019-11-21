@@ -1,4 +1,6 @@
 
+.. _glossary:
+
 ************************
 Glossary of useful terms
 ************************

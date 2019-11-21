@@ -1,6 +1,6 @@
 .. _prescan:
 
-Pre-Scan Checklist
+Pre-scan checklist
 ------------------
 
 .. image:: ../extra_files/PrescanChecklist_page1.png

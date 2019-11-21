@@ -1,0 +1,6 @@
+.. _faq:
+
+Best practices FAQs
+-------------------
+
+Add here!
