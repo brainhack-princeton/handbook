@@ -1,11 +1,9 @@
 [![Build Status](https://travis-ci.org/datalad-handbook/book.svg?branch=master)](https://travis-ci.org/datalad-handbook/book) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
 
-# The Princeton Handbook for Reproducible Neuroimaging :orange_book:
+# Princeton Handbook for Reproducible Neuroimaging :orange_book:
 
-This is a living resource on why and - more importantly - *how* to use [DataLad](http://www.datalad.org).
-The rendered version is [here](http://handbook.datalad.org): http://handbook.datalad.org, and is currently
-under initial development.
+This is a living resource on best practices in reproducible neuroimaging for the [Princeton Neuroscience Institute](https://pni.princeton.edu/). The handbook is rendered on the web [here](http://brainhack-princeton.github.io/handbook/) (http://brainhack-princeton.github.io/handbook), and is currently under initial development.
 
 The handbook is a practical, hands-on crashcourse to learn and experience DataLad.
 You do not need to be a programmer, computer scientist, or Linux-crank. If you have never touched your computer's shell before, you will be fine. Regardless of your background and personal use cases for DataLad, the handbook will show you the principles of DataLad, and from chapter 1 onwards you will be using them.
