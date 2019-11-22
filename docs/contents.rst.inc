@@ -78,10 +78,6 @@ Appendix
    contributing
    references
    resources
-   
-
-   content_pages/website_info
-
 
 * :ref:`genindex`
 * :ref:`search`
@@ -91,4 +87,6 @@ Appendix
 
 .. toctree::
    :hidden:
+
+   website_info
 
