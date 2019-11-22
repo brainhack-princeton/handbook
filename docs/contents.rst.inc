@@ -4,6 +4,7 @@ Introduction
 
 .. toctree::
    :maxdepth: 1
+   :caption: Why we made this handbook and how you can get the most out of it.
 
    content_pages/01-01-howto
    content_pages/01-02-openNeuro
@@ -17,6 +18,7 @@ Setting up your experiment
 
 .. toctree::
    :maxdepth: 1
+   :caption: Don't know where to begin? Start here!
 
    content_pages/02-01-overview
    content_pages/02-02-faq
@@ -32,6 +34,7 @@ Benefits of BIDS
 
 .. toctree::
    :maxdepth: 1
+   :caption: Why and how to set up your fMRI data.
 
    content_pages/03-01-standard
    content_pages/03-02-converting
@@ -45,6 +48,7 @@ Taming your data
 
 .. toctree::
    :maxdepth: 1
+   :caption: Reigning in complex (and somewhat confusing) data.
 
    content_pages/04-01-fileFormats
    content_pages/04-02-templates
@@ -59,6 +63,7 @@ Into the Wild West
 
 .. toctree::
    :maxdepth: 1
+   :caption: Tapping into the many ways in which to analyze fMRI data.
 
    content_pages/05-01-univariate
    content_pages/05-02-mvpa
@@ -73,7 +78,7 @@ Appendix
 
 .. toctree::
    :maxdepth: 1
-   :caption: Further information and references
+   :caption: Haven't had enough? Some more information and resources.
 
    contributing
    references
