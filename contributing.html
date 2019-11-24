@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Contributing &#8212; The DataLad Handbook</title>
+    <title>How to contribute &#8212; The DataLad Handbook</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Contributing &#8212; The DataLad Handbook">
+  <meta property="og:title" content="How to contribute &#8212; The DataLad Handbook">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -89,19 +89,19 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Contributing</a><ul>
-<li><a class="reference internal" href="#software-setup">Software setup</a></li>
-<li><a class="reference internal" href="#directives-and-casts">Directives and casts</a><ul>
-<li><a class="reference internal" href="#easy-pull-requests">Easy pull requests</a></li>
-<li><a class="reference internal" href="#desired-structure-of-the-book">Desired structure of the book</a></li>
+<li><a class="reference internal" href="#">How to contribute</a><ul>
+<li><a class="reference internal" href="#submitting-an-issue">Submitting an issue</a></li>
+<li><a class="reference internal" href="#submitting-a-pull-request">Submitting a pull request</a><ul>
+<li><a class="reference internal" href="#things-to-set-up-once">Things to set up once</a></li>
+<li><a class="reference internal" href="#how-to-make-edits">How to make edits</a><ul>
+<li><a class="reference internal" href="#organization-of-the-repo">Organization of the repo</a></li>
+<li><a class="reference internal" href="#the-general-workflow-for-edits">The general workflow for edits</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#basics">Basics</a></li>
-<li><a class="reference internal" href="#use-cases">Use Cases</a><ul>
-<li><a class="reference internal" href="#acknowledging-contributors">Acknowledging Contributors</a></li>
+<li><a class="reference internal" href="#actually-submitting-a-pull-request">Actually submitting a pull request</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></li>
 </ul>
 </li>
 </ul>
@@ -136,261 +136,216 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="contributing">
-<span id="contribute"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-<p>Thanks for being curious about contributing!
-We greatly appreciate and welcome contributions to this book, be it in the form
-of an <a class="reference external" href="https://github.com/datalad-handbook/book/issues/new">issue</a>, a pull request,
-or a discussion you had with anyone on the team via a non-Github communication channel!
-To find out how we acknowledge contributions, please read the paragraph
-<a class="reference internal" href="#acknowledge"><span class="std std-ref">Acknowledging Contributors</span></a> at the bottom of
-this page.</p>
-<p>If you are considering doing a pull request: Great! Every contribution is valuable,
-from fixing typos to writing full chapters.
-The steps below outline how the book “works”. It is recommended to also create an issue
-to discuss changes or additions you plan to make in advance.</p>
-<div class="section" id="software-setup">
-<h2>Software setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
-<p>Depending on the size of your contribution, you may want to be able to build the book
-locally to test and preview your changes. If you are fixing typos, tweak the
-language, or rewrite a paragraph or two, this should not be necessary, and you can safely
-skip this paragraph and instead take a look into the paragraph
-<a class="reference internal" href="#easy"><span class="std std-ref">Easy pull requests</span></a>.
-If you want to be able to build the book locally, though, please follow these instructions:</p>
-<ul class="simple">
-<li><p>datalad install the repository recursively. This ensures that dependent subdatasets are installed as well</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datalad install -r https://github.com/datalad-handbook/book.git
-</pre></div>
+  <div class="section" id="how-to-contribute">
+<span id="contribute"></span><h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
+<p>Thank you for your interest in contributing to this handbook!</p>
+<p>This handbook is still under construction and there are severals ways you can contribute to our efforts, such as submitting an <a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new/">issue</a> or a pull request, or by having a discussion with anyone on the Pygers team in a non-Github communication channel!</p>
+<p>If you would like to contribute via a pull request, we think that’s great! There are still plenty of chapters that need to be written and your contributions will be invaluable. Here are the steps you can take to submit a pull request starting from scratch.</p>
+<div class="section" id="submitting-an-issue">
+<h2>Submitting an issue<a class="headerlink" href="#submitting-an-issue" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new/">Issues</a> can be used to keep track of bugs, enhancements, suggestions, and the like! Instructions for how to do this can be found <a class="reference external" href="https://guides.github.com/features/issues/">in this link</a>.</p>
 </div>
-<ul class="simple">
-<li><p>optional, but recommended: Create a virtual environment</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv --python<span class="o">=</span>python3 ~/env/handbook
-$ . ~/env/handbook/bin/activate
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>install the requirements and a custom Python helper for the handbook</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># navigate into the installed dataset</span>
-$ <span class="nb">cd</span> book
-<span class="c1"># install required software</span>
-$ pip install -r requirements.txt
-$ pip install -e .
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>install <code class="docutils literal notranslate"><span class="pre">librsvg2-bin</span></code> (a tool to render <code class="docutils literal notranslate"><span class="pre">.svgs</span></code>) with your package manager</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install librsvg2-bin
-</pre></div>
-</div>
-<p>The code examples that need to be executed to build the book (see also the paragraph “Code” in
-<a class="reference internal" href="#directive"><span class="std std-ref">Directives and casts</span></a> to learn more about this) are executed inside of
-the directory <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>. This means that <em>this directory needs to exist</em> on your machine.
-Essentially, <code class="docutils literal notranslate"><span class="pre">/home/me</span></code> is a mock directory set up in order to have identical paths
-in code snippets regardless of the machine the book is build on: Else, code snippets
-created on one machine might have the path <code class="docutils literal notranslate"><span class="pre">/home/adina</span></code>, and others created on
-a second machine <code class="docutils literal notranslate"><span class="pre">/home/mih</span></code>, for example, leading to some potential confusion for readers.
-Therefore, you need to create this directory, and also –
-for consistency in the Git logs as well – a separate, mock Git identity
-(we chose <a class="reference external" href="https://en.wikipedia.org/wiki/Elena_Cornaro_Piscopia">Elena Piscopia</a>, the first
-woman to receive a PhD – do not worry, this does not mess with your own Git identity):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mkdir /home/me
-$ sudo chown <span class="nv">$USER</span>:<span class="nv">$USER</span> /home/me
-$ <span class="nv">HOME</span><span class="o">=</span>/home/me git config --global user.name <span class="s2">&quot;Elena Piscopia&quot;</span>
-$ <span class="nv">HOME</span><span class="o">=</span>/home/me git config --global user.email <span class="s2">&quot;elena@example.net&quot;</span>
-</pre></div>
-</div>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>remove separate Git identity until <a class="reference external" href="https://github.com/datalad/datalad/issues/3750">https://github.com/datalad/datalad/issues/3750</a>
-is fixed</p>
-</div>
-<p>Once this is configured, you can build the book locally by running <code class="docutils literal notranslate"><span class="pre">make</span></code> in the root
-of the repository, and open it in your browser, for example with
-<code class="docutils literal notranslate"><span class="pre">firefox</span> <span class="pre">docs/_build/html/index.html</span></code>.</p>
-</div>
-<div class="section" id="directives-and-casts">
-<span id="directive"></span><h2>Directives and casts<a class="headerlink" href="#directives-and-casts" title="Permalink to this headline">¶</a></h2>
-<p>If you are writing larger sections that contain code, <code class="docutils literal notranslate"><span class="pre">gitusernote</span></code>s, <code class="docutils literal notranslate"><span class="pre">findoutmore</span></code>s,
-or other special directives, please make sure that you read this paragraph.</p>
-<p>The book is build with a number of custom directives. If applicable, please
-use them in the same way they are used throughout the book.</p>
-<p><strong>Code:</strong> For code that runs inside a dataset such as <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>,
-working directories exist inside of <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>. The <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>
-dataset for example lives in <code class="docutils literal notranslate"><span class="pre">/home/me/dl-101</span></code>. This comes with the advantage
-that code is tested immediately – if the code snippet contains an error, this error will
-be written into the book, and thus prevent faulty commands from being published.
-Running code in a working directory will furthermore build up on the existing history
-of this dataset, which is very useful if some code relies on working with previously
-created content or dataset history. Build code snippets that add to these working directories
-by using the <code class="docutils literal notranslate"><span class="pre">runrecord</span></code> directive. Commands wrapped in these will write the output
-of a command into example files stored inside of the DataLad Handbook repository clone
-in <code class="docutils literal notranslate"><span class="pre">docs/PART/_examples</span></code> (where <code class="docutils literal notranslate"><span class="pre">PART</span></code> is <code class="docutils literal notranslate"><span class="pre">basics</span></code> or <code class="docutils literal notranslate"><span class="pre">usecases</span></code>).
-Make sure to name this files according to the following
-schema, because they are executed sequentially:
-<code class="docutils literal notranslate"><span class="pre">_examples/DL-101-1&lt;nr-of-section&gt;-1&lt;nr-of-example&gt;</span></code>, e.g.,
-<code class="docutils literal notranslate"><span class="pre">_examples/DL-101-101-101</span></code> for the first example in the first section
-of the given part.
-Here is how a <code class="docutils literal notranslate"><span class="pre">runrecord</span></code> directive can look like:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">runrecord</span><span class="p">::</span> _examples/DL-101-101-101   # give the path to the resulting file, start with _examples
-   <span class="nc">:language:</span> <span class="nf">console</span>
-   <span class="nc">:workdir:</span> <span class="nf">dl-101/DataLad-101    # specify a working directory here. This translates to /home/me/dl-101/DataLad-101</span>
-
-   # this is a comment
-   $ this line will be executed
-</pre></div>
-</div>
-<p>Afterwards, the resulting example files need to be committed into Git. To clear existing
-examples in <code class="docutils literal notranslate"><span class="pre">docs/PART/_examples</span></code> and the mock directories in <code class="docutils literal notranslate"><span class="pre">/home/me</span></code>, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> and
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean-examples</span></code>.</p>
-<p>However, for simple code snippets outside of the narrative of <code class="docutils literal notranslate"><span class="pre">DataLad-101</span></code>,
-simple <code class="docutils literal notranslate"><span class="pre">code-block::</span></code> directives are sufficient.</p>
-<p><strong>Other custom directives:</strong> Other custom directives are <code class="docutils literal notranslate"><span class="pre">gitusernote</span></code>
-(for additional Git-related information for Git-users), and <code class="docutils literal notranslate"><span class="pre">findoutmore</span></code>
-(foldable sections that contain content that goes beyond the basics). Make use
-of them, if applicable to your contribution.</p>
-<p><strong>Creating code live casts out of runrecord directives</strong>:
-The book has the capability to turn code snippets into a script that the tool
-<a class="reference external" href="https://github.com/datalad/datalad/blob/master/tools/cast_live">cast_live</a>
-can use to cast and execute it in a demonstration shell. This feature is
-intended for educational courses and other types of demonstrations. The
-following prerequisites exist:</p>
-<ul>
-<li><p>A snippet only gets added to a cast, if the <code class="docutils literal notranslate"><span class="pre">:cast:</span></code> option in the
-<code class="docutils literal notranslate"><span class="pre">runrecord</span></code> specifies a filename where to save the cast to (it does not
-need to be an existing file).</p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">:realcommand:</span></code> options are specified, they will become the executable
-part of the cast. If note, the code snippet in the code-block of the
-<code class="docutils literal notranslate"><span class="pre">runrecord</span></code> will become the executable part of the cast.</p></li>
-<li><p>An optional <code class="docutils literal notranslate"><span class="pre">:notes:</span></code> lets you add “speakernotes” for the cast.</p></li>
-<li><p>Casts are produced upon <code class="docutils literal notranslate"><span class="pre">make</span></code>, but only if the environment variable
-<code class="docutils literal notranslate"><span class="pre">CAST_DIR</span></code> is set.
-This should be a path that points to any directory in which casts should be
-created and saved. An invocation could look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ CAST_DIR=/home/me/casts make
-</pre></div>
-</div>
-</li>
-</ul>
-<p>This is a fully specified <code class="docutils literal notranslate"><span class="pre">runrecord</span></code>:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">runrecord</span><span class="p">::</span> _examples/DL-101-101-101
-   <span class="nc">:language:</span> <span class="nf">console</span>
-   <span class="nc">:workdir:</span> <span class="nf">dl-101/DataLad-101</span>
-   <span class="nc">:cast:</span> <span class="nf">dataset_basics   # name of the cast file (will be created/extended in CAST_DIR)</span>
-   <span class="nc">:notes:</span> <span class="nf">This is an optional speaker note only visible to presenter during the cast</span>
-
-   # this is a comment and will be written to the cast
-   $ this line will be executed and written to the cast
-</pre></div>
-</div>
-<p><strong>IMPORTANT!</strong> Code snippets will be turned into casts in the order of
-execution of <code class="docutils literal notranslate"><span class="pre">runrecords</span></code>. If you are adding code into an existing cast,
-i.e., in between two snippets that get written to the same cast, make sure that
-the cast will still run smoothly afterwards!</p>
-<p><strong>Running code live casts from created casts</strong>:
-If you have created a cast, you can use the tool <code class="docutils literal notranslate"><span class="pre">live_cast</span></code> in <code class="docutils literal notranslate"><span class="pre">tools/</span></code> in
-the <a class="reference external" href="https://github.com/datalad-handbook/course">DataLad Course</a> to
-execute them:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~ course$ tools/cast_live path/to/casts
-</pre></div>
-</div>
-<div class="section" id="easy-pull-requests">
-<span id="easy"></span><h3>Easy pull requests<a class="headerlink" href="#easy-pull-requests" title="Permalink to this headline">¶</a></h3>
-<p>The easiest way to do a pull request is within the web-interface that Github
-and <a class="reference external" href="https://readthedocs.org">readthedocs</a> provide. If you visit the rendered
-version of the handbook at <a class="reference external" href="http://handbook.datalad.org/">handbook.datalad.org</a>
-and click on the small, floating <code class="docutils literal notranslate"><span class="pre">v:latest</span></code> element at the lower
-right-hand side, the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> option will take you straight to an editor that
-lets you make your changes and submit a pull request.</p>
-<div class="figure align-default" id="id2" style="width: 100%">
-<img alt="Access the Github interface to submit a pull request right from within Readthedocs." src="_images/contrib.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">You can find an easy way to submit a pull request right from within the handbook.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>But you of course are also welcome to submit a pull request with whichever
-other workflow suites you best.</p>
-</div>
-<div class="section" id="desired-structure-of-the-book">
-<h3>Desired structure of the book<a class="headerlink" href="#desired-structure-of-the-book" title="Permalink to this headline">¶</a></h3>
-<p>The book consists of three major parts: Introduction, Basics, and Use Cases,
-plus an appendix. Purpose and desired content of these parts are outlined
-below. When contributing to one of these sections, please make sure that your
-contribution stays in the scope of the respective section.</p>
-</div>
-</div>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>An introduction to DataLad, and the problems it aims to be a solution for.</p></li>
-<li><p>This part is practically free of hands-on content, i.e., no
-instructions, no demos. Instead, it is about concepts, analogies, general
-problems.</p></li>
-<li><p>In order to avoid too much of a mental split between a reader’s desire to
-learn how to actually do things vs. conceptual information, the introduction
-is purposefully kept short and serves as a narrated table of contents with
-plenty of references to other parts of the book.</p></li>
-</ul>
-</div>
-<div class="section" id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>This part contains hands-on-style content on skills that are crucial for
-using DataLad productively. Any non-essential information is not in basics,
-but collected in an appendix.</p></li>
-<li><p>The order of topics in this part is determined by the order in which they
-become relevant for a novice DataLad user.</p></li>
-<li><p>Content should be written in a way that explicitly encourages executing the
-shown commands, up to simple challenges (such as: “find out who the author of
-the first commit in the installed subdataset XY is”).</p></li>
-</ul>
-</div>
-<div class="section" id="use-cases">
-<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Topics that do not fit into the introduction or basics parts, but are
-DataLad-centric, go into this part. Ideal content are concrete examples of
-how DataLad’s concepts and building blocks can be combined to implement
-a solution to a problem.</p></li>
-<li><p>Any chapter is written as a more-or-less self-contained document that can
-make frequent references to introduction and basics, but only few, and more
-general ones to other use cases. This should help with long-term maintenance
-of the content, as the specifics of how to approach a particular use case
-optimally may evolve over time, and cross-references to specific
-functionality might become invalid.</p></li>
-<li><p>There is no inherent order in this part, but chapters may be grouped by
-domain, skill-level, or DataLad functionality involved (or combinations of
-those).</p></li>
-<li><p>Any content in this part can deviate from the examples and narrative used for
-introduction and basics whenever necessary (e.g., concrete domain specific use
-cases). However, if possible, common example datasets, names, terms should be
-adopted, and the broadest feasible target audience should be assumed. Such
-more generic content should form the early chapters in this part.</p></li>
-<li><p>Unless there is reason to deviate, the following structure should be adopted:</p>
+<div class="section" id="submitting-a-pull-request">
+<h2>Submitting a pull request<a class="headerlink" href="#submitting-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="things-to-set-up-once">
+<h3>Things to set up once<a class="headerlink" href="#things-to-set-up-once" title="Permalink to this headline">¶</a></h3>
+<p>In order to have a copy of the repo on your local computer and be able to render the website locally (which are necessary to set up the workflow to contribute), these are <strong>steps you need to do only once</strong>. You don’t have to do these steps again after things are up and running locally!!</p>
 <ol class="arabic simple">
-<li><p>Summary/Abstract (no dedicated heading)</p></li>
-<li><p><em>The Challenge</em>: description what problem will be solved, or which conditions
-are present when DataLad is not used</p></li>
-<li><p><em>The DataLad Approach</em>: high-level description how DataLad can be used to
-address the problem at hand.</p></li>
-<li><p><em>Step-by-Step</em>: More detailed illustration on how the “DataLad approach” can
-be implemented, ideally with concrete code examples.</p></li>
+<li><p>First, you have to go to the <a class="reference external" href="https://github.com/brainhack-princeton/handbook">Github repo</a> for the handbook and <strong>fork it</strong>:</p></li>
 </ol>
+<a class="with-border reference internal image-reference" href="_images/fork_repo.png"><img alt="fork the repo!" class="with-border align-center" src="_images/fork_repo.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>Follow the instructions that appear on the page to fork the repo to the correct location.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>After you successfully fork the repo, you want to <strong>clone the repo</strong> on your local computer. From there, you can make edits using your favorite source code text editor, such as <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Go to where you just forked the handbook repo on your Github repository.</p></li>
+<li><dl class="simple">
+<dt>Click on “Clone or download” and copy the URL to clone the repo.</dt><dd><ul>
+<li><p><em>NOTE: In the image below, the arrow points to information about where you forked the repo from.</em></p></li>
+</ul>
+</dd>
+</dl>
 </li>
 </ul>
-<div class="section" id="acknowledging-contributors">
-<span id="acknowledge"></span><h3>Acknowledging Contributors<a class="headerlink" href="#acknowledging-contributors" title="Permalink to this headline">¶</a></h3>
-<p>If you have helped this project, we would like to acknowledge your contribution in the
-<a class="reference external" href="https://github.com/datalad-handbook/book">Github repository</a> in our README with
-<a class="reference external" href="https://allcontributors.org/">allcontributors.org</a>, and the project’s
-<a class="reference external" href="https://github.com/datalad-handbook/book/blob/master/.zenodo.json">.zenodo</a> and
-<a class="reference external" href="https://github.com/datalad-handbook/book/blob/master/CONTRIBUTORS.md">CONTRIBUTORS.md</a>
-files. The <a class="reference external" href="https://github.com/all-contributors">allcontributors bot</a> will give credit
-for <a class="reference external" href="https://allcontributors.org/docs/en/emoji-key">various types of contributions</a>.
-We may ask you to open a PR to add yourself to all of our contributing acknowledgements
-or do it ourselves and let you know.</p>
+<a class="reference internal image-reference" href="_images/clone_repo.png"><img alt="clone the repo!" class="align-center" src="_images/clone_repo.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>In your terminal window, change directory to the location where you want the clone of the repo to live. Then, clone the repo using the URL you copied in the previous step.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to the place where you want the cloned repo</span>
+<span class="nb">cd</span> Desktop/princeton_handbook/
+<span class="c1"># clone the repo</span>
+git clone <span class="o">[</span>URL<span class="o">]</span>
+</pre></div>
 </div>
+<ol class="arabic simple" start="3">
+<li><p>Next, you want to <strong>create a conda environment</strong> where you can install all of the necessary requirements to render the notebook locally.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>NOTE: You will have to activate this conda environment whenever you work on the notebook.</em></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create conda environment called &quot;princeton_handbook&quot;</span>
+conda create --name princeton_handbook <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
+<span class="c1"># activate the conda environment &quot;princeton_handbook&quot;</span>
+conda activate princeton_handbook
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Now, you want to <strong>download important packages</strong> that are needed to render the website locally. In the folder <em>handbook</em>, you will find two files <cite>setup.py</cite> and <cite>requirements.txt</cite> that need to be called to install the necessary packages.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to the &#39;handbook&#39; folder</span>
+<span class="nb">cd</span> handbook/
+<span class="c1"># use python to install the things in &#39;setup.py&#39;</span>
+python setup.py install
+<span class="c1"># use pip to install the things in &#39;requirements.txt&#39;</span>
+pip install -r requirements.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Since some of the artwork/files that we use might be svg files, you also need to <strong>install librsvg</strong> in order to render those files.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install librsvg</span>
+conda install -c conda-forge librsvg
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-make-edits">
+<h3>How to make edits<a class="headerlink" href="#how-to-make-edits" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we will describe how you can make edits to the handbook, both in the sense of the general workflow you should adapt when working locally and also how to submit a pull request when you think your changes are ready to be merged to the real website. However, first, we will go over the general organization of the repo to give you a sense of where things are!</p>
+<div class="section" id="organization-of-the-repo">
+<h4>Organization of the repo<a class="headerlink" href="#organization-of-the-repo" title="Permalink to this headline">¶</a></h4>
+<p>Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder <em>docs</em>.</p>
+<a class="with-border reference internal image-reference" href="_images/path_to_content_pages.png"><img alt="screenshot of path to content pages" class="with-border align-center" src="_images/path_to_content_pages.png" style="width: 600px;" /></a>
+<p>Specifically, chances are that you will most likely just make changes to the rst files in the folder <em>content_pages</em>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>IMPORTANT:</strong> You should not make changes to the filenames in the <em>content_pages</em> folder unless you also change the <em>contents.rst.inc</em> or (better yet) talk with Paula to make sure that changing a filename doesn’t break other things.</p></li>
+</ul>
+</div></blockquote>
+<p>Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally:</p>
+<a class="with-border reference internal image-reference" href="_images/path_to_index_html.png"><img alt="screenshot of path to the html of the index" class="with-border align-center" src="_images/path_to_index_html.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p><em>NOTE: When you want to look at the handbook locally (once you generate these html files), you will want to open `index.html`. This will open the home page of the handbook on your internet browser.</em></p></li>
+</ul>
+</div>
+<div class="section" id="the-general-workflow-for-edits">
+<h4>The general workflow for edits<a class="headerlink" href="#the-general-workflow-for-edits" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>First, you will want to <strong>render the handbook locally</strong> so that you can get a sense of the impact of the changes you make on the website.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to be in the outermost folder of the repo</span>
+<span class="nb">cd</span> ~/Desktop/princeton_handbook/handbook
+<span class="c1"># activate the conda environment</span>
+conda activate princeton_handbook
+<span class="c1"># render the handbook locally</span>
+make build
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The output will look something like the screenshot below, with the location of the html pages living in the location circled in red. Double click on <cite>index.html</cite> and it will open a local version of the handbook in your internet browser.</p></li>
+</ul>
+<a class="with-border reference internal image-reference" href="_images/make_build_output.png"><img alt="output you get after 'make build'" class="with-border align-center" src="_images/make_build_output.png" style="width: 400px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Add the official handbook repository as the upstream remote:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add official repo as the upstream remote</span>
+git remote add upstream https://github.com/brainhack-princeton/handbook
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Set your master branch to track the upstream remote:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fetch the latest changes (but doesn&#39;t merge remote changes to your local files)</span>
+git fetch upstream
+<span class="c1"># track the upstream remote branch</span>
+git branch -u upstream/master
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Pull any new commits in the official handbook repo to keep your master branch up to date:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fetches and merges the remote changes to your local files</span>
+git pull --ff-only
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You won’t be able to push changes you make directly to the official handbook repo. Instead, you will have to submit pull requests and the moderators/owners of the repo will review your pull request and decide whether they want to accept and merge your changes with the official handbook repo.</p>
+<p>For this reason, it is <strong>highly recommended</strong> that you don’t make any changes to the <cite>master</cite> branch of your forked repo. Instead, there should be a 1-to-1 relationship between a feature you want to change and a pull request. In other words, you should create a new branch for every issue you want to change so that you can submit separate pull requests for every thing you want to modify.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>When you start working on a new feature, create/checkout a new branch for that feature:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create and switch to new branch called &#39;new-feature&#39;</span>
+git checkout -b <span class="o">[</span>new-feature<span class="o">]</span>
+  e.g., git checkout -b testing
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Using your favorite source code text editor, make changes to the the document you want to modify. Use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code> to (a) view your changes and (b) make sure that your changes haven’t messed up the rendering of the handbook.</p></li>
+</ol>
+<ul class="simple">
+<li><p>When you’re making changes, it might be easy to lose track of what were the exact files that were modified. You can use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to view the files that were changed in the working directory.</p></li>
+</ul>
+<a class="with-border reference internal image-reference" href="_images/screenshot_git_status.png"><img alt="screenshot of output for 'git status'" class="with-border align-center" src="_images/screenshot_git_status.png" style="width: 500px;" /></a>
+<ol class="arabic simple" start="7">
+<li><p>You want to add, commit, and push your changes to your feature branch in your forked repo.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a modified file in the working directory to the staging area</span>
+git add docs/content_pages/01-01-howto.rst
+
+<span class="c1"># commit the change with an informative message</span>
+git commit -m <span class="s2">&quot;Added new content to how-to file&quot;</span>
+
+<span class="c1"># check to make sure that you added the modified file to the staging</span>
+git status
+</pre></div>
+</div>
+<a class="with-border reference internal image-reference" href="_images/screenshot_git_status2.png"><img alt="screenshot of 2nd output for 'git status'" class="with-border align-center" src="_images/screenshot_git_status2.png" style="width: 500px;" /></a>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## push modified files to your feature branch on your fork</span>
+<span class="c1"># the *first* time you push to your new feature branch on your fork</span>
+git push --set-upstream origin <span class="o">[</span>new-feature<span class="o">]</span>
+  e.g., git push --set-upstream origin testing
+<span class="c1"># for *subsequent* pushes to this feature branch</span>
+git push
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="actually-submitting-a-pull-request">
+<h3>Actually submitting a pull request<a class="headerlink" href="#actually-submitting-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>Once you are satisfied with the changes you have pushed to your forked repo, you are ready to submit a pull request! This can be done directly on terminal, but the instructions below show how you can submit and manage a pull request from the Github online interface.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Before you submit a pull request, make sure that your code renders the handbook locally on your computer!!</p>
+</div>
+<ol class="arabic simple">
+<li><p>On the Github page of your forked repo, make sure that you pushed the changes you committed (see where the arrow is pointing below) and that you are in the correct new-feature branch (in the dotted circle). <strong>Press ‘new pull request’</strong> to initiate a new pull request (in the solid box).</p></li>
+</ol>
+<a class="with-border reference internal image-reference" href="_images/github_page_after_push.png"><img alt="screenshot of forked repo before pull request" class="with-border align-center" src="_images/github_page_after_push.png" style="width: 600px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Leave any comments in the text box and then submit the pull request by pressing ‘Create pull request’, which is boxed in below.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>NOTE: The dotted box below also shows you the info about what repo (on the right) you are trying to merge, via a pull request, to the official handbook repo (on the left). You want to make sure that you see a notice saying that the branches are able to merge!</em></p></li>
+</ul>
+<a class="with-border reference internal image-reference" href="_images/making_pull_request.png"><img alt="screenshot of making a pull request" class="with-border align-center" src="_images/making_pull_request.png" style="width: 600px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>Congratulations! You have submitted a pull request. You will now have to wait for a moderator for the official handbook to review your changes and merge your pull request to the oficial repo.</p></li>
+</ol>
+<ul class="simple">
+<li><p>However, this sometimes doesn’t happen right away. The moderators might want you to make some changes before accepting your merge request. If this is the case, they will contact you.</p></li>
+</ul>
+<a class="with-border reference internal image-reference" href="_images/pull_request_screenshot.png"><img alt="screenshot of after submitting a pull request" class="with-border align-center" src="_images/pull_request_screenshot.png" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="section" id="github-cheat-sheet">
+<h2>Github cheat sheet<a class="headerlink" href="#github-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>The tutorial above just touches the tip of the iceberg of all the things that you can (and may want to) do using Github. The cheat sheet below goes into more detail about the various things that you can do!</p>
+<a class="with-border reference internal image-reference" href="_images/Github_Cheat_Sheet.png"><img alt="github cheat sheets" class="with-border align-center" src="_images/Github_Cheat_Sheet.png" style="width: 600px;" /></a>
+<p>Download the Github Cheat Sheet <a class="reference download internal" download="" href="_downloads/8bc1f4008eb973fb7cedd18cbbfc70eb/Github_Cheat_Sheet.pdf"><code class="xref download docutils literal notranslate"><span class="pre">here.</span></code></a></p>
 </div>
 </div>
 
