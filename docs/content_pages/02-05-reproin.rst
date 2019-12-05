@@ -258,5 +258,11 @@ https://practicalfmri.blogspot.com/2011/01/comparing-fmri-protocols.html
 The BIDS Specification
 https://bids-specification.readthedocs.io/en/stable/02-common-principles.html
 
+.. image:: ../images/return_to_timeline.png
+  :width: 300
+  :align: center
+  :alt: return to timeline
+  :target: 02-01-overview.html
+
 
 
