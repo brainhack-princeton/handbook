@@ -2,7 +2,7 @@ alabaster
 Babel
 certifi
 chardet
-docutils
+docutils==0.15.2 # https://github.com/sphinx-doc/sphinx/issues/6887
 idna
 imagesize
 Jinja2
