@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Explanation of the sample project &#8212; The DataLad Handbook</title>
+    <title>Dataset description &#8212; The DataLad Handbook</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Explanation of the sample project &#8212; The DataLad Handbook">
+  <meta property="og:title" content="Dataset description &#8212; The DataLad Handbook">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -86,7 +86,17 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dataset description</a><ul>
+<li><a class="reference internal" href="#tasks-in-the-sample-project">Tasks in the sample project</a></li>
+<li><a class="reference internal" href="#folder-structure-in-the-sample-project-directory-and-useful-things">Folder structure in the sample project directory and useful things</a></li>
+<li><a class="reference internal" href="#how-to-use-the-sample-project">How to use the sample project:</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -117,9 +127,72 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="explanation-of-the-sample-project">
-<span id="sampleproject"></span><h1>Explanation of the sample project<a class="headerlink" href="#explanation-of-the-sample-project" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+  <div class="section" id="dataset-description">
+<span id="sampleproject"></span><h1>Dataset description<a class="headerlink" href="#dataset-description" title="Permalink to this headline">¶</a></h1>
+<p>We have gotten consent from a subject (sub-001) to scan him and share everything, including personally identifiable information. This is useful for learning because many available datasets have already removed personal information, which makes sense for obvious reasons. However, this isn’t always the best thing for learning how to preprocess datasets because the data shared is already in BIDS/NIfTI format, and/or already has the face removed. We’re giving you everything as if it has just come right from the scanner!</p>
+<p>We’ve shared the dataset right from the beginning of where the files are located on the PNI cluster, as if you just transferred the folder from the scanner.</p>
+<p>Here is the faux conquest location to simulate where it has come from the scanner console:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/jukebox/norman/pygers/conquest/0219191_mystudy-0219-1114
+</pre></div>
+</div>
+<p>Here is the location of the study directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/jukebox/norman/pygers/handbook/sample_project
+</pre></div>
+</div>
+<div class="section" id="tasks-in-the-sample-project">
+<h2>Tasks in the sample project<a class="headerlink" href="#tasks-in-the-sample-project" title="Permalink to this headline">¶</a></h2>
+<p>We had sub-001 perform a couple of different tasks:</p>
+<ul class="simple">
+<li><p><strong>sound</strong>: Sound check before scanning</p></li>
+<li><p><strong>story</strong>: He listened to a story in the scanner. For more information on this specific story, see <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5348256/">Yeshurun et al 2017</a> describing the auditory stimulus.</p></li>
+<li><p><strong>faces</strong>: He performed the face-matching task <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4474282/">Chai et al 2015</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="folder-structure-in-the-sample-project-directory-and-useful-things">
+<h2>Folder structure in the sample project directory and useful things<a class="headerlink" href="#folder-structure-in-the-sample-project-directory-and-useful-things" title="Permalink to this headline">¶</a></h2>
+<p><em>(not all scripts/folders are listed here)</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--| sample_project
+    --| code
+        --| preprocessing
+            --| globals.sh  -- look how the specification of folders were set up
+                            here and adapt to your project accordingly
+        --| analysis
+            --| aparc+aseg_registration.sh  -- example script for freesurfer → EPI registration
+            --| resample.py -- function to resample to different grids
+    --| data
+        --| bids
+            --| sub-001     -- nifti converted files from running heudiconv
+            --| derivatives
+                --| mriqc
+                    --| derivatives
+                    --| reports
+                    --| logs
+                --| fmriprep
+                    --| sub-001
+                    --| sub-001.html
+                    --| logs
+                --| freesurfer
+        --| dicom
+            --| 0219191_mystudy-0219-1114   -- this is the entire folder that was transferred from
+                            the scanning folder in step1_preproc.sh
+            --| check_volumes   -- outputs checking that all dicoms transferred
+        --| T1w_defaced -- this is where the defaced anatomical gets moved
+            --| sub-001_ses-01_T1w_defaced.nii.gz
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-use-the-sample-project">
+<h2>How to use the sample project:<a class="headerlink" href="#how-to-use-the-sample-project" title="Permalink to this headline">¶</a></h2>
+<p>All of the sample codes are written for this sample project, so make sure you edit all of the relevant variables before you run! (Start with the <strong>globals.sh</strong> and make sure to edit your email for all of the slurm scripts!)</p>
+<p>The basic hierarchy with the preprocessing scripts is that there is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">)</span> <span class="n">a</span> <span class="n">slurm</span> <span class="n">script</span><span class="p">:</span> <span class="n">outer</span><span class="o">-</span><span class="n">most</span> <span class="n">call</span> <span class="n">to</span> <span class="n">scheduler</span><span class="p">:</span> <span class="n">use</span> <span class="n">sbatch</span> <span class="n">to</span> <span class="n">run</span> <span class="n">on</span> <span class="n">command</span> <span class="n">line</span>
+    <span class="n">a</span><span class="p">)</span> <span class="n">bash</span> <span class="n">script</span><span class="p">:</span> <span class="n">command</span> <span class="n">to</span> <span class="n">call</span> <span class="n">processing</span> <span class="n">script</span> <span class="n">like</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">a</span> <span class="n">singularity</span> <span class="n">image</span> <span class="n">call</span> <span class="p">(</span><span class="n">fmriprep</span><span class="p">,</span> <span class="n">mriqc</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">a</span> <span class="n">python</span> <span class="n">scipt</span> <span class="p">(</span><span class="n">like</span> <span class="k">with</span> <span class="n">pydeface</span> <span class="ow">or</span> <span class="nb">any</span> <span class="n">python</span> <span class="n">script</span> <span class="n">you</span> <span class="n">might</span> <span class="n">want</span> <span class="n">to</span> <span class="n">run</span> <span class="n">on</span> <span class="n">the</span> <span class="n">cluster</span>
+</pre></div>
+</div>
+<p>So if something doesn’t make sense, then start with the highest level script, and then work your way down to get a sense for what’s happening!</p>
+</div>
 </div>
 
 
