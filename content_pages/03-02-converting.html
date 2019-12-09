@@ -95,6 +95,7 @@
 <li><a class="reference internal" href="#step-1-setting-up-your-directory-structure"><em>Step 1: Setting up your directory structure</em></a></li>
 <li><a class="reference internal" href="#step-2-convert-your-dicoms-into-nifti-files-through-heudiconv"><em>Step 2: Convert your dicoms into nifti files through heudiconv</em></a></li>
 <li><a class="reference internal" href="#step-3-get-your-data-ready-to-pass-bids-validation"><em>Step 3: Get your data ready to pass bids-validation</em></a></li>
+<li><a class="reference internal" href="#step-4-run-the-bids-validator"><em>Step 4: Run the BIDS validator</em></a></li>
 </ul>
 </li>
 </ul>
@@ -298,6 +299,42 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/userna
 </dl>
 <ul class="simple">
 <li><p><strong>To call the script, e.g. for subject 999, session 01:</strong> <code class="docutils literal notranslate"><span class="pre">code/deface.sh</span> <span class="pre">999</span> <span class="pre">01</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="step-4-run-the-bids-validator">
+<h3><em>Step 4: Run the BIDS validator</em><a class="headerlink" href="#step-4-run-the-bids-validator" title="Permalink to this headline">¶</a></h3>
+<p>Once you have everything set up in the BIDS format, you can run the BIDS validator to make sure you have set it up correctly. You can check this using the following <a class="reference external" href="http://bids-standard.github.io/bids-validator/">bids validator</a> in a browser window. You can also setup a <span class="blue">.bidsignore</span> file if you have files or directories that are (deliberately) not valid BIDS format.</p>
+<p><em>You can also install and run the validator locally:</em></p>
+<ul class="simple">
+<li><p>Install bids-validator on the server (e.g., spock). Go to your home directory and run the following:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install bids-validator
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This installation requires Node.js 10.11.0 or above to be installed beforehand.</p></li>
+<li><p>Then you can check to make sure it’s there:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bids-validator -v
+<span class="c1"># OR</span>
+which bids-validator
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="httpps://github.com/bids-standard/bids-validator">More information about the bids validator installation can be found here</a></p></li>
+<li><p>This installs bids-validator in <span class="blue">~/node_modules/.bin</span>. You can more easily call this by adding an alias to your <span class="blue">~/.bashrc configuration file</span>, e.g.:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="s1">&#39;bids-validator&#39;</span><span class="o">=</span><span class="s1">&#39;~/node_modules/.bin/bids-validator&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run run bids-validator:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bids-validator /BIDS_folder
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Read the “errors” and fix them and re-run until the Validator is appeased. Note that “warnings” can be ignored, but you’ll probably want to fix them at some point.</p></li>
 </ul>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
