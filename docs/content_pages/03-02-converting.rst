@@ -34,6 +34,18 @@ The first step once you have the DICOM-images of your experiment in the BIDS-for
 
 Getting data off the scanner in a BIDS-formatted way requires that your directories are made in a specific way. To make things simpler, we have made the folders already for you. Copy the folder :blue:`new_study_template` into whichever path you would like. The location is :blue:`/jukebox/norman/pygers/handbook/new_study_template`.
 
+The specific steps to copy the folder using the terminal are as follows:
+
+.. code-block:: bash
+
+    # log into spock or scotty
+    ssh username@spock.pni.princeton.edu
+    ssh username@scotty.pni.princeton.edu
+    # copy the study template to your own path
+    cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/username/
+
+Here is the heirarchy of the folders in the :blue:`new_study_template` folder. **Read the footnotes because if you don’t, none of the following steps will work!**
+
 .. image:: ../images/return_to_timeline.png
   :width: 300
   :align: center
