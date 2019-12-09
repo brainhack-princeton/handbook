@@ -159,6 +159,32 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/userna
 </div>
 <p>Here is the heirarchy of the folders in the <span class="blue">new_study_template</span> folder. <strong>Read the footnotes because if you don’t, none of the following steps will work!</strong></p>
 <p><strong>NEED TO INSERT THE DIRECTORY HERE</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tree
+
+└── new_study_template               <span class="c1"># copy this directory to setup the entire directory structure for a new project</span>
+    └── code
+        └── preprocessing            <span class="c1"># SEE FOOTNOTE 1. this is where heudiconv, fmriprep, etc. scripts live</span>
+            └── license.txt          <span class="c1"># SEE FOOTNOTE 2. download a freesurfer license file and save here</span>
+        └── analysis                 <span class="c1"># [example] any other code can live at this level</span>
+        └── task                     <span class="c1"># [example]</span>
+    └── data
+        └── bids                     <span class="c1"># this is where raw BIDS data will be saved by HeudiConv</span>
+            └── sub-001
+            └── sub-002
+            └── etc.
+            └── derivatives          <span class="c1"># this is where all your BIDS derivatives will be</span>
+                └── mriqc            <span class="c1"># mriqc output will go here</span>
+                    └── logs         <span class="c1"># slurm logs will go here</span>
+                └── fmriprep         <span class="c1"># fmriprep-preprocessed data will go here</span>
+                    └── logs         <span class="c1"># slurm logs will go here</span>
+                └── freesurfer
+            └── .bidsignore          <span class="c1"># similar to .gitignore, list all files/directories you don’t want to be checked by the bids validator</span>
+        └── dicom                    <span class="c1"># raw dicoms copied from the scanner go here</span>
+            └── check_volumes        <span class="c1"># outputs checking that all dicoms transferred</span>
+        └── T1w_defaced              <span class="c1"># SEE FOOTNOTE 3. defaced T1 images</span>
+        └── behavioral               <span class="c1"># [example] any other data can live at this level</span>
+</pre></div>
+</div>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>
