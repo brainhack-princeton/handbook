@@ -108,6 +108,62 @@ Other things to know:
     * Prisma - ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2019``
 * If heudiconv is failing, check that your original dicoms are only zipped one time (meaning .gz is the only extension instead of .gz.gz). If your dicoms are zipped multiple times, add another line for gunzipping again! Basically do this until you have dcm’s!
 
+*Step 3: Get your data ready to pass bids-validation*
+-----------------------------------------------------
+
+The script :blue:`step2_preproc.sh` (:blue:`new_study_template/code/preprocessing`) will delete extra files (e.g., scouts), rename fieldmaps, and add the “IntendedFor” field to the fieldmap .json files. It needs the subjectID as input.
+
+NOTE: 
+
+* This script will need to be customized for your study, by adapting the fieldmap .json to indicate which functional runs you want the fieldmaps to be applied to.
+* Only run this after all MRI sessions of the subject have been run through step1_preproc.
+* If you run bids-validation and get any warnings and/or errors, put any modifications you needed to make to pass the validator into this script so you can easily get subjects ready for bids apps as you collect more subjects. **Again, this script should be customized for your experiment and not just run without editing.**
+
+.. code-block:: bash
+
+    # run the script (step2_preproc.sh), e.g. for subject 999
+    ./step2_preproc.sh 999
+
+    # NOTE: For our sample project, use the following command
+    ./step2_preproc.sh 001
+
+Other things to note:
+* If an individual subject’s scanning protocol deviated at all from the standard (e.g., there was an extra run of a task), then make sure that run is added to the IntendedFor section before running for that subject. 
+
+**Deface T1 images**
+
+Eventually, if you want to share de-identified data, you will need to deface the T1 images. You do not want to use the defaced images for any further preprocessing step. The script will run `pydeface <https://github.com/poldracklab/pydeface>`_ to deface T1w structural images and move the defaced image in your “extra” directory. It needs the subjectID and sessionID as input.
+
+The script that does the can be found in :blue:`new_study_template/code/preprocessing/deface.sh`. We’re going to run it on the cluster so that it doesn’t freeze up your terminal window. So the outer script that will call it is :blue:`code/preprocessing/slurm_deface.sh`.
+
+Before running the script: 
+
+* Make sure you updated your directories in globals.sh. If you will run deface.sh on your local computer, make sure the mounted directory is correct.
+* Make sure `pydeface <https://github.com/poldracklab/pydeface>`_ is installed on your local machine (or have it installed on the cluster you want to use, for Princeton e.g. spock).
+    * To install pydeface, do the following:
+        * ``git clone https://github.com/poldracklab/pydeface.git``
+        * ``cd pydeface``
+        * ``python setup.py install``
+    * NOTE: Pydeface will only work if python 3 is the default on your machine (not python 2.7).
+
+*Running deface on the cluster:*
+
+* Update lines in slurm_deface.sh: 
+    * Line 7 → array number should be equal to all the subject numbers you want to run the script on (if you enter multiple, it will run them all in parallel) e.g., array=1,2,4 
+    * Lines 23 -24: update if you want to get an email with the update on the code
+    * Line 39: change if you want to run on a different session besides session 1
+
+* **To call the script, e.g. for the sample project:** ``sbatch slurm_deface.sh``
+
+*Running deface on your local computer:*
+    * Mount serve volume via Finder and open a *local* Terminal window 
+    * From local Terminal, move to your bids directory: 
+        * ``cd /Volumes/norman/mydirectory/studies/``
+        * ``cd mystudy/code/preprocessing.deface.sh``
+    * Run  :blue:`deface.sh` with 2 inputs: subjectID and sessionID 
+
+* **To call the script, e.g. for subject 999, session 01:** ``code/deface.sh 999 01``
+
 .. image:: ../images/return_to_timeline.png
   :width: 300
   :align: center
