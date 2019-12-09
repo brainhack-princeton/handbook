@@ -25,6 +25,7 @@ Before running for the first time:
 		* Example code: 
 
 .. code-block:: bash
+		
 		cd /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
 
 MRIQC
