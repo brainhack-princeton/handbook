@@ -164,6 +164,45 @@ Before running the script:
 
 * **To call the script, e.g. for subject 999, session 01:** ``code/deface.sh 999 01``
 
+*Step 4: Run the BIDS validator*
+--------------------------------
+
+Once you have everything set up in the BIDS format, you can run the BIDS validator to make sure you have set it up correctly. You can check this using the following `bids validator <http://bids-standard.github.io/bids-validator/>`_ in a browser window. You can also setup a :blue:`.bidsignore` file if you have files or directories that are (deliberately) not valid BIDS format. 
+
+*You can also install and run the validator locally:*
+
+* Install bids-validator on the server (e.g., spock). Go to your home directory and run the following:
+
+.. code-block:: bash
+
+    npm install bids-validator
+
+
+* This installation requires Node.js 10.11.0 or above to be installed beforehand. 
+* Then you can check to make sure it’s there:
+  
+.. code-block:: bash
+
+    bids-validator -v
+    # OR
+    which bids-validator
+
+* `More information about the bids validator installation can be found here <httpps://github.com/bids-standard/bids-validator>`_
+* This installs bids-validator in :blue:`~/node_modules/.bin`. You can more easily call this by adding an alias to your :blue:`~/.bashrc configuration file`, e.g.: 
+
+.. code-block:: bash
+
+    alias 'bids-validator'='~/node_modules/.bin/bids-validator'
+
+* Run run bids-validator:
+
+.. code-block:: bash
+
+    bids-validator /BIDS_folder
+
+
+* Read the “errors” and fix them and re-run until the Validator is appeased. Note that “warnings” can be ignored, but you’ll probably want to fix them at some point.
+
 .. image:: ../images/return_to_timeline.png
   :width: 300
   :align: center
