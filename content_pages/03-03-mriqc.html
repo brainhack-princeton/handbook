@@ -86,7 +86,16 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quality control with MRIQC</a><ul>
+<li><a class="reference internal" href="#quality-checks-mriqc">Quality checks (MRIQC)</a></li>
+<li><a class="reference internal" href="#id1">MRIQC</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +128,31 @@
             
   <div class="section" id="quality-control-with-mriqc">
 <span id="mriqc"></span><h1>Quality control with MRIQC<a class="headerlink" href="#quality-control-with-mriqc" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="quality-checks-mriqc">
+<h2>Quality checks (MRIQC)<a class="headerlink" href="#quality-checks-mriqc" title="Permalink to this headline">¶</a></h2>
+<p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) which is the script slurm_mriqc.sh (which you can find in <span class="blue">/jukebox/norman/pygers/handbook/code/</span>). This script will need <code class="docutils literal notranslate"><span class="pre">run_mriqc.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">run_mriqc_group.sh</span></code>. This script will run mriqc (quality metrics) for an individual subject followed by the group summary statistics using slurm.</p>
+<p>Before running for the first time:</p>
+<ul class="simple">
+<li><p>Open slurm_mriqc.sh and update the array number to be your subject number (you can run multiple subjects at the same time by using arrays).</p></li>
+<li><p>Update to include your email address if you want to get email alerts when the code is running/completed.</p></li>
+<li><dl class="simple">
+<dt>Submit job from code directory:</dt><dd><ul>
+<li><p>Example code:</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>MRIQC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>MRIQC outputs an MRIQC group bold report and separate MRIQC reports for each subject/session. To have a quick look at the quality of the data acquired for your subjects, a good first start is to look at the group bold report to see if the <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/measures.html">image quality metrics</a> shows any outlier subjects/sessions with respect to the quality of the data. When this is the case, you should check the subject/session-specific MRIQC to see if you can figure out what went wrong. It is recommended that you always check the framewise displacement and temporal SNR.</p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
