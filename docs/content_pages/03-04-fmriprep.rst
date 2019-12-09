@@ -34,7 +34,6 @@ This script will run fmriprep for an individual subject using slurm.
 * Update to include your email address if you want to get email alerts when the code is running/completed.
 
 *Submit job from code directory:*
-``cd /jukebox/norman/mydirectory/studies/mystudy/data/bids/Norman/McDevitt/7137_viodiff/code``
 
 .. code-block:: bash
 

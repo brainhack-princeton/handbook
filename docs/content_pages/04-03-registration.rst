@@ -103,10 +103,14 @@ For volumetric transformations, fmriprep uses a combination of Freesurfer, FSL, 
 * Input image: your ROI in MNI space
 * Transformations: this is really a two step transformation so you need two different matrices
 
-		* MNI → T1w .h5 transformation as described above
-		* T1w → EPI transformation: fmriprep saves this transformation in the :blue:`derivatives/work/fmriprep_wf` directory. Specifically, for subject 001 and task-story run 01, thie file would be located in :blue:`/func_preproc_ses_01_task_story_run_01_wf/bold_reg_wf/bbreg_wf/fsl2itk_fwd/affine.txt`
-		* Go to the specific :blue:`func_preproc_ses_01_task_XX_run_XX` folder to get the matrix from whatever task/run you’re want to analyze
+	* MNI → T1w .h5 transformation as described above
+	* T1w → EPI transformation: fmriprep saves this transformation in the :blue:`derivatives/work/fmriprep_wf` directory. Specifically, for subject 001 and task-story run 01, thie file would be located in 
 
+.. code-block:: bash
+
+	/func_preproc_ses_01_task_story_run_01_wf/bold_reg_wf/bbreg_wf/fsl2itk_fwd/affine.txt
+
+* Go to the specific :blue:`func_preproc_ses_01_task_XX_run_XX` folder to get the matrix from whatever task/run you’re want to analyze
 * Command: antsApplyTransforms - this time you will input both transformations
 * Example command:
 
@@ -138,14 +142,11 @@ Surface space transformations
 		 --o $BOLD_DIR/aparc+aseg-in-BOLD.nii.gz --fillthresh 0.5 \
 		--regheader $FREESURFER_DIR/aparc+aseg.mgz
 
-* You can find an example script to do this in :blue:`/jukebox/norman/pygers/handbook/sample_project/code/preprocessing/aparc+aseg_registration.sh`
+* You can find an example script to do this in 
 
+.. code-block:: bash
 
-
-
-
-
-
+	/jukebox/norman/pygers/handbook/sample_project/code/preprocessing/aparc+aseg_registration.sh
 
 
 

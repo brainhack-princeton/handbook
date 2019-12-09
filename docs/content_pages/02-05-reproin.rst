@@ -108,8 +108,7 @@ Anatomical images
 Typical fMRI analyses require a T1-weighted structural image for spatial
 alignment. We use FreeSurfer’s recommended multi-echo sequence with 1 mm
 isotropic voxels with a GRAPPA acceleration factor of 2 (~6 minute
-duration; `FreeSurfer
-Protocol <https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferWiki?action=AttachFile&do=get&target=FreeSurfer_Suggested_Morphometry_Protocols.pdf>`__).
+duration; `FreeSurfer Protocol <https://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferWiki?action=AttachFile&do=get&target=FreeSurfer_Suggested_Morphometry_Protocols.pdf>`_.
 You may also collect a T2-weighted structural image, which can provide
 better contrast for differentiating subcortical structures (~5 minute
 duration). Other analysis pipelines may require specific structural
