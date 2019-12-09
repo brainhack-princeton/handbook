@@ -86,7 +86,15 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Converting data to BIDS</a><ul>
+<li><a class="reference internal" href="#benefits-of-using-bids-format">Benefits of using BIDS format</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +127,19 @@
             
   <div class="section" id="converting-data-to-bids">
 <span id="converting"></span><h1>Converting data to BIDS<a class="headerlink" href="#converting-data-to-bids" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="benefits-of-using-bids-format">
+<h2>Benefits of using BIDS format<a class="headerlink" href="#benefits-of-using-bids-format" title="Permalink to this headline">¶</a></h2>
+<p>BIDS is a standard and widely-used format of structuring data. It facilities:</p>
+<ul class="simple">
+<li><p><strong>Using and re-using data:</strong> by arranging data in a standard way, using datasets collaboratively within and across labs will be facilitated (no need to rearrange data). It also facilitates future usages of the same datasets (easier to figure out old codes).</p></li>
+<li><p><strong>Data analysis:</strong> There are several software packages that accept only BIDS format as input – such as fMRIprep and MRIQC. And the number of these BIDS apps are growing.</p></li>
+<li><p><strong>Sharing data:</strong> Data sharing is an important element of reproducible science and a standard data sharing formatting is required for this purpose. Currently OpenNeuro accepts datasets in BIDS format. Some grants require public data sharing and using BIDS from the beginning of data collection can save time and energy at the time of sharing.</p></li>
+<li><p><strong>Checking data integrity:</strong> By validating your data structure through bids-validator, potential problems or errors in the data can be discovered.</p></li>
+</ul>
+<p><a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">Find out more about BIDS data specifications here</a>.</p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
