@@ -94,6 +94,7 @@
 <li><a class="reference internal" href="#convert-dicoms-to-bids-formatted-nifti">Convert dicoms to BIDS-formatted Nifti</a><ul>
 <li><a class="reference internal" href="#step-1-setting-up-your-directory-structure"><em>Step 1: Setting up your directory structure</em></a></li>
 <li><a class="reference internal" href="#step-2-convert-your-dicoms-into-nifti-files-through-heudiconv"><em>Step 2: Convert your dicoms into nifti files through heudiconv</em></a></li>
+<li><a class="reference internal" href="#step-3-get-your-data-ready-to-pass-bids-validation"><em>Step 3: Get your data ready to pass bids-validation</em></a></li>
 </ul>
 </li>
 </ul>
@@ -224,6 +225,79 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/userna
 </dl>
 </li>
 <li><p>If heudiconv is failing, check that your original dicoms are only zipped one time (meaning .gz is the only extension instead of .gz.gz). If your dicoms are zipped multiple times, add another line for gunzipping again! Basically do this until you have dcm’s!</p></li>
+</ul>
+</div>
+<div class="section" id="step-3-get-your-data-ready-to-pass-bids-validation">
+<h3><em>Step 3: Get your data ready to pass bids-validation</em><a class="headerlink" href="#step-3-get-your-data-ready-to-pass-bids-validation" title="Permalink to this headline">¶</a></h3>
+<p>The script <span class="blue">step2_preproc.sh</span> (<span class="blue">new_study_template/code/preprocessing</span>) will delete extra files (e.g., scouts), rename fieldmaps, and add the “IntendedFor” field to the fieldmap .json files. It needs the subjectID as input.</p>
+<p>NOTE:</p>
+<ul class="simple">
+<li><p>This script will need to be customized for your study, by adapting the fieldmap .json to indicate which functional runs you want the fieldmaps to be applied to.</p></li>
+<li><p>Only run this after all MRI sessions of the subject have been run through step1_preproc.</p></li>
+<li><p>If you run bids-validation and get any warnings and/or errors, put any modifications you needed to make to pass the validator into this script so you can easily get subjects ready for bids apps as you collect more subjects. <strong>Again, this script should be customized for your experiment and not just run without editing.</strong></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the script (step2_preproc.sh), e.g. for subject 999</span>
+./step2_preproc.sh <span class="m">999</span>
+
+<span class="c1"># NOTE: For our sample project, use the following command</span>
+./step2_preproc.sh <span class="m">001</span>
+</pre></div>
+</div>
+<p>Other things to note:
+* If an individual subject’s scanning protocol deviated at all from the standard (e.g., there was an extra run of a task), then make sure that run is added to the IntendedFor section before running for that subject.</p>
+<p><strong>Deface T1 images</strong></p>
+<p>Eventually, if you want to share de-identified data, you will need to deface the T1 images. You do not want to use the defaced images for any further preprocessing step. The script will run <a class="reference external" href="https://github.com/poldracklab/pydeface">pydeface</a> to deface T1w structural images and move the defaced image in your “extra” directory. It needs the subjectID and sessionID as input.</p>
+<p>The script that does the can be found in <span class="blue">new_study_template/code/preprocessing/deface.sh</span>. We’re going to run it on the cluster so that it doesn’t freeze up your terminal window. So the outer script that will call it is <span class="blue">code/preprocessing/slurm_deface.sh</span>.</p>
+<p>Before running the script:</p>
+<ul class="simple">
+<li><p>Make sure you updated your directories in globals.sh. If you will run deface.sh on your local computer, make sure the mounted directory is correct.</p></li>
+<li><dl class="simple">
+<dt>Make sure <a class="reference external" href="https://github.com/poldracklab/pydeface">pydeface</a> is installed on your local machine (or have it installed on the cluster you want to use, for Princeton e.g. spock).</dt><dd><ul>
+<li><dl class="simple">
+<dt>To install pydeface, do the following:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/poldracklab/pydeface.git</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">pydeface</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>NOTE: Pydeface will only work if python 3 is the default on your machine (not python 2.7).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><em>Running deface on the cluster:</em></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Update lines in slurm_deface.sh:</dt><dd><ul>
+<li><p>Line 7 → array number should be equal to all the subject numbers you want to run the script on (if you enter multiple, it will run them all in parallel) e.g., array=1,2,4</p></li>
+<li><p>Lines 23 -24: update if you want to get an email with the update on the code</p></li>
+<li><p>Line 39: change if you want to run on a different session besides session 1</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>To call the script, e.g. for the sample project:</strong> <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">slurm_deface.sh</span></code></p></li>
+</ul>
+<dl class="simple">
+<dt><em>Running deface on your local computer:</em></dt><dd><ul class="simple">
+<li><p>Mount serve volume via Finder and open a <em>local</em> Terminal window</p></li>
+<li><dl class="simple">
+<dt>From local Terminal, move to your bids directory:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/Volumes/norman/mydirectory/studies/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mystudy/code/preprocessing.deface.sh</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Run  <span class="blue">deface.sh</span> with 2 inputs: subjectID and sessionID</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>To call the script, e.g. for subject 999, session 01:</strong> <code class="docutils literal notranslate"><span class="pre">code/deface.sh</span> <span class="pre">999</span> <span class="pre">01</span></code></p></li>
 </ul>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
