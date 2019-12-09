@@ -92,9 +92,13 @@
 <li><a class="reference internal" href="#">How to contribute</a><ul>
 <li><a class="reference internal" href="#submitting-an-issue">Submitting an issue</a></li>
 <li><a class="reference internal" href="#submitting-a-pull-request">Submitting a pull request</a><ul>
-<li><a class="reference internal" href="#things-to-set-up-once"><em>Things to set up once</em></a></li>
-<li><a class="reference internal" href="#organization-of-the-repo"><em>Organization of the repo</em></a></li>
-<li><a class="reference internal" href="#the-general-workflow-for-edits"><em>The general workflow for edits</em></a></li>
+<li><a class="reference internal" href="#things-to-set-up-once">Things to set up once</a></li>
+<li><a class="reference internal" href="#how-to-make-edits">How to make edits</a><ul>
+<li><a class="reference internal" href="#organization-of-the-repo">Organization of the repo</a></li>
+<li><a class="reference internal" href="#the-general-workflow-for-edits">The general workflow for edits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#actually-submitting-a-pull-request">Actually submitting a pull request</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></li>
@@ -136,50 +140,37 @@
 <span id="contribute"></span><h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
 <p>Thank you for your interest in contributing to this handbook!</p>
 <p>This handbook is still under construction and there are severals ways you can contribute to our efforts, such as submitting an <a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new/">issue</a> or a pull request, or by having a discussion with anyone on the Pygers team in a non-Github communication channel!</p>
-<p>On this page, we will address the following topics to help you contribute to the construction of this handbook:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#submitting-an-issue">Submitting an issue</a></p></li>
-<li><p><a class="reference internal" href="#submitting-a-pull-request">Submitting a pull request</a></p></li>
-<li><p><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></p></li>
-</ul>
-<style> .blue {color:blue} </style>
-<style> .red {color:red} </style><div class="section" id="submitting-an-issue">
-<span id="shortanchor"></span><h2>Submitting an issue<a class="headerlink" href="#submitting-an-issue" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new/">Issues</a> can be used to keep track of bugs, enhancements, suggestions, and the like! Instructions for how to do this can be found <a class="reference external" href="https://guides.github.com/features/issues/">in this link</a>. You can submit an issue along with a pull request if you have suggestions about how to resolve the issue. However, you can submit an issue by itself and someone else can take lead on trying to incorporate your suggestion or resolve the bug.</p>
+<p>If you would like to contribute via a pull request, we think that’s great! There are still plenty of chapters that need to be written and your contributions will be invaluable. Here are the steps you can take to submit a pull request starting from scratch.</p>
+<div class="section" id="submitting-an-issue">
+<h2>Submitting an issue<a class="headerlink" href="#submitting-an-issue" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new/">Issues</a> can be used to keep track of bugs, enhancements, suggestions, and the like! Instructions for how to do this can be found <a class="reference external" href="https://guides.github.com/features/issues/">in this link</a>.</p>
 </div>
 <div class="section" id="submitting-a-pull-request">
 <h2>Submitting a pull request<a class="headerlink" href="#submitting-a-pull-request" title="Permalink to this headline">¶</a></h2>
-<p>You can also contribute via a pull request, which would allow you to write code that can be merged to the official handbook repo (i.e., that can end up on the world wide web). There are still plenty of chapters that need to be written and your contributions will be invaluable.</p>
-<p>Here, we are going to delineate the steps needed to render the notebook locally on your computer so that you can make and test edits, along the steps you need to take to submit a pull request:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#things-to-set-up-once">Things to set up once</a></p></li>
-<li><p><a class="reference internal" href="#organization-of-the-repo">Organization of the repo</a></p></li>
-<li><p><a class="reference internal" href="#the-general-workflow-for-edits">The general workflow for edits</a></p></li>
-</ul>
 <div class="section" id="things-to-set-up-once">
-<h3><em>Things to set up once</em><a class="headerlink" href="#things-to-set-up-once" title="Permalink to this headline">¶</a></h3>
-<p>In order to have a copy of the repo on your local computer and be able to render the website locally (which are necessary to set up the workflow to contribute), these are the <strong>steps you need to do only once</strong>. You don’t have to do these steps again after things are up and running locally!!</p>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
+<h3>Things to set up once<a class="headerlink" href="#things-to-set-up-once" title="Permalink to this headline">¶</a></h3>
+<p>In order to have a copy of the repo on your local computer and be able to render the website locally (which are necessary to set up the workflow to contribute), these are <strong>steps you need to do only once</strong>. You don’t have to do these steps again after things are up and running locally!!</p>
 <ol class="arabic simple">
 <li><p>First, you have to go to the <a class="reference external" href="https://github.com/brainhack-princeton/handbook">Github repo</a> for the handbook and <strong>fork it</strong>:</p></li>
 </ol>
-<a class="with-border reference internal image-reference" href="_images/fork_repo.png"><img alt="fork the repo!" class="with-border align-center" src="_images/fork_repo.png" style="width: 700px;" /></a>
-<p><em>The image above, the red box highlights the button you need to press to fork the original handbook repo.</em></p>
+<a class="with-border reference internal image-reference" href="_images/fork_repo.png"><img alt="fork the repo!" class="with-border align-center" src="_images/fork_repo.png" style="width: 600px;" /></a>
 <ul class="simple">
 <li><p>Follow the instructions that appear on the page to fork the repo to the correct location.</p></li>
 </ul>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <ol class="arabic simple" start="2">
 <li><p>After you successfully fork the repo, you want to <strong>clone the repo</strong> on your local computer. From there, you can make edits using your favorite source code text editor, such as <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>.</p></li>
 </ol>
 <ul class="simple">
 <li><p>Go to where you just forked the handbook repo on your Github repository.</p></li>
-<li><p>Click on “Clone or download” and copy the URL to clone the repo.</p></li>
+<li><dl class="simple">
+<dt>Click on “Clone or download” and copy the URL to clone the repo.</dt><dd><ul>
+<li><p><em>NOTE: In the image below, the arrow points to information about where you forked the repo from.</em></p></li>
 </ul>
-<div class="figure align-center">
-<a class="reference internal image-reference" href="_images/clone_repo.png"><img alt="clone the repo!" src="_images/clone_repo.png" style="width: 700px;" /></a>
-</div>
-<p><em>The image above, the red box highlights the button you need to press to get the URL to clone the repo. The arrow points to info about the location of the original repo you forked.</em></p>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/clone_repo.png"><img alt="clone the repo!" class="align-center" src="_images/clone_repo.png" style="width: 600px;" /></a>
 <ul class="simple">
 <li><p>In your terminal window, change directory to the location where you want the clone of the repo to live. Then, clone the repo using the URL you copied in the previous step.</p></li>
 </ul>
@@ -189,22 +180,20 @@
 git clone <span class="o">[</span>URL<span class="o">]</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <ol class="arabic simple" start="3">
 <li><p>Next, you want to <strong>create a conda environment</strong> where you can install all of the necessary requirements to render the notebook locally.</p></li>
 </ol>
+<ul class="simple">
+<li><p><em>NOTE: You will have to activate this conda environment whenever you work on the notebook.</em></p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create conda environment called &quot;princeton_handbook&quot;</span>
 conda create --name princeton_handbook <span class="nv">python</span><span class="o">=</span><span class="m">3</span>
 <span class="c1"># activate the conda environment &quot;princeton_handbook&quot;</span>
 conda activate princeton_handbook
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><em>NOTE: You will have to activate this conda environment whenever you work on the notebook.</em></p></li>
-</ul>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <ol class="arabic simple" start="4">
-<li><p>Now, you want to <strong>download important packages</strong> that are needed to render the website locally. In the folder <span class="blue">handbook</span>, you will find two files <span class="blue">setup.py</span> and <span class="blue">requirements.txt</span> that need to be called to install the necessary packages.</p></li>
+<li><p>Now, you want to <strong>download important packages</strong> that are needed to render the website locally. In the folder <em>handbook</em>, you will find two files <cite>setup.py</cite> and <cite>requirements.txt</cite> that need to be called to install the necessary packages.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># change directory to the &#39;handbook&#39; folder</span>
 <span class="nb">cd</span> handbook/
@@ -214,7 +203,6 @@ python setup.py install
 pip install -r requirements.txt
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <ol class="arabic simple" start="5">
 <li><p>Since some of the artwork/files that we use might be svg files, you also need to <strong>install librsvg</strong> in order to render those files.</p></li>
 </ol>
@@ -223,27 +211,27 @@ conda install -c conda-forge librsvg
 </pre></div>
 </div>
 </div>
+<div class="section" id="how-to-make-edits">
+<h3>How to make edits<a class="headerlink" href="#how-to-make-edits" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we will describe how you can make edits to the handbook, both in the sense of the general workflow you should adapt when working locally and also how to submit a pull request when you think your changes are ready to be merged to the real website. However, first, we will go over the general organization of the repo to give you a sense of where things are!</p>
 <div class="section" id="organization-of-the-repo">
-<h3><em>Organization of the repo</em><a class="headerlink" href="#organization-of-the-repo" title="Permalink to this headline">¶</a></h3>
-<p>If everything in the section above went well, you should have your forked repo on your local computer and a conda environment that has all of the necessary installations for you to render the handbook locally. Before we talk about how you can make edits, we first want to describe the organization of the repo to give you a sense of where things are!</p>
-<p>Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder <span class="blue">docs</span>.</p>
+<h4>Organization of the repo<a class="headerlink" href="#organization-of-the-repo" title="Permalink to this headline">¶</a></h4>
+<p>Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder <em>docs</em>.</p>
 <a class="with-border reference internal image-reference" href="_images/path_to_content_pages.png"><img alt="screenshot of path to content pages" class="with-border align-center" src="_images/path_to_content_pages.png" style="width: 600px;" /></a>
-<p><em>The image above highlights the location of the</em> <span class="blue">docs</span> <em>(in a red box) in reference to all of the other files in the repo.</em></p>
-<p>Specifically, chances are that you will most likely just make changes to the rst files in the folder <span class="blue">content_pages</span>.</p>
+<p>Specifically, chances are that you will most likely just make changes to the rst files in the folder <em>content_pages</em>.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>IMPORTANT:</strong> You should NOT make changes to the filenames in the <span class="blue">content_pages</span> folder unless you also change the <span class="blue">contents.rst.inc</span> or (better yet) talk with Paula to make sure that changing a filename doesn’t break other things.</p></li>
+<li><p><strong>IMPORTANT:</strong> You should not make changes to the filenames in the <em>content_pages</em> folder unless you also change the <em>contents.rst.inc</em> or (better yet) talk with Paula to make sure that changing a filename doesn’t break other things.</p></li>
 </ul>
 </div></blockquote>
-<p>Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally (<span class="blue">handbook/docs/_build/html</span>):</p>
+<p>Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally:</p>
 <a class="with-border reference internal image-reference" href="_images/path_to_index_html.png"><img alt="screenshot of path to the html of the index" class="with-border align-center" src="_images/path_to_index_html.png" style="width: 600px;" /></a>
-<p><em>The image above highlights the location of the</em> <span class="blue">html</span> <em>folder (in a red circle) in reference to all of the other files in the repo, along with the location of the</em> <span class="blue">index.html</span> <em>file (in the red box).</em></p>
-<p>When you want to look at the handbook locally (once you generate these html files), you will want to open <span class="blue">index.html</span>. This will open the home page of the handbook on your internet browser.</p>
+<ul class="simple">
+<li><p><em>NOTE: When you want to look at the handbook locally (once you generate these html files), you will want to open `index.html`. This will open the home page of the handbook on your internet browser.</em></p></li>
+</ul>
 </div>
 <div class="section" id="the-general-workflow-for-edits">
-<h3><em>The general workflow for edits</em><a class="headerlink" href="#the-general-workflow-for-edits" title="Permalink to this headline">¶</a></h3>
-<p>Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow you will take to make edits and eventually submit pull requests.</p>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
+<h4>The general workflow for edits<a class="headerlink" href="#the-general-workflow-for-edits" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li><p>First, you will want to <strong>render the handbook locally</strong> so that you can get a sense of the impact of the changes you make on the website.</p></li>
 </ol>
@@ -256,81 +244,54 @@ make build
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The output on your terminal will look something like the screenshot below, with the location of the html pages living in the location circled in blue.</p></li>
+<li><p>The output will look something like the screenshot below, with the location of the html pages living in the location circled in red. Double click on <cite>index.html</cite> and it will open a local version of the handbook in your internet browser.</p></li>
 </ul>
 <a class="with-border reference internal image-reference" href="_images/make_build_output.png"><img alt="output you get after 'make build'" class="with-border align-center" src="_images/make_build_output.png" style="width: 400px;" /></a>
-<ul class="simple">
-<li><p>Open up Finder and double click on <span class="blue">index.html</span>, which will be in the directory <span class="blue">handbook/docs/_build/html</span> as discussed in the previous section. This will open a local version of the handbook in your internet browser.</p></li>
-</ul>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <ol class="arabic simple" start="2">
-<li><p>You only have to do this ONCE: <strong>Add the official handbook repository as the upstream remote</strong>.</p></li>
+<li><p>Add the official handbook repository as the upstream remote:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add official repo as the upstream remote</span>
 git remote add upstream https://github.com/brainhack-princeton/handbook
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><span class="red">Why are we doing this?</span> We want your local directory to point to two different remotes (or places on Github where code is stored). The first one should be the <strong>origin</strong>, which should point to your forked repo on Github. The second one should be the <strong>upstream</strong> branch, which should point to the official handbook repo on Github. Having this organization will allow you to pull changes from the upstream branch so that you can make edits on the most up-to-date version of the repo, while allowing you the flexibility to do work on your repo. To check that all of this holds true, run the following commands on your terminal:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># view the remotes you currently have</span>
-git remote
-<span class="c1"># view the url of the git repo the origin remote points to</span>
-git remote get-url origin
-<span class="c1"># view the url of the git repo the upstream remote points to</span>
-git remote get-url upstream
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/looking_at_remotes.png"><img alt="looking at remotes" class="align-center" src="_images/looking_at_remotes.png" style="width: 700px;" /></a>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ul class="simple">
-<li><p>You also want to set your master branch to track the upstream remote:</p></li>
-</ul>
+<ol class="arabic simple" start="3">
+<li><p>Set your master branch to track the upstream remote:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fetch the latest changes (but doesn&#39;t merge remote changes to your local files)</span>
 git fetch upstream
 <span class="c1"># track the upstream remote branch</span>
 git branch -u upstream/master
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="3">
-<li><p><strong>Pull any new commits in the official handbook repo</strong> to keep your master branch up to date:</p></li>
+<ol class="arabic simple" start="4">
+<li><p>Pull any new commits in the official handbook repo to keep your master branch up to date:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fetches and merges the remote changes to your local files</span>
 git pull --ff-only
-<span class="c1"># push the commits to your forked repo</span>
-git push origin master
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>You have to do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">master</span></code> in order to push any commits that you pulled from the official repo to your forked repo.</p></li>
-</ul>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You won’t be able to push changes you make directly to the official handbook repo. Instead, you will have to submit pull requests and the moderators/owners of the repo will review your pull request and decide whether they want to accept and merge your changes with the official handbook repo.</p>
 <p>For this reason, it is <strong>highly recommended</strong> that you don’t make any changes to the <cite>master</cite> branch of your forked repo. Instead, there should be a 1-to-1 relationship between a feature you want to change and a pull request. In other words, you should create a new branch for every issue you want to change so that you can submit separate pull requests for every thing you want to modify.</p>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="4">
-<li><p>When you start working on a new feature, <strong>create/checkout a new branch</strong> for that feature:</p></li>
+<ol class="arabic simple" start="5">
+<li><p>When you start working on a new feature, create/checkout a new branch for that feature:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create and switch to new branch called &#39;new-feature&#39;</span>
 git checkout -b <span class="o">[</span>new-feature<span class="o">]</span>
   e.g., git checkout -b testing
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="5">
-<li><p>Using your favorite source code text editor, <strong>make changes to the the document you want to modify</strong>. Use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code> to (a) view your changes and (b) make sure that your changes haven’t messed up the rendering of the handbook.</p></li>
+<ol class="arabic simple" start="6">
+<li><p>Using your favorite source code text editor, make changes to the the document you want to modify. Use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code> to (a) view your changes and (b) make sure that your changes haven’t messed up the rendering of the handbook.</p></li>
 </ol>
 <ul class="simple">
 <li><p>When you’re making changes, it might be easy to lose track of what were the exact files that were modified. You can use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to view the files that were changed in the working directory.</p></li>
 </ul>
 <a class="with-border reference internal image-reference" href="_images/screenshot_git_status.png"><img alt="screenshot of output for 'git status'" class="with-border align-center" src="_images/screenshot_git_status.png" style="width: 500px;" /></a>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="6">
-<li><p>You want to <strong>add, commit, and push your changes to your feature branch</strong> in your forked repo.</p></li>
+<ol class="arabic simple" start="7">
+<li><p>You want to add, commit, and push your changes to your feature branch in your forked repo.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a modified file in the working directory to the staging area</span>
 git add docs/content_pages/01-01-howto.rst
@@ -351,52 +312,33 @@ git push --set-upstream origin <span class="o">[</span>new-feature<span class="o
 git push
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="7">
-<li><p>Once you are satisfied with the changes you have pushed to your forked repo, you are ready to <strong>submit a pull request</strong>! This can be done directly on terminal, but the instructions below show how you can submit and manage a pull request from the Github online interface.</p></li>
-</ol>
+</div>
+</div>
+<div class="section" id="actually-submitting-a-pull-request">
+<h3>Actually submitting a pull request<a class="headerlink" href="#actually-submitting-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>Once you are satisfied with the changes you have pushed to your forked repo, you are ready to submit a pull request! This can be done directly on terminal, but the instructions below show how you can submit and manage a pull request from the Github online interface.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Before you submit a pull request, make sure that your code renders the handbook locally on your computer!!</p>
 </div>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>On the Github page of your forked repo, make sure that you pushed the changes you committed (see where the arrow is pointing below) and that you are in the correct new-feature branch (in the dotted circle). <strong>Press ‘new pull request’</strong> to initiate a new pull request (in the solid box).</p></li>
-</ul>
+</ol>
 <a class="with-border reference internal image-reference" href="_images/github_page_after_push.png"><img alt="screenshot of forked repo before pull request" class="with-border align-center" src="_images/github_page_after_push.png" style="width: 600px;" /></a>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="8">
-<li><p>Leave any comments in the text box and then <strong>submit the pull request by pressing ‘Create pull request’</strong>, which is boxed in below.</p></li>
+<ol class="arabic simple" start="2">
+<li><p>Leave any comments in the text box and then submit the pull request by pressing ‘Create pull request’, which is boxed in below.</p></li>
 </ol>
+<ul class="simple">
+<li><p><em>NOTE: The dotted box below also shows you the info about what repo (on the right) you are trying to merge, via a pull request, to the official handbook repo (on the left). You want to make sure that you see a notice saying that the branches are able to merge!</em></p></li>
+</ul>
 <a class="with-border reference internal image-reference" href="_images/making_pull_request.png"><img alt="screenshot of making a pull request" class="with-border align-center" src="_images/making_pull_request.png" style="width: 600px;" /></a>
-<p><em>The dotted box above also shows you the info about what repo (on the right) you are trying to merge, via a pull request, to the official handbook repo (on the left). You want to make sure that you see a notice saying that the branches are able to merge!</em></p>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="9">
-<li><p>Congratulations! You have submitted a pull request. You will now have to <strong>wait for a moderator for the official handbook to review your changes and merge your pull request to the official repo</strong>.</p></li>
+<ol class="arabic simple" start="3">
+<li><p>Congratulations! You have submitted a pull request. You will now have to wait for a moderator for the official handbook to review your changes and merge your pull request to the oficial repo.</p></li>
 </ol>
-<a class="with-border reference internal image-reference" href="_images/pull_request_screenshot.png"><img alt="screenshot of after submitting a pull request" class="with-border align-center" src="_images/pull_request_screenshot.png" style="width: 700px;" /></a>
 <ul class="simple">
 <li><p>However, this sometimes doesn’t happen right away. The moderators might want you to make some changes before accepting your merge request. If this is the case, they will contact you.</p></li>
 </ul>
-<a class="reference internal image-reference" href="_images/decorative_line4.png"><img alt="decorative line" class="align-center" src="_images/decorative_line4.png" style="width: 700px; height: 8px;" /></a>
-<ol class="arabic simple" start="10">
-<li><p>If your pull request gets approved and is merged to the offical handbook, <strong>delete the branch</strong> for the feature that was just approved. You can do this from the terminal or from the github page.</p></li>
-</ol>
-<ul class="simple">
-<li><p>On terminal:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## delete the branch (both locally and on your remote)</span>
-git push &lt;remote_name&gt; --delete &lt;branch_name&gt;
-  e.g., git push origin --delete testing
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>On your forked repo, go to the branches tab.</p></li>
-</ul>
-<a class="with-border reference internal image-reference" href="_images/branches_on_repo.png"><img alt="screenshot of location of branches on repo" class="with-border align-center" src="_images/branches_on_repo.png" style="width: 700px;" /></a>
-<ul class="simple">
-<li><p>Find the branch you want to delete, and press the trash can icon.</p></li>
-</ul>
-<a class="with-border reference internal image-reference" href="_images/delete_branch.png"><img alt="screenshot of deleting a branch" class="with-border align-center" src="_images/delete_branch.png" style="width: 700px;" /></a>
+<a class="with-border reference internal image-reference" href="_images/pull_request_screenshot.png"><img alt="screenshot of after submitting a pull request" class="with-border align-center" src="_images/pull_request_screenshot.png" style="width: 600px;" /></a>
 </div>
 </div>
 <div class="section" id="github-cheat-sheet">
