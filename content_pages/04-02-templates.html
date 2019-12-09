@@ -86,7 +86,19 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Templates and atlases</a><ul>
+<li><a class="reference internal" href="#a-quick-glossary">A quick glossary</a></li>
+<li><a class="reference internal" href="#id1">Templates</a></li>
+<li><a class="reference internal" href="#atlases">Atlases</a></li>
+<li><a class="reference internal" href="#atlases-and-parcellations">Atlases and parcellations</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +131,91 @@
             
   <div class="section" id="templates-and-atlases">
 <span id="templates"></span><h1>Templates and atlases<a class="headerlink" href="#templates-and-atlases" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="a-quick-glossary">
+<h2>A quick glossary<a class="headerlink" href="#a-quick-glossary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Space:</strong> the coordinate space in which templates/atlases live (independent of voxel dimensions!</p></li>
+<li><p><strong>Template:</strong> the image that the data is actually going to be aligned to</p></li>
+<li><p><strong>Atlas:</strong> labels applicable to a template in a space</p></li>
+<li><dl class="simple">
+<dt><strong>Parcellations</strong> divisions into parcels (usually into labeled sections)</dt><dd><ul>
+<li><p>Labels usually found in ‘.anot’ files</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Registration:</strong> transforming an image into the coordinate space of another. In the case of fMRI we register different brains into a common space. Bold data will be in the same resolution that you’re asking for no matter what.</p></li>
+<li><p><strong>fs:</strong> freesurfer (surface space)</p></li>
+<li><p><strong>Resolution:</strong> actual pixel dimensions of your data (3x3x3 etc.)</p></li>
+<li><dl class="simple">
+<dt><strong>Asymmetric template:</strong> actual hemispheres are not symmetric–otherwise people just mirror hemispheres!!</dt><dd><ul>
+<li><p>Talaraich space is symmetric (mirrored hemispheres)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Transformations:</strong> taking a 4d brain image ( 3D voxels and time) and multiply it by a matrix (affine matrix for linear transformations) that tells you how to rotate and translate your brain image</p></li>
+<li><p><strong>Linear Transformations:</strong> use a 4x4 affine matrix with the last dimension for time (timeseries) remains untouched.</p></li>
+<li><p><strong>Nonlinear Transformations:</strong> <a class="reference external" href="https://www.neuroinf.jp/fmanager/view/737/bah20150723-alex.pdf">ANTs</a> uses a previously <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/19195496">validated algorithm</a> called Symmetric Normalization to register the brains</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Templates<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Templates are typically anatomical brain images in a standard space (e.g., MNI space). Many templates are created by averaging anatomical images from a large sample of subjects (e.g., MNI152NLin2009cAsym). Templates are used as target images when spatially normalizing images in a subject-specific space to standard space (e.g., using ANTs). Templates may either be in volumetric or surface space.</p>
+<p>Two very common volumetric templates are the MNI152NLin2009cAsym used by default in fMRIPrep and the MNI152NLin6Asym distributed by FSL. Volumetric templates are sometimes resampled to different spatial resolutions, such as 0.5 mm, 1.0 mm, and 2.0 mm isotropic voxels. The most common surface-based template is fsaverage. The spatial resolution of a surface template is determined by the linear divisions of an icosahedron (20-sided convex regular polygon; i.e., a d20 for the D&amp;D folks) according to the following equation: if the number of linear divisions n = 64, you will end up with 20 * n**2 faces (81,920 faces/triangles, or 40,960 per hemisphere) and 2 + 10 * n**2 vertices per hemisphere (40,962). Common fsaverage resolutions are fsaverage (163,842 vertices per hemispheres), fsaverage6 (40,962 vertices per hemisphere), fsaverage5 (10,242 vertices per hemisphere).</p>
+</div>
+<div class="section" id="atlases">
+<h2>Atlases<a class="headerlink" href="#atlases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>MNI atlas used by fmriprep: ICBM 152 Nonlinear atlases version 2009</dt><dd><ul>
+<li><p><a class="reference external" href="http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009">Download the Atlas here</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Surface space</dt><dd><ul>
+<li><p>For each subject, you will get fsnative space (idiosyncratic number of vertices per hemisphere)</p></li>
+<li><dl class="simple">
+<dt>Standard spaces:</dt><dd><ul>
+<li><p>fsaverage(7) (163,842 vertices per hemisphere)</p></li>
+<li><p>fsaverage6 (40,962 vertices per hemisphere)</p></li>
+<li><p>fsaverage5 (10,242 vertices per hemisphere)</p></li>
+<li><p>The number of vertices is determined by the linear divisions of an icosahedron (20-sided polygon; i.e., a d20 for the D&amp;D folks) according to the following equation: if the number of linear divisions n = 64, you will end up with 20 * n**2 faces (81,920 faces/triangles, or 40,960 per hemisphere) and 2 + 10 * n**2 vertices per hemisphere (40,962).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="atlases-and-parcellations">
+<h2>Atlases and parcellations<a class="headerlink" href="#atlases-and-parcellations" title="Permalink to this headline">¶</a></h2>
+<p>This is a type of Atlas where brain regions are clustered and labelled. Here is a list of useful parcellations if you want to select a specific ROI:</p>
+<ul class="simple">
+<li><p>Freesurfer atlases with the <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT">lookuptable</a></p></li>
+<li><p>Aparc+aseg: Desikan-Killiany atlas</p></li>
+<li><p>Aparc+a2009+aseg: Destrieux atlas</p></li>
+<li><p><a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT">Yeo</a>: in surface or MNI</p></li>
+<li><p><a class="reference external" href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal">Schaefer 2018</a> - in surface, MNI, HCP - new Yeo</p></li>
+<li><p><a class="reference external" href="https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal">Glasser</a></p></li>
+<li><p><a class="reference external" href="https://www.jonathanpower.net/2011-neuron-bigbrain.html">Powers 2011</a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>Desikan, R. S., Ségonne, F., Fischl, B., Quinn, B. T., Dickerson, B. C., Blacker, D., Buckner, R. L., Dale, A. M., Maguire, R. P., Hyman, B. T., Albert, M. S., &amp; Killiany, R. J. (2006). An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest. NeuroImage, 31(3), 968–980. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2006.01.021">https://doi.org/10.1016/j.neuroimage.2006.01.021</a></p>
+<p>Destrieux, C., Fischl, B., Dale, A., &amp; Halgren, E. (2010). Automatic parcellation of human cortical gyri and sulci using standard anatomical nomenclature. NeuroImage, 53(1), 1–15. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2010.06.010">https://doi.org/10.1016/j.neuroimage.2010.06.010</a></p>
+<p>Glasser, M. F., Coalson, T. S., Robinson, E. C., Hacker, C. D., Harwell, J., Yacoub, E., Ugurbil, K., Andersson, J., Beckmann, C. F., Jenkinson, M., Smith, S. M., &amp; Van Essen, D. C. (2016). A multi-modal parcellation of human cerebral cortex. Nature, 536(7615), 171–178. <a class="reference external" href="https://doi.org/10.1038/nature18933">https://doi.org/10.1038/nature18933</a></p>
+<p>Tzourio-Mazoyer, N., Landeau, B., Papathanassiou, D., Crivello, F., Etard, O., Delcroix, N., Mazoyer, B., Joliot, M. (2002). Automated anatomical labeling of activations in SPM using a macroscopic anatomical parcellation of the MNI MRI single-subject brain. NeuroImage, 15(1), 273–289. <a class="reference external" href="https://doi.org/10.1006/nimg.2001.0978">https://doi.org/10.1006/nimg.2001.0978</a></p>
+<p>Yeo, B. T. T., Krienen, F. M., Sepulcre, J., Sabuncu, M. R., Lashkari, D., Hollinshead, M., Roffman, J. L., Smoller, J. W., Zöllei, L., Polimeni, J. R., Fischl, B., Liu, H., &amp; Buckner, R. L. (2011). The organization of the human cerebral cortex estimated by intrinsic functional connectivity. Journal of Neurophysiology, 106(3), 1125–1165. <a class="reference external" href="https://doi.org/10.1152/jn.00338.2011">https://doi.org/10.1152/jn.00338.2011</a></p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
