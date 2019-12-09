@@ -46,32 +46,35 @@ The specific steps to copy the folder using the terminal are as follows:
 
 Here is the heirarchy of the folders in the :blue:`new_study_template` folder. **Read the footnotes because if you don’t, none of the following steps will work!**
 
-.. code-block:: bash
 
-   $ tree
+**NEED TO INSERT THE DIRECTORY HERE**
 
-   └── new_study_template		# copy this directory to setup the entire directory structure for a new project
-       └── code 
-           └── preprocessing            # SEE FOOTNOTE 1. this is where heudiconv, fmriprep, etc. scripts live
-               └── license.txt          # SEE FOOTNOTE 2. download a freesurfer license file and save here
-           └── analysis                 # [example] any other code can live at this level
-           └── task                     # [example]
-       └── data 
-           └── bids                     # this is where raw BIDS data will be saved by HeudiConv
-               └── sub-001
-               └── sub-002
-               └── etc.
-               └── derivatives          # this is where all your BIDS derivatives will be
-                   └── mriqc            # mriqc output will go here
-                       └── logs         # slurm logs will go here
-                   └── fmriprep         # fmriprep-preprocessed data will go here
-                       └── logs         # slurm logs will go here
-                   └── freesurfer
-               └── .bidsignore          # similar to .gitignore, list all files/directories you don’t want to be checked by the bids validator
-           └── dicom                    # raw dicoms copied from the scanner go here
-               └── check_volumes        # outputs checking that all dicoms transferred
-           └── T1w_defaced              # SEE FOOTNOTE 3. defaced T1 images
-           └── behavioral               # [example] any other data can live at this level
+.. .. code-block:: bash
+
+..    $ tree
+
+..    └── new_study_template		# copy this directory to setup the entire directory structure for a new project
+..        └── code 
+..            └── preprocessing            # SEE FOOTNOTE 1. this is where heudiconv, fmriprep, etc. scripts live
+..                └── license.txt          # SEE FOOTNOTE 2. download a freesurfer license file and save here
+..            └── analysis                 # [example] any other code can live at this level
+..            └── task                     # [example]
+..        └── data 
+..            └── bids                     # this is where raw BIDS data will be saved by HeudiConv
+..                └── sub-001
+..                └── sub-002
+..                └── etc.
+..                └── derivatives          # this is where all your BIDS derivatives will be
+..                    └── mriqc            # mriqc output will go here
+..                        └── logs         # slurm logs will go here
+..                    └── fmriprep         # fmriprep-preprocessed data will go here
+..                        └── logs         # slurm logs will go here
+..                    └── freesurfer
+..                └── .bidsignore          # similar to .gitignore, list all files/directories you don’t want to be checked by the bids validator
+..            └── dicom                    # raw dicoms copied from the scanner go here
+..                └── check_volumes        # outputs checking that all dicoms transferred
+..            └── T1w_defaced              # SEE FOOTNOTE 3. defaced T1 images
+..            └── behavioral               # [example] any other data can live at this level
 
 *Step 2: Convert your dicoms into nifti files through heudiconv*
 ----------------------------------------------------------------
