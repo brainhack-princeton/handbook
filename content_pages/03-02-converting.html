@@ -149,6 +149,15 @@
 <div class="section" id="step-1-setting-up-your-directory-structure">
 <h3><em>Step 1: Setting up your directory structure</em><a class="headerlink" href="#step-1-setting-up-your-directory-structure" title="Permalink to this headline">¶</a></h3>
 <p>Getting data off the scanner in a BIDS-formatted way requires that your directories are made in a specific way. To make things simpler, we have made the folders already for you. Copy the folder <span class="blue">new_study_template</span> into whichever path you would like. The location is <span class="blue">/jukebox/norman/pygers/handbook/new_study_template</span>.</p>
+<p>The specific steps to copy the folder using the terminal are as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># log into spock or scotty</span>
+ssh username@spock.pni.princeton.edu
+ssh username@scotty.pni.princeton.edu
+<span class="c1"># copy the study template to your own path</span>
+cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/username/
+</pre></div>
+</div>
+<p>Here is the heirarchy of the folders in the <span class="blue">new_study_template</span> folder. <strong>Read the footnotes because if you don’t, none of the following steps will work!</strong></p>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>
