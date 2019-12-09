@@ -93,6 +93,7 @@
 <li><a class="reference internal" href="#benefits-of-using-bids-format">Benefits of using BIDS format</a></li>
 <li><a class="reference internal" href="#convert-dicoms-to-bids-formatted-nifti">Convert dicoms to BIDS-formatted Nifti</a><ul>
 <li><a class="reference internal" href="#step-1-setting-up-your-directory-structure"><em>Step 1: Setting up your directory structure</em></a></li>
+<li><a class="reference internal" href="#step-2-convert-your-dicoms-into-nifti-files-through-heudiconv"><em>Step 2: Convert your dicoms into nifti files through heudiconv</em></a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +159,6 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/userna
 </pre></div>
 </div>
 <p>Here is the heirarchy of the folders in the <span class="blue">new_study_template</span> folder. <strong>Read the footnotes because if you don’t, none of the following steps will work!</strong></p>
-<p><strong>NEED TO INSERT THE DIRECTORY HERE</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tree
 
 └── new_study_template               <span class="c1"># copy this directory to setup the entire directory structure for a new project</span>
@@ -185,6 +185,46 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/userna
         └── behavioral               <span class="c1"># [example] any other data can live at this level</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="step-2-convert-your-dicoms-into-nifti-files-through-heudiconv">
+<h3><em>Step 2: Convert your dicoms into nifti files through heudiconv</em><a class="headerlink" href="#step-2-convert-your-dicoms-into-nifti-files-through-heudiconv" title="Permalink to this headline">¶</a></h3>
+<p>The script step1_preproc.sh (in new_study_template/code/preprocessing) needs your dicom images as input, unzips them, and converts them to nifti-images (fitting within the BIDS format) using heudiconv. You run this script for each subject and each session separately. <a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">Heudiconv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts</a>.</p>
+<p>It needs three inputs:
+1. subjectID
+2. sessionID
+3. the name of the directory that contains your DICOM-images of that subject/session (at Princeton, this is in the “conquest” directory).</p>
+<p>The step1_preproc.sh script will also need the number_of_files.py script and run_heudiconv.py script (also in <span class="blue">new_study_template/code/preprocessing</span>).</p>
+<p>Before running the first time, you should make sure that you have properly updated your paths. If you need to, run <span class="blue">step1_preproc.sh</span> line by line to check that the correct paths will go into <span class="blue">run_heudiconv.py</span>. If you have not already done this, follow footnote 2 above and update <span class="blue">globals.sh</span> with your directory info!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you&#39;re in the preprocessing directory</span>
+<span class="nb">cd</span> /Volumes/YOURLAB/USERNAME/new_study_template/code/preprocessing
+<span class="c1"># run the script step1_preproc.sh for session 01 and subject 999</span>
+./step1_preproc.sh <span class="m">999</span> <span class="m">01</span> <span class="o">[</span>conquest folder name<span class="o">]</span>
+
+<span class="c1"># NOTE: For our sample project, use the following command</span>
+./step1_preproc.sh <span class="m">001</span> <span class="m">01</span> 0219191_mystudy-0219-1114
+</pre></div>
+</div>
+<p>Other things to know:</p>
+<ul class="simple">
+<li><p>Whatever subjectID you use as your first input, that will be how your BIDS subject folders are named (eg., inputting 999 above will result in a directory called sub-999). SessionID (second input) should match how your runs were named on the scanner (e.g., input 01 for sessionID if your runs were named <span class="blue">func_ses-01_task-study_run-01</span>).</p></li>
+<li><dl class="simple">
+<dt>Recommended to run this in a tmux window so you don’t run into issues with losing connection to server, etc. After ssh-ing into the server, run the following to create or attach to a tmux window (NOTE: replace [name] with whatever you want to call the new tmux session you are opening, then you can attach to that specific window/session in the future):</dt><dd><ul>
+<li><p>Create a new tmux window: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">[name]</span></code></p></li>
+<li><p>Attach to an existing window: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">a</span> <span class="pre">-t</span> <span class="pre">[name]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>To check name of subject folders on conquest:</dt><dd><ul>
+<li><p>Skyra - <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2019</span></code></p></li>
+<li><p>Prisma - <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2019</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>If heudiconv is failing, check that your original dicoms are only zipped one time (meaning .gz is the only extension instead of .gz.gz). If your dicoms are zipped multiple times, add another line for gunzipping again! Basically do this until you have dcm’s!</p></li>
+</ul>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>
