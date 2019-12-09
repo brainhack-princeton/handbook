@@ -86,7 +86,19 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Registration and resampling</a><ul>
+<li><a class="reference internal" href="#a-quick-glossary">A quick glossary</a></li>
+<li><a class="reference internal" href="#reslicing-resampling">Reslicing &amp; resampling</a></li>
+<li><a class="reference internal" href="#id1">Registration</a></li>
+<li><a class="reference internal" href="#volumetric-space-transformations">Volumetric space transformations</a></li>
+<li><a class="reference internal" href="#surface-space-transformations">Surface space transformations</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +131,161 @@
             
   <div class="section" id="registration-and-resampling">
 <span id="registration"></span><h1>Registration and resampling<a class="headerlink" href="#registration-and-resampling" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><p>No matter how you collect your data and the kind of analysis you’re planning, you will have to register your data along the way to a target space. The specific target and reference images will change, but the general principles for registration are the same now matter what you’re doing. We’re going to discuss some basic concepts and provide some scripts below.</p>
+<div class="section" id="a-quick-glossary">
+<h2>A quick glossary<a class="headerlink" href="#a-quick-glossary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Grid:</strong> how the data is sliced into separate voxels. It changes by resolution of your image and scanning FOV. (FOV = grid*voxel size).</p></li>
+<li><p><strong>Resolution:</strong> the size of the voxels only. It is not the same thing as grid or space, because two images can be in different spaces but still be in 3 mm resolution. Likewise, two images can be in the same space (e.g., MNI) but one can be in 2 mm resolution and the other can be in 3 mm resolution.</p></li>
+<li><p><strong>Registration:</strong> the transformation from one space to another</p></li>
+<li><p><strong>Resampling:</strong> the transformation from one grid to another</p></li>
+<li><p><strong>Reference image:</strong> the image that is in the desired space/grid</p></li>
+</ul>
+</div>
+<div class="section" id="reslicing-resampling">
+<h2>Reslicing &amp; resampling<a class="headerlink" href="#reslicing-resampling" title="Permalink to this headline">¶</a></h2>
+<p>This how we take two images in the same space and make sure they have the same grid (meaning that they are the same resolution and have the same dimensions). To do this, there are various algorithms you can use:
+Nearest neighbor: assign the voxel to the nearest voxel in the original space
+Linear interpolation</p>
+<p>Luckily, reslicing is easy with python! We have a script - resample.py - for this located in: <span class="blue">/jukebox/norman/pygers/handbook/sample_project/code/analysis</span>.</p>
+<p>To run the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$python</span> resample.py <span class="nv">$IMAGE_TO_RESAMPLE</span> <span class="nv">$REFERENCE_IMAGE</span>
+</pre></div>
+</div>
+<p><em>If you want to use AFNI only, here’s some help from Meir:</em>
+3dresample this AFNI command allows transformations between different mni spaces. It resamples the map in the second argument to the space of the map in the first argument, and outputs a map named third argument.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dresample -master /mnt/bucket/labs/hasson/meshulam/Utils/brain_templates/afni_2009c/icbm152_3mm.nii -inset /mnt/bucket/labs/hasson/meshulam/onlineL/spring18/processing/searchlight_masks/roi/harvardoxford-cortical_prob_SPL_thr10_bin.nii.gz -prefix /mnt/bucket/labs/hasson/meshulam/onlineL/spring18/processing/searchlight_masks/roi/harvardoxford-cortical_prob_SPL_thr10_bin_icbm152_3mm.nii.gz
+</pre></div>
+</div>
+<p>Things to note:</p>
+<ul class="simple">
+<li><p>The code will save the image you want resampled in the same directory that the original image is in. It will have the same name as the original image with _resampled at the end.</p></li>
+<li><p>Make sure you provide the <strong>full path to both images!</strong></p></li>
+<li><p>Change the interpolation type in the code if you don’t want nearest neighbor</p></li>
+<li><p>Check that the _resampled image has the exact same dimensions and is the same resolution as the reference image. (You can use fslinfo (FSL) or 3dinfo (AFNI) for this)</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Registration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This is the process of transforming one image from one space into the target space of the reference image. It can get complicated because of the various options:</p>
+<ul class="simple">
+<li><p>difference directions of transformations (e.g., which to assign as the reference image)</p></li>
+<li><p>different spaces to convert between (e.g., MNI vs. fsaverage)</p></li>
+<li><p>different software algorithms to register images (e.g., FSL, AFNI, ANTS, Freesurfer)</p></li>
+</ul>
+<p>Because we’re focusing on fmriprep, we will first provide documentation with how to use the registration that is already computed by fmriprep. Once fmriprep is completed, all you need to do is know where to find the relevant outputs! All the work has been done for you… (Just kidding, it’s still difficult but at least registration is done.)</p>
+</div>
+<div class="section" id="volumetric-space-transformations">
+<h2>Volumetric space transformations<a class="headerlink" href="#volumetric-space-transformations" title="Permalink to this headline">¶</a></h2>
+<p>For volumetric transformations, fmriprep uses a combination of Freesurfer, FSL, and ANTs to register images. However, your final transformation matrices will be saved in an ANTs transformation matrix. This is an .h5 file; it contains both the linear and nonlinear transforms. Let’s assume that you specified MNI space as your standard image for our examples.</p>
+<ol class="arabic simple">
+<li><p><strong>Original space: MNI → Target space: T1w</strong></p></li>
+</ol>
+<ul>
+<li><p>Example usage: you want to stay in subject-specific (e.g., MNI) space but you have an ROI in standard (e.g., MNI) space that you want to use</p></li>
+<li><p>Reference image: an image in T1w space</p></li>
+<li><p>Input image: your ROI in MNI space</p></li>
+<li><p>Transformation: the .h5 file is located in your output from fmriprep in <span class="blue">/derivatives/fmriprep/sub-001/ses-01/anat/</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">sub-001_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5</span></code></p></li>
+<li><p>For older fmriprep versions, “from/to” will be “space/target”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Command: <a class="reference external" href="https://github.com/ANTsX/ANTs/issues/531">antsApplyTransforms</a></dt><dd><ul class="simple">
+<li><p>-i = input image</p></li>
+<li><p>-r = reference image</p></li>
+<li><p>-t = transformation from fmriprep called by [transformFileName, useInverse]</p></li>
+<li><p>-n = nearest neighbor interpolation</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Example command to transform the Glasser parcellation:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>antsApplyTransforms <span class="se">\</span>
+        -i HCP-MMP1_on_MNI152_ICMB2009a_nlin.nii.gz <span class="se">\</span>
+        -r fmriprep_BOLD_T1w_preproc_Tmean.nii.gz <span class="se">\</span>
+        -t <span class="o">[</span>BIDS_DIR/derivatives/fmriprep/sub-001/ses-01/anat/sub-001_ses-01_T1w_from-MNI152NLin2009cAsym_to-T1w_warp.h5,0<span class="o">]</span>  <span class="se">\</span>
+        -n NearestNeighbor -o Glasser_in_T1w.nii.gz
+        -v <span class="m">1</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Original space: MNI → Target space: EPI</strong></p></li>
+</ol>
+<ul>
+<li><p>Example usage: you have an ROI in MNI space and want to stay in your original epi space</p></li>
+<li><p>Reference image: an original EPI that has remained in this space (not any of the fmriprep outputs because those are automatically registered to T1w, MNI, or fsaverage space)</p></li>
+<li><p>Input image: your ROI in MNI space</p></li>
+<li><p>Transformations: this is really a two step transformation so you need two different matrices</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>MNI → T1w .h5 transformation as described above</p></li>
+<li><p>T1w → EPI transformation: fmriprep saves this transformation in the <span class="blue">derivatives/work/fmriprep_wf</span> directory. Specifically, for subject 001 and task-story run 01, thie file would be located in</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/func_preproc_ses_01_task_story_run_01_wf/bold_reg_wf/bbreg_wf/fsl2itk_fwd/affine.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Go to the specific <span class="blue">func_preproc_ses_01_task_XX_run_XX</span> folder to get the matrix from whatever task/run you’re want to analyze</p></li>
+<li><p>Command: antsApplyTransforms - this time you will input both transformations</p></li>
+<li><p>Example command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>antsApplyTransforms --default-value <span class="m">0</span> --float <span class="m">1</span> <span class="se">\</span>
+        --interpolation LanczosWindowedSinc -d <span class="m">3</span> -e <span class="m">3</span> --input <span class="o">{</span><span class="m">0</span><span class="o">}</span> <span class="se">\</span>
+        --reference-image <span class="nv">$EPI_ref_filename</span> --output ROI_space-EPI.nii.gz <span class="se">\</span>
+        --transform <span class="nv">$MNI_to_T1w</span>.5 --transform affine.txt -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="surface-space-transformations">
+<h2>Surface space transformations<a class="headerlink" href="#surface-space-transformations" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Original space: fsnative → Target space: T1w space (or any space outputted in fmriprep)</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Example usage: you want to use aparc+aseg2009 in T1w space (NOTE: if you’re using the aparc+aseg atlas, it is already transformed to T1w space. You only need to do this if you want the updated aparc+aseg2009 version.)</p></li>
+<li><dl class="simple">
+<dt>Reference image: your outputted T1w images from fmriprep. This will be in the BOLD resolution in the space that you want (T1w, MNI, native). The newer versions of fmriprep also give you a specific reference image in your /ses-01/func/ directory; look for <span class="blue">space-T1w_boldref.nii.gz</span>. Just make sure that your reference image is 3D not 4D.</dt><dd><ul>
+<li><p>If you don’t have a reference image, you can make one by taking the mean across time using FSL’s <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Fslutils">function fslmaths</a>.</p></li>
+<li><p>Command: <code class="docutils literal notranslate"><span class="pre">fslmaths</span> <span class="pre">$EPI_4D_file</span> <span class="pre">-Tmean</span> <span class="pre">-mas</span> <span class="pre">$EPI_brain_mask</span> <span class="pre">EPI_3D_file.nii.gz</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Input image: aparc+aseg or aparc+aseg2009 segmentatio</p></li>
+<li><dl class="simple">
+<dt>Commands: To use Freesurfer, you will need to first convert your nifti files to .mgz. Then we will use the Freesurfer function label2vol to register from one space to another.</dt><dd><ul>
+<li><p>Convert .nii → .mgz: mri_convert EPI_3D_file.nii.gz EPI_3D_file.mgz</p></li>
+<li><p>Register freesurfer segmentation to whatever space the EPi is in:</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mri_label2vol --seg <span class="nv">$FREESURFER_DIR</span>/aparc+aseg.mgz <span class="se">\</span>
+--temp EPI_3D_file.mgz  <span class="se">\</span>
+ --o <span class="nv">$BOLD_DIR</span>/aparc+aseg-in-BOLD.nii.gz --fillthresh <span class="m">0</span>.5 <span class="se">\</span>
+--regheader <span class="nv">$FREESURFER_DIR</span>/aparc+aseg.mgz
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>You can find an example script to do this in</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/jukebox/norman/pygers/handbook/sample_project/code/preprocessing/aparc+aseg_registration.sh
+</pre></div>
+</div>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
