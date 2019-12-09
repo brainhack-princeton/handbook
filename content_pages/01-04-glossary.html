@@ -86,7 +86,17 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Glossary of useful terms</a><ul>
+<li><a class="reference internal" href="#computing">Computing</a></li>
+<li><a class="reference internal" href="#mri-acquisition">MRI Acquisition</a></li>
+<li><a class="reference internal" href="#open-science">Open science</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,10 +129,87 @@
             
   <div class="section" id="glossary-of-useful-terms">
 <span id="glossary"></span><h1>Glossary of useful terms<a class="headerlink" href="#glossary-of-useful-terms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="computing">
+<h2>Computing<a class="headerlink" href="#computing" title="Permalink to this headline">¶</a></h2>
 <dl class="glossary simple">
-<dt id="term-term">term</dt><dd><p>Definition</p>
+<dt id="term-container">Container</dt><dd><p>some software including all its dependencies bundled into a package to be able to run the software in multiple computing environments</p>
+</dd>
+<dt id="term-hpc">HPC</dt><dd><p>high-performance computing</p>
+</dd>
+<dt id="term-docker-singularity">Docker/Singularity</dt><dd><p>platform to deliver software package (<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>)</p>
+</dd>
+<dt id="term-job-scheduler-slurm">Job scheduler (slurm)</dt><dd><p>computer application that enables scheduling your script to be ran by a computing cluster (e.g. slurm)</p>
+</dd>
+<dt id="term-terminal">Terminal</dt><dd><p>interface for typing commands</p>
+</dd>
+<dt id="term-command-line">Command line</dt><dd><p>typing commands directly into a terminal, often used to do tasks easier remotely and/or automatic (compared to a GUI)</p>
+</dd>
+<dt id="term-gui">GUI</dt><dd><p>graphical user interface</p>
+</dd>
+<dt id="term-vim">Vim</dt><dd><p><em>to be added</em></p>
+</dd>
+<dt id="term-mounting-the-cluster">Mounting the cluster</dt><dd><p>ability to access files directly that are saved on a remotely located set of high performance computers (i.e. cluster)</p>
+</dd>
+<dt id="term-ssh">SSH</dt><dd><p>a secure channel to access a computer remotely</p>
+</dd>
+<dt id="term-cluster">Cluster</dt><dd><p>set of connected high performing computers that can be accessed to get more computing power</p>
+</dd>
+<dt id="term-bash">Bash</dt><dd><p>command language</p>
+</dd>
+<dt id="term-text-editor">Text editor</dt><dd><p>what you need for editing python scripts in an easy way (outside of terminal) – pycharm, sublime, spyder, etc.</p>
+</dd>
+<dt id="term-tmux">tmux</dt><dd><p>allows terminal session to remain active without being visible</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="mri-acquisition">
+<h2>MRI Acquisition<a class="headerlink" href="#mri-acquisition" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary simple">
+<dt id="term-bandwidth">Bandwidth</dt><dd><p>range of frequencies associated with signal reception.</p>
+</dd>
+<dt id="term-dicom">DICOM</dt><dd><p>commonly used image format for MRI images (as well as other types of medical images like CT etc). This is the format that you will get your MRI-images in when taking them from the scanner after data acquisition.</p>
+</dd>
+<dt id="term-nifti">Nifti</dt><dd><p>common used data format for (f)MRI images</p>
+</dd>
+<dt id="term-grappa-msense">GRAPPA / mSENSE</dt><dd><p>two parallel acquisition techniques that can shorten the acquisition time or increase the spatial resolution in the same examination time</p>
+</dd>
+<dt id="term-ipat">iPAT</dt><dd><p><em>to be added</em></p>
+</dd>
+<dt id="term-sms">SMS</dt><dd><p>simultaneous multislice technique, acceleration in data acquisition</p>
+</dd>
+<dt id="term-te">TE</dt><dd><p>echo time, time between RF (radio frequency) pulse and receipt of echo signal</p>
+</dd>
+<dt id="term-tr">TR</dt><dd><p>repetition time, length of time between two consecutive epi images</p>
+</dd>
+<dt id="term-voxel">Voxel</dt><dd><p>volume element within your MR-image, your MR-image is a 3D matrix and each element of this matrix is referred to as voxel.</p>
+</dd>
+<dt id="term-epi">EPI</dt><dd><p>functional MRI scan (echo-planar imaging)</p>
+</dd>
+<dt id="term-bold">BOLD</dt><dd><p>Blood-oxygen-level-dependent</p>
+</dd>
+<dt id="term-gre">GRE</dt><dd><p>Gradient Echo, MRI technique for T2-weighted imaging that requires gradient echo signal</p>
+</dd>
+<dt id="term-snr">SNR</dt><dd><p>signal-to-noise ratio, relative contribution of true detected signal and random background noise</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="open-science">
+<h2>Open science<a class="headerlink" href="#open-science" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary simple">
+<dt id="term-github"><a class="reference external" href="https://github.com/">Github</a></dt><dd><p>platforms that allows you to save version controlled scripts</p>
+</dd>
+<dt id="term-openneuro"><a class="reference external" href="https://openneuro.org/">OpenNeuro</a></dt><dd><p>Free and open platform to share neuroimaging data</p>
+</dd>
+<dt id="term-osf"><a class="reference external" href="https://osf.io/">OSF</a></dt><dd><p>Open Science Framework, free and open source project management tool (often used for preregistration of research hypotheses and task designs (during or before data acquisition)</p>
+</dd>
+<dt id="term-brainiak"><a class="reference external" href="https://www.biorxiv.org/">brainIAK</a></dt><dd><p>open-source python toolbox for advanced neuroimaging analysis</p>
+</dd>
+<dt id="term-jupyter-notebook">Jupyter notebook</dt><dd><p>open-source web-based interactive computational environment for Python and R</p>
+</dd>
+<dt id="term-anaconda"><a class="reference external" href="https://www.anaconda.com/">Anaconda</a></dt><dd><p>open-source distribution of Python and R data science packages</p>
+</dd>
+</dl>
+</div>
 </div>
 
 
