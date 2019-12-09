@@ -46,8 +46,6 @@ The specific steps to copy the folder using the terminal are as follows:
 
 Here is the heirarchy of the folders in the :blue:`new_study_template` folder. **Read the footnotes because if you don’t, none of the following steps will work!**
 
-**NEED TO INSERT THE DIRECTORY HERE**
-
 .. code-block:: bash
 
    $ tree
@@ -75,6 +73,40 @@ Here is the heirarchy of the folders in the :blue:`new_study_template` folder. *
            └── T1w_defaced              # SEE FOOTNOTE 3. defaced T1 images
            └── behavioral               # [example] any other data can live at this level
 
+*Step 2: Convert your dicoms into nifti files through heudiconv*
+----------------------------------------------------------------
+
+The script step1_preproc.sh (in new_study_template/code/preprocessing) needs your dicom images as input, unzips them, and converts them to nifti-images (fitting within the BIDS format) using heudiconv. You run this script for each subject and each session separately. `Heudiconv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts <https://heudiconv.readthedocs.io/en/latest/>`_. 
+
+It needs three inputs: 
+1. subjectID
+2. sessionID
+3. the name of the directory that contains your DICOM-images of that subject/session (at Princeton, this is in the “conquest” directory). 
+
+The step1_preproc.sh script will also need the number_of_files.py script and run_heudiconv.py script (also in :blue:`new_study_template/code/preprocessing`).
+
+Before running the first time, you should make sure that you have properly updated your paths. If you need to, run :blue:`step1_preproc.sh` line by line to check that the correct paths will go into :blue:`run_heudiconv.py`. If you have not already done this, follow footnote 2 above and update :blue:`globals.sh` with your directory info!
+
+.. code-block:: bash
+
+    # make sure you're in the preprocessing directory
+    cd /Volumes/YOURLAB/USERNAME/new_study_template/code/preprocessing
+    # run the script step1_preproc.sh for session 01 and subject 999
+    ./step1_preproc.sh 999 01 [conquest folder name]
+
+    # NOTE: For our sample project, use the following command
+    ./step1_preproc.sh 001 01 0219191_mystudy-0219-1114
+
+Other things to know:
+
+* Whatever subjectID you use as your first input, that will be how your BIDS subject folders are named (eg., inputting 999 above will result in a directory called sub-999). SessionID (second input) should match how your runs were named on the scanner (e.g., input 01 for sessionID if your runs were named :blue:`func_ses-01_task-study_run-01`).
+* Recommended to run this in a tmux window so you don’t run into issues with losing connection to server, etc. After ssh-ing into the server, run the following to create or attach to a tmux window (NOTE: replace [name] with whatever you want to call the new tmux session you are opening, then you can attach to that specific window/session in the future):
+    * Create a new tmux window: ``tmux new -s [name]``
+    * Attach to an existing window: ``tmux a -t [name]``
+* To check name of subject folders on conquest: 
+    * Skyra - ``ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2019``
+    * Prisma - ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2019``
+* If heudiconv is failing, check that your original dicoms are only zipped one time (meaning .gz is the only extension instead of .gz.gz). If your dicoms are zipped multiple times, add another line for gunzipping again! Basically do this until you have dcm’s!
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
