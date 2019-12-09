@@ -91,6 +91,10 @@
   <ul>
 <li><a class="reference internal" href="#">Converting data to BIDS</a><ul>
 <li><a class="reference internal" href="#benefits-of-using-bids-format">Benefits of using BIDS format</a></li>
+<li><a class="reference internal" href="#convert-dicoms-to-bids-formatted-nifti">Convert dicoms to BIDS-formatted Nifti</a><ul>
+<li><a class="reference internal" href="#step-1-setting-up-your-directory-structure"><em>Step 1: Setting up your directory structure</em></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -138,7 +142,15 @@
 <li><p><strong>Checking data integrity:</strong> By validating your data structure through bids-validator, potential problems or errors in the data can be discovered.</p></li>
 </ul>
 <p><a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">Find out more about BIDS data specifications here</a>.</p>
+</div>
+<div class="section" id="convert-dicoms-to-bids-formatted-nifti">
+<h2>Convert dicoms to BIDS-formatted Nifti<a class="headerlink" href="#convert-dicoms-to-bids-formatted-nifti" title="Permalink to this headline">¶</a></h2>
+<p>The first step once you have the DICOM-images of your experiment in the BIDS-format is to convert your dicoms into nifti-images and, in the case you have acquired fieldmaps, to make sure the fieldmap corrections are applied to the correct functional runs.</p>
+<div class="section" id="step-1-setting-up-your-directory-structure">
+<h3><em>Step 1: Setting up your directory structure</em><a class="headerlink" href="#step-1-setting-up-your-directory-structure" title="Permalink to this headline">¶</a></h3>
+<p>Getting data off the scanner in a BIDS-formatted way requires that your directories are made in a specific way. To make things simpler, we have made the folders already for you. Copy the folder <span class="blue">new_study_template</span> into whichever path you would like. The location is <span class="blue">/jukebox/norman/pygers/handbook/new_study_template</span>.</p>
 <a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 </div>
 

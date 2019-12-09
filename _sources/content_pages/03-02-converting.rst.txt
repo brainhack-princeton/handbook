@@ -24,6 +24,16 @@ BIDS is a standard and widely-used format of structuring data. It facilities:
 
 `Find out more about BIDS data specifications here <https://bids-specification.readthedocs.io/en/stable/>`_.
 
+Convert dicoms to BIDS-formatted Nifti
+======================================
+
+The first step once you have the DICOM-images of your experiment in the BIDS-format is to convert your dicoms into nifti-images and, in the case you have acquired fieldmaps, to make sure the fieldmap corrections are applied to the correct functional runs.
+
+*Step 1: Setting up your directory structure*
+---------------------------------------------
+
+Getting data off the scanner in a BIDS-formatted way requires that your directories are made in a specific way. To make things simpler, we have made the folders already for you. Copy the folder :blue:`new_study_template` into whichever path you would like. The location is :blue:`/jukebox/norman/pygers/handbook/new_study_template`.
+
 .. image:: ../images/return_to_timeline.png
   :width: 300
   :align: center
