@@ -86,7 +86,18 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Visualization software</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#fsl">FSL</a></li>
+<li><a class="reference internal" href="#afni">AFNI</a></li>
+<li><a class="reference internal" href="#pysurfer">PYSURFER</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +130,52 @@
             
   <div class="section" id="visualization-software">
 <span id="visualization"></span><h1>Visualization software<a class="headerlink" href="#visualization-software" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>For a lot of reasons, you’ll want to visualize your outputs from initial data collection, registration, preprocessing, and your final analyses! For all of these, make sure you log into the remote server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh username@sever -XY
+</pre></div>
+</div>
+<p>The -XY enables X11 forwarding for new windows to be able to open on your local computer. (-X setting is with security controls and -Y is without security–see “type man ssh” in terminal for more information.) Also, make sure to have XQuartz installed on your local computer. (Note - some versions of XQuartz may not be compatible with the particular software you want to use.)</p>
+</div>
+<div class="section" id="fsl">
+<h2>FSL<a class="headerlink" href="#fsl" title="Permalink to this headline">¶</a></h2>
+<p>VIsualizing data in FSL used to be with fslview, but with the newer versions of FSL, this has now become fslview_deprecated. FSL now uses the viewer fsleyes. The drawback of fslview is that it only allows you to open images if they have the <strong>exact same</strong> dimensions (meaning grid size &amp; resolution). Fsleyes fixed that issue so you can open multiple nifti files at once.</p>
+<p>To open either, make sure you have the FSL module loaded. Then you would type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fslview_deprecated <span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>OR</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsleyes <span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>This will just open the visualizer. The “&amp;” at the end allows you to run other commands in terminal while the X window is open. Otherwise, you will need to close out of the X window to be able to run another command.</p>
+<p>You can open a specific nifti image at the same time by just putting it at the end:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fsleyes anat.ii.gz
+</pre></div>
+</div>
+<p>Other tools: You can use fslview/fsleyes to load standard MNI templates (with open–&gt;standard) and atlases (with tools–&gt;) to get ROIs from the atlase like Harvard-Oxford.</p>
+</div>
+<div class="section" id="afni">
+<h2>AFNI<a class="headerlink" href="#afni" title="Permalink to this headline">¶</a></h2>
+<p>The AFNI viewer can do a lot, but it can be overwhelming for this reason. For the AFNI viewer, you just have to type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>afni
+</pre></div>
+</div>
+<p>Into your terminal window. This one is meant to have an “underlay” image and “overlay” image. The underlay is the standardized image that you would want to display your results on top of. For example, the mni-icbm-2009c standard. The overlay would be the results.</p>
+<p>You would then choose which “BRIK” you want to display. This part really only makes sense if you did your GLM analysis with AFNI. It saves each coefficient as a separate BRIK in a nifti file. The BRIKS (unless saved separately in another step) are only accessible via AFNI software. So you can select which statistic you want to visualize. Then you select which statistic you want to use in terms of thresholding for visualization.</p>
+<p>To then run cluster correction in the viewer, threshold the data by right-clicking for p-values and enter the p-value you want to threshold for each voxel. Then go up to “clusterize” and enter NN and minimum voxel size in the cluster settings (which you got from an output after running Clustsim).</p>
+<p>Then, click rpt for the report to see if there are any significant clusters that meet the voxel and cluster criteria. From there, you can do other cool things like go to each cluster, save the cluster, and with “whereami” get some labels for the cluster!</p>
+</div>
+<div class="section" id="pysurfer">
+<h2>PYSURFER<a class="headerlink" href="#pysurfer" title="Permalink to this headline">¶</a></h2>
+<p><em>From Rolando:</em></p>
+<p>Below are the two scripts to get pysurfer up (jupyter notebook and a .py).</p>
+<p><a class="reference external" href="https://github.com/rmasiso/helpful/tree/master/fmri">https://github.com/rmasiso/helpful/tree/master/fmri</a></p>
+<p>NOTE: Don’t forget, pysurfer works with python 2.7, so make sure to ‘source activate’ your environment!</p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
