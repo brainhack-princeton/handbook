@@ -90,6 +90,27 @@ http://nist.mni.mcgill.ca/?p=904
 
 Yarkoni, T., Barch, D. M., Gray, J. R., Conturo, T. E., & Braver, T. S. (2009). BOLD correlates of trial-by-trial reaction time variability in gray and white matter: a multi-study fMRI analysis. PLOs One, 4(1), e4257. https://doi.org/10.1371/journal.pone.0004257
 
+Using FSL
+^^^^^^^^^
+
+Where to find parcellations in MNI space
+
+* HCP-MMP1.0  `projected to MNI space <https://figshare.com/articles/HCP-MMP1_0_projected_on_MNI2009a_GM_volumetric_in_NIfTI_format/3501911>`_ (controversial, new)
+		* `Table found here describing the parcellation labels <https://media.nature.com/original/nature-assets/nature/journal/v536/n7615/extref/nature18933-s3.pdf>`_
+* Yeo 2011 (already converted to MNI space in FSL)
+
+**Converting statistics from a previous analysis from native → common space for group analysis**
+
+.. code-block:: bash
+
+		antsApplyTransform \
+		  -i contrast_image_space-T1w.nii.gz \
+		  -r MNI152NLin2009cAsym_BOLDRES.nii.gz \
+		  -t [BIDS_DIR/derivatives/fmriprep/sub-001/ses-01/anat/sub-001_ses-01_T1w_target-MNI152NLin2009cAsym_warp.h5,0] \
+		  -n NearestNeighbor
+		  -o contrast_image_space-MNI152NLin2009cAsym.nii.gz
+		  -v 1
+
 
 
 
