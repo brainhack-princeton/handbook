@@ -49,6 +49,7 @@ Steps before running a GLM:
 				* 3dmerge is regular smoothing similar to “blur” or other smoothing tools
 				* 3dBlurToFWHM: this is the one that separately adapts smoothing to enforce a constant smoothness across the brain (so it will adapt based on intrinsic smoothness)
 * Setting up timing: 1 timing file per category
+		* Based on your recorded data, create timing .1D  files that give the onset time of the stimulus
 
 
 
