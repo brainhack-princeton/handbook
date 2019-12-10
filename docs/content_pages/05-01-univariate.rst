@@ -51,8 +51,7 @@ Steps before running a GLM:
 * Setting up timing: 1 timing file per category
 	* Based on your recorded data, create timing .1D  files that give the onset time of the stimulus
 		* The time is relative to 0 being the onset of the first TR you’re keeping (so if you’re deleting TR’s don’t include this in the timing!)
-			* If you’re using more than one run, have the second row be the next run
-				* Use the option --localtimes to indicate this is the way you’re timing is set up
+			* If you’re using more than one run, have the second row be the next run: use the option --localtimes to indicate this is the way you’re timing is set up
 
 
 
