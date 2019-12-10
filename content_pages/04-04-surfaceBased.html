@@ -86,7 +86,23 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Surface-based analysis</a><ul>
+<li><a class="reference internal" href="#preparing-for-running-analyses">Preparing for running analyses</a></li>
+<li><a class="reference internal" href="#running-a-glm">Running a GLM</a></li>
+<li><a class="reference internal" href="#viewing-your-data">Viewing your data</a></li>
+<li><a class="reference internal" href="#smoothing-your-data">Smoothing your data</a></li>
+<li><a class="reference internal" href="#run-a-glm-on-your-smoothed-images">Run a GLM on your smoothed images</a></li>
+<li><a class="reference internal" href="#group-level-analysis">Group Level Analysis</a></li>
+<li><a class="reference internal" href="#determining-cluster-thresholds">Determining Cluster Thresholds</a></li>
+<li><a class="reference internal" href="#using-cluster-thresholds">Using Cluster Thresholds</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +135,125 @@
             
   <div class="section" id="surface-based-analysis">
 <span id="surfacebased"></span><h1>Surface-based analysis<a class="headerlink" href="#surface-based-analysis" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><p>This document will walk through 1st and 2nd level data analysis steps for surface data outputs from fMRIprep. The expected file format here is GIFTI (.gii). Due to compatibility limitations, the analyses described here will be performed largely in AFNI.</p>
+<div class="section" id="preparing-for-running-analyses">
+<h2>Preparing for running analyses<a class="headerlink" href="#preparing-for-running-analyses" title="Permalink to this headline">¶</a></h2>
+<p>Before you run analyses on surface data in AFNI, you will need certain files prepared ahead of time. 3dDeconvolve, the command used for running a GLM, requires timing files for event related designs that denote when events occur during your run. Timing files will be in a .txt format and will consist of rows of numbers that tell when events occur in seconds from run start, where each row corresponds to each run of your scan session. You will need to create timing files for each subject and each condition you are including.</p>
+</div>
+<div class="section" id="running-a-glm">
+<h2>Running a GLM<a class="headerlink" href="#running-a-glm" title="Permalink to this headline">¶</a></h2>
+<p>For our first level analysis we will use AFNIs 3dDeconvolve. Conveniently, 3dDeconvolve is largely format agnostic, so this first step can be applied as easily to volumetric data as surface data. For full documentation on how to use 3dDeconvolve, see here.</p>
+<p>Here is an example of a call to 3dDeconvolve using an event related design:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dDeconvolve -polort A -jobs <span class="o">{</span>how many CPU cores you want the job to run on<span class="o">}</span> <span class="se">\</span>
+  -input <span class="o">{</span>a list of the image files that you wish to process<span class="o">}</span> <span class="se">\</span>
+  -local_times -num_stimts <span class="o">{</span>how many events you have in your design<span class="o">}</span> -stim_times <span class="m">1</span> <span class="o">{</span>text file containing the timing of each instance of event A in seconds, with a new line <span class="k">for</span> each run<span class="o">}</span> ‘GAM’ <span class="o">(</span>this specifies that the program should fit a gamma <span class="k">function</span> to your data, different functions are available<span class="o">)</span> -stim_label <span class="m">1</span> <span class="o">{</span>Event Label A<span class="o">}</span><span class="se">\</span>
+  -stim_times <span class="m">2</span> <span class="o">{</span>timing files in .txt format<span class="o">}</span> ‘GAM’ -stim_label <span class="m">2</span> <span class="o">{</span>Event Label B<span class="o">}</span><span class="se">\</span>
+  -gltsym <span class="s1">&#39;SYM: {Event A} -{Event B}&#39;</span> -glt_label <span class="m">1</span> <span class="o">{</span>Event Label A<span class="o">}</span>-<span class="o">{</span>Event Label B<span class="o">}</span> <span class="se">\</span>
+  -ortvec <span class="o">{</span>A matrix of noise variables that you want to regress out<span class="o">}</span> <span class="se">\</span>
+  -fout -tout <span class="se">\</span>
+  -errts <span class="o">{</span>save location <span class="k">for</span> a file containing the residuals .gii<span class="o">}</span> <span class="se">\</span>
+  -bucket <span class="o">{</span>save location <span class="k">for</span> you GLM outputs .gii<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Let’s go through some of these flags:</strong></p>
+<ul class="simple">
+<li><p>-input: Takes in your image files. Since we’re working on surfaces, these should all be .gii files. Don’t worry about concatenating runs ahead of time. 3dDeconvolve with do this for you. Format (omit quotes): “pathtofile/file.gii pathtofile/file2.gii pathtofile/file3.gii”</p></li>
+<li><p>-local_times: This tells the program that you will be listing event times relative to the start of each run. You can also use “-global_times” which takes event times relative to the start of the first run, treating the data set as one long run, but this is not recommended (there tend to be compounding errors).</p></li>
+<li><p>-stim_times: Takes in a .txt or .1D file containing the timing of your event of interest, measured from the start of each run (if using -local_times). The event times should be separated by spaces, with a new line for each run.</p></li>
+<li><p>‘GAM’: This sets what kind of hemodynamic response you’re expecting. A gamma function is usually appropriate for events that are shorter than one second. For longer events, you may wish to use ‘BLOCK’, which takes a duration input.</p></li>
+<li><p>-stim_label: This is just for convenience. GIve it a name that makes sense.</p></li>
+<li><p>-gltsym: Sets up contrasts. In the above example, we are setting up a simple contrast between event A and event B.</p></li>
+<li><p>-ortvec: A matrix of nuisance variables that you wish to regress out (e.g., movement).</p></li>
+<li><p>-tout: Provides t values at each voxel, in addition to beta values. You probably want this!</p></li>
+<li><p>-errts: Provides model fit residuals. We’ll need this for smoothing.</p></li>
+<li><p>-bucket: Where to save your output file. Make sure to give it a sensible name, ending .gii or .gii.dset.</p></li>
+</ul>
+</div>
+<div class="section" id="viewing-your-data">
+<h2>Viewing your data<a class="headerlink" href="#viewing-your-data" title="Permalink to this headline">¶</a></h2>
+<p>In order to view the outputs from 3dDeconvolve, you’ll need to use SUMA, which comes as part of the AFNI package. SUMA uses a lot of hotkeys, so you’ll want to refer to <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/SUMA/Viewer.html">this documentation</a> to familiarize yourself with the controls.</p>
+<p>Once everything is installed, just navigate to your data folder in the console and type <code class="docutils literal notranslate"><span class="pre">suma</span> <span class="pre">-spec</span> <span class="pre">pathtosumafolder/SUMA/fsaverage6_both.spec</span> <span class="pre">&amp;</span></code>. This opens Suma with the <span class="blue">spec</span> file that your data will overlay onto. Once the GUI has loaded, open the surface controller (ctrl + s). Click “Load Dset” and select your data. For further help, keep in mind that you can click <span class="red">BHelp</span> in the upper left corner then any button for more information on what that button does. Good luck!</p>
+</div>
+<div class="section" id="smoothing-your-data">
+<h2>Smoothing your data<a class="headerlink" href="#smoothing-your-data" title="Permalink to this headline">¶</a></h2>
+<p>We will achieve smoothing by using the SurfSmooth function in AFNI. Rather than simply applying a blur to the raw data, SurfSmooth uses an iterative process to uniformly smooth your data up to a desired level of smoothness. Smoothing is based on the residual error outputs from the original GLM (errts), which is why we ran an unsmoothed GLM first.</p>
+<p>Here is an example call to SurfSmooth:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>SurfSmooth - spec <span class="o">{</span>path to the surface spec file that you want to use<span class="o">}</span> <span class="se">\</span>
+  -surf_A smoothwm <span class="se">\</span>
+  -input <span class="o">{</span>the raw data files that you want smoothed<span class="o">}</span> <span class="se">\</span>
+  -met HEAT_07 <span class="se">\</span>
+  -target_fwhm <span class="o">{</span>the degree of blur that you want to see in the output. <span class="m">6</span> is common<span class="o">}</span> <span class="se">\</span>
+  -blurmaster <span class="o">{</span>the errts output from running your first GLM<span class="o">}</span> <span class="se">\</span>
+  -Niter -1 <span class="se">\</span>
+  -no_detrend_master <span class="se">\</span>
+  -output <span class="o">{</span>path and name <span class="k">for</span> your output<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>Let’s go through some of those flags:</strong></p>
+<ul class="simple">
+<li><p>-met: THis tells SurfSmooth what smoothing method to use. As of publication (Nov. 2019) HEAT_07 is the most up to date.</p></li>
+<li><p>-blurmaster: the blurmaster is the dataset that is used to compute the applied smoothing. We use the residual errors from the first glm here because it avoids the need to sloppily detrend out anatomical smoothness.</p></li>
+<li><p>-Niter: How many iterations SurfSmooth has permission to perform. -1 gives permission to iterate until the target is reached. If the process is taking too long, supply a reasonable cap here, but be sure to check the outputs.</p></li>
+</ul>
+</div>
+<div class="section" id="run-a-glm-on-your-smoothed-images">
+<h2>Run a GLM on your smoothed images<a class="headerlink" href="#run-a-glm-on-your-smoothed-images" title="Permalink to this headline">¶</a></h2>
+<p>Run 3dDeconvolve in precisely the same way as before, but this time give the smoothed images as your input.</p>
+</div>
+<div class="section" id="group-level-analysis">
+<h2>Group Level Analysis<a class="headerlink" href="#group-level-analysis" title="Permalink to this headline">¶</a></h2>
+<p>This part is the same for surfaces and volumes. Which AFNI command you use will depend on your specific analysis of interest. Two straightforward options are:</p>
+<ul class="simple">
+<li><p>3dttest++: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html">See documentation here</a>. AFNI’s command for performing ttests on imaging data.</p></li>
+<li><p>3dANOVA2: See <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html">documentation here</a>. Performs a two-factor ANOVA. Usually one factor is your IV of interest and the other is subject as a random variable.</p></li>
+</ul>
+<p>Regardless of what option you choose, make sure you output the results as a .gii file. This will store your stats on the same surfaces that we’ve been using up until now.</p>
+<p>Next, we’ll run multiple comparison corrected on these statistical maps to get our final output.</p>
+</div>
+<div class="section" id="determining-cluster-thresholds">
+<h2>Determining Cluster Thresholds<a class="headerlink" href="#determining-cluster-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>Determining cluster thresholds is a multistep process… Step 1: use slow_surf_clustsim.py to generate a tcsh script. Step 2: Run the tcsh script, which runs the actual clustering simulation to determine your thresholds.</p>
+<p><strong>Step 1:</strong></p>
+<p>See documentation of slow_surf_clustsim.py <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/slow_surf_clustsim.py.html">here</a>. Here is an example script for surfaces:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Slow_surf_clustsim.py -save_script <span class="o">{</span>path to save location<span class="o">}</span> <span class="se">\</span>
+  -on_surface yes <span class="se">\</span>
+  -uvar blur <span class="o">{</span>the blur value <span class="k">for</span> your images, ~6 <span class="k">if</span> you used the above smoothing<span class="o">}</span> <span class="se">\</span>
+  -uvar spec_file <span class="o">{</span>spec file <span class="k">for</span> your surfaces<span class="o">}</span> <span class="se">\</span>
+  -uvar surf_vol <span class="o">{</span>your output data file from the GLM<span class="o">}</span> <span class="se">\</span>
+  -uvar niter <span class="m">1000</span>
+</pre></div>
+</div>
+<p><strong>Step 2:</strong></p>
+<p>There should now be a tcsh script at the save location that you specified in step 1. Run that script: <code class="docutils literal notranslate"><span class="pre">tcsh</span> <span class="pre">YourScriptName.tcsh</span></code></p>
+<p>We’re running a thousand simulations, so this will take a few minutes….</p>
+</div>
+<div class="section" id="using-cluster-thresholds">
+<h2>Using Cluster Thresholds<a class="headerlink" href="#using-cluster-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>After your simulation is complete, you will receive a recommendation to run a command like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quick.alpha.vals.py -niter <span class="m">1000</span> z.max.area.0.01
+</pre></div>
+</div>
+<p>The alpha value (the last number in the above command) listed in the command refers to the uncorrected alpha threshold that you will apply to your data prior to setting the cluster area threshold. If you wish to use a different uncorrected threshold, simply enter the command above with your desired alpha instead to find clusters corresponding to that uncorrected threshold.</p>
+<p>After you run quick.alpha.vals.py you will be given a list with two columns: cluster sizes and p-values. Simply select the corrected p-value that you are aiming for and, using SUMA, threshold your data to the associated minimum blob area:</p>
+<ul class="simple">
+<li><p>Load in your statistical map from the group-level analysis (.gii file)</p></li>
+<li><p>Using the slider, set SUMA to filter out any voxel under an uncorrected t-value of your choosing. Let’s say 0.01.</p></li>
+<li><p>Then, referencing the table that you got from quick.alpha.vals enter your desired minimum cluster size in the box under the “Area” label and click on the “Clst” button.</p></li>
+</ul>
+<p>If all has gone well, congratulations! These are your corrected results.</p>
+<p>Put scripts here <span class="blue">/jukebox/pyger/handbook/sample_project/code/analysis</span> – you can reference this path as you go but just explain they’re not connected to the given sample project (yet)</p>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>Afni manual for 3dDeconvolve command: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dDeconvolve.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dDeconvolve.html</a></p>
+<p>Afni manual for Surfsmooth command: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/SurfSmooth.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/SurfSmooth.html</a></p>
+<p>Afni manual for 3dttest++ command: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html</a></p>
+<p>Afni manual for 3dAnova2 command: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dANOVA2.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dANOVA2.html</a></p>
+<p>Afni manual for slow_surf_clustsim.py script: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/slow_surf_clustsim.py.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/slow_surf_clustsim.py.html</a></p>
+<p>SUMA documentation: <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/SUMA/suma/SUMA_do1.htm">https://afni.nimh.nih.gov/pub/dist/doc/SUMA/suma/SUMA_do1.htm</a></p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
