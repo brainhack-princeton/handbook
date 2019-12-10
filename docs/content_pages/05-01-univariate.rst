@@ -52,6 +52,23 @@ Steps before running a GLM:
 	* Based on your recorded data, create timing .1D  files that give the onset time of the stimulus
 		* The time is relative to 0 being the onset of the first TR you’re keeping (so if you’re deleting TR’s don’t include this in the timing!)
 		* NOTE: If you’re using more than one run, have the second row be the next run: use the option ``--localtimes`` to indicate this is the way your timing is set up
+* Set up confounds:
+		* Choose the columns/confounds you want from your fmriprep data (again, remove the first n number of rows corresponding to the TR’s that you’re deleting)
+		* Remove the header for AFNI
+		* If you have multiple runs, stack the rows on top of each other
+* Get a mask to mask the voxels you’re using -- this will help for group analyses to make sure the same voxels are being set for all subjects
+* GLM function: 3dDeconolve with task data
+
+.. code-block:: bash
+
+		3dDeconvolve -polort A -jobs 8 \
+		  -mask mni_icbm152_t1_tal_nlin_asym_09c_mask.nii \
+		  -input sub-*_task-*_run-01_space-*_desc-preproc_bold.nii.gz \
+		           sub-*_task-*_run-02_space-*_desc-preproc_bold.nii.gz \
+		  -local_times -num_stimts 2 \
+		  -stim_times 1 congruent_onsets.txt ‘BLOCK(0.5,1)’ -stim_label 1 congruent \
+		  -stim_times 2 incongruent_onsets.txt -stim_label 2 incongruent \
+		  -ortvec confounds_ortvec.txt
 
 
 
