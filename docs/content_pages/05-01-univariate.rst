@@ -74,7 +74,11 @@ Steps before running a GLM:
 Group level statistics 
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Brain mask for the MNI152NLin2009cAsym template: ``mni_icbm152_t1_tal_nlin_asym_09c_mask.nii``
+Brain mask for the MNI152NLin2009cAsym template: 
+
+.. code-block:: bash
+
+	mni_icbm152_t1_tal_nlin_asym_09c_mask.nii
 
 http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09c_nifti.zip
 
