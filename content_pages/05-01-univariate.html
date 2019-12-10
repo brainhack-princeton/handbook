@@ -86,7 +86,21 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Univariate regression and temporal filtering</a><ul>
+<li><a class="reference internal" href="#using-the-confound-matrix-from-fmriprep">Using the confound matrix from fmriprep</a></li>
+<li><a class="reference internal" href="#how-to-extract-and-save-the-confounds-you-want-for-your-glm">How to extract and save the confounds you want for your GLM</a><ul>
+<li><a class="reference internal" href="#using-afni">Using AFNI</a></li>
+<li><a class="reference internal" href="#group-level-statistics">Group level statistics</a></li>
+<li><a class="reference internal" href="#using-fsl">Using FSL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,7 +133,133 @@
             
   <div class="section" id="univariate-regression-and-temporal-filtering">
 <span id="univariate"></span><h1>Univariate regression and temporal filtering<a class="headerlink" href="#univariate-regression-and-temporal-filtering" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="using-the-confound-matrix-from-fmriprep">
+<h2>Using the confound matrix from fmriprep<a class="headerlink" href="#using-the-confound-matrix-from-fmriprep" title="Permalink to this headline">¶</a></h2>
+<p><em>Which confounds to use?</em></p>
+<p><a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/outputs.html#confounds">FMRIprep outputs</a> a large confound matrix. You probably don’t want to use all of the confounds, but they give them to you so you can decide!</p>
+<ul class="simple">
+<li><p>Chris G’s  <a class="reference external" href="https://neurostars.org/t/confounds-from-fmriprep-which-one-would-you-use-for-glm/326">official opinion here</a></p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/chris_g_opinion.png"><img alt="Chris G's opinion" class="align-center" src="../_images/chris_g_opinion.png" style="width: 700px;" /></a>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2007.04.042">CompCor</a> is a separate software package [component-based noise correction] and has anatomical (aCompCor) and temporal (tCompCor) confound estimates</dt><dd><ul>
+<li><p>People would use aCompCor, and you should use all 6 components</p></li>
+<li><dl class="simple">
+<dt>Here’s the description from fmriprep of what comp cor is/what it’s doing:</dt><dd><ul>
+<li><p><em>“A set of physiological noise regressors are extracted for the purpose of performing component-based noise correction (CompCor 10). Principal components are estimated after high-pass filtering the BOLD time-series (using a discrete cosine filter with 128s cut-off) for the two CompCor variants: temporal (tCompCor) and anatomical (aCompCor). Six tCompCor components are then calculated from the top 5% variable voxels within a mask covering the subcortical regions. This subcortical mask is obtained by heavily eroding the brain mask, which ensures it does not include cortical GM regions. For aCompCor, six components are calculated within the intersection of the aforementioned mask and the union of CSF and WM masks calculated in T1w space, after their projection to the native space of each functional run (using the inverse BOLD-to-T1w transformation).”</em></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>I’m not sure if it matters that the data is filtered through a 128-s high-pass filter before deriving aCompCor components. I asked our fearless leader Chris G back in September 2018, but he never responded :’( Here’s my neurostars link though.</p></li>
+<li><p>So the jury is still out on this one, but I’m not using aCompCor.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-extract-and-save-the-confounds-you-want-for-your-glm">
+<h2>How to extract and save the confounds you want for your GLM<a class="headerlink" href="#how-to-extract-and-save-the-confounds-you-want-for-your-glm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-afni">
+<h3>Using AFNI<a class="headerlink" href="#using-afni" title="Permalink to this headline">¶</a></h3>
+<p>CODE FOR GLM – w/ task</p>
+<p>Steps before running a GLM:</p>
+<ul class="simple">
+<li><p>Smoothing</p></li>
+<li><dl class="simple">
+<dt>Zscoring each voxel across time</dt><dd><ul>
+<li><dl class="simple">
+<dt>e.g. using 3dmerge or 3dBlurToFWHM</dt><dd><ul>
+<li><p>3dmerge is regular smoothing similar to “blur” or other smoothing tools</p></li>
+<li><p>3dBlurToFWHM: this is the one that separately adapts smoothing to enforce a constant smoothness across the brain (so it will adapt based on intrinsic smoothness)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Setting up timing: 1 timing file per category</dt><dd><ul>
+<li><dl class="simple">
+<dt>Based on your recorded data, create timing .1D  files that give the onset time of the stimulus</dt><dd><ul>
+<li><p>The time is relative to 0 being the onset of the first TR you’re keeping (so if you’re deleting TR’s don’t include this in the timing!)</p></li>
+<li><p>NOTE: If you’re using more than one run, have the second row be the next run: use the option <code class="docutils literal notranslate"><span class="pre">--localtimes</span></code> to indicate this is the way your timing is set up</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Set up confounds:</dt><dd><ul>
+<li><p>Choose the columns/confounds you want from your fmriprep data (again, remove the first n number of rows corresponding to the TR’s that you’re deleting)</p></li>
+<li><p>Remove the header for AFNI</p></li>
+<li><p>If you have multiple runs, stack the rows on top of each other</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Get a mask to mask the voxels you’re using – this will help for group analyses to make sure the same voxels are being set for all subjects</p></li>
+<li><p>GLM function: 3dDeconolve with task data</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dDeconvolve -polort A -jobs <span class="m">8</span> <span class="se">\</span>
+  -mask mni_icbm152_t1_tal_nlin_asym_09c_mask.nii <span class="se">\</span>
+  -input sub-*_task-*_run-01_space-*_desc-preproc_bold.nii.gz <span class="se">\</span>
+           sub-*_task-*_run-02_space-*_desc-preproc_bold.nii.gz <span class="se">\</span>
+  -local_times -num_stimts <span class="m">2</span> <span class="se">\</span>
+  -stim_times <span class="m">1</span> congruent_onsets.txt ‘BLOCK<span class="o">(</span><span class="m">0</span>.5,1<span class="o">)</span>’ -stim_label <span class="m">1</span> congruent <span class="se">\</span>
+  -stim_times <span class="m">2</span> incongruent_onsets.txt -stim_label <span class="m">2</span> incongruent <span class="se">\</span>
+  -ortvec confounds_ortvec.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="group-level-statistics">
+<h3>Group level statistics<a class="headerlink" href="#group-level-statistics" title="Permalink to this headline">¶</a></h3>
+<p>Brain mask for the MNI152NLin2009cAsym template:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mni_icbm152_t1_tal_nlin_asym_09c_mask.nii
+</pre></div>
+</div>
+<p><a class="reference external" href="http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09c_nifti.zip">http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09c_nifti.zip</a></p>
+<p><a class="reference external" href="http://nist.mni.mcgill.ca/?p=904">http://nist.mni.mcgill.ca/?p=904</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz <span class="o">&lt;&lt;&lt;</span> run-wise mask
+sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
+</pre></div>
+</div>
+<p>Yarkoni, T., Barch, D. M., Gray, J. R., Conturo, T. E., &amp; Braver, T. S. (2009). BOLD correlates of trial-by-trial reaction time variability in gray and white matter: a multi-study fMRI analysis. PLOs One, 4(1), e4257. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0004257">https://doi.org/10.1371/journal.pone.0004257</a></p>
+</div>
+<div class="section" id="using-fsl">
+<h3>Using FSL<a class="headerlink" href="#using-fsl" title="Permalink to this headline">¶</a></h3>
+<p>Where to find parcellations in MNI space</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>HCP-MMP1.0  <a class="reference external" href="https://figshare.com/articles/HCP-MMP1_0_projected_on_MNI2009a_GM_volumetric_in_NIfTI_format/3501911">projected to MNI space</a> (controversial, new)</dt><dd><ul>
+<li><p><a class="reference external" href="https://media.nature.com/original/nature-assets/nature/journal/v536/n7615/extref/nature18933-s3.pdf">Table found here describing the parcellation labels</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Yeo 2011 (already converted to MNI space in FSL)</p></li>
+</ul>
+<p><strong>Converting statistics from a previous analysis from native → common space for group analysis</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>antsApplyTransform <span class="se">\</span>
+  -i contrast_image_space-T1w.nii.gz <span class="se">\</span>
+  -r MNI152NLin2009cAsym_BOLDRES.nii.gz <span class="se">\</span>
+  -t <span class="o">[</span>BIDS_DIR/derivatives/fmriprep/sub-001/ses-01/anat/sub-001_ses-01_T1w_target-MNI152NLin2009cAsym_warp.h5,0<span class="o">]</span> <span class="se">\</span>
+  -n NearestNeighbor
+  -o contrast_image_space-MNI152NLin2009cAsym.nii.gz
+  -v <span class="m">1</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
+</div>
 </div>
 
 
