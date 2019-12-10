@@ -48,15 +48,18 @@ Steps before running a GLM:
 		* e.g. using 3dmerge or 3dBlurToFWHM
 				* 3dmerge is regular smoothing similar to “blur” or other smoothing tools
 				* 3dBlurToFWHM: this is the one that separately adapts smoothing to enforce a constant smoothness across the brain (so it will adapt based on intrinsic smoothness)
+
 * Setting up timing: 1 timing file per category
 		* Based on your recorded data, create timing .1D  files that give the onset time of the stimulus
 				* The time is relative to 0 being the onset of the first TR you’re keeping (so if you’re deleting TR’s don’t include this in the timing!)
 				* If you’re using more than one run, have the second row be the next run
 						* Use the option --localtimes to indicate this is the way you’re timing is set up
+
 * Set up confounds:
 		* Choose the columns/confounds you want from your fmriprep data (again, remove the first n number of rows corresponding to the TR’s that you’re deleting)
 		* Remove the header for AFNI
 		* If you have multiple runs, stack the rows on top of each other
+
 * Get a mask to mask the voxels you’re using -- this will help for group analyses to make sure the same voxels are being set for all subjects
 * GLM function: 3dDeconolve with task data
 
