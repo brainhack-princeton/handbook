@@ -80,8 +80,10 @@ http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_asym_09c_nifti.z
 
 http://nist.mni.mcgill.ca/?p=904
 
-``sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz <<< run-wise mask``
-``sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz``
+.. code-block:: bash
+
+	sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz <<< run-wise mask
+	sub-101_ses-01_task-AttentionStudy_run-01_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
 
 Yarkoni, T., Barch, D. M., Gray, J. R., Conturo, T. E., & Braver, T. S. (2009). BOLD correlates of trial-by-trial reaction time variability in gray and white matter: a multi-study fMRI analysis. PLOs One, 4(1), e4257. https://doi.org/10.1371/journal.pone.0004257
 
