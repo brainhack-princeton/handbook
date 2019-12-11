@@ -1,7 +1,66 @@
 .. _mvpa:
 
+=============================
 Multivariate pattern analysis
------------------------------
+=============================
 
-Add here!
+.. raw:: html
+
+    <style> .blue {color:blue} </style>
+    <style> .red {color:red} </style>
+
+.. role:: blue
+.. role:: red
+
+
+Introduction
+------------
+
+You may hear people describing an analysis as “MVPA,” “multivariate pattern analysis,” or “multivoxel pattern analysis,” or simply “decoding. This has always confused me, but I’m pretty sure this means the same thing. Basically, the questions you’re asking when doing MVPA are different than typical “univariate” analysis. Instead of thinking of information involving a response to a stimuli, you’re thinking of information stored in a pattern of activity, distributed across different voxels. Some may increase activity and some may decrease activity, and together the pattern of activation encodes a stimulus, thought, etc.
+
+How to preprocess your data: regress out noise or not, that is the question
+---------------------------------------------------------------------------
+
+We’ve spent a fair amount of time during pyger meetings arguing this point. Basically if you want to do multivariate analysis, you need to get a voxel X TR matrix. But where does the time series come from? How much should you do to the data before getting this matrix? There are two modes of thought (at least) in this domain:
+
+**(1) - Treat the data as “raw” signal after preprocessing**
+
+This is how people in the Norman lab and (Manoj et al.) think of preprocessing the data. Basically, we want to leave the single in as much of a raw form as possible. Some think that regressing out motion can introduce noise into your data if motion is involved in the task. After getting the data preprocessed in fmriprep, we would load the data into python and preprocessing the data with the following steps:
+Spatially smooth
+Highpass filter
+Z-score
+
+**(2) - Regress out motion and/or use betas**
+
+**(2a) - Regressing out motion only**
+
+In this case, you would set up a GLM with the motion confounds (or whichever other confounds you wanted to add like CSF etc.) from fmirpep. You wouldn’t have any task labels; you would only regress out the motion. Then, you would take the residual timeseries and continue your analysis as described in (1).
+
+**(2b) - Regressing out motion and setting up a GLM with task stimuli**
+
+In this case, you want to do MVPA on *beta coefficients* instead of BOLD activation. You need to set up your design matrix so that each trial/TR is separate. However many stimulus labels you set (plus constrasts) will determine how many betas your model will calculate. So if you want to train on faces vs. scenes, do not only make 1 face label and 1 scene label. If you did this, you will only get 1 beta value/voxel for face and 1 beta value/voxel for scene. This is usually not enough samples to train for MVPA, unless you’re doing some across subject analysis. Thus, you should probably make face_TR1, face_TR2, etc. separate labels so you get an abbreviate time series out of your results to use for MVPA.
+
+Scikit-learn
+------------
+
+Here’s a `very wonderful flowchart <https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html>`_ to figure out which model to use.
+
+Potential pitfalls/best practices:
+
+* Make sure you shift your neural data ~4.5 seconds ahead of your display to account for the HRF (if you’re using the raw signal; unnecessary if you’re using betas)
+* Keep in mind the 0-based indexing in python vs 1-based indexing you may have used in other parts of your experiment
+* **DO NOT USE PREDICT_PROBA UNLESS YOU’RE USING A LOGISTIC CLASSIFIER.** All you need to know is that you can get weird results with categories flipped *sometimes but not every time* if you’re using other classifiers with the predict_proba function.
+* If you’re using an SVM classifier, and want to use the distance to the hyperplane as your proxy for classification----if your data is z-scored, the mean distance to the hyperplane will be 0.
+* Monika’s wisdom:
+		* If there’s no signal in your randomized data, when you split to train/test, you may induce a signal by leaving some parts out → this would result in below chance classification 
+		* generating random distributions -- you need to take the structure of your categories into account when generating “chance”. Like if you have sub-categories within one category you’re training on, make sure you’re building your randomized data set such that the two groups have balanced sub-categories. 
+
+
+
+.. image:: ../images/return_to_timeline.png
+  :width: 300
+  :align: center
+  :alt: return to timeline
+  :target: 02-01-overview.html
+
 
