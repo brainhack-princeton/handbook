@@ -118,6 +118,3 @@ Open science
 
 	`Anaconda <https://www.anaconda.com/>`_
 		open-source distribution of Python and R data science packages
-
-
-
