@@ -142,7 +142,7 @@ pygments_style = 'tango'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-manpages_url = 'http://docs.datalad.org/generated/man/{page}.html'
+#manpages_url = 'http://docs.datalad.org/generated/man/{page}.html'
 
 # numbered figures for better referencing
 numfig = True
@@ -156,7 +156,7 @@ smartquotes = True
 trim_footnote_reference_space = True
 
 # -- Options for HTML output ---------------------------------------------------
-html_baseurl = 'http://handbook.datalad.org/'
+html_baseurl = 'https://brainhack-princeton.github.io/handbook//'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -168,8 +168,8 @@ html_theme = 'alabaster'
 # more options: https://alabaster.readthedocs.io/en/latest/customization.html
 html_theme_options = {
     'show_powered_by': False,
-    'github_user': 'datalad-handbook',
-    'github_repo': 'book',
+    'github_user': 'brainhack-princeton',
+    'github_repo': 'handbook',
     'github_banner': True,
     'show_related': True,
     # colors
@@ -188,7 +188,7 @@ html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'The DataLad Handbook'
+html_title = 'The Princeton Handbook for Reporducible Neuroimaging'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -299,7 +299,7 @@ latex_elements = {
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'dataladhandbook', u'The DataLad Handbook',
+    ('index', 'princetonhandbook', u'The Princeton Handbook for Reproducible Neuroimaging',
      [u'all'], 1)
 ]
 
@@ -307,7 +307,7 @@ man_pages = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'dataladhandbook'
+epub_title = u'princetonhandbook'
 epub_author = u'all'
 epub_publisher = u'all'
 epub_copyright = u'2019–{}, all'.format(current_year)
