@@ -94,4 +94,5 @@ Appendix
    :hidden:
 
    website_info
+   content_pages/website_info
 
