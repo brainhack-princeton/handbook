@@ -1,4 +1,4 @@
-.. _websiteInfo:
+.. _websiteInfo2:
 
 Website info
 ------------
