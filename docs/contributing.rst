@@ -38,7 +38,7 @@ Here, we are going to delineate the steps needed to render the notebook locally 
 
 * `Things to set up once`_
 * `Organization of the repo`_
-* `The general workflow for edits`_
+* `Editing the website`_
 
 *Things to set up once*
 -----------------------
@@ -138,78 +138,7 @@ In order to have a copy of the repo on your local computer and be able to render
     # install librsvg
     conda install -c conda-forge librsvg
 
-
-*Organization of the repo*
---------------------------
-
-If everything in the section above went well, you should have your forked repo on your local computer and a conda environment that has all of the necessary installations for you to render the handbook locally. Before we talk about how you can make edits, we first want to describe the organization of the repo to give you a sense of where things are!
-
-Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder :blue:`docs`. 
-
-.. image:: images/path_to_content_pages.png
-  :width: 600px
-  :align: center
-  :alt: screenshot of path to content pages
-  :class: with-border
-
-*The image above highlights the location of the* :blue:`docs` *(in a red box) in reference to all of the other files in the repo.*
-
-Specifically, chances are that you will most likely just make changes to the rst files in the folder :blue:`content_pages`. 
-
-    * **IMPORTANT:** You should NOT make changes to the filenames in the :blue:`content_pages` folder unless you also change the :blue:`contents.rst.inc` or (better yet) talk with Paula to make sure that changing a filename doesn't break other things.
-
-Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally (:blue:`handbook/docs/_build/html`):
-
-
-.. image:: images/path_to_index_html.png
-  :width: 600px
-  :align: center
-  :alt: screenshot of path to the html of the index
-  :class: with-border
-
-*The image above highlights the location of the* :blue:`html` *folder (in a red circle) in reference to all of the other files in the repo, along with the location of the* :blue:`index.html` *file (in the red box).*
-
-When you want to look at the handbook locally (once you generate these html files), you will want to open :blue:`index.html`. This will open the home page of the handbook on your internet browser.
-
-*The general workflow for edits*
---------------------------------
-
-Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow you will take to make edits and eventually submit pull requests.
-
-.. image:: images/decorative_line4.png
-  :width: 700px
-  :height: 8px
-  :align: center
-  :alt: decorative line
-
-1. First, you will want to **render the handbook locally** so that you can get a sense of the impact of the changes you make on the website.
-
-.. code-block:: bash
-
-    # change directory to be in the outermost folder of the repo
-    cd ~/Desktop/princeton_handbook/handbook
-    # activate the conda environment
-    conda activate princeton_handbook
-    # render the handbook locally
-    make build
-
-* The output on your terminal will look something like the screenshot below, with the location of the html pages living in the location circled in blue. 
-
-.. image:: images/make_build_output.png
-  :width: 400px
-  :align: center
-  :alt: output you get after 'make build'
-  :class: with-border
-
-* Open up Finder and double click on :blue:`index.html`, which will be in the directory :blue:`handbook/docs/_build/html` as discussed in the previous section. This will open a local version of the handbook in your internet browser.
-
-.. image:: images/decorative_line4.png
-  :width: 700px
-  :height: 8px
-  :align: center
-  :alt: decorative line
-
-2. You only have to do this ONCE: **Add the official handbook repository as the upstream remote**.
+6. Add the official handbook repository as the **upstream remote**.
 
 .. code-block:: bash
 
@@ -253,16 +182,77 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-3. **Pull any new commits in the official handbook repo** to keep your master branch up to date:
+
+*Organization of the repo*
+--------------------------
+
+If everything in the section above went well, you should have your forked repo on your local computer and a conda environment that has all of the necessary installations for you to render the handbook locally. Before we talk about how you can make edits, we first want to describe the organization of the repo to give you a sense of where things are!
+
+Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder :blue:`docs`. 
+
+.. image:: images/path_to_content_pages.png
+  :width: 600px
+  :align: center
+  :alt: screenshot of path to content pages
+  :class: with-border
+
+*The image above highlights the location of the* :blue:`docs` *(in a red box) in reference to all of the other files in the repo.*
+
+Specifically, chances are that you will most likely just make changes to the rst files in the folder :blue:`content_pages`. 
+
+    * **IMPORTANT:** You should NOT make changes to the filenames in the :blue:`content_pages` folder unless you also change the :blue:`contents.rst.inc` or (better yet) talk with Paula to make sure that changing a filename doesn't break other things.
+
+Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally (:blue:`handbook/docs/_build/html`):
+
+
+.. image:: images/path_to_index_html.png
+  :width: 600px
+  :align: center
+  :alt: screenshot of path to the html of the index
+  :class: with-border
+
+*The image above highlights the location of the* :blue:`html` *folder (in a red circle) in reference to all of the other files in the repo, along with the location of the* :blue:`index.html` *file (in the red box).*
+
+When you want to preview the handbook locally (once you generate these html files), you will want to open :blue:`index.html`. This will open the home page of the handbook on your internet browser. It is important to understand that these .html files are simply a local version of the website for you to preview how things look. Any modifications you make won't be on the real internet version until your pull request has been approved.
+
+*Editing the website*
+--------------------------------
+
+Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow you will take to make edits and eventually submit pull requests.
+
+.. image:: images/decorative_line4.png
+  :width: 700px
+  :height: 8px
+  :align: center
+  :alt: decorative line
+
+1. First, make sure you have **activated your conda environment** and are working in the correct directory: 
+
+.. code-block:: bash
+
+    # change directory to be in the outermost folder of the repo
+    cd ~/Desktop/princeton_handbook/handbook
+
+    # activate the conda environment
+    conda activate princeton_handbook
+
+.. image:: images/decorative_line4.png
+  :width: 700px
+  :height: 8px
+  :align: center
+  :alt: decorative line
+
+2. **Pull any new commits in the official handbook repo** to keep your master branch up to date:
 
 .. code-block:: bash
 
     # fetches and merges the remote changes to your local files
     git pull --ff-only
+
     # push the commits to your forked repo
     git push origin master
 
-* You have to do ``git push origin master`` in order to push any commits that you pulled from the official repo to your forked repo. 
+* You have to do ``git push origin master`` in order to push any commits that you pulled from the official repo (**upstream**) to your forked repo (**origin**). 
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -276,17 +266,11 @@ Now that you have a general sense of how the repo is organized (and how you will
 
     For this reason, it is **highly recommended** that you don't make any changes to the `master` branch of your forked repo. Instead, there should be a 1-to-1 relationship between a feature you want to change and a pull request. In other words, you should create a new branch for every issue you want to change so that you can submit separate pull requests for every thing you want to modify.
 
-.. image:: images/decorative_line4.png
-  :width: 700px
-  :height: 8px
-  :align: center
-  :alt: decorative line
-
-4. When you start working on a new feature, **create/checkout a new branch** for that feature:
+3. When you start working on a new feature (i.e. modification), **create/checkout a new branch** for that feature:
 
 .. code-block:: bash
 
-    # create and switch to new branch called 'new-feature'
+    # create and switch to new branch called 'new-feature' 
     git checkout -b [new-feature]
       e.g., git checkout -b testing
 
@@ -296,15 +280,36 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-5. Using your favorite source code text editor, **make changes to the the document you want to modify**. Use ``make build`` to (a) view your changes and (b) make sure that your changes haven't messed up the rendering of the handbook.
+4. Using your favorite source code text editor, **make changes to the the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs/content_pages`.
 
-* When you're making changes, it might be easy to lose track of what were the exact files that were modified. You can use ``git status`` to view the files that were changed in the working directory.
-
-.. image:: images/screenshot_git_status.png
-  :width: 500px
+.. image:: images/decorative_line4.png
+  :width: 700px
+  :height: 8px
   :align: center
-  :alt: screenshot of output for 'git status'
+  :alt: decorative line  
+
+5. Next, you will want to **render the handbook locally** so that you can get a sense of the impact of the changes you make on the website. 
+
+.. code-block:: bash
+
+    # render the handbook locally
+    make build
+
+* The output on your terminal will look something like the screenshot below, with the location of the html pages living in the location circled in blue. 
+
+.. image:: images/make_build_output.png
+  :width: 400px
+  :align: center
+  :alt: output you get after 'make build'
   :class: with-border
+
+* Open up Finder and navigate to the directory :blue:`handbook/docs/_build/html`. Open :blue:`index.html`. This will open a local version of the handbook in your internet browser.
+
+.. important::
+
+    Use this opportunity to (a) view your changes and (b) make sure that your changes haven't messed up the rendering of the handbook!!
+
+* If you decide to make more modifications to the .rst file and want to view your changes, simply ``make build`` again in your terminal, then refresh the browser window that is displaying :blue:`index.html` and you should see your new modifications rendered.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -312,12 +317,24 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-6. You want to **add, commit, and push your changes to your feature branch** in your forked repo.
+6. When you are happy with your edits, you want to **add, commit, and push your changes to your feature branch** in your forked repo.
+
+* When you're making changes, it might be easy to lose track of which exact files were modified. You can use ``git status`` to view the files that were changed in the working directory.
+
+.. image:: images/screenshot_git_status.png
+  :width: 500px
+  :align: center
+  :alt: screenshot of output for 'git status'
+  :class: with-border
 
 .. code-block:: bash
 
+    # reminder yourself of which files have been modified
+    git status
+
     # add a modified file in the working directory to the staging area
-    git add docs/content_pages/01-01-howto.rst
+    git add docs/content_pages/[filename].rst
+      e.g., git add docs/content_pages/01-01-howto.rst
 
     # commit the change with an informative message
     git commit -m "Added new content to how-to file"
@@ -333,10 +350,12 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. code-block:: bash
 
-    ## push modified files to your feature branch on your fork
+    # push modified files to your feature branch on your fork
+
     # the *first* time you push to your new feature branch on your fork
     git push --set-upstream origin [new-feature]
       e.g., git push --set-upstream origin testing
+
     # for *subsequent* pushes to this feature branch
     git push
 
@@ -350,7 +369,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. important::
 
-    Before you submit a pull request, make sure that your code renders the handbook locally on your computer!!
+    Before you submit a pull request, make sure you have used ``make build`` to check that your code renders the handbook locally on your computer!!
 
 * On the Github page of your forked repo, make sure that you pushed the changes you committed (see where the arrow is pointing below) and that you are in the correct new-feature branch (in the dotted circle). **Press 'new pull request'** to initiate a new pull request (in the solid box).
 
