@@ -336,9 +336,6 @@ Now that you have a general sense of how the repo is organized (and how you will
     git add docs/content_pages/[filename].rst
       e.g., git add docs/content_pages/01-01-howto.rst
 
-    # commit the change with an informative message
-    git commit -m "Added new content to how-to file"
-
     # check to make sure that you added the modified file to the staging
     git status
 
@@ -350,7 +347,10 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. code-block:: bash
 
-    # push modified files to your feature branch on your fork
+    # commit the change with an informative message
+    git commit -m "Added new content to how-to file"
+
+    # push modified files to your feature branch on your fork:
 
     # the *first* time you push to your new feature branch on your fork
     git push --set-upstream origin [new-feature]
