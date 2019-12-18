@@ -86,7 +86,7 @@ In order to have a copy of the repo on your local computer and render the websit
 
 .. code-block:: bash
 
-    # change directory to the place where you want the cloned repo
+    # change directory to where you want to clone the repo (e.g., on Mac)
     cd ~/Desktop/princeton_handbook/
     # clone the repo
     git clone [URL]
