@@ -6,7 +6,7 @@ How to contribute
 
 Thank you for your interest in contributing to this handbook!
 
-This handbook is still under construction and there are severals ways you can contribute to our efforts, such as submitting an `issue <https://github.com/brainhack-princeton/handbook/issues/new/>`_ or a pull request, or by having a discussion with anyone on the Pygers team in a non-Github communication channel!
+This handbook is still under construction and there are severals ways you can contribute to our efforts, such as submitting an `issue <https://github.com/brainhack-princeton/handbook/issues/new/>`_ or a pull request, or by having a discussion with anyone on the Pygers team in a non-GitHub communication channel!
 
 On this page, we will address the following topics to help you contribute to the construction of this handbook:
 
@@ -34,7 +34,7 @@ Submitting a pull request
 
 You can also contribute via a pull request, which would allow you to write code that can be merged to the official handbook repo (i.e., that can end up on the world wide web). There are still plenty of chapters that need to be written and your contributions will be invaluable.
 
-Here, we are going to delineate the steps needed to render the notebook locally on your computer so that you can make and test edits, along the steps you need to take to submit a pull request:
+Here, we are going to delineate the steps needed to render the notebook locally on your computer so that you can make edits and test them, along with the steps needed to submit a pull request:
 
 * `Things to set up once`_
 * `Organization of the repo`_
@@ -43,7 +43,7 @@ Here, we are going to delineate the steps needed to render the notebook locally 
 *Things to set up once*
 -----------------------
 
-In order to have a copy of the repo on your local computer and be able to render the website locally (which are necessary to set up the workflow to contribute), these are the **steps you need to do only once**. You don't have to do these steps again after things are up and running locally!!
+In order to have a copy of the repo on your local computer and render the website locally (which are necessary to set up the workflow to contribute), these are the **steps you need to do only once**. You don't have to do these steps again after things are up and running locally!
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -59,7 +59,7 @@ In order to have a copy of the repo on your local computer and be able to render
   :alt: fork the repo!
   :class: with-border
 
-*The image above, the red box highlights the button you need to press to fork the original handbook repo.*
+*In the image above, the red box highlights the button you need to press to fork the original handbook repo.*
 
 * Follow the instructions that appear on the page to fork the repo to the correct location. 
 
@@ -69,10 +69,10 @@ In order to have a copy of the repo on your local computer and be able to render
   :align: center
   :alt: decorative line
 
-2. After you successfully fork the repo, you want to **clone the repo** on your local computer. From there, you can make edits using your favorite source code text editor, such as `Sublime Text <https://www.sublimetext.com/>`_.
+2. After you successfully fork the repo, you want to **clone your fork of the repo** on your local computer. From there, you can make edits using your favorite text editor.
 
-* Go to where you just forked the handbook repo on your Github repository.
-* Click on "Clone or download" and copy the URL to clone the repo.
+* Navigate to the forked repo on your GitHub account.
+* Click on "Clone or download" and copy the URL.
 
 .. figure:: images/clone_repo.png
   :width: 700px
@@ -80,14 +80,14 @@ In order to have a copy of the repo on your local computer and be able to render
   :alt: clone the repo!
 
   
-*The image above, the red box highlights the button you need to press to get the URL to clone the repo. The arrow points to info about the location of the original repo you forked.*
+*In the image above, the red box highlights the button you need to press to get the URL to clone the repo. The arrow points to info about the location of the original repo you forked.*
 
 * In your terminal window, change directory to the location where you want the clone of the repo to live. Then, clone the repo using the URL you copied in the previous step.
 
 .. code-block:: bash
 
     # change directory to the place where you want the cloned repo
-    cd Desktop/princeton_handbook/
+    cd ~/Desktop/princeton_handbook/
     # clone the repo
     git clone [URL]
 
@@ -114,15 +114,15 @@ In order to have a copy of the repo on your local computer and be able to render
   :align: center
   :alt: decorative line
 
-4. Now, you want to **download important packages** that are needed to render the website locally. In the folder :blue:`handbook`, you will find two files :blue:`setup.py` and :blue:`requirements.txt` that need to be called to install the necessary packages.
+4. Now, you want to **download important packages** that are needed to render the website locally. In the folder :blue:`handbook`, you will find two files :blue:`setup.py` and :blue:`requirements.txt` that are needed to install the necessary packages.
 
 .. code-block:: bash
 
     # change directory to the 'handbook' folder
     cd handbook/
-    # use python to install the things in 'setup.py'
+    # use python to install via 'setup.py'
     python setup.py install
-    # use pip to install the things in 'requirements.txt'
+    # use pip to install requirements via 'requirements.txt'
     pip install -r requirements.txt
 
 .. image:: images/decorative_line4.png
@@ -131,7 +131,7 @@ In order to have a copy of the repo on your local computer and be able to render
   :align: center
   :alt: decorative line
 
-5. Since some of the artwork/files that we use might be svg files, you also need to **install librsvg** in order to render those files.
+5. Since some of the artwork/files we use might be .svg files, you also need to **install librsvg** in order to render those files.
 
 .. code-block:: bash
 
@@ -145,7 +145,7 @@ In order to have a copy of the repo on your local computer and be able to render
     # add official repo as the upstream remote
     git remote add upstream https://github.com/brainhack-princeton/handbook
 
-* :red:`Why are we doing this?` We want your local directory to point to two different remotes (or places on Github where code is stored). The first one should be the **origin**, which should point to your forked repo on Github. The second one should be the **upstream** branch, which should point to the official handbook repo on Github. Having this organization will allow you to pull changes from the upstream branch so that you can make edits on the most up-to-date version of the repo, while allowing you the flexibility to do work on your repo. To check that all of this holds true, run the following commands on your terminal:
+* :red:`Why are we doing this?` We want your local repo to point to two different remotes (or places on GitHub where code is stored). The first one should be the **origin**, which should point to your forked repo on GitHub. The second one should be **upstream**, which should point to the original handbook repo on Github. Having this organization will allow you to pull changes from the upstream branch so that you can make edits on the most up-to-date version of the repo, while allowing you the flexibility to do work on your fork. To check that all of this holds true, run the following commands on your terminal:
 
 .. code-block:: bash
     
@@ -171,7 +171,7 @@ In order to have a copy of the repo on your local computer and be able to render
 
 .. code-block:: bash
     
-    # fetch the latest changes (but doesn't merge remote changes to your local files)
+    # fetch the latest changes (but doesn't merge changes into your local files)
     git fetch upstream
     # track the upstream remote branch 
     git branch -u upstream/master
@@ -186,9 +186,9 @@ In order to have a copy of the repo on your local computer and be able to render
 *Organization of the repo*
 --------------------------
 
-If everything in the section above went well, you should have your forked repo on your local computer and a conda environment that has all of the necessary installations for you to render the handbook locally. Before we talk about how you can make edits, we first want to describe the organization of the repo to give you a sense of where things are!
+If everything in the section above went well, you should have your forked repo on your local computer and a conda environment that has all of the necessary installations to render the handbook locally. Before we talk about how you can make edits, we first want to describe the organization of the repo to give you a sense of where things are!
 
-Although the folder of the cloned repo will have lots of folders and files, you are actually only going to work from the sub-folder :blue:`docs`. 
+Although the cloned repo directory has lots of files and directories, you are only going to work from the sub-directory :blue:`docs`. 
 
 .. image:: images/path_to_content_pages.png
   :width: 600px
@@ -196,13 +196,13 @@ Although the folder of the cloned repo will have lots of folders and files, you 
   :alt: screenshot of path to content pages
   :class: with-border
 
-*The image above highlights the location of the* :blue:`docs` *(in a red box) in reference to all of the other files in the repo.*
+*The image above highlights the location of the* :blue:`docs` *(in a red box) in reference to other files in the repo.*
 
-Specifically, chances are that you will most likely just make changes to the rst files in the folder :blue:`content_pages`. 
+Specifically, chances are that you will just make changes to the .rst files in the folder :blue:`content_pages`. 
 
     * **IMPORTANT:** You should NOT make changes to the filenames in the :blue:`content_pages` folder unless you also change the :blue:`contents.rst.inc` or (better yet) talk with Paula to make sure that changing a filename doesn't break other things.
 
-Here, we also want to highlight the location of the html files that will be generated when you render the handbook locally (:blue:`handbook/docs/_build/html`):
+Here, we also want to highlight the location of the .html files that will be generated when you render the handbook locally (:blue:`handbook/docs/_build/html`):
 
 
 .. image:: images/path_to_index_html.png
@@ -211,14 +211,14 @@ Here, we also want to highlight the location of the html files that will be gene
   :alt: screenshot of path to the html of the index
   :class: with-border
 
-*The image above highlights the location of the* :blue:`html` *folder (in a red circle) in reference to all of the other files in the repo, along with the location of the* :blue:`index.html` *file (in the red box).*
+*The image above highlights the location of the* :blue:`html` *folder (in a red circle) in reference to other files in the repo, along with the location of the* :blue:`index.html` *file (in the red box).*
 
-When you want to preview the handbook locally (once you generate these html files), you will want to open :blue:`index.html`. This will open the home page of the handbook on your internet browser. It is important to understand that these .html files are simply a local version of the website for you to preview how things look. Any modifications you make won't be on the real internet version until your pull request has been approved.
+When you want to preview the handbook locally (once you generate the .html files), you will want to open :blue:`index.html`. This will open the home page of the handbook on your internet browser. It is important to understand that these .html files are a local version of the website for you to preview how things look. Any modifications you make won't render on the public version of the website until your pull request has been approved.
 
 *Editing the website*
 ---------------------
 
-Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow you will take to make edits and eventually submit pull requests.
+Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow for making edits and eventually submitting pull requests.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -252,7 +252,7 @@ Now that you have a general sense of how the repo is organized (and how you will
     # push the commits to your forked repo
     git push origin master
 
-* You have to do ``git push origin master`` in order to push any commits that you pulled from the official repo (**upstream**) to your forked repo (**origin**). If there weren't any new commits pulled from the official/upstream repo, you can skip this step.
+* You have to do ``git push origin master`` in order to push any changes that you pulled from the original handbook repo (**upstream**) to your forked repo (**origin**). If there weren't any new commits pulled from the upstream repo, you can skip this step.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -262,11 +262,11 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. note::
     
-    You won't be able to push changes you make directly to the official handbook repo. Instead, you will have to submit pull requests and the moderators/owners of the repo will review your pull request and decide whether they want to accept and merge your changes with the official handbook repo.
+    You won't be able to push changes you make directly to the official handbook repo. Instead, you will have to submit pull requests and the moderators of the repo will review your pull request and decide if any changes need to be made before they accept and merge your changes into the official handbook repo.
 
     For this reason, it is **highly recommended** that you don't make any changes to the `master` branch of your forked repo. Instead, there should be a 1-to-1 relationship between a feature you want to change and a pull request. In other words, you should create a new branch for every issue you want to change so that you can submit separate pull requests for every thing you want to modify.
 
-3. When you start working on a new feature (i.e. modification), **create/checkout a new branch** for that feature:
+3. When you start working on a new feature (i.e., modification), **create/checkout a new branch** for that feature:
 
 .. code-block:: bash
 
@@ -280,7 +280,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-4. Using your favorite source code text editor, **make changes to the the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs` or :blue:`handbook/docs/content_pages`.
+4. Using your favorite text editor, **make changes to the the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs` or :blue:`handbook/docs/content_pages`.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -292,7 +292,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. code-block:: bash
 
-    # render the handbook locally
+    # build the website locally
     make build
 
 * The output on your terminal will look something like the screenshot below, with the location of the html pages living in the location circled in blue. 
@@ -303,7 +303,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :alt: output you get after 'make build'
   :class: with-border
 
-* Open up Finder and navigate to the directory :blue:`handbook/docs/_build/html`. Open :blue:`index.html`. This will open a local version of the handbook in your internet browser.
+* Open up Finder and navigate to the directory :blue:`handbook/docs/_build/html`. Open :blue:`index.html`. This will open a local version of the handbook in your internet browser. On a Mac, you can use the ``open`` command; e.g., ``open ~/Desktop/princeton_handbook/handbook/docs/_build/html/index.html``.
 
 .. important::
 
@@ -317,9 +317,9 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-6. When you are happy with your edits, you want to **add, commit, and push your changes to your feature branch** in your forked repo.
+6. When you're happy with your edits, you'll want to **add, commit, and push your changes to your feature branch** in your forked repo.
 
-* When you're making changes, it might be easy to lose track of which exact files were modified. You can use ``git status`` to view the files that were changed in the working directory.
+* When you're making changes, it might be easy to lose track of which files were modified. You can use ``git status`` to view the files that were changed in the working directory.
 
 .. image:: images/screenshot_git_status.png
   :width: 500px
@@ -365,7 +365,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-7. Once you are satisfied with the changes you have pushed to your forked repo, you are ready to **submit a pull request**! This can be done directly on terminal, but the instructions below show how you can submit and manage a pull request from the Github online interface.
+7. Once you are satisfied with the changes you have pushed to your forked repo, you are ready to **submit a pull request**! This can be done directly on terminal, but the instructions below show how you can submit and manage a pull request from the GitHub online interface.
 
 .. important::
 
@@ -393,7 +393,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :alt: screenshot of making a pull request
   :class: with-border
 
-*The dotted box above also shows you the info about what repo (on the right) you are trying to merge, via a pull request, to the official handbook repo (on the left). You want to make sure that you see a notice saying that the branches are able to merge!*
+*The dotted box above also shows you information about what repo (on the right) you are trying to merge, via a pull request, to the original handbook repo (on the left). You want to make sure that you see a notice saying that the branches are able to merge!*
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -401,7 +401,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-9. Congratulations! You have submitted a pull request. You will now have to **wait for a moderator for the official handbook to review your changes and merge your pull request to the official repo**. 
+9. Congratulations! You have submitted a pull request. You will now have to **wait for a moderator to review your changes and merge your pull request into the official repo**. 
 
 .. image:: images/pull_request_screenshot.png
   :width: 700px
@@ -423,7 +423,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. code-block:: bash
 
-    ## delete the branch (both locally and on your remote)
+    ## delete the branch (both locally and on your fork)
     git push <remote_name> --delete <branch_name>
       e.g., git push origin --delete testing
 
@@ -447,7 +447,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 Github cheat sheet
 ==================
 
-The tutorial above just touches the tip of the iceberg of all the things that you can (and may want to) do using Github. The cheat sheet below goes into more detail about the various things that you can do!
+The tutorial above is just the tip of the iceberg of all the things that you can (and may want to) do using git and GitHub. The cheat sheet below goes into more detail about the various things that you can do!
 
 .. image:: extra_files/Github_Cheat_Sheet.png
   :width: 600px
@@ -455,6 +455,6 @@ The tutorial above just touches the tip of the iceberg of all the things that yo
   :alt: github cheat sheets
   :class: with-border
 
-Download the Github Cheat Sheet :download:`here. <extra_files/Github_Cheat_Sheet.pdf>`
+Download the GitHub Cheat Sheet :download:`here. <extra_files/Github_Cheat_Sheet.pdf>`
 
 
