@@ -216,7 +216,7 @@ Here, we also want to highlight the location of the html files that will be gene
 When you want to preview the handbook locally (once you generate these html files), you will want to open :blue:`index.html`. This will open the home page of the handbook on your internet browser. It is important to understand that these .html files are simply a local version of the website for you to preview how things look. Any modifications you make won't be on the real internet version until your pull request has been approved.
 
 *Editing the website*
---------------------------------
+---------------------
 
 Now that you have a general sense of how the repo is organized (and how you will render the handbook locally on your browser), we will delineate the general workflow you will take to make edits and eventually submit pull requests.
 
@@ -252,7 +252,7 @@ Now that you have a general sense of how the repo is organized (and how you will
     # push the commits to your forked repo
     git push origin master
 
-* You have to do ``git push origin master`` in order to push any commits that you pulled from the official repo (**upstream**) to your forked repo (**origin**). 
+* You have to do ``git push origin master`` in order to push any commits that you pulled from the official repo (**upstream**) to your forked repo (**origin**). If there weren't any new commits pulled from the official/upstream repo, you can skip this step.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -280,7 +280,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-4. Using your favorite source code text editor, **make changes to the the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs/content_pages`.
+4. Using your favorite source code text editor, **make changes to the the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs` or :blue:`handbook/docs/content_pages`.
 
 .. image:: images/decorative_line4.png
   :width: 700px
@@ -329,7 +329,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 .. code-block:: bash
 
-    # reminder yourself of which files have been modified
+    # remind yourself of which files have been modified
     git status
 
     # add a modified file in the working directory to the staging area
@@ -417,7 +417,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line
 
-10. If your pull request gets approved and is merged to the offical handbook, **delete the branch** for the feature that was just approved. You can do this from the terminal or from the github page.
+10. If your pull request gets approved and is merged to the offical handbook, **delete the branch** for the feature that was just approved. You can do this from the terminal or from the GitHub page for your forked repo.
 
 * On terminal:
 
@@ -427,7 +427,7 @@ Now that you have a general sense of how the repo is organized (and how you will
     git push <remote_name> --delete <branch_name>
       e.g., git push origin --delete testing
 
-* On your forked repo, go to the branches tab.
+* OR on GitHub, go to the branches tab on your forked repo:
 
 .. image:: images/branches_on_repo.png
   :width: 700px
