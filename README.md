@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/brainhack-princeton/handbook.svg?branch=master)](https://travis-ci.org/brainhack-princeton/handbook) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
+[![Build Status](https://travis-ci.org/brainhack-princeton/handbook.svg?branch=master)](https://travis-ci.org/brainhack-princeton/handbook)
 
 # Princeton Handbook for Reproducible Neuroimaging :orange_book:
 
@@ -35,4 +34,5 @@ under the following terms:
 
 This handbook is collaboratively authored by attendees of the weekly neuroimaging support group at Princeton (also known as "Pygers"). The structure of this handbook borrows heavily from the [DataLad Handbook](http://handbook.datalad.org/) and we thank the DataLad authors for providing such a useful resource. The initial momentum to create a public resource stemmed from the Brainhack Princeton 2019 event sponsored by the [ReproNim Center for Reproducible Neuroimaging Computation](https://www.repronim.org/), [Intel Labs](https://www.intel.com/content/www/us/en/research/overview.html), and the [Princeton University Department of Psychology Langfeld Fund](https://psych.princeton.edu/). We're especially grateful to Matteo Visconti di Oleggio Castello for providing mentorship at the hackathon and advising development of the handbook.
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+### Contributors
+Contributions of any kind are welcome! Thanks to the following contributors: [Paula Brooks](https://github.com/orgs/brainhack-princeton/people/paulapbrooks), [Lizzie McDevitt](https://github.com/orgs/brainhack-princeton/people/emcdevitt), [Anne Mennen](https://github.com/orgs/brainhack-princeton/people/amennen), [Sam Nastase](https://github.com/orgs/brainhack-princeton/people/snastase), [Matteo Visconti di Oleggio Castello](https://github.com/orgs/brainhack-princeton/people/mvdoc), [Asieh Zadbood](https://github.com/orgs/brainhack-princeton/people/azadbood)
