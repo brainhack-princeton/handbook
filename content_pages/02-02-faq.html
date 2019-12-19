@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Best practices FAQs &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Best Practices FAQ &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -41,7 +41,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Best practices FAQs &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Best Practices FAQ &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -87,7 +87,19 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Best Practices FAQ</a><ul>
+<li><a class="reference internal" href="#choosing-parameters">Choosing Parameters</a></li>
+<li><a class="reference internal" href="#study-design">Study Design</a></li>
+<li><a class="reference internal" href="#subject-scanning-interactions">Subject-Scanning Interactions</a></li>
+<li><a class="reference internal" href="#post-scan-data-inspection">Post-Scan Data Inspection</a></li>
+<li><a class="reference internal" href="#useful-resources">Useful Resources</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -118,9 +130,494 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="best-practices-faqs">
-<span id="faq"></span><h1>Best practices FAQs<a class="headerlink" href="#best-practices-faqs" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+  <div class="section" id="best-practices-faq">
+<span id="faq"></span><h1>Best Practices FAQ<a class="headerlink" href="#best-practices-faq" title="Permalink to this headline">¶</a></h1>
+<p>Frequently Asked Questions…and their crowdsourced answers.</p>
+<p><a class="reference internal" href="#choosing-parameters">Choosing Parameters</a></p>
+<ul class="simple">
+<li><p>In deciding whether to use Skyra or Prisma at PNI, was there a reason (other than scheduling/availability) that drove your decision to use one scanner over the other? Have you noticed any systematic differences between Skyra and Prisma at PNI?</p></li>
+<li><p>What types of anatomical scans do you collect? Do you have a special reason for collecting any of these anatomical scans?</p></li>
+<li><p>Do you collect fieldmaps? What kind of fieldmaps? How many/how frequently do you acquire fieldmaps? When do you acquire fieldmaps (in time) relative to your functional runs?</p></li>
+<li><p>Do you use in-plane acceleration (e.g., mSENSE or GRAPPA)?</p></li>
+<li><p>Do you use multiband acceleration (e.g., simultaneous multi-slice; SMS)? What acceleration factor do you use? Why do you or why do you not use multiband? Are there tradeoffs you are aware of?</p></li>
+<li><p>Do you use any “rules of thumb” when choosing scanning parameters (resolution, TR, TE, etc.)?</p></li>
+<li><p>Do you collect your anatomical/functional/fieldmap scans in a particular order?</p></li>
+<li><p>What field of view (FOV) coverage do you find to be adequate for whole-brain imaging (in mm)?</p></li>
+<li><p>How do you position your FOV (i.e., the yellow box) for functional scans?</p></li>
+<li><p>How do you position your FOV for anatomical scans?</p></li>
+<li><p>Have you run pilot scans testing different parameters? What did you pilot? What did you look for to make your final decision on how to proceed?</p></li>
+<li><p>Do you have any unique factors in your experiment that lead you to be concerned or take special care while scanning (e.g., motion due to using a joystick, scanner sound interacting with an auditory stimulus)?</p></li>
+<li><p>Do you use Minnesota or MGH or Siemens sequences?</p></li>
+<li><p>How do you copy references for your slice prescriptions (automatically in your program card settings, manually, etc.)? Which parameters do you choose to copy?</p></li>
+</ul>
+<p><a class="reference internal" href="#study-design">Study Design</a></p>
+<ul class="simple">
+<li><p>Do you have a recommendation for what should be included in one run (e.g., one task vs. two tasks)?</p></li>
+<li><p>Do you have a recommendation for how long a single run should be? What is the maximum duration of a run you like to use? Do you find that some experiments lend themselves to shorter/longer runs? Do you prefer more short runs or fewer long runs?</p></li>
+<li><p>What is the maximum duration you like to keep a participant in the scanner?</p></li>
+<li><p>When do you check for incoming TR pulses/triggers? Beginning of the run only? Every trial?</p></li>
+<li><p>How much “buffer” time do you include at the beginning of each run (before starting stimulus presentation)? At the end of each run?</p></li>
+<li><p>What do you recommend logging (i.e., recording in your output file) when you scan? (e.g., trigger time, etc.) Why is this information useful to have?</p></li>
+<li><p>What checks do you have in place to make sure things run as smoothly as possible? (e.g., sound checks, button tests, etc.)</p></li>
+<li><p>What procedures do you have in place to make sure you don’t lose data in the event of software crashing or some other unanticipated event?</p></li>
+<li><p>Do you do anything special for randomizing events, trial order? Do you jitter or TR-lock? What about your design determines if you jitter vs. don’t jitter, TR-lock vs. don’t TR-lock?</p></li>
+<li><p>Do you have any general recommendations for task timing? (e.g., minimum amount of time to wait between trials, active baseline vs. non-active baseline, time between blocks, etc.)</p></li>
+<li><p>Do you include a functional localizer task in your study? If so, what area(s) are you trying to localize and what is the general design of your functional localizer task?</p></li>
+<li><p>If you run a multi-session study, which scans do you make sure to acquire in multiple sessions (e.g., do you run an MPRAGE in each session)?</p></li>
+</ul>
+<p><a class="reference internal" href="#subject-scanning-interactions">Subject-Scanning Interactions</a></p>
+<ul class="simple">
+<li><p>What text do you use to recruit participants via email?</p></li>
+<li><p>What instructions do you find helpful to include on a SONA listing for your experiment?</p></li>
+<li><p>What information do you include in email(s) to participants prior to the experiment?</p></li>
+<li><p>Do you have specific instructions you give to subjects that you feel facilitate good data quality?</p></li>
+<li><p>Do you give participants task instructions or practice trials outside or inside the scanner?</p></li>
+<li><p>Do you exclude participants based on handedness? If no, do you have a criterion for how many people can be left- or right-handed in your sample?</p></li>
+<li><p>Do you use the mock scanner? In what scenarios do you find using the mock scanner to be useful?</p></li>
+<li><p>Do you have any tips or tricks for preventing/minimizing subject movement - either physically (e.g., pads, tape, etc.) or with instructions?</p></li>
+<li><p>Do you use FIRMM software for tracking head motion? If yes, how do you use the information you get from FIRMM to help with your data acquisition?</p></li>
+<li><p>Any trips or tricks that can help prevent people from falling asleep in the scanner? How do you monitor this? Can you add things to your behavioral task to mitigate drowsiness?</p></li>
+<li><p>What do you do if somebody falls asleep in the scanner?</p></li>
+<li><p>What do you do if a participant needs to go to the bathroom in the middle of a scan?</p></li>
+<li><p>What do you do if a participant starts experiencing discomfort during a scan (e.g., the earbuds are causing discomfort)? What do you do and/or say to the participant?</p></li>
+<li><p>Have you needed to exclude participants for anything that isn’t included on the safety screening form?</p></li>
+<li><p>During data acquisition, what things do you check for to make sure everything is going as planned with the scan, with your task, etc.?</p></li>
+<li><p>What do you have participants “do” during anatomical scans?</p></li>
+</ul>
+<p><a class="reference internal" href="#post-scan-data-inspection">Post-Scan Data Inspection</a></p>
+<ul class="simple">
+<li><p>What tool(s) do you use for QA?</p></li>
+<li><p>What do you look for in data quality assurance?</p></li>
+<li><p>What is your approach for dealing with motion? Do you remove specific TRs with a lot of movement, or throw out entire runs, or throw out an entire subject? Do you have thresholds for making each of these decisions?</p></li>
+</ul>
+<p><a class="reference internal" href="#useful-resources">Useful Resources</a></p>
+<div class="section" id="choosing-parameters">
+<h2>Choosing Parameters<a class="headerlink" href="#choosing-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“In deciding whether to use Skyra or Prisma at PNI, was there a reason (other than scheduling/availability) that drove your decision to use one scanner over the other? Have you noticed any systematic differences between Skyra and Prisma at PNI?”</p>
+</div>
+<p>Skyra has a 10 cm (I think) larger bore so it’s nicer for feeling less claustrophobic. It is nicer to scan in Skyra because the larger bore makes it more comfortable for participants.</p>
+<p>If doing a visual study that requires a large field of view, I recommend the Skyra since it has a larger bore and therefore a larger screen.</p>
+<p>I chose Skyra because it had real-time set up there (now prisma does too though); Skyra is the only one where people have run real-time studies in the past 2-3 years, so it would be easier to use it for that purpose.</p>
+<p>I don’t think the differences between Prisma and Skyra should make an appreciable difference for most studies (and availability may be an important factor). All other things held constant, I would use Prisma simply because it’s new and has better gradient technology.</p>
+<p>For acquisition of diffusion data, Siemens Prisma is the only scanner that doesn’t show significant drift in the diffusion signal over time! Moreover, the better gradients are highly advisable to get good signal in diffusions scans (a noisy endeavour, always).</p>
+<p>At the time that I started my study Prisma’s calendar was more open than Skyra’s. Prisma also allowed me to have slightly smaller TRs at a given voxel size.</p>
+<p>Most fMRI studies that can be done on Prisma can be done on Skyra with just a little additional acceleration or reduction in resolution, TR, or slices.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What types of anatomical scans do you collect? Do you have a special reason for collecting any of these anatomical scans?”</p>
+</div>
+<p>Standard high-resolution (1mm) T1-weighted MPRAGE (~6 min) is always recommended; A T1w MPRAGE at 1.0mm resolution is sufficient for Freesurfer reconstruction, and this usually takes approx. 5 minutes with IPAT GRAPPA=2.</p>
+<p>High res T1 options: MPRAGE or MP2RAGE. MPRAGE is easy to process. MP2RAGE is a pain for postprocessing but gives a little better white-gray matter separation (often necessary to skullstrip and similar on one of the inverse pictures only, because the staticky noisy dotty patterns around the head in the combined are a problem for most processing pipelines. Needs checking by hand in every single person and adaptation of processing pipeline.)</p>
+<p>I also often collect T2-weighted anatomical scans because they are short (~5 minutes) and can be automatically supplied to FreeSurfer for marginally better contrasts among subcortical areas.</p>
+<p>High-resolution (0.4mm) T2-weighted TSE-scan, aligned perpendicular to long-axis of the hippocampus, for hippocampal subfield segmentation.</p>
+<p>t2* map to test for lingering neural activity (a control that is sometimes asked for by diffusion peeps)</p>
+<p>lower res MPRAGE for control of partial volume effects (also a control that is sometimes asked for by diffusion peeps)</p>
+<p>MGH recommends those interested in morphometrics (e.g. cortical thickness) measures use (ideally) a multi-echo MPRAGE, and if that is not available they do provide some recommended parameters to change for a regular MPRAGE.</p>
+<p><a class="reference external" href="http://fmri.ucsd.edu/Howto/3T/structure.html">Learn more about T1w vs. T2w here</a></p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you collect fieldmaps? What kind of fieldmaps? How many/how frequently do you acquire fieldmaps? When do you acquire fieldmaps (in time) relative to your functional runs?”</p>
+</div>
+<p>I collect phase difference/double echo fieldmaps because that’s what was done before me. I did them at the end of the scan only. Now, however, I don’t take any fieldmaps because I trust fmriprep and the other data I’m using didn’t do them either.</p>
+<p>I sometimes collect field maps (at the beginning of each session), but often do not use them (I use fMRIPrep’s fieldmap-less correction). I think best practices would be to acquire field maps intermittently throughout a session or once for each run.</p>
+<p>2 fieldmaps per scan session (1 PA and 1 AP), at the end of the experiment (after the last functional run); I generate field maps by acquiring opposing spin echo scans. Typically generally known as “blip-up/blip-down”. Even if you don’t plan to use them, it only takes a minute to acquire them.</p>
+<p>I collect AP/PA fieldmaps (~30 sec each) right after the last functional run because I was told you want your fieldmaps acquired as close in time as possible to your functional scans; I don’t do them at the beginning because I try to limit how much “passive” scan time the subject has at the beginning of a scan when I feel like their cognitive functioning is optimal. If I have to pull a subject out of the scanner in the middle of a session (e.g., to use the bathroom), I make sure I run two sets of fieldmaps (one set for the first part of the scan before pulling them out, and one set for the second part).</p>
+<p>I’ve started acquiring field maps at the end of my scan sessions in the past 6 months and have run some tests where I process my data with or without them. I haven’t seen conclusive evidence that it helps a great deal with the functional data quality, with the caveat that the most principled analyses I tested were done in the back half of the brain. Anecdotally, you can definitely notice that warping without fieldmaps of the EPI vs. the anatomy, but even after field map correction, some amount of it still persists (i.e., it doesn’t fully fix the problem).</p>
+<p>For real-time fMRI scans, however, they are less useful since you’d never be able to correct on the fly during the scan for TR-by-TR processing purposes.</p>
+<p>Prisma: blip up/down fieldmaps, paired with CMRR multiband EPI (SMS = 4). Absolutely necessary to correct substantial distortion in orbitofrontal regions. I only collected 1 fieldmap at the end of all my functional runs. My runs were pretty long (3 15-min scans), so if I did this in the future, I probably would’ve collected a fieldmap after every EPI.</p>
+<p>Skyra: Siemens GRE fieldmap, not using a MB sequence and I think Mark said there wasn’t an advantage to the blip up/down fieldmap in that case. Also simpler since you don’t have to remember to flip the A-&gt;P direction. One fieldmap following all functional scans.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use in-plane acceleration (e.g., mSENSE or GRAPPA)?”</p>
+</div>
+<p>If not using multiband (SMS) acceleration, I would opt to use mSENSE. I am suspicious that GRAPPA is very susceptible to head motion.</p>
+<p>No; I was told that GRAPPA would make the image quality very susceptible to head motion and that I “definitely don’t want to do that”.</p>
+<p>Have used GRAPPA previously (in Minnesota sequence), but no longer do that now because it is not necessary. Also, I have heard (from Matthias Nau) that using one or the other is advisable, but beware if you use both!</p>
+<p>I do use GRAPPA for the acquisition of my diffusion data, acceleration factor 2 (but no mutliband here!; this is a Minnesota sequence, customly altered, acquisition of gradients in free mode, interspersed collection o 6 BOs).</p>
+<p>I try not to, unless absolutely necessary, under advice from Mark Pinsk.</p>
+<p>I try to avoid in-plane acceleration for fMRI, and instead opt for multi band acceleration. In-plane acceleration is more susceptible to movement (according to practicalMRI blog).</p>
+<p>GRAPPA: For skyra, I wanted to avoid SMS for reasons above. I also was having a subject talk in the scanner, and worried that SMS was more sensitive to motion than inplane acceleration (see pratical MRI blog post on this - <a class="reference external" href="https://practicalfmri.blogspot.com/2012/03/grappa-and-multi-band-imaging-and.html">https://practicalfmri.blogspot.com/2012/03/grappa-and-multi-band-imaging-and.html</a>). To get whole-brain coverage with even a large voxel/long TR (3mm voxel, 2 sec TR) you have to use inplane acceleration = 2. And this still results in quite a small slab.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use multiband acceleration (e.g., simultaneous multi-slice; SMS)? What acceleration factor do you use? Why do you or why do you not use multiband? Are there tradeoffs you are aware of?”</p>
+</div>
+<p>I use SMS2. I kept the acceleration factor low because of the possibility of finding results in the PFC, which I had heard are degraded at higher acceleration factors.</p>
+<p>My rule of thumb is keep it as low as possible. Ideally 2-3.</p>
+<p>I generally use SMS factor 3 or 4 with the goal of reducing the TR and voxel size. I’m wary of using SMS greater than 4 due to increased artifacts.</p>
+<p>Yes, SMS 3. Allows me to get whole brain coverage with keeping voxel size at 2mm isotropic and a relatively low TR.</p>
+<p>Yes. Currently at a factor of 4 for functional images, not for diffusion data.</p>
+<p>I use SMS 6, which allows me to scan at high-resolution (1.5mm iso voxels), with a relatively fast TR (1.5 sec) and almost whole-brain coverage (108 mm coverage).</p>
+<p>I try not to use multiband if I can help it, but often I can’t help it. Even so, from personal experience any multiband factor above 3 will impact the quality of the data, especially if it’s being used in order to push TR down or resolution up (they’re all things one should avoid and often people do them all at once until the data becomes mush).</p>
+<p>I’ve used a combination of SMS and inplane acceleration (SMS = 2, inplane = 2) on on Prisma, as well as just straight up SMS (acc factor = 4). Either way results in nice whole brain coverage with 2mm voxels and 1.5 sec TRs. I’m personally not that into this anymore - in my work we are looking at coarse scale patterns for the most part, and I’m not sure that the increased spatial resolution (and assorted computational problems) is sufficient to outweigh higher motion sensitivity + greater sensitivity to B0 inhomogeneities.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use any “rules of thumb” when choosing scanning parameters (resolution, TR, TE, etc.)?”</p>
+</div>
+<p>I use voxel size of 2.5 mm because I think the SNR tradeoff becomes disadvantageous below 2.5 or 2 mm (due to the intrinsic point-spread of the BOLD signal). I use short TRs (e.g., 1.0 s or 1.5 s) for increased signal to noise, in particular when working with the time series directly (e.g., intersubject correlations) as opposed to temporal averaging. I try to keep the TE around 30 or 32 with the hope of retaining dropout regions like OFC and MTL.</p>
+<p>Fitting with the experimental question, e.g. when interested in timeseries, then low TR as a priority, when interested in hippocampal subfields, have small voxels as priority.</p>
+<p>Since many agree that 3mm is an optimal voxel size for e.g. classification, and the larger the voxels, the more signal, I try to go as large as possible. I chose 2 mm in my last experiment because i wanted to acquire data with very similar parameters for my diffusion and functional data. For diffusion analysis, any border voxels to CSF need to be excluded in analysis, if I have 3 mm voxels that might just get rid of almost all my hippocampus. Most of my experiments do not require a short TR. I currently have a TR of 2 secs (video viewing and recall, main analysis aims to average activation across longer stretches of time within each voxel), I would however also have been fine with a TR of 2.5 secs or even longer. In general, I try to optimize signal relative to noise. I make sacrifices in resolution, TE and TR for that. I calculate the optimal Ernst angle with the Ernst angle calculator. Note: not super interested in MPFC or MTL so I don’t have to sacrifice signal for TE.</p>
+<p>Personally, I try not to go below 2.5mm or below 1.5s. This is mostly because any combination of parameters that’s more aggressive would require higher multiband factors for whole-brain coverage and that’s not the best idea (see above). I would suggest if there’s a choice between resolution and TR, it’s probably best to lower TR and keep resolution more coarse (e.g., 2.5mm &#64; 2s TR usually gets worse data than 3.0mm &#64; 1.5s TR). Unless you really need high spatial resolution (e.g., hippocampal fields), I would suggest keeping resolution high. Btw, if you smooth your data (and you never should!), then you’re better off increasing acquisition resolution instead and smoothing less.</p>
+<p>Don’t go higher resolution than 2.0mm, ideally stick to 2.5mm unless you really need that spatial precision.</p>
+<p>Keep the TE at around 30 to keep susceptibility artifacts small.</p>
+<p>Keep FOV greater than 192 mm to avoid wrap-around of large heads. Ideally go larger (&gt; 200 mm).</p>
+<p>I shoot for 2-3mm voxels with 1.5-2sec TRs. I know you can push it quite a bit further, but I’m pretty suspicious of acceleration factors &gt; 4. To be fair, this suspicion is mostly general suspicion of free lunches.</p>
+<p>Bandwitch - rule of thumb: keep it less than 2K. Increasing it will increase noise. Once everything is set as you like it, put it down to the minimum it can go. I’ll creep above 2K a bit if absolutely necessary, but also note that PNS stimulation really jumps up above 2K as well.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you collect your anatomical/functional/fieldmap scans in a particular order?”</p>
+</div>
+<p>High-res anatomical first to check the anatomical for anomalies while scanning (this is a requirement at PNI).</p>
+<p>I generally collect a scout (localizer, to make sure the participant’s brain is centered), then a T1, then a field map, then all my functional images, then a T2 at the end (because it’s less necessary).</p>
+<p>Anatomical first, then functional, then fieldmap. But I do not think there is a right or wrong order.</p>
+<p>Current order: auto-align scout, MPRAGE, T2*, Diffusion scans, fieldmap, Functional scans.</p>
+<p>I start with an anatomical so that I can align my functional scans to AC-PC (and make sure I am not cutting off critical portions of brain!) and so that I can check for anomalies. I do the field maps at the end because I want my participants to be fresh during the functional scans and it’s fine if they are tired during the field maps at the end.</p>
+<p>My program card usually lists: SCOUT – ANAT – FUNCTIONALS – FIELDMAP(S). The main reason is that keeping multiband low and trying for whole-brain coverage, my FOV is usually quite limited and I need the anatomical scan to make sure I don’t cut off any corners of the brain.</p>
+<p>Anatomical first because we have to check for anomalies; Then functional scans, which are the main bulk of experiment. Last fieldmaps. For non-SMS scans, I think this makes sense because you don’t necessarily have to do fieldmap correction and so do your least critical scan last. But for SMS scans, I would do this before the first fx scan so that if the experiment ends early you could potentially salvage some of the scans</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What field of view (FOV) coverage do you find to be adequate for whole-brain imaging (in mm)?”</p>
+</div>
+<p>At least 192mm, but ideally &gt;200.</p>
+<p>I now have 57 slices (x 2mm voxels = 114 mm coverage) which for most participants cuts off the top part of the brain and part of the cerebellum, for whole brain coverage it should be slightly bigger than that.</p>
+<p>I use autoalign because it is often requested/asked for by reviewers if you acquire diffusion data in multiple sessions. For that to work properly the FoV needs to be quite large. My FoV read is 180 mm, with 60 slices, voxel size 2x2x2 no gap.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“How do you position your FOV (i.e., the yellow box) for functional scans?”</p>
+</div>
+<p>I do the automatic ACPC alignment from the scout; I try to use the scanner’s automated FOV alignment.</p>
+<p>AC-PC alignment. Chosen because during a pilot, this seemed to be the best compromise between SNR in MTL and prefrontal areas.</p>
+<p>I try to align it with the scull base in the frontal lobes, to reduce artifact in the orbitofrontal cortex.</p>
+<p>I think generally aligning to AC-PC will give you less dropout in frontal regions, and aligning parallel to the hippocampus will give less dropout near the temporal pole and inferior regions of the temporal lobe. I was also told it is important to consistently position FOV across subjects, so using anatomical landmarks is good!</p>
+<p>Usually whatever fits the entire brain in. One thing to note here is that if you’re acquiring multiple sessions (or taking your subject in and out), you should try your best to keep the same position and angle (!) of the yellow box throughout all the sessions. This will help with alignment and with potential interpolation issues across different grids. Also, for real-time fMRI, if the angle is too far off, the quick-and-dirty-alignment might fail (offline this is less of an issue).</p>
+<p>Axial slices, no rotation. If the box is too small for the participant’s brain, opt to clip part of motor cortex in order to get all of temporal lobe. No particular reason - I’m not optimizing for hippocampus or anything like that. I know a lot of people align on the AC-PC axis.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“How do you position your FOV for anatomical scans?”</p>
+</div>
+<p>Just the whole brain, but I heard that the edge shouldn’t be too close to the back of the brain.</p>
+<p>I use the scout (localizer) and make sure the whole brain is covered and centered. I don’t usually change much.</p>
+<p>I try to center neocortex in the FOV with the vertical center line overlaying the longitudinal fissure.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Have you run pilot scans testing different parameters? What did you pilot? What did you look for to make your final decision on how to proceed?”</p>
+</div>
+<p>I like to have someone else scan <em>me</em> in my own parameters. I try to run MRIQC or fMRIPrep on the first subject to ensure nothing strange is happening.</p>
+<p>I piloted several FOV alignments, several SMS factors, 1.5mm vs 2mm voxels, and its influence on tSNR in hippocampus and mPFC.</p>
+<p>Yes. I piloted my full experiment on several participants to look for signal in the frontal lobes. I looked for significant activation at an uncorrected 0.05 alpha in known regions of interest.</p>
+<p>I have scanned the following parameter combinations and tested the resulting data mainly on object category decoding accuracy for early visual cortex and LO:</p>
+<p>2.0mm &#64; 1.5s TR &#64; MB6;
+2.5mm &#64; 2.0s TR &#64; MB4;
+3.0mm &#64; 1.5s TR &#64; MB3;
+3.0mm &#64; 2.0s TR &#64; MB2</p>
+<p>These are pretty much ordered in terms of performance / quality from worst to best. My advice is to never use the first one, since there’s no signal left even in V1. The second is pretty bad, too, but not as bad as the first. The last one is the best: with fat voxels and low multiband; we can even get good decoding out of parietal and prefrontal cortices with that one. The third is also ok, especially if you care about squeezing in more TRs for e.g., SRM.</p>
+<p>There seem to be some confounds here, but generally if you can keep multiband below 4 and resolution above 2.5mm, you should be ok for experiments involving visual stimuli.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have any unique factors in your experiment that lead you to be concerned or take special care while scanning (e.g., motion due to using a joystick, scanner sound interacting with an auditory stimulus)?”</p>
+</div>
+<p>I do real-time so I just try to minimize motion as much as possible (see recommendations for reducing motion below).</p>
+<p>Subjects need to be able to hear the audio of the stimuli above the scanner-noise. I adjust it at the start of the experiment (after T1 and before start of first task run).</p>
+<p>Subjects need to be able to do a verbal recall into the scanner (while having an epi-scan running). I instruct them to speak clearly to make sure I can hear them.</p>
+<p>My functional task (not the localizer) is very long and it’s all mental. Consequently, it’s really easy for participants to just want to stop trying or to fall asleep. It’s because of this that we have lots of little breaks where we check in and make sure the participant it still engaged and doing well. That’s the only real concern we have during the scan.</p>
+<p>Motion due to speech - so used MSENSE rather than SMS. To be honest though, this was out of an overabundance of caution. I did a different study with speech and SMS = 4, and it was fine. People generally don’t move more during speech scans than non-speech scans</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use Minnesota or MGH or Siemens sequences?”</p>
+</div>
+<p>I use MGH sequences because I generally use FreeSurfer as part of my analysis pipeline.</p>
+<p>MGH - this is super old, surprised this is in the survey. Used these ~4-5 years ago when Prisma first opened because that’s what everyone was using; Note that the Siemens multi band sequences are forked from MGH, so PNI no longer offers the MGH sequences.</p>
+<p>Minnesota (excellent diffusion sequence) and Siemens for functional. No particular reason.</p>
+<p>I only recommend using CMRR if you want bleeding edge features such as recording physiology data from the PMU sensors, scanning with matrices &lt;64, or using multi-echo.</p>
+<p>Minnesota - used this for a newer Prisma experiment. My impression is that the CMRR sequences were considered better for MB sequences than the standard Siemens sequences. Also this is what people were mostly using at the time</p>
+<p>Siemens - used for Skyra experiment with no SMS. My understanding is that for non-SMS sequences, you might as well use the standard sequences</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“How do you copy references for your slice prescriptions (automatically in your program card settings, manually, etc.)? Which parameters do you choose to copy?”</p>
+</div>
+<p>Manually; I like having “jobs” to do during scanning that keep me engaged and focused on what I am doing. I don’t want to get too relaxed during scanning.</p>
+<p>I always set up all my copy-references before starting data collection when setting up the sequence. I use the default slice prescription; I set it up so that it is a default to copy the references. Less prone to error. You can set this up on the program card.</p>
+<p>I set it up automatically In my program card settings. fmap changed manually for PA acquisition (respecting the autoalign change in angle) after reference is set by autoalign, accepted, and copied.</p>
+<p>I use “copy slices and adjustment volume”.</p>
+<p>I copy the parameters and centers of slice prescriptions (i.e., the first option) after selecting the field of view for the first functional scan based on the high resolution anatomy. Beware the AP-PA (jabberwock) bug, where it resets the second field map randomly to RL – you have to remember to change it back manually.</p>
+</div>
+</div>
+<div class="section" id="study-design">
+<h2>Study Design<a class="headerlink" href="#study-design" title="Permalink to this headline">¶</a></h2>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have a recommendation for what should be included in one run (e.g., one task vs. two tasks)?”</p>
+</div>
+<p>I would say more than one task if you want to compare tasks in your analyses.</p>
+<p>I think it’s fine to include multiple tasks in a single run, but I generally prefer shorter runs.</p>
+<p>I included viewing and recall of 4 brief movie clips in one run (depending on length of recall 20 min per run approximately). I have 4 runs in total doing the exact same thing (counterbalanced order). I thought that classification from encoding to recall might be easier within run. However, movement might be better with shorter runs. I will probably rue the day…</p>
+<p>I would just say that the run shouldn’t be very long, especially if it’s a taxing task.</p>
+<p>Completely experiment specific. Just try to plan ahead to whether you want to run any analyses that would benefit from leave-one-run-out (LORO) procedures for cross-validation. The main concern here is that the noise profile within a run is usually enough to distinguish between runs and if your conditions are correlated with the run you’ll never know if you’re decoding condition or run number.</p>
+<p>If the instructions are different or use different equipment, it should be different runs. If there are trials that rely on being a surprise, it needs to be within a run.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have a recommendation for how long a single run should be? What is the maximum duration of a run you like to use? Do you find that some experiments lend themselves to shorter/longer runs? Do you prefer more short runs or fewer long runs?”</p>
+</div>
+<p>I would say between 5-10 minutes. The maximum should be around 20 because data quality would suffer as the subject fatigues/gets sleepy. Depending on the design and getting all the factors into one run, you may have to have a long run, but I think aiming for shorter runs and having more of those would be better to give the subject a break.</p>
+<p>I think for traditional (boring) tasks, runs should ideally be less than 5 minutes long to reduce participant discomfort and movement. For more engaging tasks (e.g., movie-watching), I use runs ~15 minutes long. It can be important to separate things into multiple runs for the purpose of having independent acquisitions for, e.g., cross-validation. I think more short runs is generally better than fewer long runs.</p>
+<p>That depends on the stimuli and how engaging the stimuli in general are I think. If the stimulus is very engaging you can have longer runs without the participant starting to move. However, if your experiment uses more basic stimuli and the trials are repetitive, people tend to start moving at the end of longer runs. Currently, I use 4 runs of 15 minutes, and in a second session a single run of even 30 minutes. In all runs people watch and listen to cartoon videos. This seems to work fine so far. The only run in my current experiment with more than usual motion across the group is during the verbal recall (which is expected since they are speaking, so probably not related necessarily to the length of the run)</p>
+<p>I prefer more, shorter runs for MVPA.</p>
+<p>My functional task runs are 4.5 min long. My localizer task runs are about 8. I wouldn’t go longer than this.</p>
+<p>For actual tasks / psychophysics-in-the-scanner, I usually aim for 5-10 min per run. Any less and it gets annoying for the participant, any more and they fall asleep. For movies, etc., usually you can go ham for 2h if you need to (beware of bathroom break requests, though :).</p>
+<p>I do movie stuff, so the length of the run depends on the length of the movie. I haven’t scanned continuously for longer than 35 min in one run, but others have done much longer runs (60+ min). As long as the movie is engaging enough, I don’t think it makes a difference.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What is the maximum duration you like to keep a participant in the scanner?”</p>
+</div>
+<p>I prefer to keep subjects in the scanner for ~1 hour, and would rather split data collection into multiple shorter sessions. I’ve scanned experiments that are up to ~1.5 hours long.</p>
+<p>I aim for no more than 1.5 hours of running scanner time because that will be longer that they’re actually in the scanner.</p>
+<p>For a high intensity experiment that requires continuous attention, I have found that behavior results degrade markedly after about 50 minutes. My presumption is that this will carry over to fMRI.</p>
+<p>Probably 80-90 min max. Ideally, 60-70.</p>
+<p>1.5 hours max.</p>
+<p>60-90 min. Even with movies, people get bored/tired/uncomfortable. Depending on their head size, the combination of the sensimetrics earphones + headband can get really uncomfortable too.</p>
+<p>2 hours at the very maximum, although tasks that take altogether a lot longer than 1 hour are, I think, not preferable because task performance tends to drop in cognitively demanding tasks after 1 hour.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“When do you check for incoming TR pulses/triggers? Beginning of the run only? Every trial?”</p>
+</div>
+<p>I check every TR for real-time.</p>
+<p>I sync the beginning of my presentation script or stimulus to the first trigger, and log every TR for the duration of the scan using PsychoPy’s logging utility. I generally do not use trigger-locked onsets.</p>
+<p>Task script starts based on incoming pulse at beginning of the run (all triggers are logged during the run, but the task only responds to the beginning).</p>
+<p>In my current experiment, I check at the beginning of the run only. Timing is not critical here (lots of averaging, long TRs, no pulse locking…)</p>
+<p>When doing classification/MVPA, I try an pulse-lock stimulus onsets and thus check for pulses every single trial.</p>
+<p>The TR pulses are always extremely consistent. For real-time scans, I started out by resetting all presentation times and processing windows for each individual TR, but quickly found that you can use the timing of the first TR pulse in the run and arithmetic your way for 10 min without any discrepancies (i.e., &lt;10ms total at most).</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“How much “buffer” time do you include at the beginning of each run (before starting stimulus presentation)? At the end of each run?”</p>
+</div>
+<p>I usually pad ~12 seconds onto the beginning and end of each run.</p>
+<p>12-16 s</p>
+<p>10-20 seconds, I manually discard additional prescans (at least 5 with a 2 sec TR); at the end at least 10 seconds, better 16 seconds.</p>
+<p>7.5 seconds, in addition to the automatically discarded TRs.</p>
+<p>I pad 13.5 sec (9 TRs) before my first stimulus onset (even though Siemens sequences automatically collect and discard dummy scans before the first recorded pulse/volume, mriqc has detected up to 7 non-steady state volumes in a few of my runs, so I manually discard all these extra volumes in my analysis). I also pad 18 sec after my last stimulus offset to make sure I don’t cut off any of the hemodynamic response corresponding to my last couple of trials.</p>
+<p>Usually 12 seconds at the beginning and end. I use AFNI for preprocessing and eliminate 12 seconds’ worth of data from the beginning of every run during analysis.</p>
+<p>For movies, we always show a short 30 sec clip at the start of runs before starting the movie. There are some weird transient signals that happen at movie onset for reasons unknown, so we show the clip to absorb the transient and discard from analysis.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you recommend logging (i.e., recording in your output file) when you scan? (e.g., trigger time, etc.) Why is this information useful to have?”</p>
+</div>
+<p>I record all trigger times, responses, flip times of the screen. It’s useful to go back and check which TR happened at the screen flip time, which is especially important for real-time.</p>
+<p>I would recommend logging almost everything, as long as it doesn’t become unwieldy. Always better to have more information than less. I use PsychoPy’s “INFO” logging level.</p>
+<p>Task stimuli onsets, participant responses and timing of it, all triggers. It is useful to have this all in one logfile to easily know which MR images correspond to which stimulus presentation etc and more easily code analysis scripts.</p>
+<p>I log every trigger I read, every stimulus onset (including instruction screen), every participant response. I log those both in a .mat file in matlab and in a .txt logfile (double safe is almost never sorry).</p>
+<p>Time of first trigger is critical for timing-based analyses. I also record the timing of all visual stimuli that are presented to the participant, every time they occur. That way, if the presentation hitches or otherwise become out of sync, it is recoverable.</p>
+<p>I log everything with timestamps and save almost every parameter, unless it’s larger than a few GB (e.g., thousands of frames of unique stimuli generated on the fly). This is really useful when things fail miserably (you’ll know what actually happened) and also when you accidentally overwrite something – I’ve had, on occasion, to recreate parameters of my experiments by manually canvasing independent text logs; it was a pain, but I was glad I had the text logs to begin with.</p>
+<p>I record the timing of every TTL and keyboard/button press. Why? Paranoia? Just to have it in case of problems? I’ve only ever NEEDED this once, which was to align speech in the scanner with images presented on the screen, and then to align both with the scanner pulses.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What checks do you have in place to make sure things run as smoothly as possible? (e.g., sound checks, button tests, etc.)”</p>
+</div>
+<p>I have a sound check in the beginning where subjects press to indicate if I should turn the volume up or down before we start. The beginning scan won’t start until (1) the subject presses to begin and (2) it receives a trigger from the scanner, so the code won’t continue unless it’s working.</p>
+<p>I use a script that allows the subject to interactively adjust the audio volume while they listen to a soundcheck clip not included in the stimuli of interest. I set up my presentation script such that they have to press the button to advance (thus confirming the button box is working).</p>
+<p>I set up my task so that it will only start once the subject has pressed the index finger (blue) button. This way I can be sure the button box is working, Matlab is hearing button press, and the subject doesn’t have the button box flipped the wrong way.</p>
+<p>Audio check at start of task, check at start of each run whether participant is (still) using the correct button on the button box, check at start of each run on the scanner whether epi-images indeed come in (i.e. image reconstruction is working as it should)</p>
+<p>Before starting, I go in to the scanner room and press the buttons I’m gonna use, and my buddy looks at the computer screen text editor to make sure it works.</p>
+<p>I restart my script if the first button press to navigate it doesn’t work. I play music to my people in task free scans and adjust the volume for later movie viewing then. If volume is off, participants are told they can adjust by saying (turn up or turn down) even during the scan (I communicate over the mic recording interface. I can thus hear my participants at all times, advise them to not talk during scans unless it is crucial though). This is as optimal as I can make it. I guess I could play a short sound file that is spoken? I don’t do that. I used to have a microphone check (which dropped from my script without me noticing at some point). This is reckless and irresponsible. Thanks for drawing my attention to it.</p>
+<p>Sound check if necessary, with the option to adjust volume (it’s good to do this during a dummy EPI scan, which will also help alleviate the initial shimming problem). Always test the button box before starting the experiment. Also, if possible, try testing the trigger pulse button if anything has changed since the last time you scanned.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What procedures do you have in place to make sure you don’t lose data in the event of software crashing or some other unanticipated event?”</p>
+</div>
+<p>You can force PsychoPy to write all logging information to file as the experiment proceeds. It will log up until the task crashed.</p>
+<p>After each run, my script saves the behavioral data both locally and on the server so I always have two copies of the data in case something happens to the stimulus computer.</p>
+<p>I save a log file next to my mat files. If the program crashes fully, I at least have all my onsets, even if voice recordings for recall are missing for a run.</p>
+<p>Always run tasks locally (i.e., your task code should be on one of the stimulus computers, not on the server)! This minimizes the risk of something crashing due to an interruption in the connection.</p>
+<p>Annoyingly detailed text logs of everything that happened and how long it took for it to happen (e.g., I want 30 frames of a video to be shown, but often it’s more like 28-29; the log knows!).</p>
+<p>I don’t really… but my subjects are generally not performing a response task in the scanner. In my really paranoid days, when I was recording audio in the scanner, I had the audio recording directly onto my laptop but then I also had my phone recording the output for the speaker.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you do anything special for randomizing events, trial order? Do you jitter or TR-lock? What about your design determines if you jitter vs. don’t jitter, TR-lock vs. don’t TR-lock?”</p>
+</div>
+<p>No, I TR-lock.. For real-time I wanted to make sure I know which TR corresponds to what to plan naming/outputs/etc.</p>
+<p>I use jittering based on AFNI (<a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/make_random_timing.py.html">https://afni.nimh.nih.gov/pub/dist/doc/program_help/make_random_timing.py.html</a>) and do not TR lock. I have used T1I1 sequences from Aguirre lab to first-order counterbalance trial order (<a class="reference external" href="https://cfn.upenn.edu/aguirre/wiki/public:t1i1_sequences">https://cfn.upenn.edu/aguirre/wiki/public:t1i1_sequences</a>). T1I1 counterbalancing is only feasible for relatively few conditions.</p>
+<p>I randomize order of video stimuli, no TR-lock since each video is slightly different length (naturalistic design do not lend itself easily to TR-locking), more controlled studies do.</p>
+<p>I always jitter the ITI (why not?). The ITI should never be a multiple of the TR, so that the BOLD response of your event/block is “super sampled”, ie you’re not always sampling the same time point of the HRF.</p>
+<p>I counterbalance order of my movie stimuli (never same order, prefixed possible orders, counterbalanced across conditions (for me, within and between-subjects)) to exclude time biases for classification. I automatically jitter because people take different times to navigate my task (movie viewing and free recall).</p>
+<p>In general, if I want to do event-related analyses, I jitter. If, and only if, I only want to do MVPA, I pulse-lock.</p>
+<p>If the experiment affords it, I try to use a short block design. Event-related designs have much worse data quality for individual items / conditions since the hemodynamic response is actually not fully linearly additive, but deconvolution / regression assumes that. If you have to use events, then jittering should always help. For real-time scans, everything is always TR-locked.</p>
+<p>If the same type of trial is repeated for the same measure, then it should be jittered. I don’t jitter for trials that vary timing depending on the participants’ response, because I consider it human-jittered.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have any general recommendations for task timing? (e.g., minimum amount of time to wait between trials, active baseline vs. non-active baseline, time between blocks, etc.)”</p>
+</div>
+<p>When doing a simple visual task, I tend to follow Kriegeskorte’s advice and use many trials spaced close together (e.g., ~4 s ISI). I would allow 12–16 seconds between blocks if the goal is to allow the HRF to settle back to baseline.</p>
+<p>2 to 3 minutes between the 15 minutes blocks (of rest), long ITIs (if not necessary for your research question somehow) might cause participant to get bored quicker and therefore pay less attention?</p>
+<p>I prefer fast event-related designs, but spaced MVPA designs (10-12 secs per stimulus if possible). Whenever I can, I include an orthogonal well-controlled active baseline (e.g. navigation within a randomly changing environment, odd-even judgment task to suppress hippocampal activity).</p>
+<p>The more time you wait between trials, the less hemodynamic contamination you’ll get, up to 10-12 seconds or so. Also, if you’re running a task-based experiment, beware of adaptation effects after the first 5 or so seconds of a block / continuous visual / auditory presentation of the same or similar stimuli.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you include a functional localizer task in your study? If so, what area(s) are you trying to localize and what is the general design of your functional localizer task?”</p>
+</div>
+<p>I generally do not, but I would recommend using functional localizers that have been previously well-validated in the field.</p>
+<p>Area MT func localizer (visual motion). Standard routine. Worked very well in each individual subject.</p>
+<p>Yes. It’s a one-back image detection task like Aaron Bornstein used. I’m interested in decoding scene processing.</p>
+<p>I used to use retinotopy (moving checkerboard) and functional visual region localizers (e.g., LO, PPA, RSC, TOS, FFA, etc.).</p>
+<p>face/scene localizer - press a button if the image repeats. You don’t want a lot of time between images, so this task allows it to be quick in terms of stimuli presentation time, rt, ITI.</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“If you run a multi-session study, which scans do you make sure to acquire in multiple sessions (e.g., do you run an MPRAGE in each session)?”</p>
+</div>
+<p>I run a scout in each session, but fmriprep will align everything so I don’t worry about multiple MPRAGEs.</p>
+<p>I usually acquire a T1 in each session, but I don’t think it’s strictly necessary (depends on how much you trust your registration algorithms).</p>
+<p>yes, MPRAGE in each session, fieldmaps in each session</p>
+<p>If I have time, I like collecting an MPRAGE in each session so that if one of them is less-than-optimal quality (e.g., due to subject motion), then I can ignore the bad one and have a good backup one to us. But if time is an issue, Mark helped me setup a “fast T1w” that only takes ~2.5 min but is worse quality than the standard; I don’t use the fast T1w for registration at all, but I can use it to do my ACPC slice prescription alignment for functional scans to make sure I am aligned properly and not cutting off any critical parts of the brain.</p>
+<p>I usually run an MPRAGE in each session, but then try to align all the data to the same MPRAGE from day 1 before / during analysis. The other days’ MPRAGEs are usually used only if the alignment fails (e.g., due to field of view issues). For real-time scans, you usually need an MPRAGE for each day to align to the MPRAGEs from other days for high precision localization / model targeting.</p>
+<p>I run an MPRAGE and a fieldmap in every session. Fieldmap for obvious reasons. I could probably skip the MPRAGE, but it’s a short scan and the paranoid/suspicious/superstitious part of me says that an in-session MPRAGE will result in better alignment than out-of-session MPRAGE. Actually taking this survey is making me realize to what extent my pratices are based on superstition/tradition.</p>
+</div>
+</div>
+<div class="section" id="subject-scanning-interactions">
+<h2>Subject-Scanning Interactions<a class="headerlink" href="#subject-scanning-interactions" title="Permalink to this headline">¶</a></h2>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What text do you use to recruit participants via email?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What instructions do you find helpful to include on a SONA listing for your experiment?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What information do you include in email(s) to participants prior to the experiment?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have specific instructions you give to subjects that you feel facilitate good data quality?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you give participants task instructions or practice trials outside or inside the scanner?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you exclude participants based on handedness? If no, do you have a criterion for how many people can be left- or right-handed in your sample?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use the mock scanner? In what scenarios do you find using the mock scanner to be useful?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you have any tips or tricks for preventing/minimizing subject movement - either physically (e.g., pads, tape, etc.) or with instructions?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Do you use FIRMM software for tracking head motion? If yes, how do you use the information you get from FIRMM to help with your data acquisition?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Any trips or tricks that can help prevent people from falling asleep in the scanner? How do you monitor this? Can you add things to your behavioral task to mitigate drowsiness?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you do if somebody falls asleep in the scanner?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you do if a participant needs to go to the bathroom in the middle of a scan?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you do if a participant starts experiencing discomfort during a scan (e.g., the earbuds are causing discomfort)? What do you do and/or say to the participant?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“Have you needed to exclude participants for anything that isn’t included on the safety screening form?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“During data acquisition, what things do you check for to make sure everything is going as planned with the scan, with your task, etc.?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you have participants “do” during anatomical scans?”</p>
+</div>
+<p>Answer here</p>
+</div>
+</div>
+<div class="section" id="post-scan-data-inspection">
+<h2>Post-Scan Data Inspection<a class="headerlink" href="#post-scan-data-inspection" title="Permalink to this headline">¶</a></h2>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What tool(s) do you use for QA?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What do you look for in data quality assurance?”</p>
+</div>
+<p>Answer here</p>
+</div>
+<div class="toggle findoutmore docutils container">
+<div class="header docutils container">
+<p><strong>Find out more: </strong>“What is your approach for dealing with motion? Do you remove specific TRs with a lot of movement, or throw out entire runs, or throw out an entire subject? Do you have thresholds for making each of these decisions?”</p>
+</div>
+<p>Answer here</p>
+</div>
+</div>
+<div class="section" id="useful-resources">
+<h2>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
