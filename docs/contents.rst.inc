@@ -26,6 +26,7 @@ Setting up your experiment
    content_pages/02-04-designExp
    content_pages/02-05-reproin
    content_pages/02-06-prescan
+   content_pages/02-07-forms
 
 
 ################
