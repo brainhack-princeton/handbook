@@ -161,6 +161,11 @@ In order to have a copy of the repo on your local computer and render the websit
   :align: center
   :alt: looking at remotes
 
+.. image:: images/decorative_line4.png
+  :width: 700px
+  :height: 8px
+  :align: center
+  :alt: decorative line
 
 * You also want to set your master branch to track the upstream remote:
 
@@ -170,6 +175,12 @@ In order to have a copy of the repo on your local computer and render the websit
     git fetch upstream
     # track the upstream remote branch 
     git branch -u upstream/master
+
+.. image:: images/decorative_line4.png
+  :width: 700px
+  :height: 8px
+  :align: center
+  :alt: decorative line
 
 
 *Organization of the repo*
