@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/datalad-handbook/book.svg?branch=master)](https://travis-ci.org/datalad-handbook/book) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.org/brainhack-princeton/handbook.svg?branch=master)](https://travis-ci.org/brainhack-princeton/handbook) [![Documentation Status](https://readthedocs.org/projects/datalad-handbook/badge/?version=latest)](http://handbook.datalad.org/en/latest/?badge=latest)
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
 
 # Princeton Handbook for Reproducible Neuroimaging :orange_book:
