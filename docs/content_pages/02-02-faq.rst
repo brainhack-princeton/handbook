@@ -112,6 +112,9 @@ Frequently Asked Questions...and their crowdsourced answers.
 
 Choosing Parameters
 ===================
+
+PNI's `reference protocols <https://pni-facilities.princeton.edu/index.php/Reference_Scanning_Protocols>`_ are a great place to start when trying to choose sequence parameters!
+
 .. findoutmore:: "In deciding whether to use Skyra or Prisma at PNI, was there a reason (other than scheduling/availability) that drove your decision to use one scanner over the other? Have you noticed any systematic differences between Skyra and Prisma at PNI?"
 
 	Skyra has a 10 cm (I think) larger bore so it's nicer for feeling less claustrophobic. It is nicer to scan in Skyra because the larger bore makes it more comfortable for participants. 
@@ -164,6 +167,8 @@ Choosing Parameters
 	Prisma: blip up/down fieldmaps, paired with CMRR multiband EPI (SMS = 4). Absolutely necessary to correct substantial distortion in orbitofrontal regions. I only collected 1 fieldmap at the end of all my functional runs. My runs were pretty long (3 15-min scans), so if I did this in the future, I probably would've collected a fieldmap after every EPI.
 
 	Skyra: Siemens GRE fieldmap, not using a MB sequence and I think Mark said there wasn't an advantage to the blip up/down fieldmap in that case. Also simpler since you don't have to remember to flip the A->P direction. One fieldmap following all functional scans.
+
+	`Learn more about available fieldmaps and distortion correction methods. <https://pni-facilities.princeton.edu/index.php/B0_distortion_correction_methods>`_
 
 .. findoutmore:: "Do you use in-plane acceleration (e.g., mSENSE or GRAPPA)?"
 	
@@ -387,6 +392,8 @@ Study Design
 
 	The TR pulses are always extremely consistent. For real-time scans, I started out by resetting all presentation times and processing windows for each individual TR, but quickly found that you can use the timing of the first TR pulse in the run and arithmetic your way for 10 min without any discrepancies (i.e., <10ms total at most).
 
+	`Learn more about TTL pulses here. <https://pni-facilities.princeton.edu/index.php/TTL_Pulse>`_
+
 .. findoutmore:: "How much "buffer" time do you include at the beginning of each run (before starting stimulus presentation)? At the end of each run?"
 	
 	I usually pad ~12 seconds onto the beginning and end of each run.
@@ -509,85 +516,256 @@ Subject-Scanning Interactions
 
 .. findoutmore:: "What text do you use to recruit participants via email?"
 	
-	Answer here
+	See :ref:`forms` here!
 
 .. findoutmore:: "What instructions do you find helpful to include on a SONA listing for your experiment?"
 	
-	Answer here
+	I always put in the sentence that the timeslots provided are not the only ones possible, so if you are interested in participating but the timeslots do not match your agenda, that you can contact me for that. I did have quite a number of participants doing that (who I then rescheduled to another time, not at that time listed as option on sona)
+
+	Must bring ID; Normal Vision or Corrected-to-Normal Vision with Contact Lenses (glasses cannot go in the scanner); No History of Neurological Illness or Head Injury; Fluent in English; At Least 18 Years of Age
+
+	Abstract: In this two-part fMRI experiment, you will watch video lessons in the scanner and answer questions.
+
+	Description: This study has two parts. In Part 1, you will be scanned in fMRI while watching video lessons. You will also be asked to answer questions about the lessons in and out of the scanner in order to measure how much you learned. In Part 2, you will answer more questions outside of the scanner. Part 1 takes 120 min and Part 2 takes 30 min. Parts 1 and 2 MUST BE COMPLETED ON CONSECUTIVE DAYS. For this experiment, you will be paid $48. You may also earn up to $20 in bonuses: $10 for completing both sessions and up to $10 for doing well on the learning assessments. If the available timeslots do not work for your schedule, please email the researcher for alternate timeslots.
+
+	Eligibility reqs: Native English speaker, no metal in body, normal or corrected-to-normal vision (contact lenses ok), and normal hearing.
 
 .. findoutmore:: "What information do you include in email(s) to participants prior to the experiment?"
 	
-	Answer here 
+	I try to make sure they realize that scanning is extremely expensive and requires multiple people's time with the hope that the subject does not forget or cancel.
+
+	We should include "no wet hair" because it leads to distortion. Or so I heard from non-pyger scanners.
+	 
+	See :ref:`forms` here!
 
 .. findoutmore:: "Do you have specific instructions you give to subjects that you feel facilitate good data quality?"
 	
-	Answer here 
+	Just the normal stuff about being comfortable, going to the bathroom, making sure they're head is on an even surface, taking breaks if they feel themselves losing focus, not moving or crossing their arms or legs.
+
+	I tell participants that the most important thing is for them to settle in and get comfortable at the beginning so they don't have to adjust later. I tell them to wait til the end of the run if they absolutely have to move. I try to make it clear that fMRI is very sensitive to head motion and operates on a millimeter scale (I show them how big a millimeter is). I try to only scan expert subjects who have been scanned many times before and understand the importance of data quality (often graduate students).
+
+	Very clear instructions not to move any part of their body when the scanner is making noises, and never move the head of course; Don't move! Even moving your feet is enough to blur the image. As long as your can hear the scanner, it is very important to hold as still as possible.
+
+	Do not speak while the scanner is running if it can be avoided.
+
+	I repeatedly tell them not to move more than 1mm and that moving while the scanner is acquiring images will result in data loss 10 seconds before and after the movement. I also show them what 1mm looks like with a ruler. I also tell them that moving their feet or body also moves their head and that they should refrain from doing so while the scanner is collecting images. 
+
+	The two most important things during the scan are 1. Try really, really, really hard not to fall asleep. I know Princeton students are perpetually sleep deprived, but it's really, really, really important that you try your best to stay awake and attentive, even if the task is really hard or boring or confusing. We will be tracking your eyes (point to screen) so we'll be able to see if you're falling asleep, so try your very, very best to stay awake and keep your eyes open.
+
+	The second thing is it's really, really, really important that you stay as still as possible during the scans. During the scans, we're basically taking pictures of your brain, and just like any picture, if you move while we're taking it, the picture turns out blurry. Moving as little as 2-3 mm (show on ruler) can really hurt our data. So it's really, really important that you stay as still as possible - don't move your head during the scan, and don't move your body since that can move your head. We'll help you out by putting foam pads around you head, but it's really on you to pay attention and try your best to stay still. The way to do this is when we get in the scanner, take all the time you need to get comfortable, and then once you find that position, just relax and sink into it. Then as long as you stay mindful and pay attention to your body and try not to move, you'll probably be fine. We'll also put a little piece of tape on your forehead which will help give you some feedback if you move.
 
 .. findoutmore:: "Do you give participants task instructions or practice trials outside or inside the scanner?"
 	
-	Answer here 
+	Outside of the scanner to make sure what they can expect before going in. Then repeat instructions of subsequent tasks (all tasks beyond the first one they do) while subject is in scanner, right before that particular task.
+
+	I run practice versions of my task on my laptop outside the scanner. 
+
+	I only give verbal task instructions. I used to give practice trials for tasks that are less intuitive, or that require learning how to navigate response keys or similar.
+
+	Outside the scanner! They do a couple of practice rounds outside the scanner to practice after reading the instructions. I also go through a short questionnaire to make sure they understood the instructions. 
+
+	I give detailed instructions, with instructions and practice, outside of the scanner. Once the participant is in the scanner, I provide them with instruction screens, rehashing the instructions.
 
 .. findoutmore:: "Do you exclude participants based on handedness? If no, do you have a criterion for how many people can be left- or right-handed in your sample?"
 	
-	Answer here 
+	I generally do not exclude participants based on handedness (systematic variability is good!), but make sure to record their handedness in case you want to include it in a model down the road.
+
+	No, but I do keep the number of left-handed people low (i.e. max 10% of 40 participants to be scanned for this experiment)
+
+	No, i am trying to be more inclusive for this naturalistic experiment (and the IRB explicitly doesn't exclude them)
+
+	Yes. Only right-handed people. No particular reason other than history of doing this. 
+
+	It's usually so difficult to recruit people that I don't screen for this, but I can definitely see a reason to do it, especially if any of the effects you're looking for are even a little bit lateralized.
+
+	Yes, I am using mouse-tracking and while it's right-left balanced, I am still excluding left-handed people in case of differences in hand movement (I also excluded for behavioral data).
 
 .. findoutmore:: "Do you use the mock scanner? In what scenarios do you find using the mock scanner to be useful?"
 	
-	Answer here  
+	I think it would be most useful for scanner children or elderly or clinical populations, or doing a behavioral task for which it is very important that the context in which the task is done is as identical as possible to the context of being in the MRI scanner.
+
+	In one of the experiments I'm helping with we are using the mock scanner. When the experiment is extremely complicated (e.g., you need to see the screen, see your hands, and use a piano while in the scanner), it's always best to do a trial run beforehand. Also, if your participant population is unique and difficult to recruit (e.g., professional musicians, memory experts) and they are not used to the scanner noise / environment (i.e., being shoved head first into a narrow dark tube), it usually helps them be less stressed during the actual scan.
+
+	Yes, I wanted to make sure the mouse-tracking paradigm worked while the participant is laying down, with the tablet on their stomach.
 
 .. findoutmore:: "Do you have any tips or tricks for preventing/minimizing subject movement - either physically (e.g., pads, tape, etc.) or with instructions?"
 	
-	Answer here 
+	extra pads/instructions; I pad as heavily as I can around their head; Padding, padding, padding. I put the big square block around their ears and use the big triangles around the top of the skull.
+
+	I use Caseforge head cases to minimize movement (with expert subjects). I have also used a strip of tape across the forehead to provide some tactile feedback.
+
+	explain clearly why it would be a problem (rather than only say to lay still), remind when you see a lot of head motion (by looking at the eye tracker during task or using FIRMM), explain that movement of legs can cause head motion without realizing it, tape across head for tactile feedback
+
+	If I see them move their legs, or look at the functional scans that they're moving their head, I remind them in the break between runs to stay still
+
+	Tape for tactile feedback!!
+
+	The tape on the forehead works really well. I also really, really, really emphasize how important the motion is and that we're watching so we'll be able to see if you're moving. Also this is totallly superstition and I don't know if this is actually true, but I try to make some chitchat with them and make a connection.
 
 .. findoutmore:: "Do you use FIRMM software for tracking head motion? If yes, how do you use the information you get from FIRMM to help with your data acquisition?"
 	
-	Answer here
+	Yes, I like to give the subject feedback between runs so over the intercom I will tell them “you’re doing a great job keeping your head still! Keep it up!” or “I noticed a little bit of head movement in that last run, so remember to try and stay as still as possible”. For multi-session studies, I can show them their head motion tracking plot when they come out of the scanner if they are curious and that maybe (?) motivates them to do just as well or better in the next session.
+
+	`Learn more about using FIRMM software at PNI. <https://pni-facilities.princeton.edu/index.php/FIRMM>`_
 
 .. findoutmore:: "Any trips or tricks that can help prevent people from falling asleep in the scanner? How do you monitor this? Can you add things to your behavioral task to mitigate drowsiness?"
 	
-	Answer here 
+	tell them to take breaks
+
+	I try to only do naturalistic experiments that are intrinsically engaging. I also use the eye-tracker to monitor subjects wakefulness at acquisition time.
+
+	explain that it is important to stay awake and engaged, give them a small performance bonus, explain that there is an eyetracker visible to us during the experiment
+
+	Eye tracking. If they fall asleep or are about to, I tell them in the next break that I can see they have a hard time keeping their eyes open, but that it is extremely important they really try to keep their eyes open, because otherwise I cannot use the data; I monitor sleepiness via eyetracker. I engage them in conversation between scans if they seem very sleepy. This usually helps, especially if they have to give more than one word answers.
+
+	I monitor eye movements (mostly make sure the eyes aren’t closed) and I present a sleep log if I see that they’re getting sleepy.
+
+	Frequent breaks, every 5 minutes, help, but it certainly isn't perfect.
+
+	If I notice people are really struggling with drowsiness I will go into the scanner room between runs. I tell them “hey, I need to come into the room to grab something real quickly” and then I go into the room. This seems to provide a little boost in alertness that helps (for whatever reason). 
 
 .. findoutmore:: "What do you do if somebody falls asleep in the scanner?"
 	
-	Answer here 
+	cry to myself
+
+	Throw out that run and try to persuade them to stay awake.
+
+	If they look sleepy during a certain run, remind them of importance to stay awake and engage, if they are really asleep (not just looking drowsy), take them out and stop experiment.
+
+	For my diffusion scans, falling asleep is a huge problem because it massively changes the signal we are collecting (diffusivity goes up). I thus also warn people that i will talk in their headphones during the scans if I see them getting drowsy, and that they shouldn’t be alarmed.
+
+	Their data gets excluded. 
+
+	Try to wake them up by talking to them over the mic. If that doesn't work, I go in and pull them out.
+
+	I tell them to try to be more alert and redo the run and/or I exclude them from the analysis later.
 
 .. findoutmore:: "What do you do if a participant needs to go to the bathroom in the middle of a scan?"
 	
-	Answer here 
+	Try your best to make sure they use it before the scan unless they *just* went in the last 10 minutes. Otherwise if they're super uncomfortable i let them out. 
+
+	Pull them out immediately, then re-run the scout and re-start the functional run.
+
+	Take them out, put them back in, redo initial scout scan and then rest of the experiment.
+
+	I ask the subject if they can hold it for 1 more minute, then run fieldmaps, pull them out to use the restroom, put them back in, run a scout localizer and “fastT1w” so I can re-align my FOV, then continue with remaining functional scans and another set of fieldmaps at the end. Be careful that whatever scan is “open” on the console, when you remove the head coil it will turn off the top head coils, so when you put the subject back in and re-attach the head coil, make sure you manually turn on those coils in your settings before proceeding with the next scan. 
+
+	Curse the devil and his accomplices. Rerun autoalign scout before i continue. I love autoalign when nothing else (TR, voxel size) really matters.
+
+	Depending on how close we are to the end (e.g., <10min), I ask whether they can stick with it for a bit. If it's longer and they really need to go, I usually let them and abort the scan. For some of my experiments, the data collection is modular, so stopping early on one day is not the end of the world, but if it is, expect you data quality to take a hit (it's like collecting data over two days in terms of alignment, interpolation, etc.).
+
+	Cry. This is annoying especially when people decline to use bathroom before hand. But what can you do but let them out? If it's at the end of the session, I'll ask if they can hold it for another 5-10 min, but otherwise have to let them out.
 
 .. findoutmore:: "What do you do if a participant starts experiencing discomfort during a scan (e.g., the earbuds are causing discomfort)? What do you do and/or say to the participant?"
 	
-	Answer here 
+	first, i let them take a break. afterwards, i ask them if they want to stay in the scanner and i let them out if they want to be let out.
+
+	see if there is anything I can do to resolve it (i.e. discomfort due to being cold, cover them with a sheet for the remainder of the expt), explain how long the experiment still is so they can judge whether they think they can finish or not, make sure they know they really can stop when they want without that negatively affecting them in any way.
+
+	try to adjust it by taking the participant out of the scanner without moving the head. In worst case, I taking them out and reposition them and rerun shimming, t1 etc.
+
+	I inquire how much discomfort it is causing and offer to pull them out to adjust. Sometimes they keep going, sometimes I pull them out and curse the devil and his accomplices. 
+
+	I try to fix it if I can. If it's close to the beginning of the scan, I sometimes take people out and have them redo the earplugs/earbuds and then restart. 
+
+	How uncomfortable are you? Can you handle it for another XX minutes, or would you prefer to end the experiment early? If you're really uncomfortable, it's better to end early and that's totally okay.
+
+	Most of the time, people will be okay long enough for me to run the last 1-2 short scans. But if they're really uncomfortable, I'll always take them out right away. I've never had someone end the experiment in the middle of a scan though.
 
 .. findoutmore:: "Have you needed to exclude participants for anything that isn't included on the safety screening form?"
 	
-	Answer here 
+	YES! surgery (screws in legs, make sure to ask people whether any metal could have been left in their body if they had surgery! often they themselves don't think of that)
+
+	No, but I've had participants who remembered that they have an excludable issue listed on the form only after reading it for the second or third separate time. I would suggest having them read the form more than once just to be safe.
+
+	I’ve had to exclude two people because their head did not fit comfortably in the head coil (it was too large and the coil touched their face). 
+
+	Someone once reported a breathing problem, where they sometimes forget to breathe and can pass out?
+
+	Once someone got into the scanner, realized they were claustrophobic, and asked to stop right away
 
 .. findoutmore:: "During data acquisition, what things do you check for to make sure everything is going as planned with the scan, with your task, etc.?"
 	
-	Answer here 
+	i have text output in matlab to make sure subjects are keypressing. i also have text outputting if triggers are found in real-time/display timing.
+
+	I pray to the Triple Goddess and her horned consort.
+
+	Look at incoming images. listen to free recall, watch eye of person on eyetracker.
+
+	I usually have diagnostic code on all aspects of the task / code, as well as the participant responses up on a second and/or third monitor. Also, the eye tracker tells me whether they're still awake.
+
+	Inline display to make sure data is collected/reconstructed, monitor stimulus display
 
 .. findoutmore:: "What do you have participants "do" during anatomical scans?"
 	
-	Answer here
+	Watch a youtube video
+
+	Listen to music (long tycho mixes, non-verbal). I need to have a very controlled task free condition for all of my control and diffusion scans. Every person listens to exactly the same thing. 
+
+	They see a refresher of the face-scene associations they learned earlier in the day. 
+
+	They watch a nature documentary with subtitles. It seems to relax them.
+
+	Usually I show them a Youtube video: Harry Potter trailers, elephant seal documentaries, base jumping videos, Pixar shorts, etc.
+
+	Watch short pixar movie. Anat is at the start of the session and I don't want people to get sleepy already.
 
 Post-Scan Data Inspection
 =========================
 
 .. findoutmore:: "What tool(s) do you use for QA?"
 	
-	Answer here
+	MRIQC, fMRIPrep
+
+	ART toolbox for SPM (visualize motion and intensity changes over time)
+
+	I usually check the motion parameters in AFNI after preprocessing.
 
 .. findoutmore:: "What do you look for in data quality assurance?"
 	
-	Answer here
+	I look for quality of anatomical normalization to the template and inspect surface reconstruction. I check whether any of the skull remains after skull-stripping. I check surface reconstruction for good alignment with the white matter and pial boundaries.
+
+	motion, tSNR, in general whether participant is an outlier in any MRIQC metric vs the rest of the group in MRIQC group report
+
+	motion and intensity changes over time
+
+	movement, any ghosting? any other artifacts? are images usable?
+
+	Depending on the experiment and the stimulus, there are things you can look for, e.g., is there univariate activity increase in V1 when they're looking at a stimulus vs. rest (you'd be surprised how many people that excludes!) -- the most annoying thing is that often some people just don't have good signal regardless of how well intentioned they are and how still and compliant they are and it's impossible to tell until you scan them and see that the data is pure noise (e.g., the V1 metric above).
 
 .. findoutmore:: "What is your approach for dealing with motion? Do you remove specific TRs with a lot of movement, or throw out entire runs, or throw out an entire subject? Do you have thresholds for making each of these decisions?"
 	
-	Answer here
+	I regress out motion parameters, their derivatives, framewise displacement, and other confounds such as aCompCor. I sometimes also censor time points with motion (or proportion of outlier voxels) at the GLM stage according to AFNI conventions.
+
+	I censor TRs for isolated movement. If the subject is moving a lot, I throw out the whole subject.
+
+	I've never thrown out TRs (hemodynamic lag makes that a bit weird anyway) or runs. I have thrown out participants before for multiple incidents of 10+mm motion throughout the experiment. 
 
 Useful Resources
 ================
 
+.. findoutmore:: "These are people at PNI who are willing to provide help or answer questions about the following topics:"
 
+	Anne Mennen (amennen@princeton.edu) - real-time analyses
 
+	Sam Nastase (sam.nastase@gmail.com) - ReproIn, HeuDiConv, Singularity, BIDS, MRIQC, fMRIPrep, AFNI, BrainIAK, PyMVPA, Nibabel, scikit-learn
+
+	Lizzie McDevitt (emcdevitt@princeton.edu) - ReproIn, HeuDiConv, BIDS, FSL
+
+	Mai Nguyen - mlnguyen@princeton.edu - ISC
+
+	Silvy Collin (scollin@princeton.edu) - SPM, representational similarity analysis, searchlight, HMM
+
+	Arvid Guterstam (arvidg@princeton.edu) - SPM
+
+	Monika Schoenauer (m.schonauer@princeton.edu) - diffusion-weighted imaging
+
+	Paula Brooks (paulapbrooks@gmail.com)
+
+	Andrew Wilterson (aiwilson@princeton.edu) - Surface analysis, AFNI in general
+
+	Marius Cătălin Iordan (mci@princeton.edu) - Real-time fMRI, Neurofeedback, AFNI, Multi-Day fMRI Study Design
+
+	Mark Pinsk (mpinsk@princeton.edu) - setting up protocols, equipment training, etc
+
+Be sure to reference the `PNI Wiki <https://pni-facilities.princeton.edu/index.php/MRI>`_ for lots of useful information, including facility guidelines/procedures and instructions about how to use 3rd party equipment. 
