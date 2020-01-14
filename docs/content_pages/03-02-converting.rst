@@ -62,15 +62,16 @@ Here is the hierarchy of the folders in the :blue:`new_study_template` folder. *
                └── sub-002
                └── etc.
                └── derivatives          # this is where all your BIDS derivatives will be
-                   └── mriqc            # mriqc output will go here
+                   └── deface           # defaced T1 images go here SEE NOTE!
                        └── logs         # slurm logs will go here
                    └── fmriprep         # fmriprep-preprocessed data will go here
                        └── logs         # slurm logs will go here
-                   └── freesurfer
+                   └── freesurfer       # fmriprep will also run freesurfer reconstruction and output goes here 
+                   └── mriqc            # mriqc output will go here
+                       └── logs         # slurm logs will go here
                └── .bidsignore          # similar to .gitignore, list all files/directories you don’t want to be checked by the bids-validator
            └── dicom                    # raw dicoms copied from the scanner go here
                └── check_volumes        # outputs checking that all dicoms transferred
-           └── T1w_defaced              # defaced T1 images go here SEE NOTE!
            └── behavioral               # [example] any other data can live at this level
 
 IMPORTANT NOTES:
@@ -84,20 +85,21 @@ IMPORTANT NOTES:
 
     * `Get a FreeSurfer license here <https://surfer.nmr.mgh.harvard.edu/registration.html/>`_.
 
-* Anatomical images need to be defaced before they can be shared publicly. We recommend defacing images as you collect data and saving them here, so they are available for you when you need them (e.g., data visualization in notebooks that may be shared publicly). Depending on the goals of your study, it may not be a good idea to preprocess your data using defaced images (e.g., it might introduce registration problems), so that is why we have them set aside in a different directory here (i.e., not in your :blue:`../data/bids/` directory). 
+* Anatomical images need to be defaced before they can be shared publicly. We recommend defacing images as you collect data and saving them here, so they are available for you when you need them (e.g., data visualization in notebooks that may be shared publicly). Depending on the goals of your study, it may not be a good idea to preprocess your data using defaced images (e.g., it might introduce registration problems), so that is why we have them set aside in the derivatives directory here. 
 
 Convert DICOMS to BIDS-formatted NIFTI
 ======================================
 
 *Step 1: Convert your dicoms into nifti files using HeuDiConv*
 ----------------------------------------------------------------
-This step will use the following three scripts (all of which can be found in :blue:`../code/preprocessing`):
+This step will use the following four scripts (all of which can be found in :blue:`../code/preprocessing`):
 
 * step1_preproc.sh
 * number_of_files.py
-* run_heudiconv.py 
+* run_heudiconv.py
+* deface.sh 
 
-The script :blue:`step1_preproc.sh` will do four things for you: 
+The script :blue:`step1_preproc.sh` will do five things for you: 
 
 * copy your DICOM files from "conquest" and place them in your study directory (:blue:`../data/dicom/`)
 
@@ -108,6 +110,8 @@ The script :blue:`step1_preproc.sh` will do four things for you:
 * run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)
 
 `HeuDiDonv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts <https://heudiconv.readthedocs.io/en/latest/>`_.
+
+* Deface your T1w anatomical image and set it aside in your derivatives directory (:blue:`../data/bids/derivatives/deface`)
 
 You should run :blue:`step1_preproc.sh` for each subject and each session separately. You can run :blue:`step1_preproc.sh` as soon as your data have finished transferring from the scanner to the conquest directory (i.e., ~10 min after you finish scanning). 
 
@@ -244,7 +248,9 @@ Read the red “errors” and yellow "warnings". At the bare minimum, you will n
 
 *Step 4: Deface anatomical images*
 ----------------------------------
-Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won't mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the :blue:`../data/T1w_defaced` so they are available whenever you need them.  
+Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won't mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the :blue:`../data/bids/derivatives/deface` so they are available whenever you need them. 
+
+IMPORTANT: This defacing step is included in :blue:`step1_preproc.sh`! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of :blue:`step1_preproc.sh`.
 
 The :blue:`deface.sh` script will run `pydeface <https://github.com/poldracklab/pydeface>`_ to deface the T1w structural images and move the defaced image into your :blue:`../data/T1w_defaced` directory. It takes two inputs:
 
