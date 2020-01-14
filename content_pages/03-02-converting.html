@@ -179,15 +179,16 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
             └── sub-002
             └── etc.
             └── derivatives          <span class="c1"># this is where all your BIDS derivatives will be</span>
-                └── mriqc            <span class="c1"># mriqc output will go here</span>
+                └── deface           <span class="c1"># defaced T1 images go here SEE NOTE!</span>
                     └── logs         <span class="c1"># slurm logs will go here</span>
                 └── fmriprep         <span class="c1"># fmriprep-preprocessed data will go here</span>
                     └── logs         <span class="c1"># slurm logs will go here</span>
-                └── freesurfer
+                └── freesurfer       <span class="c1"># fmriprep will also run freesurfer reconstruction and output goes here</span>
+                └── mriqc            <span class="c1"># mriqc output will go here</span>
+                    └── logs         <span class="c1"># slurm logs will go here</span>
             └── .bidsignore          <span class="c1"># similar to .gitignore, list all files/directories you don’t want to be checked by the bids-validator</span>
         └── dicom                    <span class="c1"># raw dicoms copied from the scanner go here</span>
             └── check_volumes        <span class="c1"># outputs checking that all dicoms transferred</span>
-        └── T1w_defaced              <span class="c1"># defaced T1 images go here SEE NOTE!</span>
         └── behavioral               <span class="c1"># [example] any other data can live at this level</span>
 </pre></div>
 </div>
@@ -209,20 +210,21 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 </ul>
 </div></blockquote>
 </li>
-<li><p>Anatomical images need to be defaced before they can be shared publicly. We recommend defacing images as you collect data and saving them here, so they are available for you when you need them (e.g., data visualization in notebooks that may be shared publicly). Depending on the goals of your study, it may not be a good idea to preprocess your data using defaced images (e.g., it might introduce registration problems), so that is why we have them set aside in a different directory here (i.e., not in your <span class="blue">../data/bids/</span> directory).</p></li>
+<li><p>Anatomical images need to be defaced before they can be shared publicly. We recommend defacing images as you collect data and saving them here, so they are available for you when you need them (e.g., data visualization in notebooks that may be shared publicly). Depending on the goals of your study, it may not be a good idea to preprocess your data using defaced images (e.g., it might introduce registration problems), so that is why we have them set aside in the derivatives directory here.</p></li>
 </ul>
 </div>
 <div class="section" id="convert-dicoms-to-bids-formatted-nifti">
 <h2>Convert DICOMS to BIDS-formatted NIFTI<a class="headerlink" href="#convert-dicoms-to-bids-formatted-nifti" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="step-1-convert-your-dicoms-into-nifti-files-using-heudiconv">
 <h3><em>Step 1: Convert your dicoms into nifti files using HeuDiConv</em><a class="headerlink" href="#step-1-convert-your-dicoms-into-nifti-files-using-heudiconv" title="Permalink to this headline">¶</a></h3>
-<p>This step will use the following three scripts (all of which can be found in <span class="blue">../code/preprocessing</span>):</p>
+<p>This step will use the following four scripts (all of which can be found in <span class="blue">../code/preprocessing</span>):</p>
 <ul class="simple">
 <li><p>step1_preproc.sh</p></li>
 <li><p>number_of_files.py</p></li>
 <li><p>run_heudiconv.py</p></li>
+<li><p>deface.sh</p></li>
 </ul>
-<p>The script <span class="blue">step1_preproc.sh</span> will do four things for you:</p>
+<p>The script <span class="blue">step1_preproc.sh</span> will do five things for you:</p>
 <ul class="simple">
 <li><p>copy your DICOM files from “conquest” and place them in your study directory (<span class="blue">../data/dicom/</span>)</p></li>
 <li><p>count the number of volumes in each run so you can check that your data transfer was successful (the output of this step can be found in <span class="blue">../data/dicom/check_volumes</span>)</p></li>
@@ -230,6 +232,9 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 <li><p>run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)</p></li>
 </ul>
 <p><a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">HeuDiDonv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts</a>.</p>
+<ul class="simple">
+<li><p>Deface your T1w anatomical image and set it aside in your derivatives directory (<span class="blue">../data/bids/derivatives/deface</span>)</p></li>
+</ul>
 <p>You should run <span class="blue">step1_preproc.sh</span> for each subject and each session separately. You can run <span class="blue">step1_preproc.sh</span> as soon as your data have finished transferring from the scanner to the conquest directory (i.e., ~10 min after you finish scanning).</p>
 <p>The script takes three inputs:</p>
 <ul class="simple">
@@ -359,7 +364,8 @@ which bids-validator
 </div>
 <div class="section" id="step-4-deface-anatomical-images">
 <h3><em>Step 4: Deface anatomical images</em><a class="headerlink" href="#step-4-deface-anatomical-images" title="Permalink to this headline">¶</a></h3>
-<p>Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won’t mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the <span class="blue">../data/T1w_defaced</span> so they are available whenever you need them.</p>
+<p>Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won’t mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the <span class="blue">../data/bids/derivatives/deface</span> so they are available whenever you need them.</p>
+<p>IMPORTANT: This defacing step is included in <span class="blue">step1_preproc.sh</span>! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of <span class="blue">step1_preproc.sh</span>.</p>
 <p>The <span class="blue">deface.sh</span> script will run <a class="reference external" href="https://github.com/poldracklab/pydeface">pydeface</a> to deface the T1w structural images and move the defaced image into your <span class="blue">../data/T1w_defaced</span> directory. It takes two inputs:</p>
 <ul class="simple">
 <li><p>subjectID</p></li>
