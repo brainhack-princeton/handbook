@@ -20,6 +20,7 @@ Participant Instructions/Scripts
 ================================
 
 * :download:`Sample 1 <../extra_files/sampleMaterials/ExperimenterScriptandInstructions.docx>`
+* :download:`MRI Safety Script <../extra_files/sampleMaterials/MRISafetyProceduresScript.docx>`
 
 Code
 ====
