@@ -1,16 +1,18 @@
-############
-Introduction
-############
+##########################
+Brand new to neuroimaging?
+##########################
+
+Familiarize yourself with important background reading material here. If you’re unsure about any terms, check out the `glossary <content_pages/glossary>`_.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Why we made this handbook and how you can get the most out of it.
 
-   content_pages/01-01-howto
-   content_pages/01-02-openNeuro
-   content_pages/01-03-prereqs
-   content_pages/01-04-glossary
-   content_pages/01-05-sampleProject
+   content_pages/01-01-openNeuro
+   content_pages/01-02-standard
+   content_pages/01-03-sampleProject
+   content_pages/01-04-faq
+   content_pages/01-05-designExp
+   content_pages/01-06-overview
 
 ##########################
 Setting up your experiment
@@ -18,49 +20,43 @@ Setting up your experiment
 
 .. toctree::
    :maxdepth: 1
-   :caption: Don't know where to begin? Start here!
+   :caption: Follow these important steps before running your first subject!
 
-   content_pages/02-01-overview
-   content_pages/02-02-faq
-   content_pages/02-03-environments
-   content_pages/02-04-designExp
-   content_pages/02-05-reproin
-   content_pages/02-06-prescan
-   content_pages/02-07-forms
+   content_pages/02-01-reproin
+   content_pages/02-02-prescan
+   content_pages/02-03-forms
 
 
-################
-Benefits of BIDS
-################
+##########
+Using BIDS
+##########
 
 .. toctree::
    :maxdepth: 1
-   :caption: Why and how to set up your fMRI data.
+   :caption: After running your first subject, go from raw DICOMs to preprocessed niftis. Make sure everything works before running more subjects!
 
-   content_pages/03-01-standard
-   content_pages/03-02-converting
-   content_pages/03-03-mriqc
-   content_pages/03-04-fmriprep
+   content_pages/03-01-converting
+   content_pages/03-02-mriqc
+   content_pages/03-03-fmriprep
+   content_pages/03-04-fmriprepOutputs
 
-
-################
-Taming your data
-################
+##########################################
+Managing your preprocessed data
+##########################################
 
 .. toctree::
    :maxdepth: 1
-   :caption: Reigning in complex (and somewhat confusing) data.
+   :caption: Work with your BIDS derivatives to get ready for analysis.
 
    content_pages/04-01-fileFormats
    content_pages/04-02-templates
    content_pages/04-03-registration
-   content_pages/04-04-surfaceBased
-   content_pages/04-05-visualization
+   content_pages/04-04-visualization
 
 
-##################
-Into the Wild West
-##################
+##############################
+Into the Wild West of analyses
+##############################
 
 .. toctree::
    :maxdepth: 1
@@ -68,10 +64,9 @@ Into the Wild West
 
    content_pages/05-01-univariate
    content_pages/05-02-mvpa
-   content_pages/05-03-group
-   content_pages/05-04-physiology
-
-
+   content_pages/05-03-surfaceBased
+   content_pages/05-04-group
+   content_pages/05-05-physiology
 
 ########
 Appendix
@@ -82,6 +77,7 @@ Appendix
    :caption: Haven't had enough? Some more information and resources.
 
    contributing
+   content_pages/glossary
    references
    resources
 

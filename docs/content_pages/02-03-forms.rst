@@ -1,7 +1,7 @@
 .. _forms:
 
-Sample Materials
-----------------
+Sample scripts, checklists, and code
+------------------------------------
 
 Email Templates
 ===============

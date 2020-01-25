@@ -1,8 +1,8 @@
 .. _glossary:
 
-************************
-Glossary of useful terms
-************************
+********
+Glossary
+********
 
 
 Computing

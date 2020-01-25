@@ -1,8 +1,8 @@
 .. _faq:
 
-==================
-Best Practices FAQ
-==================
+========================================
+Crowd-sourced frequently asked questions
+========================================
 
 .. |br| raw:: html
 
