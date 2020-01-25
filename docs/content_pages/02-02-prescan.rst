@@ -3,8 +3,8 @@
 Pre-scan logistics at PNI 
 -------------------------
 
-.. image:: ../extra_files/PrescanChecklist_page1.png
+There are a number of logistics you need to take care of before you run your fMRI experiment at PNI. Here is a checklist to help you navigate this.
 
-.. image:: ../extra_files/PrescanChecklist_page2.png
+.. raw:: html
 
-Download the PNI Pre-Scan Checklist :download:`here. <../extra_files/PrescanChecklist.docx>`
+	<iframe src="../_static/extra_files/PrescanChecklist.pdf" width="700" height="700">
