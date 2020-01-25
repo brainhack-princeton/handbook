@@ -1,8 +1,8 @@
 .. _converting:
 
-=======================
-Converting data to BIDS
-=======================
+=======================================
+Converting to BIDS using HeuDiConv 
+=======================================
 
 .. raw:: html
 

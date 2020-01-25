@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How to use this handbook" href="content_pages/01-01-howto.html" />
+    <link rel="next" title="Best practices in open neuroimaging" href="content_pages/01-01-openNeuro.html" />
   
 
   
@@ -158,68 +158,65 @@
 <p><a class="reference external" href="https://github.com/brainhack-princeton/handbook/issues/new">Please contact us</a> if you have any questions, feedback, or suggestions!</p>
 </div>
 </div>
-<div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="brand-new-to-neuroimaging">
+<h1>Brand new to neuroimaging?<a class="headerlink" href="#brand-new-to-neuroimaging" title="Permalink to this headline">¶</a></h1>
+<p>Familiarize yourself with important background reading material here. If you’re unsure about any terms, check out the <a class="reference external" href="content_pages/glossary">glossary</a>.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Why we made this handbook and how you can get the most out of it.</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/01-01-howto.html">How to use this handbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/01-02-openNeuro.html">Best practices in open neuroimaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/01-03-prereqs.html">General prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/01-04-glossary.html">Glossary of useful terms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/01-05-sampleProject.html">Dataset description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-01-openNeuro.html">Best practices in open neuroimaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-02-standard.html">Benefits of using BIDS (Brain Imaging Data Structure)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-03-sampleProject.html">Practice using BIDS with our sample dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-04-faq.html">Crowd-sourced frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-05-designExp.html">Principles when designing your fMRI experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/01-06-overview.html">Flowchart overview from setup to analysis</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="setting-up-your-experiment">
 <h1>Setting up your experiment<a class="headerlink" href="#setting-up-your-experiment" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Don't know where to begin? Start here!</span></p>
+<p class="caption"><span class="caption-text">Follow these important steps before running your first subject!</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-01-overview.html">Overview of fMRI analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-02-faq.html">Best Practices FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-03-environments.html">Reproducible computing environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-04-designExp.html">Designing your fMRI experiment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-05-reproin.html">Standardizing data acquisition with ReproIn</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-06-prescan.html">Pre-scan checklist</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/02-07-forms.html">Sample Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-01-reproin.html">Standardizing data acquisition with ReproIn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-02-prescan.html">Pre-scan logistics at PNI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/02-03-forms.html">Sample scripts, checklists, and code</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="benefits-of-bids">
-<h1>Benefits of BIDS<a class="headerlink" href="#benefits-of-bids" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-bids">
+<h1>Using BIDS<a class="headerlink" href="#using-bids" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Why and how to set up your fMRI data.</span></p>
+<p class="caption"><span class="caption-text">After running your first subject, go from raw DICOMs to preprocessed niftis. Make sure everything works before running more subjects!</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/03-01-standard.html">One standard to rule them all</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/03-02-converting.html">Converting data to BIDS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/03-03-mriqc.html">Quality control with MRIQC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/03-04-fmriprep.html">Preprocessing with fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/03-01-converting.html">Converting to BIDS using HeuDiConv</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/03-02-mriqc.html">Quality control with MRIQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/03-03-fmriprep.html">Preprocessing with fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/03-04-fmriprepOutputs.html">Understanding your fMRIprep outputs</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="taming-your-data">
-<h1>Taming your data<a class="headerlink" href="#taming-your-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="managing-your-preprocessed-data">
+<h1>Managing your preprocessed data<a class="headerlink" href="#managing-your-preprocessed-data" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Reigning in complex (and somewhat confusing) data.</span></p>
+<p class="caption"><span class="caption-text">Work with your BIDS derivatives to get ready for analysis.</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="content_pages/04-01-fileFormats.html">Input/output and file formats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content_pages/04-02-templates.html">Templates and atlases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content_pages/04-03-registration.html">Registration and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/04-04-surfaceBased.html">Surface-based analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/04-05-visualization.html">Visualization software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/04-04-visualization.html">Visualization software</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="into-the-wild-west">
-<h1>Into the Wild West<a class="headerlink" href="#into-the-wild-west" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="into-the-wild-west-of-analyses">
+<h1>Into the Wild West of analyses<a class="headerlink" href="#into-the-wild-west-of-analyses" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Tapping into the many ways in which to analyze fMRI data.</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="content_pages/05-01-univariate.html">Univariate regression and temporal filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content_pages/05-02-mvpa.html">Multivariate pattern analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/05-03-group.html">Group analysis and statistical inference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content_pages/05-04-physiology.html">Physiology data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/05-03-surfaceBased.html">Surface-based analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/05-04-group.html">Group analysis and statistical inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/05-05-physiology.html">Physiology data analysis</a></li>
 </ul>
 </div>
 </div>
@@ -229,6 +226,7 @@
 <p class="caption"><span class="caption-text">Haven't had enough? Some more information and resources.</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content_pages/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
@@ -248,7 +246,7 @@
   <nav id="rellinks">
     <ul>
         <li>
-          <a href="content_pages/01-01-howto.html" title="Next document">How to use this handbook</a>
+          <a href="content_pages/01-01-openNeuro.html" title="Next document">Best practices in open neuroimaging</a>
           &rarr;
         </li>
     </ul>

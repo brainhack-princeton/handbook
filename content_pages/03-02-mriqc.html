@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>How to use this handbook &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Quality control with MRIQC &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -13,12 +13,12 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
-    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/01-01-howto.html" />
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/03-02-mriqc.html" />
     <link rel="shortcut icon" href="../_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Best practices in open neuroimaging" href="01-02-openNeuro.html" />
-    <link rel="prev" title="The Princeton Handbook for Reproducible Neuroimaging" href="../index.html" />
+    <link rel="next" title="Preprocessing with fMRIprep" href="03-03-fmriprep.html" />
+    <link rel="prev" title="Converting to BIDS using HeuDiConv" href="03-01-converting.html" />
   
 
   
@@ -32,8 +32,8 @@
   </style>
 
   
-  <link rel="canonical" href="https://handbook.datalad.org/content_pages/01-01-howto/"/>
-  <meta property="og:url" content="https://handbook.datalad.org/content_pages/01-01-howto">
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/03-02-mriqc/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/03-02-mriqc">
   
 
   <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
@@ -41,7 +41,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="How to use this handbook &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Quality control with MRIQC &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -87,12 +87,21 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quality control with MRIQC</a><ul>
+<li><a class="reference internal" href="#quality-checks-mriqc">Quality checks (MRIQC)</a></li>
+<li><a class="reference internal" href="#id1">MRIQC</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../index.html" title="previous chapter">The Princeton Handbook for Reproducible Neuroimaging</a></li>
-      <li>Next: <a href="01-02-openNeuro.html" title="next chapter">Best practices in open neuroimaging</a></li>
+      <li>Previous: <a href="03-01-converting.html" title="previous chapter">Converting to BIDS using HeuDiConv</a></li>
+      <li>Next: <a href="03-03-fmriprep.html" title="next chapter">Preprocessing with fMRIprep</a></li>
   </ul></li>
 </ul>
 </div>
@@ -118,9 +127,33 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="how-to-use-this-handbook">
-<span id="howto"></span><h1>How to use this handbook<a class="headerlink" href="#how-to-use-this-handbook" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
+  <div class="section" id="quality-control-with-mriqc">
+<span id="mriqc"></span><h1>Quality control with MRIQC<a class="headerlink" href="#quality-control-with-mriqc" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><div class="section" id="quality-checks-mriqc">
+<h2>Quality checks (MRIQC)<a class="headerlink" href="#quality-checks-mriqc" title="Permalink to this headline">¶</a></h2>
+<p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) which is the script slurm_mriqc.sh (which you can find in <span class="blue">/jukebox/norman/pygers/handbook/code/</span>). This script will need <code class="docutils literal notranslate"><span class="pre">run_mriqc.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">run_mriqc_group.sh</span></code>. This script will run mriqc (quality metrics) for an individual subject followed by the group summary statistics using slurm.</p>
+<p>Before running for the first time:</p>
+<ul class="simple">
+<li><p>Open slurm_mriqc.sh and update the array number to be your subject number (you can run multiple subjects at the same time by using arrays).</p></li>
+<li><p>Update to include your email address if you want to get email alerts when the code is running/completed.</p></li>
+<li><dl class="simple">
+<dt>Submit job from code directory:</dt><dd><ul>
+<li><p>Example code:</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>MRIQC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>MRIQC outputs an MRIQC group bold report and separate MRIQC reports for each subject/session. To have a quick look at the quality of the data acquired for your subjects, a good first start is to look at the group bold report to see if the <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/measures.html">image quality metrics</a> shows any outlier subjects/sessions with respect to the quality of the data. When this is the case, you should check the subject/session-specific MRIQC to see if you can figure out what went wrong. It is recommended that you always check the framewise displacement and temporal SNR.</p>
+<a class="reference external image-reference" href="02-01-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 
@@ -131,10 +164,10 @@
     <ul>
         <li>
           &larr;
-          <a href="../index.html" title="Previous document">The Princeton Handbook for Reproducible Neuroimaging</a>
+          <a href="03-01-converting.html" title="Previous document">Converting to BIDS using HeuDiConv</a>
         </li>
         <li>
-          <a href="01-02-openNeuro.html" title="Next document">Best practices in open neuroimaging</a>
+          <a href="03-03-fmriprep.html" title="Next document">Preprocessing with fMRIprep</a>
           &rarr;
         </li>
     </ul>
