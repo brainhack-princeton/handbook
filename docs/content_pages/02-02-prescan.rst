@@ -1,7 +1,7 @@
 .. _prescan:
 
-Pre-scan checklist
-------------------
+Pre-scan logistics at PNI 
+-------------------------
 
 .. image:: ../extra_files/PrescanChecklist_page1.png
 
