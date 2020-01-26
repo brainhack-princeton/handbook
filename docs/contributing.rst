@@ -446,4 +446,11 @@ The tutorial above is just the tip of the iceberg of all the things that you can
 
 Download the GitHub Cheat Sheet :download:`here. <extra_files/Github_Cheat_Sheet.pdf>`
 
+reStructuredText references
+===========================
+
+The content pages you might want to edit are in reStructuredText, or rst. This file format is relatively straightforward, but here are some useful resources you can use to get the most out of using rst:
+
+- `reStructuredText Primer <https://www.sphinx-doc.org/en/2.0/usage/restructuredtext/basics.html>`_
+- `reStructuredText Markup Specification <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_
 
