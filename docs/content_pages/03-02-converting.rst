@@ -76,10 +76,22 @@ Here is the hierarchy of the folders in the :blue:`new_study_template` folder. *
 
 IMPORTANT NOTES:
 
-* After copying the template directory for your new study, you need to update the paths in :blue:`globals.sh`. Open :blue:`globals.sh` and update the following three directories:
+* After copying the template directory for your new study, you need to update the paths in :blue:`globals.sh`. Open :blue:`globals.sh` and update the following two directories:
     * scanner_dir
     * project_dir
-    * mounted_project_dir
+
+.. NOTE::
+    If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset: 
+    
+    ``scanner_dir=/jukebox/norman/pygers/conquest``
+    
+    Otherwise, if you are setting this up for your own study, scanner_dir should point to the directory where your raw data are sent when you transfer data off the scanner. At PNI, this is either:
+
+    ``scanner_dir=/jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR``
+    
+    OR
+    
+    ``scanner_dir=/jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR``
 
 * Before running fmriprep for the first time, you will need to download a FreeSurfer license file and save it in your :blue:`../code/preprocessing/` directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (--fs-license-file) of :blue:`run_fmriprep.sh` with the correct license file location.
 
@@ -101,17 +113,17 @@ This step will use the following four scripts (all of which can be found in :blu
 
 The script :blue:`step1_preproc.sh` will do five things for you: 
 
-* copy your DICOM files from "conquest" and place them in your study directory (:blue:`../data/dicom/`)
+1. copy your DICOM files from "conquest" and place them in your study directory (:blue:`../data/dicom/`)
 
-* count the number of volumes in each run so you can check that your data transfer was successful (the output of this step can be found in :blue:`../data/dicom/check_volumes`)
+2. count the number of volumes in each run so you can check that your data transfer was successful (the output of this step can be found in :blue:`../data/dicom/check_volumes`, and will also be printed out in your terminal window)
 
-* unzip the DICOMs in your study directory
+3. unzip the DICOMs in your study directory
 
-* run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)
+4. run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)
+
+5. Deface your T1w anatomical image and set it aside in your derivatives directory (:blue:`../data/bids/derivatives/deface`)
 
 `HeuDiDonv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts <https://heudiconv.readthedocs.io/en/latest/>`_.
-
-* Deface your T1w anatomical image and set it aside in your derivatives directory (:blue:`../data/bids/derivatives/deface`)
 
 You should run :blue:`step1_preproc.sh` for each subject and each session separately. You can run :blue:`step1_preproc.sh` as soon as your data have finished transferring from the scanner to the conquest directory (i.e., ~10 min after you finish scanning). 
 
@@ -144,7 +156,10 @@ We recommended running :blue:`step1_preproc.sh` in a tmux window so you don’t 
 
 .. code-block:: bash
 
-    # attach to your tmux window
+    # create a new tmux window
+    tmux new -s step1
+
+    # OR attach to an existing tmux window
     tmux a -t step1
 
     # make sure you are in your study's code/preprocessing directory
@@ -169,13 +184,11 @@ This step will use the :blue:`step2_preproc.sh` script. We recommend running thi
 
 This script will carry out all the "cleanup" steps that need to be taken to make sure your data are BIDS-valid and ready for MRIQC and FMRIPREP:  
 
-* delete extra files (e.g., scouts, duplicate runs)
+1. delete extra files (e.g., scouts, duplicate runs)
 
-* rename fieldmaps (if necessary)
+2. rename fieldmaps (if necessary)
 
-* add the IntendedFor field to the fieldmap .json files so that fieldmaps can be used for susceptibility distortion correction on your functional data
-
-* run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)
+3. add the IntendedFor field to the fieldmap .json files so that fieldmaps can be used for susceptibility distortion correction on your functional data
 
 The script takes one input: 
 
