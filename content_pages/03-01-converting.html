@@ -91,7 +91,6 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Converting to BIDS using HeuDiConv</a><ul>
-<li><a class="reference internal" href="#benefits-of-using-bids-format">Benefits of using BIDS format</a></li>
 <li><a class="reference internal" href="#do-this-once-setting-up-your-directory-structure-for-a-new-study">Do this once: Setting up your directory structure for a new study</a></li>
 <li><a class="reference internal" href="#convert-dicoms-to-bids-formatted-nifti">Convert DICOMS to BIDS-formatted NIFTI</a><ul>
 <li><a class="reference internal" href="#step-1-convert-your-dicoms-into-nifti-files-using-heudiconv"><em>Step 1: Convert your dicoms into nifti files using HeuDiConv</em></a></li>
@@ -137,18 +136,7 @@
   <div class="section" id="converting-to-bids-using-heudiconv">
 <span id="converting"></span><h1>Converting to BIDS using HeuDiConv<a class="headerlink" href="#converting-to-bids-using-heudiconv" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><div class="section" id="benefits-of-using-bids-format">
-<h2>Benefits of using BIDS format<a class="headerlink" href="#benefits-of-using-bids-format" title="Permalink to this headline">¶</a></h2>
-<p>BIDS is a standard and widely-used format of structuring data. It facilities:</p>
-<ul class="simple">
-<li><p><strong>Using and re-using data:</strong> by arranging data in a standard way, using datasets collaboratively within and across labs will be facilitated (no need to rearrange data). It also facilitates future usages of the same datasets (easier to figure out old codes).</p></li>
-<li><p><strong>Data analysis:</strong> There are several software packages that accept only BIDS format as input – such as fMRIprep and MRIQC. And the number of these BIDS apps are growing.</p></li>
-<li><p><strong>Sharing data:</strong> Data sharing is an important element of reproducible science and a standard data sharing formatting is required for this purpose. Currently OpenNeuro accepts datasets in BIDS format. Some grants require public data sharing and using BIDS from the beginning of data collection can save time and energy at the time of sharing.</p></li>
-<li><p><strong>Checking data integrity:</strong> By validating your data structure through bids-validator, potential problems or errors in the data can be discovered.</p></li>
-</ul>
-<p><a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/">Find out more about BIDS data specifications here</a>.</p>
-</div>
-<div class="section" id="do-this-once-setting-up-your-directory-structure-for-a-new-study">
+<style> .red {color:red} </style><div class="section" id="do-this-once-setting-up-your-directory-structure-for-a-new-study">
 <h2>Do this once: Setting up your directory structure for a new study<a class="headerlink" href="#do-this-once-setting-up-your-directory-structure-for-a-new-study" title="Permalink to this headline">¶</a></h2>
 <p>Getting data off the scanner in a BIDS-formatted way requires that your directories are setup in a specific way. To make things simpler, we have made a template folder with the directory structure already in place. Copy the folder <span class="blue">new_study_template</span>, which can be found in <span class="blue">/jukebox/norman/pygers/handbook/new_study_template</span>, into whichever path you would like your new study directory to live.</p>
 <p>The specific steps to copy the folder using the terminal are as follows:</p>
@@ -193,17 +181,27 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 </pre></div>
 </div>
 <p>IMPORTANT NOTES:</p>
-<ul>
+<ul class="simple">
 <li><dl class="simple">
-<dt>After copying the template directory for your new study, you need to update the paths in <span class="blue">globals.sh</span>. Open <span class="blue">globals.sh</span> and update the following three directories:</dt><dd><ul class="simple">
+<dt>After copying the template directory for your new study, you need to update the paths in <span class="blue">globals.sh</span>. Open <span class="blue">globals.sh</span> and update the following two directories:</dt><dd><ul>
 <li><p>scanner_dir</p></li>
 <li><p>project_dir</p></li>
-<li><p>mounted_project_dir</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p>Before running fmriprep for the first time, you will need to download a FreeSurfer license file and save it in your <span class="blue">../code/preprocessing/</span> directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (–fs-license-file) of <span class="blue">run_fmriprep.sh</span> with the correct license file location.</p>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset from our “fake” scanner directory:</p>
+<p><code class="docutils literal notranslate"><span class="pre">scanner_dir=/jukebox/norman/pygers/conquest</span></code></p>
+<p>Otherwise, if you are setting this up for your own study, scanner_dir should point to the directory where your raw data are sent when you transfer data off the scanner. At PNI, this is either:</p>
+<p><code class="docutils literal notranslate"><span class="pre">scanner_dir=/jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR</span></code></p>
+<p>OR</p>
+<p><code class="docutils literal notranslate"><span class="pre">scanner_dir=/jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR</span></code></p>
+</div>
+<ul>
+<li><p>Before running fMRIprep for the first time, you will need to download a FreeSurfer license file and save it in your <span class="blue">../code/preprocessing/</span> directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (–fs-license-file) of <span class="blue">run_fmriprep.sh</span> with the correct license file location.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/registration.html/">Get a FreeSurfer license here</a>.</p></li>
@@ -225,16 +223,14 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 <li><p>deface.sh</p></li>
 </ul>
 <p>The script <span class="blue">step1_preproc.sh</span> will do five things for you:</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>copy your DICOM files from “conquest” and place them in your study directory (<span class="blue">../data/dicom/</span>)</p></li>
-<li><p>count the number of volumes in each run so you can check that your data transfer was successful (the output of this step can be found in <span class="blue">../data/dicom/check_volumes</span>)</p></li>
+<li><p>count the number of volumes in each run so you can check that your data transfer was successful (the output of this step can be found in <span class="blue">../data/dicom/check_volumes</span>, and will also be printed out in your terminal window)</p></li>
 <li><p>unzip the DICOMs in your study directory</p></li>
 <li><p>run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)</p></li>
-</ul>
-<p><a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">HeuDiDonv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts</a>.</p>
-<ul class="simple">
 <li><p>Deface your T1w anatomical image and set it aside in your derivatives directory (<span class="blue">../data/bids/derivatives/deface</span>)</p></li>
-</ul>
+</ol>
+<p><a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">HeuDiDonv is a flexible DICOM converter for organizing brain imaging data into structured directory layouts</a>.</p>
 <p>You should run <span class="blue">step1_preproc.sh</span> for each subject and each session separately. You can run <span class="blue">step1_preproc.sh</span> as soon as your data have finished transferring from the scanner to the conquest directory (i.e., ~10 min after you finish scanning).</p>
 <p>The script takes three inputs:</p>
 <ul class="simple">
@@ -244,6 +240,7 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 <ul>
 <li><p>from Skyra: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020</span></code></p></li>
 <li><p>from Prisma: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020</span></code></p></li>
+<li><p>sample project: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/norman/pygers/conquest</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -267,7 +264,10 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 </ul>
 </dd>
 </dl>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># attach to your tmux window</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new tmux window</span>
+tmux new -s step1
+
+<span class="c1"># OR attach to an existing tmux window</span>
 tmux a -t step1
 
 <span class="c1"># make sure you are in your study&#39;s code/preprocessing directory</span>
@@ -277,11 +277,15 @@ tmux a -t step1
 ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020
 <span class="c1"># OR</span>
 ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
+<span class="c1"># OR (sample project)</span>
+ls /jukebox/norman/pygers/conquest
 
-<span class="c1"># run the script step1_preproc.sh for subject 999, session 01</span>
-./step1_preproc.sh <span class="m">999</span> <span class="m">01</span> <span class="o">[</span>conquest folder name<span class="o">]</span>
+<span class="c1"># run the script step1_preproc.sh for subject XXX, session xx</span>
+<span class="c1"># replace XXX with your subject ID</span>
+<span class="c1"># replace xx with your session ID</span>
+./step1_preproc.sh XXX xx <span class="o">[</span>conquest folder name<span class="o">]</span>
 
-<span class="c1"># NOTE: For our sample project, use the following command</span>
+<span class="c1"># NOTE: For the sample project, use the following command:</span>
 ./step1_preproc.sh <span class="m">001</span> <span class="m">01</span> 0219191_mystudy-0219-1114
 </pre></div>
 </div>
@@ -293,12 +297,11 @@ ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
 <h3><em>Step 2: Get your data ready to pass bids-validation</em><a class="headerlink" href="#step-2-get-your-data-ready-to-pass-bids-validation" title="Permalink to this headline">¶</a></h3>
 <p>This step will use the <span class="blue">step2_preproc.sh</span> script. We recommend running this step after data for all sessions for a given subject have been acquired and run through <span class="blue">step1_preproc.sh</span>.</p>
 <p>This script will carry out all the “cleanup” steps that need to be taken to make sure your data are BIDS-valid and ready for MRIQC and FMRIPREP:</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>delete extra files (e.g., scouts, duplicate runs)</p></li>
 <li><p>rename fieldmaps (if necessary)</p></li>
 <li><p>add the IntendedFor field to the fieldmap .json files so that fieldmaps can be used for susceptibility distortion correction on your functional data</p></li>
-<li><p>run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)</p></li>
-</ul>
+</ol>
 <p>The script takes one input:</p>
 <ul class="simple">
 <li><p>subjectID</p></li>
@@ -306,13 +309,14 @@ ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs.</p></li>
+<li><p>This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs. If you did not collect fieldmaps, then you can ignore the steps specific to fieldmaps.</p></li>
 <li><p>If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit <span class="blue">step2_preproc.sh</span> again to accomodate these differences.</p></li>
+<li><p>Sample project: The sample dataset does not include fieldmaps. Therefore, when you edit the <span class="blue">step2_preproc.sh</span> for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run <span class="blue">step2_preproc.sh</span> to delete the extra (scout and dup) files.</p></li>
 </ul>
 </div>
 <p>If you run bids-validator and get any warnings and/or errors, put any modifications you need to make to pass the validator into this script so you can easily get subjects ready for BIDS apps as you collect more subjects. <strong>Again, this script should be customized for your experiment and not just run without editing.</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the script (step2_preproc.sh), e.g. for subject 999</span>
-./step2_preproc.sh <span class="m">999</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the script (step2_preproc.sh), e.g. for subject XXX</span>
+./step2_preproc.sh XXX
 
 <span class="c1"># NOTE: For our sample project, use the following command</span>
 ./step2_preproc.sh <span class="m">001</span>
@@ -324,7 +328,7 @@ ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
 <p>Run the BIDS validator to make sure everything is setup correctly. You should check your BIDS validation as soon as possible (i.e., after collecting your first subject’s data) so that you can fix any problems if they exist!</p>
 <p>Any non-BIDS formatted files should go into your <span class="blue">../bids/derivatives</span> directory which is automatically ignored by the BIDS validator; if you (deliberately) have non-BIDS formatted files outside of the derivatives folder, then you can add them to a <span class="blue">.bidsignore</span> file.</p>
 <p>You can run the BIDS validator <a class="reference external" href="http://bids-standard.github.io/bids-validator/">from your browser</a>.</p>
-<p>OR you can install the bids-validator and run it <em>locally</em>:</p>
+<p>OR you can install the bids-validator and run it <em>locally</em> (recommended):</p>
 <ul class="simple">
 <li><p>First, make sure you have Node.js (10.11.0 or above) installed on your local machine. Open a local terminal window and from your home directory type:</p></li>
 </ul>
@@ -348,7 +352,7 @@ which bids-validator
 </div>
 <p><a class="reference external" href="httpps://github.com/bids-standard/bids-validator">More information about the bids validator installation can be found here</a></p>
 <ul class="simple">
-<li><p>This installs bids-validator in <span class="blue">~/node_modules/.bin</span>. You can more easily call this by adding an alias to your <span class="blue">~/.bashrc</span> configuration file, e.g.:</p></li>
+<li><p>This installs bids-validator in <span class="blue">~/node_modules/.bin</span>. You can more easily call this by adding an alias to your <em>local</em> <span class="blue">~/.bashrc</span> configuration file, e.g.:</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="s1">&#39;bids-validator&#39;</span><span class="o">=</span><span class="s1">&#39;~/node_modules/.bin/bids-validator&#39;</span>
 </pre></div>
