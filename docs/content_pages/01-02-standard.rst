@@ -11,7 +11,7 @@ Benefits of using BIDS (Brain Imaging Data Structure)
 .. role:: blue
 .. role:: red
 
-BIDS is a standard and widely-used format of structuring data. It facilities:
+BIDS is a standard and widely-used format of structuring data. It facilitates:
 
 * **Using and re-using data:** by arranging data in a standard way, using datasets collaboratively within and across labs will be facilitated (no need to rearrange data). It also facilitates future usages of the same datasets (easier to figure out old codes).
 * **Data analysis:** There are several software packages that accept only BIDS format as input -- such as fMRIprep and MRIQC. And the number of these BIDS apps are growing. 
@@ -20,4 +20,6 @@ BIDS is a standard and widely-used format of structuring data. It facilities:
 
 `Find out more about BIDS data specifications here <https://bids-specification.readthedocs.io/en/stable/>`_.
 
-If you want to setup a new study using BIDS, check out our documentation and scripts for :ref:`converting raw data to BIDS format<converting>` so that you can use BIDS apps. Or, you can :ref:`practice using BIDS with our sample dataset<sampleProject>`!
+If you want to setup a new study using BIDS, check out our documentation and scripts for :ref:`converting raw data to BIDS format<converting>` so that you can use BIDS apps. 
+
+Or, you can :ref:`practice using BIDS with our sample dataset<sampleProject>`!
