@@ -1,8 +1,8 @@
 .. _converting:
 
-=======================================
+==================================
 Converting to BIDS using HeuDiConv 
-=======================================
+==================================
 
 .. raw:: html
 
@@ -11,18 +11,6 @@ Converting to BIDS using HeuDiConv
 
 .. role:: blue
 .. role:: red
-
-Benefits of using BIDS format
-=============================
-
-BIDS is a standard and widely-used format of structuring data. It facilities:
-
-* **Using and re-using data:** by arranging data in a standard way, using datasets collaboratively within and across labs will be facilitated (no need to rearrange data). It also facilitates future usages of the same datasets (easier to figure out old codes).
-* **Data analysis:** There are several software packages that accept only BIDS format as input -- such as fMRIprep and MRIQC. And the number of these BIDS apps are growing. 
-* **Sharing data:** Data sharing is an important element of reproducible science and a standard data sharing formatting is required for this purpose. Currently OpenNeuro accepts datasets in BIDS format. Some grants require public data sharing and using BIDS from the beginning of data collection can save time and energy at the time of sharing. 
-* **Checking data integrity:** By validating your data structure through bids-validator, potential problems or errors in the data can be discovered.
-
-`Find out more about BIDS data specifications here <https://bids-specification.readthedocs.io/en/stable/>`_.
 
 Do this once: Setting up your directory structure for a new study
 =================================================================
@@ -81,7 +69,7 @@ IMPORTANT NOTES:
     * project_dir
 
 .. NOTE::
-    If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset: 
+    If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset from our "fake" scanner directory: 
     
     ``scanner_dir=/jukebox/norman/pygers/conquest``
     
@@ -93,7 +81,7 @@ IMPORTANT NOTES:
     
     ``scanner_dir=/jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR``
 
-* Before running fmriprep for the first time, you will need to download a FreeSurfer license file and save it in your :blue:`../code/preprocessing/` directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (--fs-license-file) of :blue:`run_fmriprep.sh` with the correct license file location.
+* Before running fMRIprep for the first time, you will need to download a FreeSurfer license file and save it in your :blue:`../code/preprocessing/` directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (--fs-license-file) of :blue:`run_fmriprep.sh` with the correct license file location.
 
     * `Get a FreeSurfer license here <https://surfer.nmr.mgh.harvard.edu/registration.html/>`_.
 
@@ -135,6 +123,7 @@ The script takes three inputs:
 
   * from Skyra: ``ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020``
   * from Prisma: ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020``
+  * sample project: ``ls /jukebox/norman/pygers/conquest``
 
 .. TIP::
     Add the above ls command as an alias in your .bashrc file to easily get this info when you need it:
@@ -169,11 +158,15 @@ We recommended running :blue:`step1_preproc.sh` in a tmux window so you don’t 
     ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020
     # OR
     ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
+    # OR (sample project)
+    ls /jukebox/norman/pygers/conquest
 
-    # run the script step1_preproc.sh for subject 999, session 01
-    ./step1_preproc.sh 999 01 [conquest folder name]
+    # run the script step1_preproc.sh for subject XXX, session xx
+    # replace XXX with your subject ID
+    # replace xx with your session ID
+    ./step1_preproc.sh XXX xx [conquest folder name]
 
-    # NOTE: For our sample project, use the following command
+    # NOTE: For the sample project, use the following command:
     ./step1_preproc.sh 001 01 0219191_mystudy-0219-1114
 
 * If HeuDiConv is failing, check that your original dicoms are only zipped one time (meaning only one .gz extension instead of .gz.gz). If your dicoms are zipped multiple times, add another line for gunzipping again! Basically do this until your files only have the .dcm extension!
@@ -195,16 +188,18 @@ The script takes one input:
 * subjectID
 
 .. NOTE::
-  * This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs.
+  * This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs. If you did not collect fieldmaps, then you can ignore the steps specific to fieldmaps.
 
   * If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit :blue:`step2_preproc.sh` again to accomodate these differences. 
+
+  * Sample project: The sample dataset does not include fieldmaps. Therefore, when you edit the :blue:`step2_preproc.sh` for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run :blue:`step2_preproc.sh` to delete the extra (scout and dup) files. 
 
 If you run bids-validator and get any warnings and/or errors, put any modifications you need to make to pass the validator into this script so you can easily get subjects ready for BIDS apps as you collect more subjects. **Again, this script should be customized for your experiment and not just run without editing.**
 
 .. code-block:: bash
 
-    # run the script (step2_preproc.sh), e.g. for subject 999
-    ./step2_preproc.sh 999
+    # run the script (step2_preproc.sh), e.g. for subject XXX
+    ./step2_preproc.sh XXX
 
     # NOTE: For our sample project, use the following command
     ./step2_preproc.sh 001
@@ -217,7 +212,7 @@ Any non-BIDS formatted files should go into your :blue:`../bids/derivatives` dir
 
 You can run the BIDS validator `from your browser <http://bids-standard.github.io/bids-validator/>`_.  
 
-OR you can install the bids-validator and run it *locally*:
+OR you can install the bids-validator and run it *locally* (recommended):
 
 * First, make sure you have Node.js (10.11.0 or above) installed on your local machine. Open a local terminal window and from your home directory type: 
 
@@ -243,7 +238,7 @@ OR you can install the bids-validator and run it *locally*:
 
 `More information about the bids validator installation can be found here <httpps://github.com/bids-standard/bids-validator>`_
 
-* This installs bids-validator in :blue:`~/node_modules/.bin`. You can more easily call this by adding an alias to your :blue:`~/.bashrc` configuration file, e.g.: 
+* This installs bids-validator in :blue:`~/node_modules/.bin`. You can more easily call this by adding an alias to your *local* :blue:`~/.bashrc` configuration file, e.g.: 
 
 .. code-block:: bash
 
