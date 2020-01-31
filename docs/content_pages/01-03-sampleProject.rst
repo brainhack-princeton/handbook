@@ -1,7 +1,7 @@
 .. _sampleProject:
 
-Dataset description
----------------------------------
+Practice using BIDS with our sample dataset
+-------------------------------------------
 
 We have gotten consent from a subject (sub-001) to scan him and share everything, including personally identifiable information. This is useful for learning because many available datasets have already removed personal information, which makes sense for obvious reasons. However, this isn’t always the best thing for learning how to preprocess datasets because the data shared is already in BIDS/NIfTI format, and/or already has the face removed. We’re giving you everything as if it has just come right from the scanner!
 

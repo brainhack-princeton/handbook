@@ -1,7 +1,7 @@
 .. _overview:
 
-Overview of fMRI analysis
--------------------------
+Flowchart overview from setup to analysis
+-----------------------------------------
 
 
 .. role:: raw-html(raw)

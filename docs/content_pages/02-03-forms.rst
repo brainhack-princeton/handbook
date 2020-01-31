@@ -1,7 +1,9 @@
 .. _forms:
 
-Sample Materials
-----------------
+Sample scripts, checklists, and code
+------------------------------------
+
+In this page, you will find sample scripts, checklists, and code that PNI experimenters use to run their own experiments. We hope that these will be a helpful resource for you as you plan your own fMRI experiment.
 
 Email Templates
 ===============
@@ -20,6 +22,7 @@ Participant Instructions/Scripts
 ================================
 
 * :download:`Sample 1 <../extra_files/sampleMaterials/ExperimenterScriptandInstructions.docx>`
+* :download:`MRI Safety Script <../extra_files/sampleMaterials/MRISafetyProceduresScript.docx>`
 
 Code
 ====
