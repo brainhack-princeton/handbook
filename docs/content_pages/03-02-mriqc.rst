@@ -37,4 +37,4 @@ MRIQC outputs an MRIQC group bold report and separate MRIQC reports for each sub
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 02-01-overview.html
+  :target: 01-06-overview.html
