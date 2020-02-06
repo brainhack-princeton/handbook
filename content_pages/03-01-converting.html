@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Converting to BIDS using HeuDiConv &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Converting data to BIDS using HeuDiConv &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -41,7 +41,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Converting to BIDS using HeuDiConv &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Converting data to BIDS using HeuDiConv &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -90,7 +90,7 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Converting to BIDS using HeuDiConv</a><ul>
+<li><a class="reference internal" href="#">Converting data to BIDS using HeuDiConv</a><ul>
 <li><a class="reference internal" href="#do-this-once-setting-up-your-directory-structure-for-a-new-study">Do this once: Setting up your directory structure for a new study</a></li>
 <li><a class="reference internal" href="#convert-dicoms-to-bids-formatted-nifti">Convert DICOMS to BIDS-formatted NIFTI</a><ul>
 <li><a class="reference internal" href="#step-1-convert-your-dicoms-into-nifti-files-using-heudiconv"><em>Step 1: Convert your dicoms into nifti files using HeuDiConv</em></a></li>
@@ -133,8 +133,8 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="converting-to-bids-using-heudiconv">
-<span id="converting"></span><h1>Converting to BIDS using HeuDiConv<a class="headerlink" href="#converting-to-bids-using-heudiconv" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="converting-data-to-bids-using-heudiconv">
+<span id="converting"></span><h1>Converting data to BIDS using HeuDiConv<a class="headerlink" href="#converting-data-to-bids-using-heudiconv" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
 <style> .red {color:red} </style><div class="section" id="do-this-once-setting-up-your-directory-structure-for-a-new-study">
 <h2>Do this once: Setting up your directory structure for a new study<a class="headerlink" href="#do-this-once-setting-up-your-directory-structure-for-a-new-study" title="Permalink to this headline">¶</a></h2>
@@ -150,6 +150,11 @@ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/USERNA
 <span class="c1"># rename new_study_template with your study name</span>
 <span class="nb">cd</span> /jukebox/YOURLAB/USERNAME
 mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
+
+<span class="c1"># for sample project:</span>
+<span class="nb">cd</span> /jukebox/YOURLAB/USERNAME
+mv new_study_template sample_project
+<span class="c1"># from now on, replace YOURSTUDY in path examples with &#39;sample_project&#39;</span>
 </pre></div>
 </div>
 <p>Here is the hierarchy of the folders in the <span class="blue">new_study_template</span> folder. <strong>Read the comments because if you don’t, none of the following steps will work!</strong></p>
@@ -193,7 +198,7 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset from our “fake” scanner directory:</p>
+<p>If you are following these steps to practice using BIDS with our <strong>sample project</strong>, you should make sure scanner_dir is set to copy the sample dataset from our “fake” scanner directory:</p>
 <p><code class="docutils literal notranslate"><span class="pre">scanner_dir=/jukebox/norman/pygers/conquest</span></code></p>
 <p>Otherwise, if you are setting this up for your own study, scanner_dir should point to the directory where your raw data are sent when you transfer data off the scanner. At PNI, this is either:</p>
 <p><code class="docutils literal notranslate"><span class="pre">scanner_dir=/jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR</span></code></p>
@@ -238,9 +243,9 @@ mv new_study_template <span class="o">[</span>STUDYNAME<span class="o">]</span>
 <li><p>sessionID</p></li>
 <li><p>the name of the data folder that contains your DICOM-images for that subject/session (at Princeton, this is in the “conquest” directory). You can get this information by listing the files in the conquest directory:</p>
 <ul>
-<li><p>from Skyra: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020</span></code></p></li>
-<li><p>from Prisma: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020</span></code></p></li>
-<li><p>sample project: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/norman/pygers/conquest</span></code></p></li>
+<li><p>from <strong>Skyra</strong>: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020</span></code></p></li>
+<li><p>from <strong>Prisma</strong>: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020</span></code></p></li>
+<li><p><strong>sample project</strong>: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">/jukebox/norman/pygers/conquest</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -311,7 +316,7 @@ ls /jukebox/norman/pygers/conquest
 <ul class="simple">
 <li><p>This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs. If you did not collect fieldmaps, then you can ignore the steps specific to fieldmaps.</p></li>
 <li><p>If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit <span class="blue">step2_preproc.sh</span> again to accomodate these differences.</p></li>
-<li><p>Sample project: The sample dataset does not include fieldmaps. Therefore, when you edit the <span class="blue">step2_preproc.sh</span> for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run <span class="blue">step2_preproc.sh</span> to delete the extra (scout and dup) files.</p></li>
+<li><p><strong>Sample project</strong>: The sample dataset does NOT include fieldmaps. Therefore, when you edit the <span class="blue">step2_preproc.sh</span> for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run <span class="blue">step2_preproc.sh</span> to delete the extra (scout and dup) files.</p></li>
 </ul>
 </div>
 <p>If you run bids-validator and get any warnings and/or errors, put any modifications you need to make to pass the validator into this script so you can easily get subjects ready for BIDS apps as you collect more subjects. <strong>Again, this script should be customized for your experiment and not just run without editing.</strong></p>
@@ -361,7 +366,11 @@ which bids-validator
 <li><p>Even though you will run the BIDS validator from your local machine, it needs to access your bids directory on the server. You will need to <a class="reference external" href="https://npcdocs.princeton.edu/index.php/Mounting_the_PNI_file_server_on_your_desktop">mount jukebox on your desktop</a>.</p></li>
 <li><p>Run the bids-validator from your <em>local</em> terminal window:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bids-validator /Volumes/YOURLAB/USERNAME/YOURSTUDY/data/bids
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># without an alias setup</span>
+~/node_modules/.bin/bids-validator /Volumes/YOURLAB/USERNAME/YOURSTUDY/data/bids
+
+<span class="c1"># with an alias setup</span>
+bids-validator /Volumes/YOURLAB/USERNAME/YOURSTUDY/data/bids
 </pre></div>
 </div>
 <p>Read the red “errors” and yellow “warnings”. At the bare minimum, you will need to fix the “errors” before you continue. Re-run until the Validator is appeased. Note that “warnings” can be ignored, but you’ll probably want to fix them at some point.</p>
@@ -370,7 +379,7 @@ which bids-validator
 <h3><em>Step 4: Deface anatomical images</em><a class="headerlink" href="#step-4-deface-anatomical-images" title="Permalink to this headline">¶</a></h3>
 <p>Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won’t mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the <span class="blue">../data/bids/derivatives/deface</span> so they are available whenever you need them.</p>
 <p>IMPORTANT: This defacing step is included in <span class="blue">step1_preproc.sh</span>! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of <span class="blue">step1_preproc.sh</span>.</p>
-<p>The <span class="blue">deface.sh</span> script will run <a class="reference external" href="https://github.com/poldracklab/pydeface">pydeface</a> to deface the T1w structural images and move the defaced image into your <span class="blue">../data/T1w_defaced</span> directory. It takes two inputs:</p>
+<p>The <span class="blue">deface.sh</span> script will run <a class="reference external" href="https://github.com/poldracklab/pydeface">pydeface</a> to deface the T1w structural images and move the defaced image into your <span class="blue">../data/bids/derivatives/deface</span> directory. It takes two inputs:</p>
 <ul class="simple">
 <li><p>subjectID</p></li>
 <li><p>sessionID</p></li>
@@ -379,6 +388,7 @@ which bids-validator
 <p>To run pydeface on the head node, we recommend using a tmux window (it takes ~9 min to deface one image).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># open a new tmux window called deface</span>
 tmux new -s deface
+
 <span class="c1"># OR  attach to a previously opened window called deface</span>
 tmux a -t deface
 
@@ -386,7 +396,7 @@ tmux a -t deface
 <span class="nb">cd</span> /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing
 
 <span class="c1"># call deface script</span>
-./deface.sh <span class="m">999</span> <span class="m">01</span> <span class="c1">#example is subject 999, session 01</span>
+./deface.sh XXX xx <span class="c1">#example is subject XXX, session xx</span>
 </pre></div>
 </div>
 <p>You can also run pydeface using SLURM, which is especially useful if you want to run this step for multiple subjects and/or multiple sessions all at once. The script that we will call to run a job on SLURM is <span class="blue">code/preprocessing/slurm_deface.sh</span>.</p>

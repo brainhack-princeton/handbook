@@ -1,8 +1,8 @@
 .. _converting:
 
-==================================
-Converting to BIDS using HeuDiConv 
-==================================
+=======================================
+Converting data to BIDS using HeuDiConv 
+=======================================
 
 .. raw:: html
 
@@ -31,6 +31,11 @@ The specific steps to copy the folder using the terminal are as follows:
     # rename new_study_template with your study name
     cd /jukebox/YOURLAB/USERNAME
     mv new_study_template [STUDYNAME]
+
+    # for sample project:
+    cd /jukebox/YOURLAB/USERNAME
+    mv new_study_template sample_project
+    # from now on, replace YOURSTUDY in path examples with 'sample_project'
 
 Here is the hierarchy of the folders in the :blue:`new_study_template` folder. **Read the comments because if you don’t, none of the following steps will work!**
 
@@ -69,7 +74,7 @@ IMPORTANT NOTES:
     * project_dir
 
 .. NOTE::
-    If you are following these steps to practice using BIDS with our sample dataset, you should make sure scanner_dir is set to copy the sample dataset from our "fake" scanner directory: 
+    If you are following these steps to practice using BIDS with our **sample project**, you should make sure scanner_dir is set to copy the sample dataset from our "fake" scanner directory: 
     
     ``scanner_dir=/jukebox/norman/pygers/conquest``
     
@@ -121,9 +126,9 @@ The script takes three inputs:
 * sessionID
 * the name of the data folder that contains your DICOM-images for that subject/session (at Princeton, this is in the “conquest” directory). You can get this information by listing the files in the conquest directory:
 
-  * from Skyra: ``ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020``
-  * from Prisma: ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020``
-  * sample project: ``ls /jukebox/norman/pygers/conquest``
+  * from **Skyra**: ``ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020``
+  * from **Prisma**: ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020``
+  * **sample project**: ``ls /jukebox/norman/pygers/conquest``
 
 .. TIP::
     Add the above ls command as an alias in your .bashrc file to easily get this info when you need it:
@@ -192,7 +197,7 @@ The script takes one input:
 
   * If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit :blue:`step2_preproc.sh` again to accomodate these differences. 
 
-  * Sample project: The sample dataset does not include fieldmaps. Therefore, when you edit the :blue:`step2_preproc.sh` for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run :blue:`step2_preproc.sh` to delete the extra (scout and dup) files. 
+  * **Sample project**: The sample dataset does NOT include fieldmaps. Therefore, when you edit the :blue:`step2_preproc.sh` for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run :blue:`step2_preproc.sh` to delete the extra (scout and dup) files. 
 
 If you run bids-validator and get any warnings and/or errors, put any modifications you need to make to pass the validator into this script so you can easily get subjects ready for BIDS apps as you collect more subjects. **Again, this script should be customized for your experiment and not just run without editing.**
 
@@ -250,6 +255,10 @@ OR you can install the bids-validator and run it *locally* (recommended):
 
 .. code-block:: bash
 
+    # without an alias setup
+    ~/node_modules/.bin/bids-validator /Volumes/YOURLAB/USERNAME/YOURSTUDY/data/bids
+
+    # with an alias setup
     bids-validator /Volumes/YOURLAB/USERNAME/YOURSTUDY/data/bids
 
 Read the red “errors” and yellow "warnings". At the bare minimum, you will need to fix the "errors" before you continue. Re-run until the Validator is appeased. Note that “warnings” can be ignored, but you’ll probably want to fix them at some point.
@@ -260,7 +269,7 @@ Eventually, if you want to share de-identified data, you will need to deface ana
 
 IMPORTANT: This defacing step is included in :blue:`step1_preproc.sh`! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of :blue:`step1_preproc.sh`.
 
-The :blue:`deface.sh` script will run `pydeface <https://github.com/poldracklab/pydeface>`_ to deface the T1w structural images and move the defaced image into your :blue:`../data/T1w_defaced` directory. It takes two inputs:
+The :blue:`deface.sh` script will run `pydeface <https://github.com/poldracklab/pydeface>`_ to deface the T1w structural images and move the defaced image into your :blue:`../data/bids/derivatives/deface` directory. It takes two inputs:
 
 * subjectID
 * sessionID
@@ -273,6 +282,7 @@ To run pydeface on the head node, we recommend using a tmux window (it takes ~9 
     
     # open a new tmux window called deface
     tmux new -s deface 
+    
     # OR  attach to a previously opened window called deface
     tmux a -t deface
 
@@ -280,7 +290,7 @@ To run pydeface on the head node, we recommend using a tmux window (it takes ~9 
     cd /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing
 
     # call deface script
-    ./deface.sh 999 01 #example is subject 999, session 01
+    ./deface.sh XXX xx #example is subject XXX, session xx
 
 You can also run pydeface using SLURM, which is especially useful if you want to run this step for multiple subjects and/or multiple sessions all at once. The script that we will call to run a job on SLURM is :blue:`code/preprocessing/slurm_deface.sh`.
 
