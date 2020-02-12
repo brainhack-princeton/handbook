@@ -144,7 +144,7 @@ field map acquisition).
 ReproIn
 ^^^^^^^
 
-Program cards should be set up according to the ReproIn naming
+Program cards should be set up according to the `ReproIn <http://reproin.repronim.org>`__ naming
 convention. Formatting your program card according to ReproIn allows the
 raw DICOM images to be automatically converted to BIDS-formatted NIfTI
 images using HeuDiConv.
@@ -257,6 +257,9 @@ https://practicalfmri.blogspot.com/2011/01/comparing-fmri-protocols.html
 
 The BIDS Specification
 https://bids-specification.readthedocs.io/en/stable/02-common-principles.html
+
+ReproIn walkthrough on Siemens Prisma console
+https://github.com/ReproNim/reproin/blob/master/docs/walkthrough-1.md
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
