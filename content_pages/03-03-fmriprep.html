@@ -91,10 +91,12 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Preprocessing with fMRIprep</a><ul>
-<li><a class="reference internal" href="#preprocessing-fmriprep">Preprocessing (fMRIPrep)</a></li>
-<li><a class="reference internal" href="#quality-checks-mriqc">Quality checks (MRIQC)</a></li>
-<li><a class="reference internal" href="#checking-the-output-of-fmriprep-and-mriqc">Checking the output of fMRIprep and MRIQC</a></li>
-<li><a class="reference internal" href="#mriqc">MRIQC</a></li>
+<li><a class="reference internal" href="#running-fmriprep">Running fMRIPrep</a><ul>
+<li><a class="reference internal" href="#before-running-for-the-first-time"><em>Before running for the first time</em></a></li>
+<li><a class="reference internal" href="#submit-your-fmriprep-job"><em>Submit your fMRIPrep job</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fmriprep-report">fMRIPrep Report</a></li>
 </ul>
 </li>
 </ul>
@@ -132,7 +134,8 @@
   <div class="section" id="preprocessing-with-fmriprep">
 <span id="fmriprep"></span><h1>Preprocessing with fMRIprep<a class="headerlink" href="#preprocessing-with-fmriprep" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><p>Once you’ve converted your fMRI data to BIDS, you can begin preprocessing the data using fMRIPrep (<a class="reference external" href="https://doi.org/10.1101/306951">Esteban et al 2019</a>). FMRIprep is a BIDS App—a tool specifically designed to capitalize on the standardized format and rich metadata of BIDS. Each version of fMRIPrep is released as a <a class="reference external" href="https://www.docker.com/">Docker</a> container (an encapsulated software environment containing all dependencies). For use on a fMRIPrep is packaged as a Docker container. For most purposes, we recommend running fMRIPrep on your institutions server (instead of locally). To run fMRIPrep on server without administrative privileges, we use <a class="reference external" href="https://www.sylabs.io/docs/">Singularity</a> (<a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177459">Kurtzer et al 2017</a>) instead of Docker. Singularity must be installed on the server to build and run Singularity images such as fMRIPrep. The fMRIPrep Docker image can be converted to a Singularity image for use on the server by running Singularity’s build command on Poldrack Lab’s fMRIPrep Docker image on Docker Hub:</p>
+<style> .red {color:red} </style><p>Once you’ve converted your fMRI data to BIDS, you can begin preprocessing the data using fMRIPrep (<a class="reference external" href="https://doi.org/10.1101/306951">Esteban et al 2019</a>). FMRIprep is a BIDS App—a tool specifically designed to capitalize on the standardized format and rich metadata of BIDS.</p>
+<p>Each version of fMRIPrep is released as a <a class="reference external" href="https://www.docker.com/">Docker</a> container (an encapsulated software environment containing all dependencies). For most purposes, we recommend running fMRIPrep on your institution’s server (instead of locally). To run fMRIPrep on a server without administrative privileges, we use <a class="reference external" href="https://www.sylabs.io/docs/">Singularity</a> (<a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177459">Kurtzer et al 2017</a>) instead of Docker. Singularity must be installed on the server to build and run Singularity images such as fMRIPrep. The fMRIPrep Docker image can be converted to a Singularity image for use on the server by running Singularity’s build command on Poldrack Lab’s fMRIPrep Docker image on Docker Hub:</p>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Building the Singularity image:</dt><dd><ul>
@@ -142,77 +145,54 @@
 </dl>
 </li>
 </ul>
-<p>Running fMRIPrep on a single subject may take several hours. To run the fMRIPrep on the server, we recommend using your institution’s job scheduler—in our case <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>. Alternatively, you can create a persistent interactive session using, e.g., <a class="reference external" href="https://github.com/tmux/tmux">tmux</a> or screen to ensure that the fMRIPrep keeps running even if you lose your network connection.</p>
-<div class="section" id="preprocessing-fmriprep">
-<h2>Preprocessing (fMRIPrep)<a class="headerlink" href="#preprocessing-fmriprep" title="Permalink to this headline">¶</a></h2>
-<p>Now that you have used heudiconv to get your data as nifti’s into the BIDS format and indicated which functional runs have to be corrected with which fieldmaps, you should run fMRIPrep to preprocess these data. You can do this by running the script (<span class="blue">slurm_fmriprep.sh</span>) that needs to script run_fmriprep.sh (both in <span class="blue">new_study_template/code/preprocessing/</span>).</p>
-<p>This script will run fmriprep for an individual subject using slurm.</p>
-<p><em>Before running for the first time:</em></p>
+<p>NOTE: At Princeton, Singularity images have been made for us! The sample scripts use Singularity images that already exist, so you do NOT need to build your own fmriprep Singularity image.</p>
+<p>Running fMRIPrep on a single subject may take several hours. To run the fMRIPrep on the server, we recommend using your institution’s job scheduler (at Princeton, we use <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>).</p>
+<div class="section" id="running-fmriprep">
+<h2>Running fMRIPrep<a class="headerlink" href="#running-fmriprep" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">slurm_fmriprep.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run fMRIPrep on the cluster using the SLURM scheduler. It first runs fMRIprep for an individual subject, and then defaces the preprocessed “template” T1w image that is output by fMRIPrep.</p>
+<p>This script will use the following two scripts:</p>
 <ul class="simple">
-<li><p>Make sure your paths are correct in globals.sh. If you need to, run one line at a time in slurm_fmriprep.sh to make sure the paths are correct.</p></li>
-<li><p>Find more on how to customize your fMIRprep command line argument here.</p></li>
-<li><p>If planning to run using a job scheduler (slurm in particular), open slurm_fmriprep.sh and update the array number to be your subject number (you can run multiple subjects at the same time by using arrays).</p></li>
-<li><p>Update to include your email address if you want to get email alerts when the code is running/completed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_fmriprep.sh</span></code> (this runs fMRIPrep)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deface_template.sh</span></code> (this defaces the template T1w)</p></li>
 </ul>
-<p><em>Submit job from code directory:</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example code:</span>
-<span class="nb">cd</span> /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
+<div class="section" id="before-running-for-the-first-time">
+<h3><em>Before running for the first time</em><a class="headerlink" href="#before-running-for-the-first-time" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Customize your fMRIprep command line argument by understanding all the different options in the <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/usage.html">fMRIPrep documentation</a>!</p></li>
+<li><p>Open slurm_fmriprep.sh and update the array number to list the subjects you want to run through MRIQC. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH –array=001,002,003,004).</p></li>
+<li><p>Update the #SBATCH –mail-user line to include your email address if you want to get email alerts when the job begins, ends, or fails.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remember, in SLURM scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are SLURM commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
+</div>
+</div>
+<div class="section" id="submit-your-fmriprep-job">
+<h3><em>Submit your fMRIPrep job</em><a class="headerlink" href="#submit-your-fmriprep-job" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Make sure you are in the directory where the slurm script lives (<span class="blue">code/preprocessing/</span>). Then use sbatch command to submit the job.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in the code/preprocessing directory</span>
+<span class="nb">cd</span> /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing/
+
+<span class="c1"># submit the job</span>
 sbatch slurm_fmriprep.sh
 </pre></div>
 </div>
 </div>
-<div class="section" id="quality-checks-mriqc">
-<h2>Quality checks (MRIQC)<a class="headerlink" href="#quality-checks-mriqc" title="Permalink to this headline">¶</a></h2>
-<p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) which is the script slurm_mriqc.sh (which you can find in <span class="blue">/jukebox/norman/pygers/handbook/code/</span>). This script will need <span class="blue">run_mriqc.sh</span> and <span class="blue">run_mriqc_group.sh</span>. This script will run mriqc (quality metrics) for an individual subject followed by the group summary statistics using slurm.</p>
-<p><em>Before running for the first time:</em></p>
-<ul class="simple">
-<li><p>Open <span class="blue">slurm_mriqc.sh</span> and update the array number to be your subject number (you can run multiple subjects at the same time by using arrays).</p></li>
-<li><p>Update to include your email address if you want to get email alerts when the code is running/completed.</p></li>
-</ul>
-<p><em>Submit job from code directory:</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
-</pre></div>
 </div>
-</div>
-<div class="section" id="checking-the-output-of-fmriprep-and-mriqc">
-<h2>Checking the output of fMRIprep and MRIQC<a class="headerlink" href="#checking-the-output-of-fmriprep-and-mriqc" title="Permalink to this headline">¶</a></h2>
-<p>FMRIprep will output your data in the <span class="blue">/derivatives</span> directory of your folder. After fmriprep successfully runs, this is what your bids <span class="blue">directory/derivatives/</span> will look like (adapted from BIDSification):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tree
-
-└── new_study_template
-    └── data
-        └── bids
-            └── sub-001
-            └── sub-002
-            └── etc.
-            └── derivatives          <span class="c1"># this is where all your BIDS derivatives will be</span>
-
-                └── mriqc            <span class="c1"># mriqc output will go here</span>
-                    └── logs         <span class="c1"># slurm logs will go here</span>
-                └── fmriprep         <span class="c1"># fmriprep-preprocessed data will go here</span>
-                    └── logs         <span class="c1"># slurm logs will go here</span>
-                        └── sub-001          <span class="c1"># all data from sub-001 will go here</span>
-                            └── anat         <span class="c1"># all anatomical preprocessing</span>
-                            └── func         <span class="c1"># all functional preprocessing in all output spaces</span>
-                        └── sub-001.html     <span class="c1"># summary of all of sub-001 preprocessing</span>
-                └── freesurfer               <span class="c1"># if you ran freesurfer, the output data will go here (covered more in detail in the registration section)</span>
-                └── work                             <span class="c1"># all intermediate outputs from fmriprep</span>
-</pre></div>
-</div>
-<p><strong>fMRIprep html:</strong></p>
-<p>To have a quick look at the output of fMIRprep and make sure the analysis went through without issues check the html outputs (saved in “fmriprep” folder along with subject folders)
-File begins with a brief summary, including info such as what structural images and resampling targets were used in the analysis and which functional runs were analyzed.</p>
-<p>Some general points about the html file (for more details check <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/outputs.html#confounds">here</a>):</p>
+<div class="section" id="fmriprep-report">
+<h2>fMRIPrep Report<a class="headerlink" href="#fmriprep-report" title="Permalink to this headline">¶</a></h2>
+<p>fMRIPrep outputs will live in <span class="blue">/data/bids/derivatives/fmriprep/</span></p>
+<p>To have a quick look at the output of fMIRprep and make sure it ran without issues, check the .html output file for that subject. The .html file begins with a brief summary, including info about which structural images and resampling targets were used, and which functional runs were analyzed. For functional runs, make sure that slice-timing correction and susceptibility distortion correction were applied if that is what you want to happen!</p>
+<p>For more details check <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/outputs.html#visual-reports">here</a>. Here are some general things to look for:</p>
 <ul class="simple">
 <li><p>The images are dynamic and portray before/afters.</p></li>
 <li><p>Summary of the flags used in the actual fMRIprep analysis and all the collected confounds are summarized for each run.</p></li>
 <li><p>You can get a quick sense of the quality of the signal by looking at the <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811916303871?via%3Dihub">carpetplots</a> and see the effect of motion (FD) and fluctuations of the global signal in whole-brain (brain mask), CSF and white matter over the time-course.</p></li>
 <li><p>The section on the correlations among nuisance regressors can guide the decisions on removing confounds.</p></li>
+<li><p>Any errors that may have occurred during preprocessing will be listed at the end of the .html report.</p></li>
 </ul>
-</div>
-<div class="section" id="mriqc">
-<h2>MRIQC<a class="headerlink" href="#mriqc" title="Permalink to this headline">¶</a></h2>
-<p>MRIQC outputs an MRIQC group bold report and separate MRIQC reports for each subject/session. To have a quick look at the quality of the data acquired for your subjects, a good first start is to look at the group bold report to see if the <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/measures.html">image quality metrics</a> shows any outlier subjects/sessions with respect to the quality of the data. When this is the case, you should check the subject/session-specific MRIQC to see if you can figure out what went wrong. It is recommended that you always check the framewise displacement and temporal SNR.</p>
 <a class="reference external image-reference" href="01-06-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>

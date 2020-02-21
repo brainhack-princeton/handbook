@@ -91,8 +91,12 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Quality control with MRIQC</a><ul>
-<li><a class="reference internal" href="#quality-checks-mriqc">Quality checks (MRIQC)</a></li>
-<li><a class="reference internal" href="#id1">MRIQC</a></li>
+<li><a class="reference internal" href="#running-mriqc">Running MRIQC</a><ul>
+<li><a class="reference internal" href="#before-running-for-the-first-time"><em>Before running for the first time</em></a></li>
+<li><a class="reference internal" href="#submit-your-mriqc-job"><em>Submit your MRIQC job</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mriqc-outputs">MRIQC Outputs</a></li>
 </ul>
 </li>
 </ul>
@@ -130,28 +134,44 @@
   <div class="section" id="quality-control-with-mriqc">
 <span id="mriqc"></span><h1>Quality control with MRIQC<a class="headerlink" href="#quality-control-with-mriqc" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><div class="section" id="quality-checks-mriqc">
-<h2>Quality checks (MRIQC)<a class="headerlink" href="#quality-checks-mriqc" title="Permalink to this headline">¶</a></h2>
-<p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) which is the script slurm_mriqc.sh (which you can find in <span class="blue">/jukebox/norman/pygers/handbook/code/</span>). This script will need <code class="docutils literal notranslate"><span class="pre">run_mriqc.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">run_mriqc_group.sh</span></code>. This script will run mriqc (quality metrics) for an individual subject followed by the group summary statistics using slurm.</p>
-<p>Before running for the first time:</p>
+<style> .red {color:red} </style><p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) BIDS app.</p>
+<div class="section" id="running-mriqc">
+<h2>Running MRIQC<a class="headerlink" href="#running-mriqc" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">slurm_mriqc.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run MRIQC on the cluster using the SLURM scheduler. It first computes metrics for all runs for an individual subject, followed by the group summary statistics.</p>
+<p>This script will use the following two scripts:</p>
 <ul class="simple">
-<li><p>Open slurm_mriqc.sh and update the array number to be your subject number (you can run multiple subjects at the same time by using arrays).</p></li>
-<li><p>Update to include your email address if you want to get email alerts when the code is running/completed.</p></li>
-<li><dl class="simple">
-<dt>Submit job from code directory:</dt><dd><ul>
-<li><p>Example code:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_mriqc.sh</span></code> (this runs MRIQC at the subject level)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run_mriqc_group.sh</span></code> (this compiles group summary statistics)</p></li>
 </ul>
-</dd>
-</dl>
-</li>
+<div class="section" id="before-running-for-the-first-time">
+<h3><em>Before running for the first time</em><a class="headerlink" href="#before-running-for-the-first-time" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Open slurm_mriqc.sh and update the array number to list the subjects you want to run through MRIQC. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH –array=001,002,003,004).</p></li>
+<li><p>Update the #SBATCH –mail-user line to include your email address if you want to get email alerts when the job begins, ends, or fails.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /jukebox/norman/pygers/handbook/sample_project/code/preprocessing/
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remember, in SLURM scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are SLURM commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
+</div>
+</div>
+<div class="section" id="submit-your-mriqc-job">
+<h3><em>Submit your MRIQC job</em><a class="headerlink" href="#submit-your-mriqc-job" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Make sure you are in the directory where the slurm script lives (<span class="blue">code/preprocessing/</span>). Then use sbatch command to submit the job.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in the code/preprocessing directory</span>
+<span class="nb">cd</span> /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing/
+
+<span class="c1"># submit the job</span>
+sbatch slurm_mriqc.sh
 </pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>MRIQC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>MRIQC outputs an MRIQC group bold report and separate MRIQC reports for each subject/session. To have a quick look at the quality of the data acquired for your subjects, a good first start is to look at the group bold report to see if the <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/measures.html">image quality metrics</a> shows any outlier subjects/sessions with respect to the quality of the data. When this is the case, you should check the subject/session-specific MRIQC to see if you can figure out what went wrong. It is recommended that you always check the framewise displacement and temporal SNR.</p>
+</div>
+<div class="section" id="mriqc-outputs">
+<h2>MRIQC Outputs<a class="headerlink" href="#mriqc-outputs" title="Permalink to this headline">¶</a></h2>
+<p>MRIQC outputs will live in <span class="blue">/data/bids/derivatives/mriqc/</span></p>
+<p>MRIQC outputs separate MRIQC reports for each individual run, as well as group reports. To have a quick look at the quality of the data acquired for your subjects, a good first start is to look at the group bold report to see if the <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/measures.html">image quality metrics</a> show any outlier runs with respect to the quality of the data of your whole sample. When this is the case, you should check the individual run report to see if you can figure out what went wrong. You can simply click on the data point of interest on the group report, and it will automatically open the corresponding individual run report. It is recommended that you always check the framewise displacement and temporal SNR.</p>
 <a class="reference external image-reference" href="01-06-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>
