@@ -132,34 +132,55 @@
 <span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="computing">
 <h2>Computing<a class="headerlink" href="#computing" title="Permalink to this headline">¶</a></h2>
-<dl class="glossary simple">
-<dt id="term-container">Container</dt><dd><p>some software including all its dependencies bundled into a package to be able to run the software in multiple computing environments</p>
+<dl class="glossary">
+<dt id="term-container">container</dt><dd><p>self-contained virtual computing environment that includes all dependencies for increased portability and reproducibility; see Docker and Singularity</p>
+<p>high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization</p>
 </dd>
-<dt id="term-hpc">HPC</dt><dd><p>high-performance computing</p>
+<dt id="term-htc">HTC</dt><dd><p>high-throughput computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-performance computing (HPC); see parallelization</p>
 </dd>
-<dt id="term-docker-singularity">Docker/Singularity</dt><dd><p>platform to deliver software package (<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>)</p>
+<dt id="term-parallelization">parallelization</dt><dd><p>type of computing where multiple sub-tasks are carried out simultaneously, typically by assigning sub-tasks to different CPUs or threads; see job scheduler</p>
 </dd>
-<dt id="term-job-scheduler-slurm">Job scheduler (slurm)</dt><dd><p>computer application that enables scheduling your script to be ran by a computing cluster (e.g. slurm)</p>
+<dt id="term-cpu">CPU</dt><dd><p>central processing unit</p>
 </dd>
-<dt id="term-terminal">Terminal</dt><dd><p>interface for typing commands</p>
+<dt id="term-gpu">GPU</dt><dd><p>TODO</p>
 </dd>
-<dt id="term-command-line">Command line</dt><dd><p>typing commands directly into a terminal, often used to do tasks easier remotely and/or automatic (compared to a GUI)</p>
+<dt id="term-ram">RAM</dt><dd><p>TODO</p>
+</dd>
+<dt id="term-docker">Docker</dt><dd><p>platform using for packaging software and computing environments into containers (<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity</p>
+</dd>
+<dt id="term-os">OS</dt><dd><p>operating system (e.g., Linux, MacOS, Windows)</p>
+</dd>
+<dt id="term-virtualization">virtualization</dt><dd><p>see container; OS-level virtualization vs. virtual machine</p>
+</dd>
+<dt id="term-virtual-machine">virtual machine</dt><dd><p>e.g., Vagrant, VirtualBox</p>
+</dd>
+<dt id="term-job-scheduler">job scheduler</dt><dd><p>software that manages tasks submitted by multiple users on a high-performance computing cluster; e.g., Slurm, PBS, HTCondor</p>
+</dd>
+<dt id="term-terminal">terminal</dt><dd><p>command-line interface for interacting with a computer (or shell); somtimes referred to as a terminal emulator; see command line</p>
+</dd>
+<dt id="term-command-line">command line</dt><dd><p>interface for processing commands to a computer as lines of text; somtimes referred to as command-line interface (CLI); see terrminal, and compare to GUI)</p>
 </dd>
 <dt id="term-gui">GUI</dt><dd><p>graphical user interface</p>
 </dd>
-<dt id="term-vim">Vim</dt><dd><p><em>to be added</em></p>
+<dt id="term-vim">Vim</dt><dd><p>extension of the “vi” text editor; commonly used on Linux systems; exit Vim by pressing “esc” then “:” then “x” (save and exit) or “q” (exit without saving) then “return”; see text editor</p>
 </dd>
-<dt id="term-mounting-the-cluster">Mounting the cluster</dt><dd><p>ability to access files directly that are saved on a remotely located set of high performance computers (i.e. cluster)</p>
+<dt id="term-mount">mount</dt><dd><p>mounting remote storage volumes allows you to interact with data stored on a server using local computing resources; particularly useful for visualization; on Mac, using Finder &gt; Go &gt; Connect to server; on Linux, use sshfs</p>
 </dd>
-<dt id="term-ssh">SSH</dt><dd><p>a secure channel to access a computer remotely</p>
+<dt id="term-ssh">SSH</dt><dd><p>secure shell; a secure connection to a remote computer</p>
 </dd>
-<dt id="term-cluster">Cluster</dt><dd><p>set of connected high performing computers that can be accessed to get more computing power</p>
+<dt id="term-cluster">cluster</dt><dd><p>group of networked high-performance computers that can be remotely accessed for incraased computing power; see HPC aand server</p>
 </dd>
-<dt id="term-bash">Bash</dt><dd><p>command language</p>
+<dt id="term-bash">bash</dt><dd><p>Bourne-again shell; a commonly-used Unix command language</p>
 </dd>
-<dt id="term-text-editor">Text editor</dt><dd><p>what you need for editing python scripts in an easy way (outside of terminal) – pycharm, sublime, spyder, etc.</p>
+<dt id="term-text-editor">text editor</dt><dd><p>application for editing scripts in an easy way (outside of terminal); e.g., vim, Emacs, gedit, nano, Sublime, Atom</p>
 </dd>
-<dt id="term-tmux">tmux</dt><dd><p>allows terminal session to remain active without being visible</p>
+<dt id="term-ide">IDE</dt><dd><p>integrated development environment; software that integrates a code editor, debugger, compiler, interpreter etc; e.g., PyCharm, Spyder, Jupyter Lab</p>
+</dd>
+<dt id="term-tmux">tmux</dt><dd><p>terminal multiplexer that allows you to attach and detach from persistent sessions on a remote server; also screen</p>
+</dd>
+<dt id="term-server">server</dt><dd><p>TODO</p>
+</dd>
+<dt id="term-shell">shell</dt><dd><p>sh, bash, csh, tcshr</p>
 </dd>
 </dl>
 </div>
