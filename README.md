@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/221723445.svg)](https://zenodo.org/badge/latestdoi/221723445)
+#[![DOI](https://zenodo.org/badge/221723445.svg)](https://zenodo.org/badge/latestdoi/221723445)
 [![Build Status](https://travis-ci.org/brainhack-princeton/handbook.svg?branch=master)](https://travis-ci.org/brainhack-princeton/handbook)
 
 # Princeton Handbook for Reproducible Neuroimaging :orange_book:
