@@ -10,47 +10,80 @@ Computing
 
 .. glossary::
 
-	Container
-		some software including all its dependencies bundled into a package to be able to run the software in multiple computing environments
-	
+    container
+		self-contained virtual computing environment that includes all dependencies for increased portability and reproducibility; see Docker and Singularity
+
 	HPC
-		high-performance computing
-	
-	Docker/Singularity
-		platform to deliver software package (https://www.docker.com/)
-	
-	Job scheduler (slurm) 
-		computer application that enables scheduling your script to be ran by a computing cluster (e.g. slurm)
-	
-	Terminal
-		interface for typing commands
-	
-	Command line
-		typing commands directly into a terminal, often used to do tasks easier remotely and/or automatic (compared to a GUI)
-	
-	GUI
+		high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization
+
+    HTC
+        high-throughput computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-performance computing (HPC); see parallelization
+
+    parallelization
+        type of computing where multiple sub-tasks are carried out simultaneously, typically by assigning sub-tasks to different CPUs or threads; see job scheduler
+
+    CPU
+        central processing unit
+
+    GPU
+        TODO
+
+    RAM
+        TODO
+
+    Docker
+		platform using for packaging software and computing environments into containers (https://www.docker.com/); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity
+
+    OS
+        operating system (e.g., Linux, MacOS, Windows)
+
+    virtualization
+        see container; OS-level virtualization vs. virtual machine
+
+    virtual machine
+        e.g., Vagrant, VirtualBox
+
+    job scheduler
+		software that manages tasks submitted by multiple users on a high-performance computing cluster; e.g., Slurm, PBS, HTCondor
+
+    terminal
+		command-line interface for interacting with a computer (or shell); somtimes referred to as a terminal emulator; see command line
+
+    command line
+		interface for processing commands to a computer as lines of text; somtimes referred to as command-line interface (CLI); see terrminal, and compare to GUI)
+
+    GUI
 		graphical user interface
-	
-	Vim
-		*to be added*
-	
-	Mounting the cluster
-		ability to access files directly that are saved on a remotely located set of high performance computers (i.e. cluster)
-	
-	SSH
-		a secure channel to access a computer remotely
-	
-	Cluster
-		set of connected high performing computers that can be accessed to get more computing power
-	
-	Bash
-		command language
-	
-	Text editor
-		what you need for editing python scripts in an easy way (outside of terminal) -- pycharm, sublime, spyder, etc.
-	
-	tmux
-		allows terminal session to remain active without being visible
+
+    Vim
+		extension of the "vi" text editor; commonly used on Linux systems; exit Vim by pressing "esc" then ":" then "x" (save and exit) or "q" (exit without saving) then "return"; see text editor
+
+    mount
+		mounting remote storage volumes allows you to interact with data stored on a server using local computing resources; particularly useful for visualization; on Mac, using Finder > Go > Connect to server; on Linux, use sshfs
+
+    SSH
+		secure shell; a secure connection to a remote computer
+
+    cluster
+		group of networked high-performance computers that can be remotely accessed for incraased computing power; see HPC aand server
+
+    bash
+		Bourne-again shell; a commonly-used Unix command language
+
+    text editor
+		application for editing scripts in an easy way (outside of terminal); e.g., vim, Emacs, gedit, nano, Sublime, Atom
+
+    IDE
+        integrated development environment; software that integrates a code editor, debugger, compiler, interpreter etc; e.g., PyCharm, Spyder, Jupyter Lab
+
+    tmux
+		terminal multiplexer that allows you to attach and detach from persistent sessions on a remote server; also screen
+
+    server
+        TODO
+
+    shell
+        sh, bash, csh, tcshr
 
 MRI Acquisition
 ---------------

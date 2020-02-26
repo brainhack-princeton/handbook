@@ -3,7 +3,7 @@
 Best practices in open neuroimaging
 -----------------------------------
 
-What is open neuroimaging? Neuroimaging research is notoriously plagued by flexible analysis pipelines [Carp2012]_, insufficient or opaque reporting [Nichols2018]_, and low statistical power [Button2013]_ [Turner2018]_. These pathologies undermine the reliability of our collective findings, and make transparency and reproducibility all the more important [Poldrack2017]_. Broadly, the aim of open neuroimaging is to adopt better practices to counteract these problems.
+What is open neuroimaging? Neuroimaging research is notoriously plagued by flexible analysis pipelines [Carp2012]_, insufficient or opaque reporting [Nichols2018]_, and low statistical power [Button2013]_ [Turner2018]_. These pathologies undermine the reliability of our collective findings, and make transparency and reproducibility all the more important [Poldrack2017a]_. Broadly, the aim of open neuroimaging is to adopt better practices to counteract these problems.
 
 .. admonition:: Quote
 
@@ -13,12 +13,12 @@ The term "open science" means different things to different people: for example,
 
 The primary goal of this handbook is to promote practices for improving the transparency and reproducibility of neuroimaging research. For example, we promote data management standards that facilitate data sharing and re-use, which has tremendous humanitarian and financial benefits [Milham2018]_; we promote practices like software containerization that allow others to more easily re-run your analyses [Ghosh2017]_. The handbook doesn’t touch on many aspects of open neuroimaging, but we point to other resources for a more complete picture; e.g., the `ReproNim <https://www.repronim.org/>`_ training course [Kennedy2019]_.
 
-.. tip:: Make open science work for **you**. Incorporating best practices into your everday workflow is the best way to learn.
+.. tip:: Make open science work for **you**. Incorporating best practices into your everyday workflow is the best way to learn.
 
 Open science practices are not just ideals, but will have practical, concrete benefits for you, your colleagues, and the field. For example, you may need to revisit a dataset or analysis after a month or a year. Taking the time to make you workflow as transparent and reproducible as possible *now* will save you a lot of time down the road. Future-proof your workflow by adopting best practices from the start and making your analysis open "by design" [Halchenko2015]_. Your future self will thank you.
 
-References and resources
-^^^^^^^^^^^^^^^^^^^^^^^^^
+References
+^^^^^^^^^^
 
 .. |nbsp| unicode:: 0xA0
    :trim:
@@ -40,7 +40,7 @@ References and resources
 
 .. [Nichols2018] |nbsp| Nichols, T. E., Das, S., Eickhoff, S. B., Evans, A. C., Glatard, T., Hanke, M., Kriegeskorte, N., Milham, M. P., Poldrack, R. A., Poline, J.-B., Proal, E., Thirion, B., Van Essen, D. C., White, T., & Yeo, B. T. T. (2017). Best practices in data analysis and sharing in neuroimaging using MRI. *Nature Neuroscience*, *20*\(3), 299–303. https://doi.org/10.1038/nn.4500
 
-.. [Poldrack2017] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
+.. [Poldrack2017a] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
 
 .. [Poldrack2019] |nbsp| Poldrack, R. A. (2019). The costs of reproducibility. *Neuron*, *101*\(1), 11-14. https://doi.org/10.1016/j.neuron.2018.11.030
 
