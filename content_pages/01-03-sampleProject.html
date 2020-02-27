@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Practice using BIDS with our sample dataset &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Practice with our sample data &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -41,7 +41,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Practice using BIDS with our sample dataset &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Practice with our sample data &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -90,12 +90,14 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Practice using BIDS with our sample dataset</a><ul>
-<li><a class="reference internal" href="#sample-dataset-description">Sample dataset description</a><ul>
-<li><a class="reference internal" href="#tasks-in-the-sample-project"><em>Tasks in the sample project</em></a></li>
+<li><a class="reference internal" href="#">Practice with our sample data</a><ul>
+<li><a class="reference internal" href="#sample-data-description">Sample data description</a></li>
+<li><a class="reference internal" href="#getting-the-sample-data">Getting the sample data</a></li>
+<li><a class="reference internal" href="#how-to-use-the-sample-data-and-derivatives">How to use the sample data and derivatives</a><ul>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#how-to-use-the-sample-project">How to use the sample project</a></li>
 </ul>
 </li>
 </ul>
@@ -130,37 +132,68 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="practice-using-bids-with-our-sample-dataset">
-<span id="sampleproject"></span><h1>Practice using BIDS with our sample dataset<a class="headerlink" href="#practice-using-bids-with-our-sample-dataset" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="practice-with-our-sample-data">
+<span id="sampleproject"></span><h1>Practice with our sample data<a class="headerlink" href="#practice-with-our-sample-data" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><p>The goal of this sample project is for you to follow the instructions on the <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a>, <a class="reference internal" href="03-02-mriqc.html#mriqc"><span class="std std-ref">quality control with MRIQC</span></a>, and <a class="reference internal" href="03-03-fmriprep.html#fmriprep"><span class="std std-ref">preprocessing with fMRIprep</span></a> pages to practice running all of the BIDS scripts located in <span class="blue">/jukebox/norman/pygers/handbook/new_study_template</span>.</p>
-<p>To do this, you will make a copy of the <span class="blue">new_study_template</span> directory and place it somewhere in your own directory, so that you can open and edit the scripts for yourself, following the instructions on the <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a> page. After running the BIDS apps included in the tutorial, you can compare your output with our sample output located in <span class="blue">/jukebox/norman/pygers/handbook/sample_project_output</span>.</p>
-<div class="section" id="sample-dataset-description">
-<h2>Sample dataset description<a class="headerlink" href="#sample-dataset-description" title="Permalink to this headline">¶</a></h2>
-<p>We have consent from a subject (sub-001) to scan him and share everything, including personally identifiable information. This is useful for learning because many available datasets have already removed personal information, which makes sense for obvious reasons. However, this isn’t always the best thing for learning how to preprocess datasets because the data shared is already in BIDS/NIfTI format, and/or already has the face removed. We’re giving you everything as if it has just come right from the scanner!</p>
-<p>We’ve shared the dataset in its raw-est form (.dcm.gz files), as if you had just transferred the data from the scanner.</p>
-<p>Here is the “fake” conquest location to simulate where it is located on the server after transferring the data from the scanner console:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/jukebox/norman/pygers/conquest/0219191_mystudy-0219-1114
-</pre></div>
-</div>
-<div class="section" id="tasks-in-the-sample-project">
-<h3><em>Tasks in the sample project</em><a class="headerlink" href="#tasks-in-the-sample-project" title="Permalink to this headline">¶</a></h3>
-<p>We had sub-001 perform a couple of different tasks:</p>
+<style> .red {color:red} </style><p>The goal of these <a class="reference external" href="https://zenodo.org/record/3677090">sample data</a> is to provide a worked example for <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a>, running <a class="reference internal" href="03-02-mriqc.html#mriqc"><span class="std std-ref">quality control with MRIQC</span></a>, and <a class="reference internal" href="03-03-fmriprep.html#fmriprep"><span class="std std-ref">preprocessing with fMRIprep</span></a>. This will allow you to practice running our helper scripts—located at the <a class="reference external" href="https://github.com/brainhack-princeton/handbook-code">handbook-code</a> repository on GitHub. We also provide sample derivatives so you can check your results.</p>
+<div class="section" id="sample-data-description">
+<h2>Sample data description<a class="headerlink" href="#sample-data-description" title="Permalink to this headline">¶</a></h2>
+<p>This public dataset was acquired (with informed consent) specifically for use with this handbook <a class="reference internal" href="#nastase2020" id="id1"><span>[Nastase2020]</span></a>. The data were acquired using the <a class="reference external" href="https://github.com/ReproNim/reproin">ReproIn</a> naming convention on a Siemens Skyra 3T MRI scanner. Many public fMRI datasets contain anonymized NIfTI images and have already been converted to BIDS format, making it difficult to learn best practices in data acquisition and standardization in a hands-on fashion. This dataset, on the other hand, contains raw, non-anonymized DICOM images intended to mimic data directly from the scanner. The dataset includes four functional runs with the <a class="reference external" href="https://openneuro.org/crn/datasets/ds002345/files/stimuli:prettymouth_audio.wav">“Pretty Mouth and Green My Eyes”</a> naturalistic spoken story stimulus (available as part of the <a class="reference external" href="https://openneuro.org/datasets/ds002345">Narratives</a> data collection) <a class="reference internal" href="#yeshurun2017" id="id2"><span>[Yeshurun2017]</span></a> <a class="reference internal" href="#nastase2019" id="id3"><span>[Nastase2019]</span></a>, one functional run with a block-design emotional faces task <a class="reference internal" href="#chai2015" id="id4"><span>[Chai2015]</span></a>, a T1-weighted anatomical image, and auxiliary scans (e.g., scout, soundcheck). The brain data are contributed by author S.A.N. and are authorized for non-anonymized distribution.</p>
+<p>The tasks are labeled as follows:</p>
 <ul class="simple">
-<li><p><strong>sound</strong>: Sound check before scanning</p></li>
-<li><p><strong>story</strong>: He listened to a story in the scanner. For more information on this specific story, see <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5348256/">Yeshurun et al 2017</a> describing the auditory stimulus.</p></li>
-<li><p><strong>faces</strong>: He performed the face-matching task <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4474282/">Chai et al 2015</a>.</p></li>
+<li><p><strong>sound</strong>: Auxiliary soundcheck scans can be ignored.</p></li>
+<li><p><strong>story</strong>: Subject passively listened to the naturalistic spoken story stimulus “Pretty Mouth and Green My Eyes” by J. D. Salinger.</p></li>
+<li><p><strong>faces</strong>: Subject performed an emotional face-matching task.</p></li>
 </ul>
 </div>
+<div class="section" id="getting-the-sample-data">
+<h2>Getting the sample data<a class="headerlink" href="#getting-the-sample-data" title="Permalink to this headline">¶</a></h2>
+<p>You can download the sample data using the an internet browser by navigating to the <a class="reference external" href="https://zenodo.org/record/3677090">Zenodo repository</a> and clicking <cite>Download</cite>. Alternatively, you could download the dataset from a Linux/MacOS command line using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://zenodo.org/record/3677090/files/0219191_mystudy-0219-1114.tar.gz
+</pre></div>
 </div>
-<div class="section" id="how-to-use-the-sample-project">
-<h2>How to use the sample project<a class="headerlink" href="#how-to-use-the-sample-project" title="Permalink to this headline">¶</a></h2>
+<p>You can unzip and extract files from the tarball (tar archive) using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar -xvzf 0219191_mystudy-0219-1114.tar.gz
+</pre></div>
+</div>
+<p>You can use a similar procedure to get the sample derivatives:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget TODO!!!
+tar -xvzf TODO!!!
+</pre></div>
+</div>
+<p>If you’re at Princeton and have access to the PNI server, you can use a preexisting version of sample data and derivatives. The sample data are organized to mimic the <cite>conquest</cite> location where data are stored after transferring data from the scanner console. The sample data are available at <span class="blue">/jukebox/norman/pygers/conquest/0219191_mystudy-0219-1114</span>. The sample derivatives are available at <span class="blue">/jukebox/norman/pygers/handbook/sample_project_output_v1.4.0</span>.</p>
+</div>
+<div class="section" id="how-to-use-the-sample-data-and-derivatives">
+<h2>How to use the sample data and derivatives<a class="headerlink" href="#how-to-use-the-sample-data-and-derivatives" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>You should follow the step-by-step instructions on the <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a> page. The instructions on this page are meant to help you setup and use BIDS for your own study. But you can practice before you have collected your own data, by copying and using the sample data! In the step-by-step instructions, We’ve included some helpful notes and commands specific to the <strong>sample project</strong>.</p></li>
-<li><p>At any point in the process, you can compare your version of the <span class="blue">sample_project</span> to our sample output located in <span class="blue">/jukebox/norman/pygers/handbook/sample_project_output</span>.</p></li>
-<li><p>After you have successfully converted the raw dicom (.dcm) data to BIDS-formatted nifti files (.nii) and passed the bids-validator, you can submit jobs to run <a class="reference internal" href="03-02-mriqc.html#mriqc"><span class="std std-ref">quality control with MRIQC</span></a> and <a class="reference internal" href="03-03-fmriprep.html#fmriprep"><span class="std std-ref">preprocessing with fMRIprep</span></a>. Once your jobs have started running, MRIQC will take ~20 minutes to run, and fMRIprep will take ~12 hours to run.</p></li>
-<li><p>Congratulations on using BIDS to facilitate reproducible neuroimaging!</p></li>
+<li><p>Follow the step-by-step instructions on <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a>! The instructions on this page are intended to help you set up and use BIDS for your own study—but you can practice using the sample data! In the step-by-step instructions, we’ve included notes and commands specific to the sample dataset.</p></li>
+<li><p>At any point in the process, you can compare your progress on the sample data to the sample derivatives.</p></li>
+<li><p>After you have successfully converted the raw DICOM (.dcm) files to BIDS-formatted NIfTI (.nii) files and successfully run the BIDS-Validator, you can begin running <a class="reference internal" href="03-02-mriqc.html#mriqc"><span class="std std-ref">quality control with MRIQC</span></a> and <a class="reference internal" href="03-03-fmriprep.html#fmriprep"><span class="std std-ref">preprocessing with fMRIprep</span></a>. Note, however, that MRIQC will take ~20 minutes to run on the sample data, and fMRIPrep may take up to ~12 hours to run!</p></li>
 </ol>
+<div class="section" id="resources">
+<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.5281/zenodo.3677090">Princeton Handbook for Reproducible Neuroimaging: Sample Data</a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainhack-princeton/handbook-code">Princeton Handbook for Reproducible Neuroimaging: Code</a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<dl class="citation">
+<dt class="label" id="chai2015"><span class="brackets"><a class="fn-backref" href="#id4">Chai2015</a></span></dt>
+<dd><p> Chai, X. J., Hirshfeld-Becker, D., Biederman, J., Uchida, M., Doehrmann, O., Leonard, J. A., Salvatore, J., Kenworthy, T., Brown, A., Kagan, E., de los Angeles, C., Whitfield-Gabrieli, S., &amp; Gabrieli, J. D. E. (2015). Functional and structural brain correlates of risk for major depression in children with familial depression. <em>NeuroImage: Clinical</em>, <em>8</em>, 398–407. <a class="reference external" href="https://doi.org/10.1016/j.nicl.2015.05.004">https://doi.org/10.1016/j.nicl.2015.05.004</a></p>
+</dd>
+<dt class="label" id="nastase2019"><span class="brackets"><a class="fn-backref" href="#id3">Nastase2019</a></span></dt>
+<dd><p> Nastase, S. A., Liu, Y.-F., Hillman, H., Zadbood, A., Hasenfratz, L., Keshavarzian, N., Chen, J., Honey, C. J., Yeshurun, Y., Regev, M., Nguyen, M., Chang, C. H. C., Baldassano, C. B., Lositsky, O., Simony, E., Chow, M. A., Leong, Y. C., Brooks, P. P., Micciche, E., Choe, G., Goldstein, A., Halchenko, Y. O., Norman, K. A., &amp; Hasson, U. (2019). Narratives: fMRI data for evaluating models of naturalistic language comprehension. <a class="reference external" href="https://doi.org/10.18112/openneuro.ds002345.v1.0.1">https://doi.org/10.18112/openneuro.ds002345.v1.0.1</a></p>
+</dd>
+<dt class="label" id="nastase2020"><span class="brackets"><a class="fn-backref" href="#id1">Nastase2020</a></span></dt>
+<dd><p> Nastase, S. A., Mennen, A. C., Brooks, P. P., &amp; McDevitt, E., A. (2020). Princeton Handbook for Reproducible Neuroimaging: Sample Data. <em>Zenodo</em> <a class="reference external" href="https://doi.org/10.5281/zenodo.3677090">https://doi.org/10.5281/zenodo.3677090</a></p>
+</dd>
+<dt class="label" id="yeshurun2017"><span class="brackets"><a class="fn-backref" href="#id2">Yeshurun2017</a></span></dt>
+<dd><p> Yeshurun, Y., Swanson, S., Simony, E., Chen, J., Lazaridi, C., Honey, C. J., &amp; Hasson, U. (2017). Same story, different story: the neural representation of interpretive frameworks. <em>Psychological Science</em>, <em>28</em>(3), 307–319. <a class="reference external" href="https://doi.org/10.1177%2F0956797616682029">https://doi.org/10.1177%2F0956797616682029</a></p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 

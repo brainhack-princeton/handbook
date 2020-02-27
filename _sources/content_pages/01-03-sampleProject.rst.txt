@@ -1,8 +1,8 @@
 .. _sampleProject:
 
-===========================================
-Practice using BIDS with our sample dataset
-===========================================
+=============================
+Practice with our sample data
+=============================
 
 .. raw:: html
 
@@ -12,38 +12,68 @@ Practice using BIDS with our sample dataset
 .. role:: blue
 .. role:: red
 
-The goal of this sample project is for you to follow the instructions on the :ref:`converting data to BIDS<converting>`, :ref:`quality control with MRIQC<mriqc>`, and :ref:`preprocessing with fMRIprep<fmriprep>` pages to practice running all of the BIDS scripts located in :blue:`/jukebox/norman/pygers/handbook/new_study_template`. 
+The goal of these `sample data <https://zenodo.org/record/3677090>`_ is to provide a worked example for :ref:`converting data to BIDS<converting>`, running :ref:`quality control with MRIQC<mriqc>`, and :ref:`preprocessing with fMRIprep<fmriprep>`. This will allow you to practice running our helper scripts---located at the `handbook-code <https://github.com/brainhack-princeton/handbook-code>`_ repository on GitHub. We also provide sample derivatives so you can check your results.
 
-To do this, you will make a copy of the :blue:`new_study_template` directory and place it somewhere in your own directory, so that you can open and edit the scripts for yourself, following the instructions on the :ref:`converting data to BIDS<converting>` page. After running the BIDS apps included in the tutorial, you can compare your output with our sample output located in :blue:`/jukebox/norman/pygers/handbook/sample_project_output`.   
+Sample data description
+-----------------------
+This public dataset was acquired (with informed consent) specifically for use with this handbook [Nastase2020]_. The data were acquired using the `ReproIn <https://github.com/ReproNim/reproin>`_ naming convention on a Siemens Skyra 3T MRI scanner. Many public fMRI datasets contain anonymized NIfTI images and have already been converted to BIDS format, making it difficult to learn best practices in data acquisition and standardization in a hands-on fashion. This dataset, on the other hand, contains raw, non-anonymized DICOM images intended to mimic data directly from the scanner. The dataset includes four functional runs with the `"Pretty Mouth and Green My Eyes" <https://openneuro.org/crn/datasets/ds002345/files/stimuli:prettymouth_audio.wav>`_ naturalistic spoken story stimulus (available as part of the `Narratives <https://openneuro.org/datasets/ds002345>`_ data collection) [Yeshurun2017]_ [Nastase2019]_, one functional run with a block-design emotional faces task [Chai2015]_, a T1-weighted anatomical image, and auxiliary scans (e.g., scout, soundcheck). The brain data are contributed by author S.A.N. and are authorized for non-anonymized distribution.
 
-Sample dataset description
---------------------------
-We have consent from a subject (sub-001) to scan him and share everything, including personally identifiable information. This is useful for learning because many available datasets have already removed personal information, which makes sense for obvious reasons. However, this isn’t always the best thing for learning how to preprocess datasets because the data shared is already in BIDS/NIfTI format, and/or already has the face removed. We’re giving you everything as if it has just come right from the scanner!
+The tasks are labeled as follows:
 
-We’ve shared the dataset in its raw-est form (.dcm.gz files), as if you had just transferred the data from the scanner.
+* **sound**: Auxiliary soundcheck scans can be ignored.
+* **story**: Subject passively listened to the naturalistic spoken story stimulus "Pretty Mouth and Green My Eyes" by J. D. Salinger.
+* **faces**: Subject performed an emotional face-matching task.
 
-Here is the "fake" conquest location to simulate where it is located on the server after transferring the data from the scanner console: 
+Getting the sample data
+-----------------------
+
+You can download the sample data using the an internet browser by navigating to the `Zenodo repository <https://zenodo.org/record/3677090>`_ and clicking `Download`. Alternatively, you could download the dataset from a Linux/MacOS command line using the following command:
 
 .. code-block:: bash
 
-    /jukebox/norman/pygers/conquest/0219191_mystudy-0219-1114
+    wget https://zenodo.org/record/3677090/files/0219191_mystudy-0219-1114.tar.gz
 
-*Tasks in the sample project*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You can unzip and extract files from the tarball (tar archive) using the following command:
 
-We had sub-001 perform a couple of different tasks:
+.. code-block:: bash
 
-* **sound**: Sound check before scanning
-* **story**: He listened to a story in the scanner. For more information on this specific story, see `Yeshurun et al 2017 <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5348256/>`_ describing the auditory stimulus.
-* **faces**: He performed the face-matching task `Chai et al 2015 <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4474282/>`_.
+    tar -xvzf 0219191_mystudy-0219-1114.tar.gz 
 
-How to use the sample project
------------------------------
-1. You should follow the step-by-step instructions on the :ref:`converting data to BIDS<converting>` page. The instructions on this page are meant to help you setup and use BIDS for your own study. But you can practice before you have collected your own data, by copying and using the sample data! In the step-by-step instructions, We've included some helpful notes and commands specific to the **sample project**. 
+You can use a similar procedure to get the sample derivatives:
 
-2. At any point in the process, you can compare your version of the :blue:`sample_project` to our sample output located in :blue:`/jukebox/norman/pygers/handbook/sample_project_output`. 
+.. code-block:: bash
 
-3. After you have successfully converted the raw dicom (.dcm) data to BIDS-formatted nifti files (.nii) and passed the bids-validator, you can submit jobs to run :ref:`quality control with MRIQC<mriqc>` and :ref:`preprocessing with fMRIprep<fmriprep>`. Once your jobs have started running, MRIQC will take ~20 minutes to run, and fMRIprep will take ~12 hours to run.
+    wget TODO!!!
+    tar -xvzf TODO!!!
 
-4. Congratulations on using BIDS to facilitate reproducible neuroimaging!   
+If you're at Princeton and have access to the PNI server, you can use a preexisting version of sample data and derivatives. The sample data are organized to mimic the `conquest` location where data are stored after transferring data from the scanner console. The sample data are available at :blue:`/jukebox/norman/pygers/conquest/0219191_mystudy-0219-1114`. The sample derivatives are available at :blue:`/jukebox/norman/pygers/handbook/sample_project_output_v1.4.0`.
 
+How to use the sample data and derivatives
+------------------------------------------
+
+1. Follow the step-by-step instructions on :ref:`converting data to BIDS<converting>`! The instructions on this page are intended to help you set up and use BIDS for your own study---but you can practice using the sample data! In the step-by-step instructions, we've included notes and commands specific to the sample dataset.
+
+2. At any point in the process, you can compare your progress on the sample data to the sample derivatives. 
+
+3. After you have successfully converted the raw DICOM (.dcm) files to BIDS-formatted NIfTI (.nii) files and successfully run the BIDS-Validator, you can begin running :ref:`quality control with MRIQC<mriqc>` and :ref:`preprocessing with fMRIprep<fmriprep>`. Note, however, that MRIQC will take ~20 minutes to run on the sample data, and fMRIPrep may take up to ~12 hours to run!
+
+Resources
+^^^^^^^^^
+
+* `Princeton Handbook for Reproducible Neuroimaging: Sample Data <https://doi.org/10.5281/zenodo.3677090>`_
+
+* `Princeton Handbook for Reproducible Neuroimaging: Code <https://github.com/brainhack-princeton/handbook-code>`_
+
+References
+^^^^^^^^^^
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
+
+.. [Chai2015] |nbsp| Chai, X. J., Hirshfeld-Becker, D., Biederman, J., Uchida, M., Doehrmann, O., Leonard, J. A., Salvatore, J., Kenworthy, T., Brown, A., Kagan, E., de los Angeles, C., Whitfield-Gabrieli, S., & Gabrieli, J. D. E. (2015). Functional and structural brain correlates of risk for major depression in children with familial depression. *NeuroImage: Clinical*, *8*, 398–407. https://doi.org/10.1016/j.nicl.2015.05.004
+
+.. [Nastase2019] |nbsp| Nastase, S. A., Liu, Y.-F., Hillman, H., Zadbood, A., Hasenfratz, L., Keshavarzian, N., Chen, J., Honey, C. J., Yeshurun, Y., Regev, M., Nguyen, M., Chang, C. H. C., Baldassano, C. B., Lositsky, O., Simony, E., Chow, M. A., Leong, Y. C., Brooks, P. P., Micciche, E., Choe, G., Goldstein, A., Halchenko, Y. O., Norman, K. A., & Hasson, U. (2019). Narratives: fMRI data for evaluating models of naturalistic language comprehension. https://doi.org/10.18112/openneuro.ds002345.v1.0.1
+
+.. [Nastase2020] |nbsp| Nastase, S. A., Mennen, A. C., Brooks, P. P., & McDevitt, E., A. (2020). Princeton Handbook for Reproducible Neuroimaging: Sample Data. *Zenodo* https://doi.org/10.5281/zenodo.3677090
+
+.. [Yeshurun2017] |nbsp| Yeshurun, Y., Swanson, S., Simony, E., Chen, J., Lazaridi, C., Honey, C. J., & Hasson, U. (2017). Same story, different story: the neural representation of interpretive frameworks. *Psychological Science*, *28*\(3), 307–319. https://doi.org/10.1177%2F0956797616682029
