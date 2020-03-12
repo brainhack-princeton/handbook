@@ -7,9 +7,9 @@ What is open neuroimaging? Neuroimaging research is notoriously plagued by flexi
 
 .. admonition:: Quote
 
-    "My definition of open science is probably not the same as yours. And that's okay." ---Kirstie Whitaker [Whitaker2018]_
+    "My definition of open science is probably not the same as yours. And that's okay." ---Kirstie Whitaker [Whitaker2019]_
 
-The term "open science" means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on [Whitaker2018]_. Some practices can be particularly challenging for early career researchers (ECRs) [Allen2019]_ [Poldrack2019]_; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn't feel pressured to adopt "all" open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.
+The term "open science" means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on [Whitaker2019]_. Some practices can be particularly challenging for early career researchers (ECRs) [Allen2019]_ [Poldrack2019]_; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn't feel pressured to adopt "all" open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.
 
 The primary goal of this handbook is to promote practices for improving the transparency and reproducibility of neuroimaging research. For example, we promote data management standards that facilitate data sharing and re-use, which has tremendous humanitarian and financial benefits [Milham2018]_; we promote practices like software containerization that allow others to more easily re-run your analyses [Ghosh2017]_. The handbook doesn’t touch on many aspects of open neuroimaging, but we point to other resources for a more complete picture; e.g., the `ReproNim <https://www.repronim.org/>`_ training course [Kennedy2019]_.
 
@@ -46,7 +46,7 @@ References
 
 .. [Turner2018] |nbsp| Turner, B. O., Paul, E. J., Miller, M. B., & Barbey, A. K. (2018). Small sample sizes reduce the replicability of task-based fMRI studies. *Communications Biology*, *1*, 62. https://doi.org/10.1038/s42003-018-0073-z
 
-.. [Whitaker2018] |nbsp| Whitaker, K. (2018, June). *Diversity and inclusion as core values of open science.* Presented at the meeting of the Organization for Human Brain Mapping, Rome, Italy. https://doi.org/10.5281/zenodo.3243216
+.. [Whitaker2019] |nbsp| Whitaker, K. (2019, June). *Diversity and inclusion as core values of open science.* Presented at the meeting of the Organization for Human Brain Mapping, Rome, Italy. https://doi.org/10.5281/zenodo.3243216
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
