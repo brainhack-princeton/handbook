@@ -277,7 +277,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :align: center
   :alt: decorative line  
 
-5. Next, you will want to **render the handbook locally** so that you can get a sense of the impact of the changes you make on the website. 
+5. Next, you will want to **render the handbook locally** so that you can get a sense of the impact of the changes you make on the website. Run the following command from your top-level handbook directory: 
 
 .. code-block:: bash
 
