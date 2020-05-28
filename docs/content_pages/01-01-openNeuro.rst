@@ -46,10 +46,9 @@ References and resources
 
 .. [Milham2018] |nbsp| Milham, M. P., Craddock, R. C., Son, J. J., Fleischmann, M., Clucas, J., Xu, H., Koo, B., Krishnakumar, A., Biswal, B. B., Castellanos, F. X., Colcombe, S., Di Martino, A., Zuo, X.-N., & Klein, A. (2018). Assessment of the impact of shared brain imaging data on the scientific literature. *Nature Communications*, 9. https://doi.org/10.1038/s41467-018-04976-1
 
-
 .. [Nichols2018] |nbsp| Nichols, T. E., Das, S., Eickhoff, S. B., Evans, A. C., Glatard, T., Hanke, M., Kriegeskorte, N., Milham, M. P., Poldrack, R. A., Poline, J.-B., Proal, E., Thirion, B., Van Essen, D. C., White, T., & Yeo, B. T. T. (2017). Best practices in data analysis and sharing in neuroimaging using MRI. *Nature Neuroscience*, *20*\(3), 299–303. https://doi.org/10.1038/nn.4500
 
-.. [Poldrack2017a] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
+.. [Poldrack2017] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
 
 .. [Poldrack2019] |nbsp| Poldrack, R. A. (2019). The costs of reproducibility. *Neuron*, *101*\(1), 11-14. https://doi.org/10.1016/j.neuron.2018.11.030
 
