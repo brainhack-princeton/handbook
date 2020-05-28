@@ -1,6 +1,7 @@
+.. _index:
 
 .. meta::
-   :description: Princeton Handbook for Reproducible fMRI Neuroimaging
+   :description: Princeton Handbook for Reproducible Neuroimaging
 
 
 ####################################################

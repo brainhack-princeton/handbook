@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Best practices in open neuroimaging &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Why and how to use this handbook &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -41,7 +41,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Best practices in open neuroimaging &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Why and how to use this handbook &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -90,8 +90,11 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Best practices in open neuroimaging</a><ul>
-<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#">Why and how to use this handbook</a><ul>
+<li><a class="reference internal" href="#navigating-this-handbook">Navigating this handbook</a><ul>
+<li><a class="reference internal" href="#references-and-resources">References and resources</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -126,24 +129,31 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="best-practices-in-open-neuroimaging">
-<span id="openneuro"></span><h1>Best practices in open neuroimaging<a class="headerlink" href="#best-practices-in-open-neuroimaging" title="Permalink to this headline">¶</a></h1>
-<p>What is open neuroimaging? Neuroimaging research is notoriously plagued by flexible analysis pipelines <a class="reference internal" href="#carp2012" id="id1"><span>[Carp2012]</span></a>, insufficient or opaque reporting <a class="reference internal" href="#nichols2018" id="id2"><span>[Nichols2018]</span></a>, and low statistical power <a class="reference internal" href="#button2013" id="id3"><span>[Button2013]</span></a> <a class="reference internal" href="#turner2018" id="id4"><span>[Turner2018]</span></a>. These pathologies undermine the reliability of our collective findings, and make transparency and reproducibility all the more important <a class="reference internal" href="#poldrack2017a" id="id5"><span>[Poldrack2017a]</span></a>. Broadly, the aim of open neuroimaging is to adopt better practices to counteract these problems.</p>
+  <div class="section" id="why-and-how-to-use-this-handbook">
+<span id="openneuro"></span><h1>Why and how to use this handbook<a class="headerlink" href="#why-and-how-to-use-this-handbook" title="Permalink to this headline">¶</a></h1>
+<p>What is open neuroimaging? Neuroimaging research is notoriously plagued by flexible analysis pipelines <a class="reference internal" href="#carp2012" id="id1"><span>[Carp2012]</span></a>, insufficient or opaque reporting <a class="reference internal" href="#nichols2018" id="id2"><span>[Nichols2018]</span></a>, and low statistical power <a class="reference internal" href="#button2013" id="id3"><span>[Button2013]</span></a> <a class="reference internal" href="#turner2018" id="id4"><span>[Turner2018]</span></a>. These pathologies undermine the reliability of our collective findings, and make transparency and reproducibility all the more important <a class="reference internal" href="#poldrack2017" id="id5"><span>[Poldrack2017]</span></a>. Broadly, the aim of open neuroimaging is to adopt better practices to counteract these problems and allow ourselves greater confidence in our work.</p>
+<p>The primary goal of this handbook is to promote practices for improving the transparency and reproducibility of neuroimaging research. For example, we promote data management standards that facilitate data sharing and re-use, which has tremendous humanitarian and financial benefits <a class="reference internal" href="#milham2018" id="id6"><span>[Milham2018]</span></a>; we promote practices like software containerization that allow others to more easily re-run your analyses <a class="reference internal" href="#ghosh2017" id="id7"><span>[Ghosh2017]</span></a>. The handbook doesn’t touch on many aspects of open neuroimaging, but we point to other resources for a more complete picture; e.g., the <a class="reference external" href="https://www.repronim.org/">ReproNim</a> training course <a class="reference internal" href="#kennedy2019" id="id8"><span>[Kennedy2019]</span></a>.</p>
 <div class="admonition-quote admonition">
 <p class="admonition-title">Quote</p>
-<p>“My definition of open science is probably not the same as yours. And that’s okay.” —Kirstie Whitaker <a class="reference internal" href="#whitaker2019" id="id6"><span>[Whitaker2019]</span></a></p>
+<p>“My definition of open science is probably not the same as yours. And that’s okay.” —Kirstie Whitaker <a class="reference internal" href="#whitaker2019" id="id9"><span>[Whitaker2019]</span></a></p>
 </div>
-<p>The term “open science” means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on <a class="reference internal" href="#whitaker2019" id="id7"><span>[Whitaker2019]</span></a>. Some practices can be particularly challenging for early career researchers (ECRs) <a class="reference internal" href="#allen2019" id="id8"><span>[Allen2019]</span></a> <a class="reference internal" href="#poldrack2019" id="id9"><span>[Poldrack2019]</span></a>; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn’t feel pressured to adopt “all” open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.</p>
-<p>The primary goal of this handbook is to promote practices for improving the transparency and reproducibility of neuroimaging research. For example, we promote data management standards that facilitate data sharing and re-use, which has tremendous humanitarian and financial benefits <a class="reference internal" href="#milham2018" id="id10"><span>[Milham2018]</span></a>; we promote practices like software containerization that allow others to more easily re-run your analyses <a class="reference internal" href="#ghosh2017" id="id11"><span>[Ghosh2017]</span></a>. The handbook doesn’t touch on many aspects of open neuroimaging, but we point to other resources for a more complete picture; e.g., the <a class="reference external" href="https://www.repronim.org/">ReproNim</a> training course <a class="reference internal" href="#kennedy2019" id="id12"><span>[Kennedy2019]</span></a>.</p>
+<p>The term “open science” means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on <a class="reference internal" href="#whitaker2019" id="id10"><span>[Whitaker2019]</span></a>. Some practices can be particularly challenging for early career researchers (ECRs) <a class="reference internal" href="#allen2019" id="id11"><span>[Allen2019]</span></a> <a class="reference internal" href="#poldrack2019" id="id12"><span>[Poldrack2019]</span></a>; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn’t feel pressured to adopt “all” open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Make open science work for <strong>you</strong>. Incorporating best practices into your everyday workflow is the best way to learn.</p>
+<p>Make open science work for <strong>you</strong>. Incorporating best practices into your everday workflow is the best way to learn.</p>
 </div>
 <p>Open science practices are not just ideals, but will have practical, concrete benefits for you, your colleagues, and the field. For example, you may need to revisit a dataset or analysis after a month or a year. Taking the time to make you workflow as transparent and reproducible as possible <em>now</em> will save you a lot of time down the road. Future-proof your workflow by adopting best practices from the start and making your analysis open “by design” <a class="reference internal" href="#halchenko2015" id="id13"><span>[Halchenko2015]</span></a>. Your future self will thank you.</p>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="navigating-this-handbook">
+<h2>Navigating this handbook<a class="headerlink" href="#navigating-this-handbook" title="Permalink to this headline">¶</a></h2>
+<p>We recommend working through the handbook step by step from the beginning. You can treat the handbook like an interactive textbook and after each section proceed directly to the next topic using the navigation menu at the left. However, if you’re in the middle of an analysis or just need a refresher on a particular topic, you can skip ahead. In addition to the <a class="reference internal" href="../index.html#index"><span class="std std-ref">landing page</span></a>, our <a class="reference internal" href="01-06-overview.html#overview"><span class="std std-ref">flowchart</span></a> provides a high-altitude visual overview of fMRI analysis and can be used to navigate the handbook. Many questions in fMRI don’t have a single “right” answer, so we’ve compiled answers to a variety of common questions from the Princeton neuroimaging community in our crowdsourced <a class="reference internal" href="01-04-faq.html#faq"><span class="std std-ref">FAQ</span></a>; this is a great place to start if you have questions about acquisition parameters, experimental design, etc — and want to get the gist of how researchers approach these problems. If you’re confused about terminology, try the <a class="reference internal" href="glossary.html#glossary"><span class="std std-ref">glossary</span></a>; if you’re looking for something specific, try the <a class="reference external" href="../search.html">search</a> function. At the end of each page, we provide references and links to relevant external resources.</p>
+<div class="admonition-software-installation admonition">
+<p class="admonition-title">Software installation</p>
+<p>The analysis workflows in this handbook rely on several different software packages. Two major fMRI analysis packages used throughout the handbook are <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki">FSL</a> and <a class="reference external" href="https://afni.nimh.nih.gov/">AFNI</a>, although containerized software packages such as <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/">fMRIPrep</a> and <a class="reference external" href="https://mriqc.readthedocs.io/">MRIQC</a> also play a central role. Containerized packages like fMRIPrep use FSL and AFNI under the hood (as well as other software like <a class="reference external" href="http://stnava.github.io/ANTs/">ANTs</a>, <a class="reference external" href="https://nilearn.github.io/">nilearn</a>, and <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">FreeSurfer</a>), but are shipped with all of their dependencies included and <strong>do not</strong> require you to separately install these packages. Although you do not need to install these software packages now, you may opt to install them later for visualization or downstream analysis. Each of these software packages has a somewhat different design philosophy and user interface. FSL and AFNI each have their respective installation procedures (<a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">FSL installation</a>, <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html">AFNI installation</a>) or can be installed using <a class="reference external" href="http://neuro.debian.net/">NeuroDebian</a>. We also recommend familiarizing yourself with <a class="reference external" href="https://www.python.org/">Python</a> for particular downstream analyses, which is most easily installed using <a class="reference external" href="https://www.anaconda.com/distribution/">Anaconda</a> (or <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>).</p>
+</div>
+<div class="section" id="references-and-resources">
+<h3>References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h3>
 <dl class="citation">
-<dt class="label" id="allen2019"><span class="brackets"><a class="fn-backref" href="#id8">Allen2019</a></span></dt>
+<dt class="label" id="allen2019"><span class="brackets"><a class="fn-backref" href="#id11">Allen2019</a></span></dt>
 <dd><p> Allen, C., &amp; Mehler, D. M. (2019). Open Science challenges, benefits and tips in early career and beyond. <em>PLoS Biology</em>, <em>17</em>(5), e3000246. <a class="reference external" href="https://doi.org/10.1371/journal.pbio.3000246">https://doi.org/10.1371/journal.pbio.3000246</a></p>
 </dd>
 <dt class="label" id="button2013"><span class="brackets"><a class="fn-backref" href="#id3">Button2013</a></span></dt>
@@ -152,35 +162,36 @@
 <dt class="label" id="carp2012"><span class="brackets"><a class="fn-backref" href="#id1">Carp2012</a></span></dt>
 <dd><p> Carp, J. (2012). The secret lives of experiments: methods reporting in the fMRI literature. <em>NeuroImage</em>, <em>63</em>(1), 289-300. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2012.07.004">https://doi.org/10.1016/j.neuroimage.2012.07.004</a></p>
 </dd>
-<dt class="label" id="ghosh2017"><span class="brackets"><a class="fn-backref" href="#id11">Ghosh2017</a></span></dt>
+<dt class="label" id="ghosh2017"><span class="brackets"><a class="fn-backref" href="#id7">Ghosh2017</a></span></dt>
 <dd><p> Ghosh, S. S., Poline, J. B., Keator, D. B., Halchenko, Y. O., Thomas, A. G., Kessler, D. A., &amp; Kennedy, D. N. (2017). A very simple, re-executable neuroimaging publication. <em>F1000Research</em>, 6. <a class="reference external" href="https://dx.doi.org/10.12688%2Ff1000research.10783.2">https://dx.doi.org/10.12688%2Ff1000research.10783.2</a></p>
 </dd>
 <dt class="label" id="halchenko2015"><span class="brackets"><a class="fn-backref" href="#id13">Halchenko2015</a></span></dt>
 <dd><p>Halchenko, Y. O., &amp; Hanke, M. (2015). Four aspects to make science open “by design” and not as an after-thought. <em>GigaScience</em>, <em>4</em>(1), 31. <a class="reference external" href="https://doi.org/10.1186/s13742-015-0072-7">https://doi.org/10.1186/s13742-015-0072-7</a></p>
 </dd>
-<dt class="label" id="kennedy2019"><span class="brackets"><a class="fn-backref" href="#id12">Kennedy2019</a></span></dt>
+<dt class="label" id="kennedy2019"><span class="brackets"><a class="fn-backref" href="#id8">Kennedy2019</a></span></dt>
 <dd><p>Kennedy, D. N., Abraham, S. A., Bates, J. F., Ghosh, S. S., Gillespie, T. H., Goncalves, M., … &amp; Hodge, S. M. (2019). Everything matters: the ReproNim perspective on reproducible neuroimaging. <em>Frontiers in Neuroinformatics</em>, <em>13</em>, 1. <a class="reference external" href="https://doi.org/10.3389/fninf.2019.00001">https://doi.org/10.3389/fninf.2019.00001</a></p>
 </dd>
-<dt class="label" id="milham2018"><span class="brackets"><a class="fn-backref" href="#id10">Milham2018</a></span></dt>
+<dt class="label" id="milham2018"><span class="brackets"><a class="fn-backref" href="#id6">Milham2018</a></span></dt>
 <dd><p> Milham, M. P., Craddock, R. C., Son, J. J., Fleischmann, M., Clucas, J., Xu, H., Koo, B., Krishnakumar, A., Biswal, B. B., Castellanos, F. X., Colcombe, S., Di Martino, A., Zuo, X.-N., &amp; Klein, A. (2018). Assessment of the impact of shared brain imaging data on the scientific literature. <em>Nature Communications</em>, 9. <a class="reference external" href="https://doi.org/10.1038/s41467-018-04976-1">https://doi.org/10.1038/s41467-018-04976-1</a></p>
 </dd>
 <dt class="label" id="nichols2018"><span class="brackets"><a class="fn-backref" href="#id2">Nichols2018</a></span></dt>
 <dd><p> Nichols, T. E., Das, S., Eickhoff, S. B., Evans, A. C., Glatard, T., Hanke, M., Kriegeskorte, N., Milham, M. P., Poldrack, R. A., Poline, J.-B., Proal, E., Thirion, B., Van Essen, D. C., White, T., &amp; Yeo, B. T. T. (2017). Best practices in data analysis and sharing in neuroimaging using MRI. <em>Nature Neuroscience</em>, <em>20</em>(3), 299–303. <a class="reference external" href="https://doi.org/10.1038/nn.4500">https://doi.org/10.1038/nn.4500</a></p>
 </dd>
-<dt class="label" id="poldrack2017a"><span class="brackets"><a class="fn-backref" href="#id5">Poldrack2017a</a></span></dt>
+<dt class="label" id="poldrack2017"><span class="brackets"><a class="fn-backref" href="#id5">Poldrack2017</a></span></dt>
 <dd><p> Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., &amp; Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. <em>Nature Reviews Neuroscience</em>, <em>18</em>(2), 115–126. <a class="reference external" href="https://doi.org/10.1038/nrn.2016.167">https://doi.org/10.1038/nrn.2016.167</a></p>
 </dd>
-<dt class="label" id="poldrack2019"><span class="brackets"><a class="fn-backref" href="#id9">Poldrack2019</a></span></dt>
+<dt class="label" id="poldrack2019"><span class="brackets"><a class="fn-backref" href="#id12">Poldrack2019</a></span></dt>
 <dd><p> Poldrack, R. A. (2019). The costs of reproducibility. <em>Neuron</em>, <em>101</em>(1), 11-14. <a class="reference external" href="https://doi.org/10.1016/j.neuron.2018.11.030">https://doi.org/10.1016/j.neuron.2018.11.030</a></p>
 </dd>
 <dt class="label" id="turner2018"><span class="brackets"><a class="fn-backref" href="#id4">Turner2018</a></span></dt>
 <dd><p> Turner, B. O., Paul, E. J., Miller, M. B., &amp; Barbey, A. K. (2018). Small sample sizes reduce the replicability of task-based fMRI studies. <em>Communications Biology</em>, <em>1</em>, 62. <a class="reference external" href="https://doi.org/10.1038/s42003-018-0073-z">https://doi.org/10.1038/s42003-018-0073-z</a></p>
 </dd>
-<dt class="label" id="whitaker2019"><span class="brackets">Whitaker2019</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>)</span></dt>
+<dt class="label" id="whitaker2019"><span class="brackets">Whitaker2019</span><span class="fn-backref">(<a href="#id9">1</a>,<a href="#id10">2</a>)</span></dt>
 <dd><p> Whitaker, K. (2019, June). <em>Diversity and inclusion as core values of open science.</em> Presented at the meeting of the Organization for Human Brain Mapping, Rome, Italy. <a class="reference external" href="https://doi.org/10.5281/zenodo.3243216">https://doi.org/10.5281/zenodo.3243216</a></p>
 </dd>
 </dl>
 <a class="reference external image-reference" href="01-06-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 </div>
 
