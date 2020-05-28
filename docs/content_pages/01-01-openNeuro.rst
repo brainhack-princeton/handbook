@@ -9,9 +9,9 @@ The primary goal of this handbook is to promote practices for improving the tran
 
 .. admonition:: Quote
 
-    "My definition of open science is probably not the same as yours. And that's okay." ---Kirstie Whitaker [Whitaker2018]_
+    "My definition of open science is probably not the same as yours. And that's okay." ---Kirstie Whitaker [Whitaker2019]_
 
-The term "open science" means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on [Whitaker2018]_. Some practices can be particularly challenging for early career researchers (ECRs) [Allen2019]_ [Poldrack2019]_; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn't feel pressured to adopt "all" open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.
+The term "open science" means different things to different people: for example, open source software, data sharing, open access publishing, accessible educational resources, diversity, inclusivity, equitable power structures, and so on [Whitaker2019]_. Some practices can be particularly challenging for early career researchers (ECRs) [Allen2019]_ [Poldrack2019]_; ECRs are often incentivized to get results as quickly as possible, and senior scientists sometimes do not appreciate the benefits of open science practices. Luckily, open science is not all-or-nothing. You shouldn't feel pressured to adopt "all" open science practices at once. Adopt whatever practices seem most useful and accessible, and integrate them into your workflow. Every little bit helps.
 
 .. tip:: Make open science work for **you**. Incorporating best practices into your everday workflow is the best way to learn.
 
@@ -49,13 +49,13 @@ References and resources
 
 .. [Nichols2018] |nbsp| Nichols, T. E., Das, S., Eickhoff, S. B., Evans, A. C., Glatard, T., Hanke, M., Kriegeskorte, N., Milham, M. P., Poldrack, R. A., Poline, J.-B., Proal, E., Thirion, B., Van Essen, D. C., White, T., & Yeo, B. T. T. (2017). Best practices in data analysis and sharing in neuroimaging using MRI. *Nature Neuroscience*, *20*\(3), 299–303. https://doi.org/10.1038/nn.4500
 
-.. [Poldrack2017] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
+.. [Poldrack2017a] |nbsp| Poldrack, R. A., Baker, C. I., Durnez, J., Gorgolewski, K. J., Matthews, P. M., Munafò, M. R., Nichols, T. E., Poline, J.-B., Vul, E., & Yarkoni, T. (2017). Scanning the horizon: towards transparent and reproducible neuroimaging research. *Nature Reviews Neuroscience*, *18*\(2), 115–126. https://doi.org/10.1038/nrn.2016.167
 
 .. [Poldrack2019] |nbsp| Poldrack, R. A. (2019). The costs of reproducibility. *Neuron*, *101*\(1), 11-14. https://doi.org/10.1016/j.neuron.2018.11.030
 
 .. [Turner2018] |nbsp| Turner, B. O., Paul, E. J., Miller, M. B., & Barbey, A. K. (2018). Small sample sizes reduce the replicability of task-based fMRI studies. *Communications Biology*, *1*, 62. https://doi.org/10.1038/s42003-018-0073-z
 
-.. [Whitaker2018] |nbsp| Whitaker, K. (2018, June). *Diversity and inclusion as core values of open science.* Presented at the meeting of the Organization for Human Brain Mapping, Rome, Italy. https://doi.org/10.5281/zenodo.3243216
+.. [Whitaker2019] |nbsp| Whitaker, K. (2019, June). *Diversity and inclusion as core values of open science.* Presented at the meeting of the Organization for Human Brain Mapping, Rome, Italy. https://doi.org/10.5281/zenodo.3243216
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
