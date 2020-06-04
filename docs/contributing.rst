@@ -408,15 +408,21 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 10. If your pull request gets approved and is merged to the offical handbook, **delete the branch** for the feature that was just approved. You can do this from the terminal or from the GitHub page for your forked repo.
 
-* On terminal:
+*On terminal*:
 
 .. code-block:: bash
 
-    ## delete the branch (both locally and on your fork)
+    ## delete the branch remotely (on your forked repo)
     git push <remote_name> --delete <branch_name>
       e.g., git push origin --delete testing
 
-* OR on GitHub, go to the branches tab on your forked repo:
+    ## delete the branch on your local computer
+    git branch -d <branch_name>
+      e.g., git branch -d testing
+
+*On GitHub*:
+
+* Go to the branches tab on your forked repo:
 
 .. image:: images/branches_on_repo.png
   :width: 700px
