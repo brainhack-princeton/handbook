@@ -401,16 +401,19 @@ git push
 <ol class="arabic simple" start="10">
 <li><p>If your pull request gets approved and is merged to the offical handbook, <strong>delete the branch</strong> for the feature that was just approved. You can do this from the terminal or from the GitHub page for your forked repo.</p></li>
 </ol>
-<ul class="simple">
-<li><p>On terminal:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## delete the branch (both locally and on your fork)</span>
+<p><em>On terminal</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## delete the branch remotely (on your forked repo)</span>
 git push &lt;remote_name&gt; --delete &lt;branch_name&gt;
   e.g., git push origin --delete testing
+
+<span class="c1">## delete the branch on your local computer</span>
+git branch -d &lt;branch_name&gt;
+  e.g., git branch -d testing
 </pre></div>
 </div>
+<p><em>On GitHub</em>:</p>
 <ul class="simple">
-<li><p>OR on GitHub, go to the branches tab on your forked repo:</p></li>
+<li><p>Go to the branches tab on your forked repo:</p></li>
 </ul>
 <a class="with-border reference internal image-reference" href="_images/branches_on_repo.png"><img alt="screenshot of location of branches on repo" class="with-border align-center" src="_images/branches_on_repo.png" style="width: 700px;" /></a>
 <ul class="simple">
