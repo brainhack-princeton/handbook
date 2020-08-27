@@ -8,11 +8,13 @@ Familiarize yourself with important background reading material here. If you’r
    :maxdepth: 1
 
    content_pages/01-01-openNeuro
-   content_pages/01-02-standard
-   content_pages/01-03-sampleProject
-   content_pages/01-04-faq
-   content_pages/01-05-designExp
-   content_pages/01-06-overview
+   content_pages/01-02-whatIsBIDS
+   content_pages/01-03-sampleProjectWithBIDS
+   content_pages/01-04-whatIsDatalad
+   content_pages/01-05-sampleProjectWithDatalad
+   content_pages/01-06-faq
+   content_pages/01-07-designExp
+   content_pages/01-08-overview
 
 ##########################
 Setting up your experiment
