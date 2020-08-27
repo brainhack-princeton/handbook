@@ -1,8 +1,8 @@
-.. _sampleProject:
+.. _sampleProjectWithBIDS:
 
-=============================
-Practice with our sample data
-=============================
+========================================
+Practice using BIDS with our sample data
+========================================
 
 .. raw:: html
 

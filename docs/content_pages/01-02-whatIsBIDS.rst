@@ -1,7 +1,7 @@
-.. _standard:
+.. _whatIsBIDS:
 
-Benefits of BIDS (Brain Imaging Data Structure)
------------------------------------------------------
+What is BIDS (Brain Imaging Data Structure)?
+--------------------------------------------
 
 .. raw:: html
 
