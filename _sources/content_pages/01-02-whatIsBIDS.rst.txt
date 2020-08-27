@@ -1,7 +1,7 @@
-.. _standard:
+.. _whatIsBIDS:
 
-Benefits of BIDS (Brain Imaging Data Structure)
------------------------------------------------------
+What is BIDS (Brain Imaging Data Structure)?
+--------------------------------------------
 
 .. raw:: html
 
@@ -21,7 +21,7 @@ Many of the best practices we encourage in this handbook revolve around the Brai
 
 * **Sharing data:** Data sharing is an important element of reproducible science and is encouraged (often enforced!) by many major federal funding agencies (e.g., `NIH <https://grants.nih.gov/grants/policy/data_sharing/>`_, `NSF <https://www.nsf.gov/bfa/dias/policy/dmp.jsp>`_, `ERC <https://erc.europa.eu/managing-project/open-access>`_). BIDS allows others to more easily use your data and is the standard used by the `OpenNeuro <https://openneuro.org/>`_ data sharing platform [Poldrack2017b]_. The workflow in this handbook encourages converting your data to BIDS format as early in the workflow as poosssible to facilitate reproducibility and save you the energy of retroactivately organizing your data at the time of sharing. 
 
-Consult the `BIDS Specification <https://bids-specification.readthedocs.io/en/stable/>`_ for detailed documentation on formatting. If you want to setup a new study using BIDS, check out our documentation and scripts for :ref:`converting raw data to BIDS format<converting>`; or, you can :ref:`practice using BIDS with our sample dataset<sampleProject>`!
+Consult the `BIDS Specification <https://bids-specification.readthedocs.io/en/stable/>`_ for detailed documentation on formatting. If you want to setup a new study using BIDS, check out our documentation and scripts for :ref:`converting raw data to BIDS format<converting>`; or, you can :ref:`practice using BIDS with our sample dataset<sampleProjectWithBIDS>`!
 
 Resources
 ^^^^^^^^^
