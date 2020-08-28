@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Practice using DataLad with our sample data &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
+    <title>Using DataLad to version control your data &#8212; The Princeton Handbook for Reporducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -42,7 +42,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Practice using DataLad with our sample data &#8212; The Princeton Handbook for Reporducible Neuroimaging">
+  <meta property="og:title" content="Using DataLad to version control your data &#8212; The Princeton Handbook for Reporducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -88,7 +88,26 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using DataLad to version control your data</a><ul>
+<li><a class="reference internal" href="#do-this-once-setup-a-datalad-conda-environment-on-the-princeton-server">Do this once: Setup a DataLad conda environment on the Princeton server</a></li>
+<li><a class="reference internal" href="#start-tracking-existing-data-with-datalad">Start tracking existing data with DataLad</a><ul>
+<li><a class="reference internal" href="#step-1-setup-your-highest-level-dataset"><em>Step 1: Setup your highest level dataset</em></a></li>
+<li><a class="reference internal" href="#step-2-setup-your-code-dataset"><em>Step 2: Setup your /code dataset</em></a></li>
+<li><a class="reference internal" href="#step-3-setup-your-data-bids-dataset"><em>Step 3: Setup your /data/bids dataset</em></a></li>
+<li><a class="reference internal" href="#step-4-setup-your-derivatives-deface-dataset"><em>Step 4: Setup your /derivatives/deface dataset</em></a></li>
+<li><a class="reference internal" href="#step-5-setup-your-derivatives-fmriprep-dataset"><em>Step 5: Setup your /derivatives/fmriprep dataset</em></a></li>
+<li><a class="reference internal" href="#step-6-setup-your-derivatives-freesurfer-dataset"><em>Step 6: Setup your /derivatives/freesurfer dataset</em></a></li>
+<li><a class="reference internal" href="#step-7-setup-your-derivatives-mriqc-dataset"><em>Step 7: Setup your /derivatives/mriqc dataset</em></a></li>
+<li><a class="reference internal" href="#step-8-cleanup-higher-level-datasets"><em>Step 8: Cleanup higher level datasets</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,10 +138,541 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="practice-using-datalad-with-our-sample-data">
-<span id="sampleprojectwithdatalad"></span><h1>Practice using DataLad with our sample data<a class="headerlink" href="#practice-using-datalad-with-our-sample-data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="using-datalad-to-version-control-your-data">
+<span id="sampleprojectwithdatalad"></span><h1>Using DataLad to version control your data<a class="headerlink" href="#using-datalad-to-version-control-your-data" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><p>Add here.</p>
+<style> .red {color:red} </style><p>Before we begin, you should be aware that there is already an amazing <a class="reference external" href="http://handbook.datalad.org/en/latest/">DataLad Handbook</a> with super detailed documentation and tutorials. We definitely recommend you start there when learning about DataLad. The goal of this page is to help you apply DataLad commands and principles to your own BIDS-formatted dataset on your institution’s server.</p>
+<div class="section" id="do-this-once-setup-a-datalad-conda-environment-on-the-princeton-server">
+<h2>Do this once: Setup a DataLad conda environment on the Princeton server<a class="headerlink" href="#do-this-once-setup-a-datalad-conda-environment-on-the-princeton-server" title="Permalink to this headline">¶</a></h2>
+<p>We recommend installing DataLad in a conda environment on the server. This will allow you to use DataLad to track data you are storing and modifying on the server.</p>
+<p>First, we will have you install the latest version of Miniconda in your home directory in case the conda on the server is not up to date (step 1a). Following the directions below will modify your .bashrc file and make this installation of conda your default when you login to the server. However, we provide commands you can run if you don’t want this conda environment automatically activated when you login to the server (step 1b).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># login to spock (or scotty)</span>
+$ ssh -XY username@spock.pni.princeton.edu
+
+<span class="c1"># make sure you do not have any modules loaded:</span>
+$ module purge
+
+<span class="c1"># step 1a: install Miniconda</span>
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ bash Miniconda3-latest-Linux-x86_64.sh
+$ <span class="nb">source</span> ~/.bashrc
+
+<span class="c1"># step 1b: if you don&#39;t want this (base) conda environment automatically activated when you login</span>
+$ conda config --set auto_activate_base <span class="nb">false</span>
+
+<span class="c1"># check that you see your new miniconda3 environment listed</span>
+$ conda env list
+</pre></div>
+</div>
+<dl class="simple">
+<dt>You should see this new environment listed as ‘base’</dt><dd><p><code class="docutils literal notranslate"><span class="pre">base</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">*/usr/people/netID/miniconda3</span></code></p>
+</dd>
+</dl>
+<p>After you have the latest version of conda, you are ready to create a datalad conda environment (step 2a). Then you will install DataLad into your datalad conda environment (step 2b). Going forward, any time you want to work with DataLad, you will activate your datalad conda environment and be good to go!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># step 2a: create a new conda environment and name it datalad</span>
+$ conda create -n datalad
+
+<span class="c1"># check that you see your new datalad conda environment listed</span>
+$ conda env list
+</pre></div>
+</div>
+<dl>
+<dt>You should see datalad listed as one of the environments built off of your miniconda3 base environment:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">base</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">/usr/people/netID/miniconda3</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">datalad</span>&#160;&#160;&#160;&#160; <span class="pre">/usr/people/netID/miniconda3/envs/datalad</span></code></p>
+</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate your datalad conda environment</span>
+$ conda activate datalad <span class="c1">#you should see (datalad) at the beginning of your command line</span>
+
+<span class="c1"># step 2b: install DataLad</span>
+<span class="o">(</span>datalad<span class="o">)</span> $ conda install -c conda-forge datalad
+
+<span class="c1"># test it out!</span>
+<span class="o">(</span>datalad<span class="o">)</span> $ datalad --version
+<span class="o">(</span>datalad<span class="o">)</span> $ datalad --help
+</pre></div>
+</div>
+<p>If you haven’t done this in the past, then you should configure your git identity.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check if your git identity is already configured</span>
+<span class="o">(</span>datalad<span class="o">)</span> $ git config --list
+<span class="c1">#if you are already configured, you should see your user.name and user.email listed</span>
+
+<span class="c1"># if you still need to configure</span>
+<span class="o">(</span>datalad<span class="o">)</span> $ git config --global --add user.name <span class="s2">&quot;FirstName LastName&quot;</span>
+<span class="o">(</span>datalad<span class="o">)</span> $ git config --global --add user.email youremail@blah.com
+</pre></div>
+</div>
+<p>Great! Now you are ready to start using DataLad on the server!</p>
+<p>Before we move on, here are some helpful conda commands to keep in your back pocket:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># list your available conda environments</span>
+$ conda info --envs
+
+<span class="c1"># activate a conda environment</span>
+$ conda activate myenv <span class="c1">#replace myenv with the actual name of environment</span>
+
+<span class="c1"># deactivate a conda environment</span>
+$ conda deactivate myenv <span class="c1">#replace myenv with actual name of environment</span>
+
+<span class="c1"># update conda</span>
+$ conda update -n base conda <span class="c1">#update conda in your (base) environment</span>
+
+<span class="c1"># remove a conda environment</span>
+$ conda env remove --name myenv <span class="c1">#replace myenv with actual name of environment</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-tracking-existing-data-with-datalad">
+<h2>Start tracking existing data with DataLad<a class="headerlink" href="#start-tracking-existing-data-with-datalad" title="Permalink to this headline">¶</a></h2>
+<p>For this demo, we will show you how to apply DataLad commands to our sample dataset (i.e., a pre-existing dataset). You can also take this workflow and apply it to your own pre-existing, BIDS-formatted dataset. Before jumping straight in to using DataLad on your own dataset, we recommend practicing with the sample dataset to familiarize you with DataLad commands and general principles.</p>
+<p>If you are practicing with our sample dataset, make sure you have already worked through <a class="reference internal" href="03-01-converting.html#converting"><span class="std std-ref">converting data to BIDS</span></a>, <a class="reference internal" href="03-02-mriqc.html#mriqc"><span class="std std-ref">quality control with MRIQC</span></a>, and <a class="reference internal" href="03-03-fmriprep.html#fmriprep"><span class="std std-ref">preprocessing with fMRIprep</span></a>. You should have a version of the sample dataset living in your personal directory (e.g., <span class="blue">jukebox/YOURLAB/USERNAME/sample_project</span>) with the corresponding derivatives. Alternatively, if you want to cheat and skip these steps, you can copy our sample project output to your personal directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy sample output to your personal directory and call it sample_project</span>
+$ cp -r /jukebox/norman/pygers/handbook/sample_project_output_v1.4.0 /jukebox/YOURLAB/USERNAME/sample_project
+</pre></div>
+</div>
+<p>The structure of the sample_project directory should be the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>└── sample_project
+    └── code
+        └── analysis
+        └── preprocessing
+        └── task
+    └── data
+        └── behavioral
+        └── bids
+            └── sub-001
+            └── derivatives
+                └── deface
+                └── fmriprep
+                └── freesurfer
+                └── mriqc
+                └── work
+        └── dicom
+</pre></div>
+</div>
+<p>We will make <span class="blue">/sample_project</span> our highest level dataset (we will refer to this as the “superdataset”). Then we will create a series of “subdatasets”. Subdatasets are really standalone datasets, with their own git log history and .gitignore files. For example, this will allow others (or your future self) to clone a subdataset alone, without cloning your entire dataset. In this demo, we will make the following directories their own datasets:</p>
+<ul class="simple">
+<li><p><span class="blue">/code</span></p></li>
+<li><p><span class="blue">/data/bids</span></p></li>
+<li><p><span class="blue">/derivatives/deface</span></p></li>
+<li><p><span class="blue">/derivatives/fmriprep</span></p></li>
+<li><p><span class="blue">/derivatives/freesurfer</span></p></li>
+<li><p><span class="blue">/derivatives/mriqc</span></p></li>
+</ul>
+<p>There are also some files and directories that we want to ignore (or leave “untracked”). This is either because we aren’t worried about version controlling certain directories (e.g., <span class="blue">/derivatives/work</span>) or because files might contain sensitive information that we don’t want to share or make publicly available (e.g., <span class="blue">/data/dicom</span> and anatomical scans that have not been defaced). We will make sure to add directories/files that we do not want to track into the appropriate dataset’s .gitignore file.</p>
+<p>Let’s get started! First, make sure you have activated your datalad conda environment and navigate to the sample_project directory in your personal directory. For this demo, the working directory is included in [brackets] on the command line.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>~<span class="o">]</span>$ conda activate datalad
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>~<span class="o">]</span>$ <span class="nb">cd</span> /jukebox/YOURLAB/USERNAME/sample_project
+</pre></div>
+</div>
+<div class="section" id="step-1-setup-your-highest-level-dataset">
+<h3><em>Step 1: Setup your highest level dataset</em><a class="headerlink" href="#step-1-setup-your-highest-level-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset&quot;</span> -f .
+<span class="c1"># don&#39;t forget the period at the end to indicate current directory!</span>
+
+<span class="c1"># check your commit history</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log
+</pre></div>
+</div>
+<p>You should see two commits, each with your name &lt;email&gt; (from git config) as the Author and the date and time of your commit. These commits were automatically generated when you ran <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">create</span></code>). An example below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>commit 1b2cea79ad11d17e1fd44c8047b6fd62da8e7dc1
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Wed Aug <span class="m">12</span> <span class="m">16</span>:51:48 <span class="m">2020</span> -0400
+
+Instruct annex to add text files to Git
+
+commit 92f5ddc455310e8af325f0a3843957fd5246af26
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Wed Aug <span class="m">12</span> <span class="m">16</span>:51:31 <span class="m">2020</span> -0400
+
+<span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+</pre></div>
+</div>
+<p>Now we can use <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">status</span></code> to see which directories and files are “untracked” or “modified”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad status
+</pre></div>
+</div>
+<p>You should see 1 untracked file (<span class="blue">.DS_Store</span>) and 2 untracked directories (<span class="blue">/code</span> and <span class="blue">/data</span>).</p>
+<p>Before proceeding, you need to a couple things to a .gitignore file. Warning! You will need to use vim.
+<a class="reference external" href="https://opensource.com/article/19/3/getting-started-vim">Getting started with vim</a></p>
+<p>After modifying your .gitignore file, you will commit your modification using a <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># Add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+<span class="c1"># data/dicom</span>
+
+<span class="c1"># commit .gitignore modification</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+</pre></div>
+</div>
+<p>You will now see one more commit in this dataset’s history:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check your commit history</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log
+
+commit d49a496f1a629f69f627a2707f7171941179eaba
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Wed Aug <span class="m">12</span> <span class="m">16</span>:59:46 <span class="m">2020</span> -0400
+
+add gitignore
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-setup-your-code-dataset">
+<h3><em>Step 2: Setup your /code dataset</em><a class="headerlink" href="#step-2-setup-your-code-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s add a new (sub)dataset. Remember, this will be a standalone dataset with its own commit history (git log) and .gitignore file. However, when we create this dataset, we will “link” to our superdataset, and the time and date that we created this (sub)dataset will be tracked in the superdataset’s git log history.</p>
+<p>A couple of notes about the command options we are including below:
+* we are using the –no-annex flag here because this directory only contains code files and not large data files
+* the -d^ flag is what “links” this dataset to the superdataset
+* note that the last input is the path to the directory we want to make a dataset (relative to your working directory)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad create --no-annex -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset code directory&quot;</span> -f -d^ ./code
+
+<span class="c1"># check your superdataset commit history</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log
+</pre></div>
+</div>
+<p>You will see that there is a new commit that was logged when you ran <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">create</span></code>. However, the commit message is not very helpful:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>commit 8af8f77009abc45880a6adad2cee9576871998b7
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Thu Aug <span class="m">27</span> <span class="m">14</span>:18:37 <span class="m">2020</span> -0400
+
+<span class="o">[</span>DATALAD<span class="o">]</span> Recorded changes
+</pre></div>
+</div>
+<p>What we can do is amend the most recent commit and modify the commit message to something more descriptive:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># modify most recent commit message</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+</pre></div>
+</div>
+<p>Using vim, edit commit message to say: [DATALAD] Add code directory dataset</p>
+<p>Now your most recent commit should look like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check superdataset commit history</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log
+
+    commit 8af8f77009abc45880a6adad2cee9576871998b7
+    Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+    Date:   Thu Aug <span class="m">27</span> <span class="m">14</span>:18:37 <span class="m">2020</span> -0400
+
+    <span class="o">[</span>DATALAD<span class="o">]</span> Add code directory dataset
+</pre></div>
+</div>
+<p>Great! Now let’s start looking at the code dataset.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># move into your code directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ <span class="nb">cd</span> code
+
+<span class="c1"># check out the status of directories/files and the git history</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ datalad status <span class="c1"># see which files/directories are untracked</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ git log
+</pre></div>
+</div>
+<p>You should see three commits in the git history. One of them is from our old, pre-covid lifetime (Feb 20 2020)! This is because the code from the original sample dataset (before you copied to your own directory) was setup with git tracking. Then you can see there are the two commits corresponding to creating this new dataset and the text2git command we included when we ran <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">create</span></code>. Notice that this dataset has a completely new git history independent of the superdataset!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>commit 8f5e3dbee686ac07edcc2d59a31ee232844d8a71
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Wed Aug <span class="m">12</span> <span class="m">17</span>:06:22 <span class="m">2020</span> -0400
+
+Instruct annex to add text files to Git
+
+commit d5d0254c6eedf7fdc09f96c4632334ed80dd2e0f
+Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+Date:   Wed Aug <span class="m">12</span> <span class="m">17</span>:06:21 <span class="m">2020</span> -0400
+
+<span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+
+commit 7e1fddcd5e17a72b93a570a88475fcf3ded2f30b
+Author: Elizabeth McDevitt &lt;eam7@scotty.pni.Princeton.EDU&gt;
+Date:   Thu Feb <span class="m">20</span> <span class="m">11</span>:09:12 <span class="m">2020</span> -0500
+
+Initial commit of handbook preprocessing code
+</pre></div>
+</div>
+<p>Next we will add a .gitignore file for this code dataset, and commit the directories/files within <span class="blue">/code</span>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in the code directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># Add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+
+<span class="c1"># Commit .gitignore modification</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># Commit all code files</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add code files&quot;</span>
+
+<span class="c1"># Optional: setup and link to a remote GitHub repository if you haven&#39;t done this already</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ git remote add origin <span class="o">[</span>github-repo-url<span class="o">]</span>
+</pre></div>
+</div>
+<p>You should see two new commits in your code dataset git history:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ git log
+
+    commit d68b035e7de4e750b0fa0ce10f9d9d15a9d9820e
+    Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+    Date:   Wed Aug <span class="m">12</span> <span class="m">17</span>:50:00 <span class="m">2020</span> -0400
+
+    add code files
+
+    commit 9c0f6245455e0bfda94b577fd3da0e7f9435d188
+    Author: Lizzie McDevitt &lt;emcdevitt8287@gmail.com&gt;
+    Date:   Wed Aug <span class="m">12</span> <span class="m">17</span>:07:18 <span class="m">2020</span> -0400
+
+    add gitignore
+</pre></div>
+</div>
+<p>Now go back up a level to the <span class="blue">/sample_project</span> directory and check <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">status</span></code>. You should see that <span class="blue">/code</span> is modified and <span class="blue">/data</span> is untracked. Next we will commit the modifications to <span class="blue">/code</span> only so that these changes are logged in the superdataset’s git history. IMPORTANT: Make sure you include the -u flag at the end of the save command so that ONLY modifications (and NOT untracked files) are committed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># go up a level</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ <span class="nb">cd</span> ..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad status
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add files to code dataset&quot;</span> -u
+</pre></div>
+</div>
+<p>Now your superdataset git history has a commit that tracks what modifications were made to the code (sub)dataset.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log --oneline
+
+<span class="m">9933052</span> add files to code dataset
+8af8f77 <span class="o">[</span>DATALAD<span class="o">]</span> Add code directory dataset
+d49a496 add gitignore
+1b2cea7 Instruct annex to add text files to Git
+92f5ddc <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+</pre></div>
+</div>
+<p>And let’s compare this to the git history for the code dataset:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ <span class="nb">cd</span> code
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>code<span class="o">]</span>$ git log --oneline
+
+d68b035 add code files
+9c0f624 add gitignore
+8f5e3db Instruct annex to add text files to Git
+d5d0254 <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+7e1fddc Initial commit of handbook preprocessing code
+</pre></div>
+</div>
+<p>Notice that each dataset has its own git history!</p>
+</div>
+<div class="section" id="step-3-setup-your-data-bids-dataset">
+<h3><em>Step 3: Setup your /data/bids dataset</em><a class="headerlink" href="#step-3-setup-your-data-bids-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Now we will add the <span class="blue">/data/bids</span> directory as its own (sub)dataset. Ultimately, we will track all of the raw BIDS-formatted nifti files for each subject in this dataset. However, keep in mind that the <span class="blue">/bids</span> directory also contains <span class="blue">/derivatives</span>. Since we want the various derivatives directories to become their own (sub)datasets, we will need to follow a slightly different workflow here so that we don’t accidentally commit <span class="blue">/derivatives</span> to our <span class="blue">/data/bids</span> dataset.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are in the sample_project directory</span>
+<span class="c1"># create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset raw BIDS files&quot;</span> -f -d^ ./data/bids
+
+<span class="c1"># edit the unuseful commit message</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+
+<span class="c1"># edit commit message to say: [DATALAD] Add BIDS dataset</span>
+
+<span class="c1"># move into the bids directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ <span class="nb">cd</span> data/bids
+
+<span class="c1"># add and edit .gitignore file</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+<span class="c1"># derivatives/work</span>
+<span class="c1"># */*/anat/*T1w.nii.gz</span>
+
+<span class="c1"># commit .gitignore modification only</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># check your bids dataset git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git log --oneline
+
+677ac37 add gitignore
+471744c Instruct annex to add text files to Git
+c7cddba <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+</pre></div>
+</div>
+<p>And that is it for now! Don’t run any other <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code> commands for the bids dataset until you have finished adding derivatives (sub)datasets! You can check your <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">status</span></code> and you should see that all files and directories are “untracked”. Note, you should NOT see <span class="blue">/derivatives/work</span> listed as a directory because you added that to .gitignore.</p>
+</div>
+<div class="section" id="step-4-setup-your-derivatives-deface-dataset">
+<h3><em>Step 4: Setup your /derivatives/deface dataset</em><a class="headerlink" href="#step-4-setup-your-derivatives-deface-dataset" title="Permalink to this headline">¶</a></h3>
+<p>For the next four datasets, you will follow the same workflow of adding a new dataset, editing the commit messages in the higher level dataset git logs to be useful, add and co``datalad save`` a .gitignore file, <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code> the files within the dataset, then do a <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code> in the higher level dataset. Here we go!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from your bids directory, create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset defaced files&quot;</span> -f -d^ ./derivatives/deface
+
+<span class="c1"># edit the commit message in your bids git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add deface dataset</span>
+
+<span class="c1"># go back to superdataset and edit the commit message in your sample_project git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add deface dataset</span>
+
+<span class="c1"># move into deface directory and create a .gitignore</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> data/bids/derivatives/deface
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>deface<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+
+<span class="c1"># commit .gitignore only</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>deface<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># commit the contents of derivatives/deface</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>deface<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add defaced T1w files&quot;</span>
+
+<span class="c1"># go back two levels to the bids directory and check the status</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>deface<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad status
+</pre></div>
+</div>
+<p>You should see that the <span class="blue">/derivatives/deface</span> dataset is “modified”. Everything else is “untracked”. Next you will run a <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">save</span></code> command from your <span class="blue">/bids</span> directory using the -u flag. This will commit the modifications ONLY.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># don&#39;t forget the -u flag!!</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;files added to deface dataset&quot;</span> -u
+</pre></div>
+</div>
+<p>You have now finished adding the deface dataset, including tracking the contents of the deface dataset. These changes have been logged in the git history of the sample_project (super)dataset, the bids (sub)dataset, and deface (sub)dataset. Go ahead and inspect those git logs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the deface directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>deface<span class="o">]</span>$ git log --oneline
+
+3b56d62 add defaced T1w files
+a788851 add gitignore
+a0b3191 Instruct annex to add text files to Git
+85a9219 <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+
+<span class="c1"># from the bids directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git log --oneline
+
+a5d1b0a files added to deface dataset
+f6e0260 <span class="o">[</span>DATALAD<span class="o">]</span> Add deface dataset
+677ac37 add gitignore
+471744c Instruct annex to add text files to Git
+c7cddba <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+
+<span class="c1"># from the sample_project directory</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git log --oneline
+
+0fd4b47 <span class="o">[</span>DATALAD<span class="o">]</span> Add deface dataset
+<span class="m">9933052</span> add files to code dataset
+8af8f77 <span class="o">[</span>DATALAD<span class="o">]</span> Add code directory dataset
+d49a496 add gitignore
+1b2cea7 Instruct annex to add text files to Git
+92f5ddc <span class="o">[</span>DATALAD<span class="o">]</span> new dataset
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-setup-your-derivatives-fmriprep-dataset">
+<h3><em>Step 5: Setup your /derivatives/fmriprep dataset</em><a class="headerlink" href="#step-5-setup-your-derivatives-fmriprep-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from your bids directory, create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset fmriprep derivatives&quot;</span> -f -d^ ./derivatives/fmriprep
+
+<span class="c1"># edit the commit message in your bids git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add fmriprep dataset</span>
+
+<span class="c1"># go back to superdataset and edit the commit message in your sample_project git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add fmriprep dataset</span>
+
+<span class="c1"># move into fmriprep directory and create a .gitignore</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> data/bids/derivatives/fmriprep
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>fmriprep<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+<span class="c1"># */anat/*T1w.nii.gz</span>
+
+<span class="c1"># commit .gitignore only</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>fmriprep<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># commit the contents of derivatives/fmriprep</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>fmriprep<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add fmriprep output files&quot;</span>
+
+<span class="c1"># go back two levels to the bids directory and commit changes at that level</span>
+<span class="c1"># don&#39;t forget the -u flag!!</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>fmriprep<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;files added to fmriprep dataset&quot;</span> -u
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-6-setup-your-derivatives-freesurfer-dataset">
+<h3><em>Step 6: Setup your /derivatives/freesurfer dataset</em><a class="headerlink" href="#step-6-setup-your-derivatives-freesurfer-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from your bids directory, create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset freesurfer derivatives&quot;</span> -f -d^ ./derivatives/freesurfer
+
+<span class="c1"># edit the commit message in your bids git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add freesurfer dataset</span>
+
+<span class="c1"># go back to superdataset and edit the commit message in your sample_project git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add freesurfer dataset</span>
+
+<span class="c1"># move into freesurfer directory and create a .gitignore</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> data/bids/derivatives/freesurfer
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>freesurfer<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+
+<span class="c1"># commit .gitignore only</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>freesurfer<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># commit the contents of derivatives/freesurfer</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>freesurfer<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add freesurfer output files&quot;</span>
+
+<span class="c1"># go back two levels to the bids directory and commit changes at that level</span>
+<span class="c1"># don&#39;t forget the -u flag!!</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>freesurfer<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;files added to freesurfer dataset&quot;</span> -u
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-7-setup-your-derivatives-mriqc-dataset">
+<h3><em>Step 7: Setup your /derivatives/mriqc dataset</em><a class="headerlink" href="#step-7-setup-your-derivatives-mriqc-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from your bids directory, create a new dataset</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad create -c text2git --description <span class="s2">&quot;Princeton pygers sample dataset mriqc derivatives&quot;</span> -f -d^ ./derivatives/mriqc
+
+<span class="c1"># edit the commit message in your bids git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add mriqc dataset</span>
+
+<span class="c1"># go back to superdataset and edit the commit message in your sample_project git log</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ git commit --amend
+<span class="c1"># edit commit message to say: [DATALAD] Add mriqc dataset</span>
+
+<span class="c1"># move into mriqc directory and create a .gitignore</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> data/bids/derivatives/mriqc
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>mriqc<span class="o">]</span>$ vim .gitignore
+
+<span class="c1"># add the following to your gitignore:</span>
+<span class="c1"># *.DS_Store</span>
+
+<span class="c1"># commit .gitignore only</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>mriqc<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add gitignore&quot;</span> .gitignore
+
+<span class="c1"># commit the contents of derivatives/mriqc</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>mriqc<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add mriqc output files&quot;</span>
+
+<span class="c1"># go back two levels to the bids directory and commit changes at that level</span>
+<span class="c1"># don&#39;t forget the -u flag!!</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>mriqc<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;files added to mriqc dataset&quot;</span> -u
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-8-cleanup-higher-level-datasets">
+<h3><em>Step 8: Cleanup higher level datasets</em><a class="headerlink" href="#step-8-cleanup-higher-level-datasets" title="Permalink to this headline">¶</a></h3>
+<p>Almost there! Now you will save all the untracked files/directories in your bids dataset, which should ONLY be the files and data directories at the bids level since all derivatives were already tracked. You can check this by running <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">status</span></code> from the <span class="blue">/bids</span> directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad status
+
+<span class="c1"># save all modified and untracked files/directories</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ datalad save -m <span class="s2">&quot;add BIDS data created using HeuDiConv&quot;</span>
+</pre></div>
+</div>
+<p>Finally, go back to the highest level (super)dataset and save modifications.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>bids<span class="o">]</span>$ <span class="nb">cd</span> ../..
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad status <span class="c1">#/data/bids should be modified</span>
+<span class="o">(</span>datalad<span class="o">)</span> <span class="o">[</span>sample_project<span class="o">]</span>$ datalad save -m <span class="s2">&quot;added BIDS files to data/bids dataset&quot;</span>
+</pre></div>
+</div>
+<p>Congrats! You are all setup to version control all the data and code from the sample project. Make sure you reference the <a class="reference external" href="http://handbook.datalad.org/en/latest/">DataLad Handbook</a> to explore all the functionality and incredible things you can do with DataLad as you grow your dataset and analyze data!</p>
+</div>
+</div>
 </div>
 
 
