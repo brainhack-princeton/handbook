@@ -9,12 +9,11 @@ Familiarize yourself with important background reading material here. If you’r
 
    content_pages/01-01-openNeuro
    content_pages/01-02-whatIsBIDS
-   content_pages/01-03-sampleProjectWithBIDS
-   content_pages/01-04-whatIsDatalad
-   content_pages/01-05-sampleProjectWithDatalad
-   content_pages/01-06-faq
-   content_pages/01-07-designExp
-   content_pages/01-08-overview
+   content_pages/01-03-sampleProjectWithBIDSd
+   content_pages/01-04-sampleProjectWithDatalad
+   content_pages/01-05-faq
+   content_pages/01-06-designExp
+   content_pages/01-07-overview
 
 ##########################
 Setting up your experiment
