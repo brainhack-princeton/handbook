@@ -85,5 +85,5 @@ NOTE: Don't forget, pysurfer works with python 2.7, so make sure to 'source acti
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 01-08-overview.html
+  :target: 01-07-overview.html
 

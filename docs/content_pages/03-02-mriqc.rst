@@ -57,4 +57,4 @@ MRIQC outputs separate MRIQC reports for each individual run, as well as group r
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 01-08-overview.html
+  :target: 01-07-overview.html

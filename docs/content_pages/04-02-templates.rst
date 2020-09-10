@@ -81,4 +81,4 @@ Yeo, B. T. T., Krienen, F. M., Sepulcre, J., Sabuncu, M. R., Lashkari, D., Holli
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 01-08-overview.html
+  :target: 01-07-overview.html

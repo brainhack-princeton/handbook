@@ -165,5 +165,5 @@ SUMA documentation: https://afni.nimh.nih.gov/pub/dist/doc/SUMA/suma/SUMA_do1.ht
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 01-08-overview.html
+  :target: 01-07-overview.html
 
