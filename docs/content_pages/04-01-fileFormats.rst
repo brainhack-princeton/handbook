@@ -63,4 +63,4 @@ If you want to high pass filter and clean data from confounds (e.g. motion, whit
   :width: 300
   :align: center
   :alt: return to timeline
-  :target: 01-06-overview.html
+  :target: 01-08-overview.html
