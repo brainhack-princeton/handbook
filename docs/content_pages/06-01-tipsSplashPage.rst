@@ -12,7 +12,10 @@ Hack your workflow: Tips, tricks and tutorials
 .. role:: blue
 .. role:: red
 
-.. _ShortAnchor:
+Here are some tutorials of how you can optimize your workflow! These hacks come from various people in the department who have spent time mastering these tips. 
+
+* `A workflow for debugging in python <hack_pages/debugging-workflow.html>`_
+* `Another tip <hack_pages/another-tip.html>`_
 
 
 
