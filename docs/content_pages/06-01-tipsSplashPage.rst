@@ -1,7 +1,7 @@
 .. _tipsSplashPage:
 
 ==============================================
-Hack your workflow: Tips, tricks and tutorials
+Hack your workflow: tips, tricks and tutorials
 ==============================================
 
 .. raw:: html
