@@ -77,10 +77,11 @@ Appendix
    :maxdepth: 1
    :caption: Haven't had enough? Some more information and resources.
 
-   contributing
-   content_pages/glossary
-   references
-   resources
+   content_pages/06-01-tipsSplashPage
+   content_pages/06-02-contributing
+   content_pages/06-03-glossary
+   content_pages/06-04-resources
+   content_pages/06-05-references
 
 * :ref:`genindex`
 * :ref:`search`
