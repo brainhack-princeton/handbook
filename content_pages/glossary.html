@@ -133,27 +133,28 @@
 <span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="computing">
 <h2>Computing<a class="headerlink" href="#computing" title="Permalink to this headline">¶</a></h2>
-<dl class="glossary">
+<dl class="glossary simple">
 <dt id="term-bash">bash</dt><dd><p>Bourne-again shell; a commonly-used Unix command language</p>
 </dd>
 <dt id="term-CLI">CLI</dt><dd><p>command-line interface; see command line</p>
 </dd>
-<dt id="term-cluster">cluster</dt><dd><p>group of networked high-performance computers that can be remotely accessed for incraased computing power; see HPC aand server</p>
+<dt id="term-cluster">cluster</dt><dd><p>group of networked high-performance computers that can be remotely accessed for increased computing power; see HPC and server</p>
 </dd>
-<dt id="term-command-line">command line</dt><dd><p>interface for processing commands to a computer as lines of text; somtimes referred to as command-line interface (CLI); see terrminal, and compare to GUI)</p>
+<dt id="term-command-line">command line</dt><dd><p>interface for processing commands to a computer as lines of text; sometimes referred to as command-line interface (CLI); see terminal, and compare to GUI</p>
 </dd>
-<dt id="term-conda">conda</dt><dd><p>package manager used for Python and other languagues; contrast with pip</p>
+<dt id="term-conda">conda</dt><dd><p>package manager used for Python and other languages; contrast with pip</p>
 </dd>
 <dt id="term-container">container</dt><dd><p>self-contained virtual computing environment that includes all dependencies for increased portability and reproducibility; see Docker and Singularity</p>
 </dd>
 <dt id="term-CPU">CPU</dt><dd><p>central processing unit</p>
 </dd>
-<dt id="term-Docker">Docker</dt><dd><p>platform using for packaging software and computing environments into containers (<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity</p>
+<dt id="term-Docker">Docker</dt><dd><p>platform used for packaging software and computing environments into containers (<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity</p>
 </dd>
 <dt id="term-GPU">GPU</dt><dd><p>graphical processing unit</p>
 </dd>
 <dt id="term-GUI">GUI</dt><dd><p>graphical user interface</p>
-<p>high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization</p>
+</dd>
+<dt id="term-HPC">HPC</dt><dd><p>high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization</p>
 </dd>
 <dt id="term-HTC">HTC</dt><dd><p>high-throughput computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-performance computing (HPC); see parallelization</p>
 </dd>
@@ -181,7 +182,7 @@
 </dd>
 <dt id="term-SSH">SSH</dt><dd><p>secure shell; a secure connection to a remote computer or server</p>
 </dd>
-<dt id="term-terminal">terminal</dt><dd><p>command-line interface for interacting with a computer (or shell); somtimes referred to as a terminal emulator; see command line</p>
+<dt id="term-terminal">terminal</dt><dd><p>command-line interface for interacting with a computer (or shell); sometimes referred to as a terminal emulator; see command line</p>
 </dd>
 <dt id="term-text-editor">text editor</dt><dd><p>application for editing scripts in an easy way (outside of terminal); e.g., vim, Emacs, gedit, nano, Sublime, Atom</p>
 </dd>
@@ -202,7 +203,7 @@
 </dd>
 <dt id="term-BOLD">BOLD</dt><dd><p>blood-oxygen-level-dependent; signal indexed by the T2* contrast in fMRI</p>
 </dd>
-<dt id="term-DICOM">DICOM</dt><dd><p>Digital Imaging and Communications in Medicine; commonly file format for MRI images (as well as other types of medical images, e.g., CT); format for raw images exported from Siemens scanner after data acquisition</p>
+<dt id="term-DICOM">DICOM</dt><dd><p>Digital Imaging and Communications in Medicine; common file format for MRI images (as well as other types of medical images, e.g., CT); format for raw images exported from Siemens scanner after data acquisition</p>
 </dd>
 <dt id="term-EPI">EPI</dt><dd><p>echo-planar imaging; commonly used MRI acquisition technique that relies on multiple gradient echoes to traverse k-space in a zig-zag fashion allowing rapid slice acquisition; see GRE</p>
 </dd>
@@ -220,9 +221,9 @@
 </dd>
 <dt id="term-NIfTI">NIfTI</dt><dd><p><a class="reference external" href="https://nifti.nimh.nih.gov/">Neuroimaging Informatics Technology Initiative</a>; common file format for volumetric (f)MRI images; NIfTI images contain less metadata than DICOM images</p>
 </dd>
-<dt id="term-SENSE">SENSE</dt><dd><p>senstivity encoding; in-plane accerrleration technique in image space; Siemens refers to this technique as mSENSE; contrast with GRAPPA; see iPAT</p>
+<dt id="term-SENSE">SENSE</dt><dd><p>sensitivity encoding; in-plane acceleration technique in image space; Siemens refers to this technique as mSENSE; contrast with GRAPPA; see iPAT</p>
 </dd>
-<dt id="term-SMS">SMS</dt><dd><p>simultaneous multislice; multiband acceleration technique in which multiple slices are acquired simultaneosly; an acceleration factor of SMS = 2 means that two slices are collected simultaneously; contrast with iPAT; see multiband</p>
+<dt id="term-SMS">SMS</dt><dd><p>simultaneous multislice; multiband acceleration technique in which multiple slices are acquired simultaneously; an acceleration factor of SMS = 2 means that two slices are collected simultaneously; contrast with iPAT; see multiband</p>
 </dd>
 <dt id="term-SNR">SNR</dt><dd><p>signal-to-noise ratio; typically the mean signal value divided by the standard deviation (over time or space)</p>
 </dd>
@@ -255,9 +256,9 @@
 </dd>
 <dt id="term-git"><a class="reference external" href="https://git-scm.com/">git</a></dt><dd><p>free and open-source version control software for tracking code changes</p>
 </dd>
-<dt id="term-GitHub"><a class="reference external" href="https://github.com/">GitHub</a></dt><dd><p>web platform for hosting and distrributed software developed using git; commercial subsidiary of Microsoft</p>
+<dt id="term-GitHub"><a class="reference external" href="https://github.com/">GitHub</a></dt><dd><p>web platform for hosting and distributing software developed using git; commercial subsidiary of Microsoft</p>
 </dd>
-<dt id="term-GNU"><a class="reference external" href="https://www.gnu.org/home.en.html">GNU</a></dt><dd><p>GNU’s Not Unix; Unix-like operating system composed of entirely free software (typically released under GPL; see GPL</p>
+<dt id="term-GNU"><a class="reference external" href="https://www.gnu.org/home.en.html">GNU</a></dt><dd><p>GNU’s Not Unix; Unix-like operating system composed of entirely free software (typically released under GPL); see GPL</p>
 </dd>
 <dt id="term-GPL"><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL</a></dt><dd><p>GNU General Public License; a free “copyleft” license with share-alike requirements ensuring that derivative work be distributed under the same license, thus restricting commercialization; contrast with BSD License and MIT License</p>
 </dd>
@@ -271,7 +272,7 @@
 </dd>
 <dt id="term-OSF"><a class="reference external" href="https://osf.io/">OSF</a></dt><dd><p>Open Science Framework, free and open source project management tool (often used for preregistration of research hypotheses and task designs during or before data acquisition)</p>
 </dd>
-<dt id="term-PsyArXiv"><a class="reference external" href="https://psyarxiv.com/">PsyArXiv</a></dt><dd><p>preprint reposity for posting psychology manuscripts prior to peer-reviewed publicationo; hosted by the Center for Open Science</p>
+<dt id="term-PsyArXiv"><a class="reference external" href="https://psyarxiv.com/">PsyArXiv</a></dt><dd><p>preprint repository for posting psychology manuscripts prior to peer-reviewed publicationo; hosted by the Center for Open Science</p>
 </dd>
 </dl>
 </div>
