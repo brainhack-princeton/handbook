@@ -17,13 +17,13 @@ Computing
         command-line interface; see command line
 
     cluster
-		group of networked high-performance computers that can be remotely accessed for incraased computing power; see HPC aand server
+		group of networked high-performance computers that can be remotely accessed for increased computing power; see HPC and server
 
     command line
-		interface for processing commands to a computer as lines of text; somtimes referred to as command-line interface (CLI); see terrminal, and compare to GUI)
+		interface for processing commands to a computer as lines of text; sometimes referred to as command-line interface (CLI); see terminal, and compare to GUI
 
     conda
-        package manager used for Python and other languagues; contrast with pip
+        package manager used for Python and other languages; contrast with pip
 
     container
 		self-contained virtual computing environment that includes all dependencies for increased portability and reproducibility; see Docker and Singularity
@@ -32,7 +32,7 @@ Computing
         central processing unit
 
     Docker
-		platform using for packaging software and computing environments into containers (https://www.docker.com/); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity
+		platform used for packaging software and computing environments into containers (https://www.docker.com/); typically used on personal computers, but not on multi-user servers due to requiring root privileges; see container and Singularity
 
     GPU
         graphical processing unit
@@ -40,8 +40,8 @@ Computing
     GUI
 		graphical user interface
 
-	HPC
-		high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization
+    HPC
+        high-performance computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-throughput computing (HTC); see parallelization
 
     HTC
         high-throughput computing; using large-scale computing resources over long periods of time to accomplish a task; sometimes referred to as high-performance computing (HPC); see parallelization
@@ -83,7 +83,7 @@ Computing
 		secure shell; a secure connection to a remote computer or server
 
     terminal
-		command-line interface for interacting with a computer (or shell); somtimes referred to as a terminal emulator; see command line
+		command-line interface for interacting with a computer (or shell); sometimes referred to as a terminal emulator; see command line
 
     text editor
 		application for editing scripts in an easy way (outside of terminal); e.g., vim, Emacs, gedit, nano, Sublime, Atom
@@ -112,7 +112,7 @@ MRI Acquisition
         blood-oxygen-level-dependent; signal indexed by the T2* contrast in fMRI
 
     DICOM
-        Digital Imaging and Communications in Medicine; commonly file format for MRI images (as well as other types of medical images, e.g., CT); format for raw images exported from Siemens scanner after data acquisition
+        Digital Imaging and Communications in Medicine; common file format for MRI images (as well as other types of medical images, e.g., CT); format for raw images exported from Siemens scanner after data acquisition
 
     EPI
         echo-planar imaging; commonly used MRI acquisition technique that relies on multiple gradient echoes to traverse k-space in a zig-zag fashion allowing rapid slice acquisition; see GRE
@@ -139,10 +139,10 @@ MRI Acquisition
         `Neuroimaging Informatics Technology Initiative <https://nifti.nimh.nih.gov/>`_; common file format for volumetric (f)MRI images; NIfTI images contain less metadata than DICOM images
 
     SENSE
-        senstivity encoding; in-plane accerrleration technique in image space; Siemens refers to this technique as mSENSE; contrast with GRAPPA; see iPAT
+        sensitivity encoding; in-plane acceleration technique in image space; Siemens refers to this technique as mSENSE; contrast with GRAPPA; see iPAT
 
     SMS
-        simultaneous multislice; multiband acceleration technique in which multiple slices are acquired simultaneosly; an acceleration factor of SMS = 2 means that two slices are collected simultaneously; contrast with iPAT; see multiband
+        simultaneous multislice; multiband acceleration technique in which multiple slices are acquired simultaneously; an acceleration factor of SMS = 2 means that two slices are collected simultaneously; contrast with iPAT; see multiband
 
     SNR
         signal-to-noise ratio; typically the mean signal value divided by the standard deviation (over time or space)
@@ -189,10 +189,10 @@ Open science
         free and open-source version control software for tracking code changes
 
     `GitHub <https://github.com/>`_
-        web platform for hosting and distrributed software developed using git; commercial subsidiary of Microsoft
+        web platform for hosting and distributing software developed using git; commercial subsidiary of Microsoft
 
     `GNU <https://www.gnu.org/home.en.html>`_
-        GNU's Not Unix; Unix-like operating system composed of entirely free software (typically released under GPL; see GPL
+        GNU's Not Unix; Unix-like operating system composed of entirely free software (typically released under GPL); see GPL
 	
     `GPL <https://www.gnu.org/licenses/gpl-3.0.en.html>`_
         GNU General Public License; a free "copyleft" license with share-alike requirements ensuring that derivative work be distributed under the same license, thus restricting commercialization; contrast with BSD License and MIT License
@@ -213,4 +213,4 @@ Open science
         Open Science Framework, free and open source project management tool (often used for preregistration of research hypotheses and task designs during or before data acquisition)
 
     `PsyArXiv <https://psyarxiv.com/>`_
-        preprint reposity for posting psychology manuscripts prior to peer-reviewed publicationo; hosted by the Center for Open Science
+        preprint repository for posting psychology manuscripts prior to peer-reviewed publicationo; hosted by the Center for Open Science
