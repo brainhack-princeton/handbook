@@ -1,0 +1,4 @@
+.. _resources:
+
+External Resources
+------------------
