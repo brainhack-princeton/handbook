@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jamal’s Debugging Workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <title>Jamal’s IPython Debugger Tutorial &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Jamal’s Debugging Workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:title" content="Jamal’s IPython Debugger Tutorial &#8212; The Princeton Handbook for Reproducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -86,7 +86,18 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Jamal’s IPython Debugger Tutorial</a><ul>
+<li><a class="reference internal" href="#tutorial">Tutorial:</a></li>
+<li><a class="reference internal" href="#tmux-commands-cheat-sheet">tmux commands cheat sheet</a></li>
+<li><a class="reference internal" href="#ipython-commands-cheat-sheet">IPython commands cheat sheet</a></li>
+<li><a class="reference internal" href="#debugger-commands-cheat-sheet">debugger commands cheat sheet</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
@@ -115,11 +126,229 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="jamal-s-debugging-workflow">
-<h1>Jamal’s Debugging Workflow<a class="headerlink" href="#jamal-s-debugging-workflow" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="jamal-s-ipython-debugger-tutorial">
+<h1>Jamal’s IPython Debugger Tutorial<a class="headerlink" href="#jamal-s-ipython-debugger-tutorial" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><p>Add here.</p>
+<style> .red {color:red} </style>
+<style> .orange {color:orange} </style>
+<style> .green {color:green} </style><p>Credit: Jamal Williams, Pygers meeting 9/3/20</p>
+<p><strong>Description:</strong> Use IPython to walk through python scripts in a more “interactive” way for debugging purposes (e.g., break at specific lines, print variables – essentially, the command line becomes a bit more “matlab-like”).</p>
+<div class="section" id="tutorial">
+<h2>Tutorial:<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p><strong>Prep:</strong></p>
+<ul class="simple">
+<li><p>This tutorial will use tmux. If you are unfamiliar with tmux, check out our <a class="reference external" href="./tmux.html">guide to using tmux</a>.</p></li>
+<li><p>We will also be using IPython (i.e., an enhanced Interactive Python). Check out <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/index.html">IPython documentation here</a>.</p></li>
+<li><p>If you want to walk through the tutorial below and practice using the different commands, save a copy of our practice script (<span class="blue">/jukebox/norman/pygers/hack_scripts/ipython_debugger_practice.py</span>) to your personal directory.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/decorative_line41.png"><img alt="decorative line" class="align-center" src="../../_images/decorative_line41.png" style="width: 700px; height: 8px;" /></a>
+<ol class="arabic simple">
+<li><p>Login to your server (spock or scotty at Princeton); make sure you login using the <code class="docutils literal notranslate"><span class="pre">-X</span></code> flag to enable XQuartz. Navigate to the directory where you saved a copy of the practice script <span class="blue">ipython_debugger_practice.py</span>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh -X netID@scotty.pni.princeton.edu
+$ <span class="nb">cd</span> path/to/your/directory
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Create a new tmux session OR attach to an existing tmux session. Here, our tmux session is named ‘debugging’.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tmux new -s debugging <span class="c1">#create a new session OR</span>
+$ tmux a -t debugging <span class="c1">#attach to an existing session</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the next step, we will start using tmux commands. By default, tmux uses <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span></code> as the prefix key (you can change this by setting up a <span class="blue">.tmux.config</span> file). Note that you must let go of the prefix before entering the subsequent command key.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Use tmux commands to split your terminal into 3 separate panes. Jamal’s recommended configuration is one panel on the left and two panels split horizontally on the right (see screenshot below).</p></li>
+</ol>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">%</span></code> will split your panel vertically</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">&quot;</span></code> will split your panel horizontally</p></li>
+<li><p>In order to jump around the panels, use the arrow keys (e.g., <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">&lt;rightarrow&gt;</span></code>)</p></li>
+</ul>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/terminal_setup_for_ipython_debugger.png"><img alt="terminal setup" src="../../_images/terminal_setup_for_ipython_debugger.png" style="width: 500px;" /></a>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><em>In the left-hand panel:</em> Open the script you are debugging using <a class="reference external" href="https://vim.rtorr.com/">vim</a>. Alternatively, you can open your script in a text editor and keep it next to your terminal window. Either way, it is handy to have your script available to see the code you are working with or edit code as you go.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vim ipython_debugger_practice.py
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In the lower-right panel, type <code class="docutils literal notranslate"><span class="pre">vimtutor</span></code>. This will open a vim tutorial that you can keep handy to reference vim commands as you work.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>In the upper-right panel: Load the pyger module available on the PNI cluster and then get ipython running.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ module load pyger
+$ ipython
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Your command line in the upper right-hand panel will now look like this, which indicates you running an iPython kernel.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In <span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+</pre></div>
+</div>
+<p>You can exit IPython and return to your regular command line at any point using the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: <span class="nb">exit</span>
+$
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Go ahead and re-start IPython. We will now run (<code class="docutils literal notranslate"><span class="pre">%run</span></code>) our script in debug mode (<code class="docutils literal notranslate"><span class="pre">-d</span></code>) and define a breakpoint (i.e., the line of code you want to break on). We will break at line 19 (<code class="docutils literal notranslate"><span class="pre">-b19</span></code>). <code class="docutils literal notranslate"><span class="pre">%run</span></code> is a built-in magic command, which you can read more about <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#">here</a>. This python script requires 2 input arguments: your name and your age. When you run the line of code below, make sure you replace <code class="docutils literal notranslate"><span class="pre">arg1</span></code> with your name (e.g. Lizzie) and <code class="docutils literal notranslate"><span class="pre">arg2</span></code> with your age (e.g. 33).</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ipython
+In <span class="o">[</span><span class="m">1</span><span class="o">]</span>: %run -d -b19 ipython_debugger_practice.py arg1 arg2
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure the line you are breaking at is not empty and not a comment; it must be a real line of code. If you are using vim, notice that vim tells you the line number of your cursor in the bottom of the terminal window.</p>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>The debugger will always stop at line 1 and you will be prompted to enter <code class="docutils literal notranslate"><span class="pre">c</span></code> to continue execution. Go ahead and do that, then the script will next break at line 19 like we asked it to. When you are in the debugger, your command line will look like this:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt;
+ipdb&gt; c
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p>We have run the script up to, but not including, line 19. Along the way, we defined two variables on lines 16 and 17. We can easily check what info is contained in those variables by calling them on our command line (without using a <code class="docutils literal notranslate"><span class="pre">print</span></code> command!):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; my_name
+‘Lizzie’
+ipdb&gt; my_age
+‘33’
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>Let’s run the next line of code (line 19) using the debugger. We will use the command <code class="docutils literal notranslate"><span class="pre">n</span></code> for “next”. Then we will check the new variable we defined on line 19:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; n
+ipdb&gt; intro_statement
+‘Hello, my name is Lizzie and I am <span class="m">33</span> years old.’
+</pre></div>
+</div>
+<ol class="arabic simple" start="11">
+<li><p>Now let’s tell the debugger to set a new breakpoint at line 27 (<code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">27</span></code>) and continue (<code class="docutils literal notranslate"><span class="pre">c</span></code>) running the script up to that breakpoint:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; <span class="nb">break</span> <span class="m">27</span>
+ipdb&gt; c
+</pre></div>
+</div>
+<ol class="arabic simple" start="12">
+<li><p>We have now executed all the code between lines 19-27 (but not including 27). Let’s double check this by calling the variable <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; x
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">0.</span>        <span class="p">,</span>  <span class="mf">0.1010101</span> <span class="p">,</span>  <span class="mf">0.2020202</span> <span class="p">,</span>  <span class="mf">0.3030303</span> <span class="p">,</span>  <span class="mf">0.4040404</span> <span class="p">,</span>
+<span class="mf">0.50505051</span><span class="p">,</span>  <span class="mf">0.60606061</span><span class="p">,</span>  <span class="mf">0.70707071</span><span class="p">,</span>  <span class="mf">0.80808081</span><span class="p">,</span>  <span class="mf">0.90909091</span><span class="p">,</span>
+<span class="mf">0.50505051</span><span class="p">,</span>  <span class="mf">0.60606061</span><span class="p">,</span>  <span class="mf">0.70707071</span><span class="p">,</span>  <span class="mf">0.80808081</span><span class="p">,</span>  <span class="mf">0.90909091</span><span class="p">,</span>
+<span class="mf">1.51515152</span><span class="p">,</span>  <span class="mf">1.61616162</span><span class="p">,</span>  <span class="mf">1.71717172</span><span class="p">,</span>  <span class="mf">1.81818182</span><span class="p">,</span>  <span class="mf">1.91919192</span><span class="p">,</span>
+<span class="mf">2.02020202</span><span class="p">,</span>  <span class="mf">2.12121212</span><span class="p">,</span>  <span class="mf">2.22222222</span><span class="p">,</span>  <span class="mf">2.32323232</span><span class="p">,</span>  <span class="mf">2.42424242</span><span class="p">,</span>
+<span class="mf">2.52525253</span><span class="p">,</span>  <span class="mf">2.62626263</span><span class="p">,</span>  <span class="mf">2.72727273</span><span class="p">,</span>  <span class="mf">2.82828283</span><span class="p">,</span>  <span class="mf">2.92929293</span><span class="p">,</span>
+
+<span class="mf">8.58585859</span><span class="p">,</span>  <span class="mf">8.68686869</span><span class="p">,</span>  <span class="mf">8.78787879</span><span class="p">,</span>  <span class="mf">8.88888889</span><span class="p">,</span>  <span class="mf">8.98989899</span><span class="p">,</span>
+<span class="mf">9.09090909</span><span class="p">,</span>  <span class="mf">9.19191919</span><span class="p">,</span>  <span class="mf">9.29292929</span><span class="p">,</span>  <span class="mf">9.39393939</span><span class="p">,</span>  <span class="mf">9.49494949</span><span class="p">,</span>
+<span class="mf">9.5959596</span> <span class="p">,</span>  <span class="mf">9.6969697</span> <span class="p">,</span>  <span class="mf">9.7979798</span> <span class="p">,</span>  <span class="mf">9.8989899</span> <span class="p">,</span> <span class="mf">10.</span>        <span class="p">])</span>
+</pre></div>
+</div>
+<p>You can also try calling the variable <code class="docutils literal notranslate"><span class="pre">a_plus_b</span></code> (which shouldn’t exist yet).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; a_plus_b
+*** NameError: name ‘a_plus_b’ is not defined
+</pre></div>
+</div>
+<ol class="arabic simple" start="13">
+<li><p>Something that is cool about the debugger is we can call python commands from the command line, even if they weren’t included in the script. For example, let’s compute the mean of all the values in <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; np.mean<span class="o">(</span>x<span class="o">)</span>
+<span class="m">5</span>.0
+</pre></div>
+</div>
+<ol class="arabic simple" start="14">
+<li><p>Or we can do more complicated things, like plotting your data. When you run these commands, the plot will show up in a separate window (note: you must have XQuartz or X11 setup, and make sure you logged into the server using the <code class="docutils literal notranslate"><span class="pre">-X</span></code> flag).</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; plt.plot<span class="o">(</span>x, x, <span class="nv">label</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="o">)</span>
+ipdb&gt; plt.show
+</pre></div>
+</div>
+<ol class="arabic simple" start="15">
+<li><p>Now let’s finish running the script. The script should run to completion because we have not defined any additional breakpoints.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipdb&gt; c
+</pre></div>
+</div>
+<ol class="arabic simple" start="16">
+<li><p>You are now back at your IPython command line. All the variables you defined while running the script in the debugger are saved in your ‘workspace’. To see the variables in your workspace, type <code class="docutils literal notranslate"><span class="pre">whos</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>You have finished running the ipython debugger practice script!
+
+In <span class="o">[</span><span class="m">2</span><span class="o">]</span>: whos
+</pre></div>
+</div>
+<p>Notice that your workspace includes the variable <code class="docutils literal notranslate"><span class="pre">a_plus_b</span></code>.</p>
+<ol class="arabic simple" start="17">
+<li><p>You can also clear your workspace (<code class="docutils literal notranslate"><span class="pre">%reset</span></code>) and check that your workspace is indeed empty (<code class="docutils literal notranslate"><span class="pre">whos</span></code>):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In <span class="o">[</span><span class="m">3</span><span class="o">]</span>: %reset
+In <span class="o">[</span><span class="m">4</span><span class="o">]</span>: whos
+</pre></div>
+</div>
+<ol class="arabic simple" start="18">
+<li><p>Now I want to check that the whole script is able to run without any errors. I am going to re-run the script without any breakpoints. But I still want to run it “interactively” so that when it has finished running I can still check my variables, workspace, etc.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In <span class="o">[</span><span class="m">5</span><span class="o">]</span>: %run -i ipython_debugger_practice.py Lizzie <span class="m">33</span>
+You have finished running the ipython debugger practice script!
+In <span class="o">[</span><span class="m">6</span><span class="o">]</span>: whos
+</pre></div>
+</div>
+<p>Voila! Now go forth and debug away!</p>
+</div>
+<div class="section" id="tmux-commands-cheat-sheet">
+<h2>tmux commands cheat sheet<a class="headerlink" href="#tmux-commands-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux new -s <span class="o">[</span>name<span class="o">]</span>      <span class="c1"># start a new tmux session</span>
+tmux a -t <span class="o">[</span>name<span class="o">]</span>        <span class="c1"># attach to an existing session</span>
+tmux kill-session -t <span class="o">[</span>sessionname<span class="o">]</span>  <span class="c1"># terminate target (-t) session</span>
+ctrl+b %                <span class="c1"># split window vertically</span>
+ctrl+b “                <span class="c1"># split window horizontally</span>
+ctrl+b <span class="o">[</span>arrow<span class="o">]</span>          <span class="c1"># move to different panes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ipython-commands-cheat-sheet">
+<h2>IPython commands cheat sheet<a class="headerlink" href="#ipython-commands-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>IPython command line looks like this: <span class="green">In [1]:</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%run -d script.py       <span class="c1"># run script.py in debugger</span>
+%run -d -b <span class="m">20</span> script.py <span class="c1"># run script.py in debugger and break at line 20</span>
+%run -i script.py       <span class="c1"># run whole script in interactive mode</span>
+whos                    <span class="c1"># print workspace</span>
+%reset                  <span class="c1"># clear workspace</span>
+<span class="nb">exit</span>                    <span class="c1"># exit IPython kernel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debugger-commands-cheat-sheet">
+<h2>debugger commands cheat sheet<a class="headerlink" href="#debugger-commands-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>debugger command line looks like this: <span class="green">ipdb&gt;</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>h               <span class="c1"># help, show list of available commands</span>
+n               <span class="c1"># run next line of code</span>
+c               <span class="c1"># continue through the rest of the script</span>
+s               <span class="c1"># step into another function/script</span>
+u               <span class="c1"># move up back into original script</span>
+<span class="nb">break</span> X         <span class="c1"># break at line X</span>
+&lt;enter&gt;         <span class="c1"># repeat the previous command</span>
+list            <span class="c1"># show current location in the file</span>
+quit            <span class="c1"># quit debugger</span>
+</pre></div>
+</div>
 <p><a class="reference external" href="../06-01-tipsSplashPage.html">Return to tips and tricks</a></p>
+</div>
 </div>
 
 
