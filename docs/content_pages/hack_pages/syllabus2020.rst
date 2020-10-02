@@ -12,20 +12,23 @@ Fall 2020 Pygers Workshop
 .. role:: blue
 .. role:: red
 
+Organized by: Lizzie McDevitt, Sam Nastase, Paula Brooks
+
+Contact info: emcdevitt8287@gmail.com, sam.nastase@gmail.com, paulapbrooks@gmail.com
+
 Building a reproducible neuroimaging pipeline: From acquisition to analysis
 ===========================================================================
 
-This is a weekly hands-on workshop series designed to introduce you to the tools and best practices foundational to building a reproducible neuroimaging pipeline. This workshop is open to researchers of all levels, no prior experience necessary! You do not need your own data as the demos will use our `sample dataset <../01-03-sampleProjectWithBIDS.html>`_, but we certainly hope you will apply the framework covered here to your own data. During the workshop, we will be demo-ing on our (Mac OS) computers (via screen share), and we strongly recommend you try to follow along on your own computer. Each week's lesson will build off of the last.
+This is a weekly hands-on workshop series designed to introduce you to the tools and best practices foundational to building a reproducible neuroimaging pipeline. This workshop is open to researchers of all levels, no prior experience necessary! You do not need your own data as the demos will use our `sample dataset <../01-03-sampleProjectWithBIDS.html>`_, but we certainly hope you will apply the framework covered here to your own data. During the workshop, we will be demo-ing on our (Mac OS) computers, and we strongly recommend you try to follow along on your own computer. Each week's lesson will build off of the last.
 
-The tentative workshop syllabus is included below, but please be aware that dates may change if we end up needing more than one week to cover a given set of topics. The workshop will take place via Zoom on **Thursdays from 10-11am EST**.   
+The tentative workshop schedule is included below, but please be aware that dates may change if we end up needing more than one week to cover a given set of topics. The workshop will take place via Zoom on **Thursdays from 10-11am EST**.   
 
-Please **subscribe to the pygers listserv** to get email announcements and zoom links!
+Please **subscribe to the pygers listserv** to get email announcements and Zoom links!
 
-* Send an email to listserv@princeton.edu from the email you want to be subscribed.
-* In the body of the email, type **SUB pygers**
-* Make sure there is no subject or any other text in the body and then send the email. 
-* You should receive a response.
-* If the above method does not work, please email snastase@princeton.edu to be added manually.  
+1. Send an email to listserv@princeton.edu from the email you want to be subscribed.
+2. In the body of the email, type **SUB pygers**
+3. Make sure there is no subject or any other text in the body and then send the email. You should receive a response. 
+4. If the above method does not work, please email sam.nastase@gmail.com to be added manually.  
 
 Workshop Overview
 =================
@@ -38,24 +41,24 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 
 * server/cluster jargon
 * how to use PNI's file server and cluster
-* bash commands
+* `bash commands <https://appletree.or.kr/quick_reference_cards/Unix-Linux/Linux%20Command%20Line%20Cheat%20Sheet.pdf>`_
 * using `vim <https://vim.rtorr.com/>`_
 * setting up aliases in .bashrc
 * setting up a `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>`_ environment and installing packages
 
-**Preparation:**
+**Preparation (try to complete these agenda items prior to the Thursday workshop):**
 
-* *If you are at PNI*, make sure you have access to the PNI server (i.e., request a `PNI NetID <https://frevvo-prod.princeton.edu/frevvo/web/tn/pu.nplc/u/84fd5e8d-587a-4f6a-a802-0c3d2819e8fe/app/_sO14QHzSEemyQZ_M7RLPOg/formtype/_b4L9oHz4EemyQZ_M7RLPOg/popupform>`_). After requesting your PNI NetID, follow the provided instructions to login and setup your password. 
+1. *If you are at PNI*, make sure you have access to the PNI server (i.e., request a `PNI NetID <https://frevvo-prod.princeton.edu/frevvo/web/tn/pu.nplc/u/84fd5e8d-587a-4f6a-a802-0c3d2819e8fe/app/_sO14QHzSEemyQZ_M7RLPOg/formtype/_b4L9oHz4EemyQZ_M7RLPOg/popupform>`_). After requesting your PNI NetID, follow the provided instructions to login and setup your password. 
 
-* *If you are not at PNI*, figure out where you workshop working directory to live. This can be your local machine or if you have access to a server at your home institution that you normally use for data processing and analysis, you may want to work there. Either way, follow the instructions to `download the sample data <../01-03-sampleProjectWithBIDS.html>`_ and save it in your desired working directory (i.e., a directory on your local machine or a server). Note, if you have PNI server access you do not need to download the sample data ahead of time. 
+2. *If you are not at PNI*, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, follow the instructions to `download the sample data <../01-03-sampleProjectWithBIDS.html>`_ and save it in your desired working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time. 
 
-* If you do not already have it, download and install `XQuartz <https://www.xquartz.org/>`_ on your local machine. After installing, you will need to log out of your account and then log back in (or just Restart your computer). Then open a Terminal and type: 
+3. If you do not already have it, download and install `XQuartz <https://www.xquartz.org/>`_ on your local machine. After installing, you will need to log out of your computer's user account and then log back in (or just restart your computer). Then open a Terminal and type: 
 
 .. code-block:: bash
 
 	defaults write org.macosforge.xquartz.X11 enable_iglx -bool true
 
-* Download and install a text editor on your local machine (recommended: `Sublime Text <https://www.sublimetext.com/>`_). 
+4. Download and install a text editor on your local machine (recommended: `Sublime Text <https://www.sublimetext.com/>`_). 
 
 Week 2: Using Git and GitHub
 ----------------------------
@@ -66,12 +69,12 @@ Week 2: Using Git and GitHub
 * initializing Git
 * setting up a GitHub repository
 * using .gitignore
-* general Git workflow, including important git commands
+* general Git workflow, including important Git commands
 
 **Preparation:**
 
-* Sign up for an account on `GitHub <https://www.github.com/>`_ if you do not already have one
-* Background reading: `Overview of Git and version control <https://guides.github.com/introduction/git-handbook/>`_ 
+1. Sign up for an account on `GitHub <https://www.github.com/>`_ if you do not already have one
+2. Background reading: `Overview of Git and version control <https://guides.github.com/introduction/git-handbook/>`_ 
 
 Week 3: Understanding MRI data formats and standardizing your dataset structure
 -------------------------------------------------------------------------------
@@ -88,10 +91,10 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 
 **Preparation:**
 
-* `The benefits of BIDS <https://www.youtube.com/watch?v=K9hVAr5fvJg&feature=youtu.be&ab_channel=OHBMOpenScienceSIG>`_. This is Sam's OHBM TrainTrack presentation (~70 minutes). 
-* Handbook reading: `Using tmux to create persistent server sessions <./tmux.html>`_
+1. `The benefits of BIDS <https://www.youtube.com/watch?v=K9hVAr5fvJg&feature=youtu.be&ab_channel=OHBMOpenScienceSIG>`_. This is Sam's OHBM TrainTrack presentation (~70 minutes). 
+2. Handbook reading: `Using tmux to create persistent server sessions <./tmux.html>`_
 
-* *If you do not have PNI server access*, build your own HeuDiConv singularity image
+3. *If you do not have PNI server access*, build your own HeuDiConv singularity image
 
 .. code-block:: bash
 
@@ -101,17 +104,19 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
 **Date: Thursday, October 29 10-11am EST**
 
-**Topics:**
+**Topics Covered:**
 
 * Data visualization
 * Using the `BIDS Validator <https://bids-standard.github.io/bids-validator/>`_
-* Using SLURM to schedule jobs on the server
+* Using SLURM to schedule jobs on the PNI server
+* Running `MRIQC <https://mriqc.readthedocs.io/en/stable/>`_
+* Running `fMRIPrep <https://fmriprep.org/en/stable/>`_
 
 **Preparation:**
 
-* Install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ and/or `AFNI <https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html>`_ (your choice!)
+1. Install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ and/or `AFNI <https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html>`_ (your choice!)
 
-* *If you do not have PNI server access*, build your own MRIQC and fMRIPrep singularity images
+2. *If you do not have PNI server access*, build your own MRIQC and fMRIPrep singularity images
 
 .. code-block:: bash
 
@@ -121,7 +126,7 @@ Week 5: Understanding MRIQC and fMRIPrep outputs
 ------------------------------------------------
 **Date: Thursday, November 5 10-11am EST**
 
-**Topics:**
+**Topics Covered:**
 
 * `MRIQC <https://mriqc.readthedocs.io/en/stable/>`_ for data quality assurance 
 * `fMRIPrep <https://fmriprep.org/en/stable/>`_ for data preprocessing
@@ -132,12 +137,12 @@ Week 6: Version controlling your data
 -------------------------------------
 **Date: Thursday, November 12 10-11am EST**
 
-**Topics:**
+**Topics Covered:**
 
 * `DataLad <https://www.datalad.org/>`_ for data version control
 
 **Preparation:**
 
-* Check out the `DataLad Handbook <http://handbook.datalad.org/en/latest/>`_!
+1. Check out the `DataLad Handbook <http://handbook.datalad.org/en/latest/>`_!
 
 
