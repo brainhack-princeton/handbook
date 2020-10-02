@@ -135,18 +135,19 @@
   <div class="section" id="fall-2020-pygers-workshop">
 <h1>Fall 2020 Pygers Workshop<a class="headerlink" href="#fall-2020-pygers-workshop" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><div class="section" id="building-a-reproducible-neuroimaging-pipeline-from-acquisition-to-analysis">
+<style> .red {color:red} </style><p>Organized by: Lizzie McDevitt, Sam Nastase, Paula Brooks</p>
+<p>Contact info: <a class="reference external" href="mailto:emcdevitt8287&#37;&#52;&#48;gmail&#46;com">emcdevitt8287<span>&#64;</span>gmail<span>&#46;</span>com</a>, <a class="reference external" href="mailto:sam&#46;nastase&#37;&#52;&#48;gmail&#46;com">sam<span>&#46;</span>nastase<span>&#64;</span>gmail<span>&#46;</span>com</a>, <a class="reference external" href="mailto:paulapbrooks&#37;&#52;&#48;gmail&#46;com">paulapbrooks<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<div class="section" id="building-a-reproducible-neuroimaging-pipeline-from-acquisition-to-analysis">
 <h2>Building a reproducible neuroimaging pipeline: From acquisition to analysis<a class="headerlink" href="#building-a-reproducible-neuroimaging-pipeline-from-acquisition-to-analysis" title="Permalink to this headline">¶</a></h2>
-<p>This is a weekly hands-on workshop series designed to introduce you to the tools and best practices foundational to building a reproducible neuroimaging pipeline. This workshop is open to researchers of all levels, no prior experience necessary! You do not need your own data as the demos will use our <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">sample dataset</a>, but we certainly hope you will apply the framework covered here to your own data. During the workshop, we will be demo-ing on our (Mac OS) computers (via screen share), and we strongly recommend you try to follow along on your own computer. Each week’s lesson will build off of the last.</p>
-<p>The tentative workshop syllabus is included below, but please be aware that dates may change if we end up needing more than one week to cover a given set of topics. The workshop will take place via Zoom on <strong>Thursdays from 10-11am EST</strong>.</p>
-<p>Please <strong>subscribe to the pygers listserv</strong> to get email announcements and zoom links!</p>
-<ul class="simple">
+<p>This is a weekly hands-on workshop series designed to introduce you to the tools and best practices foundational to building a reproducible neuroimaging pipeline. This workshop is open to researchers of all levels, no prior experience necessary! You do not need your own data as the demos will use our <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">sample dataset</a>, but we certainly hope you will apply the framework covered here to your own data. During the workshop, we will be demo-ing on our (Mac OS) computers, and we strongly recommend you try to follow along on your own computer. Each week’s lesson will build off of the last.</p>
+<p>The tentative workshop schedule is included below, but please be aware that dates may change if we end up needing more than one week to cover a given set of topics. The workshop will take place via Zoom on <strong>Thursdays from 10-11am EST</strong>.</p>
+<p>Please <strong>subscribe to the pygers listserv</strong> to get email announcements and Zoom links!</p>
+<ol class="arabic simple">
 <li><p>Send an email to <a class="reference external" href="mailto:listserv&#37;&#52;&#48;princeton&#46;edu">listserv<span>&#64;</span>princeton<span>&#46;</span>edu</a> from the email you want to be subscribed.</p></li>
 <li><p>In the body of the email, type <strong>SUB pygers</strong></p></li>
-<li><p>Make sure there is no subject or any other text in the body and then send the email.</p></li>
-<li><p>You should receive a response.</p></li>
-<li><p>If the above method does not work, please email <a class="reference external" href="mailto:snastase&#37;&#52;&#48;princeton&#46;edu">snastase<span>&#64;</span>princeton<span>&#46;</span>edu</a> to be added manually.</p></li>
-</ul>
+<li><p>Make sure there is no subject or any other text in the body and then send the email. You should receive a response.</p></li>
+<li><p>If the above method does not work, please email <a class="reference external" href="mailto:sam&#46;nastase&#37;&#52;&#48;gmail&#46;com">sam<span>&#46;</span>nastase<span>&#64;</span>gmail<span>&#46;</span>com</a> to be added manually.</p></li>
+</ol>
 </div>
 <div class="section" id="workshop-overview">
 <h2>Workshop Overview<a class="headerlink" href="#workshop-overview" title="Permalink to this headline">¶</a></h2>
@@ -157,23 +158,23 @@
 <ul class="simple">
 <li><p>server/cluster jargon</p></li>
 <li><p>how to use PNI’s file server and cluster</p></li>
-<li><p>bash commands</p></li>
+<li><p><a class="reference external" href="https://appletree.or.kr/quick_reference_cards/Unix-Linux/Linux%20Command%20Line%20Cheat%20Sheet.pdf">bash commands</a></p></li>
 <li><p>using <a class="reference external" href="https://vim.rtorr.com/">vim</a></p></li>
 <li><p>setting up aliases in .bashrc</p></li>
 <li><p>setting up a <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">conda</a> environment and installing packages</p></li>
 </ul>
-<p><strong>Preparation:</strong></p>
-<ul class="simple">
+<p><strong>Preparation (try to complete these agenda items prior to the Thursday workshop):</strong></p>
+<ol class="arabic simple">
 <li><p><em>If you are at PNI</em>, make sure you have access to the PNI server (i.e., request a <a class="reference external" href="https://frevvo-prod.princeton.edu/frevvo/web/tn/pu.nplc/u/84fd5e8d-587a-4f6a-a802-0c3d2819e8fe/app/_sO14QHzSEemyQZ_M7RLPOg/formtype/_b4L9oHz4EemyQZ_M7RLPOg/popupform">PNI NetID</a>). After requesting your PNI NetID, follow the provided instructions to login and setup your password.</p></li>
-<li><p><em>If you are not at PNI</em>, figure out where you workshop working directory to live. This can be your local machine or if you have access to a server at your home institution that you normally use for data processing and analysis, you may want to work there. Either way, follow the instructions to <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">download the sample data</a> and save it in your desired working directory (i.e., a directory on your local machine or a server). Note, if you have PNI server access you do not need to download the sample data ahead of time.</p></li>
-<li><p>If you do not already have it, download and install <a class="reference external" href="https://www.xquartz.org/">XQuartz</a> on your local machine. After installing, you will need to log out of your account and then log back in (or just Restart your computer). Then open a Terminal and type:</p></li>
-</ul>
+<li><p><em>If you are not at PNI</em>, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, follow the instructions to <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">download the sample data</a> and save it in your desired working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time.</p></li>
+<li><p>If you do not already have it, download and install <a class="reference external" href="https://www.xquartz.org/">XQuartz</a> on your local machine. After installing, you will need to log out of your computer’s user account and then log back in (or just restart your computer). Then open a Terminal and type:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defaults write org.macosforge.xquartz.X11 enable_iglx -bool <span class="nb">true</span>
 </pre></div>
 </div>
-<ul class="simple">
+<ol class="arabic simple" start="4">
 <li><p>Download and install a text editor on your local machine (recommended: <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>).</p></li>
-</ul>
+</ol>
 </div>
 <div class="section" id="week-2-using-git-and-github">
 <h3>Week 2: Using Git and GitHub<a class="headerlink" href="#week-2-using-git-and-github" title="Permalink to this headline">¶</a></h3>
@@ -183,13 +184,13 @@
 <li><p>initializing Git</p></li>
 <li><p>setting up a GitHub repository</p></li>
 <li><p>using .gitignore</p></li>
-<li><p>general Git workflow, including important git commands</p></li>
+<li><p>general Git workflow, including important Git commands</p></li>
 </ul>
 <p><strong>Preparation:</strong></p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>Sign up for an account on <a class="reference external" href="https://www.github.com/">GitHub</a> if you do not already have one</p></li>
 <li><p>Background reading: <a class="reference external" href="https://guides.github.com/introduction/git-handbook/">Overview of Git and version control</a></p></li>
-</ul>
+</ol>
 </div>
 <div class="section" id="week-3-understanding-mri-data-formats-and-standardizing-your-dataset-structure">
 <h3>Week 3: Understanding MRI data formats and standardizing your dataset structure<a class="headerlink" href="#week-3-understanding-mri-data-formats-and-standardizing-your-dataset-structure" title="Permalink to this headline">¶</a></h3>
@@ -204,11 +205,11 @@
 <li><p>Defacing images using pydeface</p></li>
 </ul>
 <p><strong>Preparation:</strong></p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=K9hVAr5fvJg&amp;feature=youtu.be&amp;ab_channel=OHBMOpenScienceSIG">The benefits of BIDS</a>. This is Sam’s OHBM TrainTrack presentation (~70 minutes).</p></li>
 <li><p>Handbook reading: <a class="reference external" href="./tmux.html">Using tmux to create persistent server sessions</a></p></li>
 <li><p><em>If you do not have PNI server access</em>, build your own HeuDiConv singularity image</p></li>
-</ul>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>we will provide code here
 </pre></div>
 </div>
@@ -216,17 +217,19 @@
 <div class="section" id="week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep">
 <h3>Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)<a class="headerlink" href="#week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep" title="Permalink to this headline">¶</a></h3>
 <p><strong>Date: Thursday, October 29 10-11am EST</strong></p>
-<p><strong>Topics:</strong></p>
+<p><strong>Topics Covered:</strong></p>
 <ul class="simple">
 <li><p>Data visualization</p></li>
 <li><p>Using the <a class="reference external" href="https://bids-standard.github.io/bids-validator/">BIDS Validator</a></p></li>
-<li><p>Using SLURM to schedule jobs on the server</p></li>
+<li><p>Using SLURM to schedule jobs on the PNI server</p></li>
+<li><p>Running <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/">MRIQC</a></p></li>
+<li><p>Running <a class="reference external" href="https://fmriprep.org/en/stable/">fMRIPrep</a></p></li>
 </ul>
 <p><strong>Preparation:</strong></p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>Install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a> and/or <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html">AFNI</a> (your choice!)</p></li>
 <li><p><em>If you do not have PNI server access</em>, build your own MRIQC and fMRIPrep singularity images</p></li>
-</ul>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>we will provide code here
 </pre></div>
 </div>
@@ -234,7 +237,7 @@
 <div class="section" id="week-5-understanding-mriqc-and-fmriprep-outputs">
 <h3>Week 5: Understanding MRIQC and fMRIPrep outputs<a class="headerlink" href="#week-5-understanding-mriqc-and-fmriprep-outputs" title="Permalink to this headline">¶</a></h3>
 <p><strong>Date: Thursday, November 5 10-11am EST</strong></p>
-<p><strong>Topics:</strong></p>
+<p><strong>Topics Covered:</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://mriqc.readthedocs.io/en/stable/">MRIQC</a> for data quality assurance</p></li>
 <li><p><a class="reference external" href="https://fmriprep.org/en/stable/">fMRIPrep</a> for data preprocessing</p></li>
@@ -244,14 +247,14 @@
 <div class="section" id="week-6-version-controlling-your-data">
 <h3>Week 6: Version controlling your data<a class="headerlink" href="#week-6-version-controlling-your-data" title="Permalink to this headline">¶</a></h3>
 <p><strong>Date: Thursday, November 12 10-11am EST</strong></p>
-<p><strong>Topics:</strong></p>
+<p><strong>Topics Covered:</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.datalad.org/">DataLad</a> for data version control</p></li>
 </ul>
 <p><strong>Preparation:</strong></p>
-<ul class="simple">
+<ol class="arabic simple">
 <li><p>Check out the <a class="reference external" href="http://handbook.datalad.org/en/latest/">DataLad Handbook</a>!</p></li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
