@@ -100,6 +100,26 @@ Computing
     virtual machine
         e.g., Vagrant, VirtualBox
 
+Computing at PNI
+----------------
+
+.. glossary::
+
+    apps
+        use this for navigating the fileserver (e.g. moving or copying files)
+
+    bucket/jukebox
+        PNI's fileserver. Each lab has a volume on the fileserver, and all the lab volumes are accessible via apps, spock and scotty.
+
+    scotty
+        use this for interactive sessions on the server. Scotty is well-equipped for developing software to run on spock, as well as facilitating interactive workloads that are a poor fit for the computational clusters (e.g. using a gui).
+
+    SLURM
+        program used to schedule jobs and manage resource utilization on the computational cluster (i.e. spock). SLURM will allocate your job to one or multiple nodes on spock. 
+
+    spock
+        PNI's computational cluster
+
 MRI Acquisition
 ---------------
 
