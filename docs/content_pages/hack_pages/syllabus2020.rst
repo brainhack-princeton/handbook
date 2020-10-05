@@ -35,6 +35,8 @@ Workshop Overview
 
 Week 1: Intro to high performance computing at PNI and Terminal basics
 ----------------------------------------------------------------------
+`Week 1 Notes <./workshop_notes_week1.html>`_
+
 **Date: Thursday, October 8 10-11am EST**
 
 **Topics Covered:**
@@ -50,15 +52,19 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 
 1. *If you are at PNI*, make sure you have access to the PNI server (i.e., request a `PNI NetID <https://frevvo-prod.princeton.edu/frevvo/web/tn/pu.nplc/u/84fd5e8d-587a-4f6a-a802-0c3d2819e8fe/app/_sO14QHzSEemyQZ_M7RLPOg/formtype/_b4L9oHz4EemyQZ_M7RLPOg/popupform>`_). After requesting your PNI NetID, follow the provided instructions to login and setup your password. 
 
-2. *If you are not at PNI*, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, follow the instructions to `download the sample data <../01-03-sampleProjectWithBIDS.html>`_ and save it in your desired working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time. 
+2. *If you do not have PNI server access*, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, follow the instructions to `download the sample data <../01-03-sampleProjectWithBIDS.html>`_ and save it in your desired working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time. 
 
-3. If you do not already have it, download and install `XQuartz <https://www.xquartz.org/>`_ on your local machine. After installing, you will need to log out of your computer's user account and then log back in (or just restart your computer). Then open a Terminal and type: 
+3. *If you do not have PNI server access*, download the :blue:`new_study_template` folder available on `Google Drive <https://drive.google.com/drive/folders/1w-UIlPSctf-XM3Xv1PBQtipWCfYd0mmc?usp=sharing>`_. Save it in the same working directory as the downloaded sample data. 
+
+4. *If you are using a Windows machine*, you should consider `installing a Windows subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_. When choosing your Linux distribution, choose the newest version of Ubuntu LTS. 
+
+5. *If you are using a Mac*: If you do not already have it, download and install `XQuartz <https://www.xquartz.org/>`_ on your local machine. After installing, you will need to log out of your computer's user account and then log back in (or just restart your computer). Then open a Terminal and type: 
 
 .. code-block:: bash
 
 	defaults write org.macosforge.xquartz.X11 enable_iglx -bool true
 
-4. Download and install a text editor on your local machine (recommended: `Sublime Text <https://www.sublimetext.com/>`_). 
+6. *Everyone*: Download and install a text editor on your local machine (recommended: `Sublime Text <https://www.sublimetext.com/>`_). 
 
 Week 2: Using Git and GitHub
 ----------------------------
@@ -99,6 +105,8 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 .. code-block:: bash
 
 	we will provide code here
+
+4. *If you do not have PNI server access*, install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_. 
 
 Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
