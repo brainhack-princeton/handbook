@@ -153,6 +153,7 @@
 <h2>Workshop Overview<a class="headerlink" href="#workshop-overview" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="week-1-intro-to-high-performance-computing-at-pni-and-terminal-basics">
 <h3>Week 1: Intro to high performance computing at PNI and Terminal basics<a class="headerlink" href="#week-1-intro-to-high-performance-computing-at-pni-and-terminal-basics" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="./workshop_notes_week1.html">Week 1 Notes</a></p>
 <p><strong>Date: Thursday, October 8 10-11am EST</strong></p>
 <p><strong>Topics Covered:</strong></p>
 <ul class="simple">
@@ -166,14 +167,16 @@
 <p><strong>Preparation (try to complete these agenda items prior to the Thursday workshop):</strong></p>
 <ol class="arabic simple">
 <li><p><em>If you are at PNI</em>, make sure you have access to the PNI server (i.e., request a <a class="reference external" href="https://frevvo-prod.princeton.edu/frevvo/web/tn/pu.nplc/u/84fd5e8d-587a-4f6a-a802-0c3d2819e8fe/app/_sO14QHzSEemyQZ_M7RLPOg/formtype/_b4L9oHz4EemyQZ_M7RLPOg/popupform">PNI NetID</a>). After requesting your PNI NetID, follow the provided instructions to login and setup your password.</p></li>
-<li><p><em>If you are not at PNI</em>, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, follow the instructions to <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">download the sample data</a> and save it in your desired working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time.</p></li>
-<li><p>If you do not already have it, download and install <a class="reference external" href="https://www.xquartz.org/">XQuartz</a> on your local machine. After installing, you will need to log out of your computer’s user account and then log back in (or just restart your computer). Then open a Terminal and type:</p></li>
+<li><p><em>If you do not have PNI server access</em>, figure out where you want your working directory for the workshop to live. This can be on your local machine, or if you have access to a server at your home institution that you normally use for data processing/analysis, you may want to work there. Either way, name your working directory <span class="blue">pygers_workshop</span>. Follow the instructions to <a class="reference external" href="../01-03-sampleProjectWithBIDS.html">download the sample data</a> and save it in your <span class="blue">pygers_workshop</span> working directory. Note, if you have PNI server access you do not need to download the sample data ahead of time.</p></li>
+<li><p><em>If you do not have PNI server access</em>, download the <span class="blue">new_study_template</span> folder available on <a class="reference external" href="https://drive.google.com/drive/folders/1w-UIlPSctf-XM3Xv1PBQtipWCfYd0mmc?usp=sharing">Google Drive</a>. Save it in the same <span class="blue">pygers_workshop</span> working directory as the downloaded sample data. Rename the folder <span class="blue">new_study_template</span> to <span class="blue">sample_study</span>.</p></li>
+<li><p><em>If you are using a Windows machine</em>, you should consider <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">installing a Windows subsystem for Linux</a>. When choosing your Linux distribution, choose the newest version of Ubuntu LTS.</p></li>
+<li><p><em>If you are using a Mac</em>: If you do not already have it, download and install <a class="reference external" href="https://www.xquartz.org/">XQuartz</a> on your local machine. After installing, you will need to log out of your computer’s user account and then log back in (or just restart your computer). Then open a Terminal and type:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>defaults write org.macosforge.xquartz.X11 enable_iglx -bool <span class="nb">true</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Download and install a text editor on your local machine (recommended: <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>).</p></li>
+<ol class="arabic simple" start="6">
+<li><p><em>Everyone</em>: Download and install a text editor on your local machine (recommended: <a class="reference external" href="https://www.sublimetext.com/">Sublime Text</a>).</p></li>
 </ol>
 </div>
 <div class="section" id="week-2-using-git-and-github">
@@ -213,6 +216,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>we will provide code here
 </pre></div>
 </div>
+<ol class="arabic simple" start="4">
+<li><p><em>If you do not have PNI server access</em>, install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a>.</p></li>
+</ol>
 </div>
 <div class="section" id="week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep">
 <h3>Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)<a class="headerlink" href="#week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep" title="Permalink to this headline">¶</a></h3>
