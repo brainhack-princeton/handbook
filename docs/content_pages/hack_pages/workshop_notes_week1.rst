@@ -62,6 +62,9 @@ Basic bash commands
     $ module list
     $ module purge
 
+    # check out snapshot backups
+    $ ls .snapshot
+
 Using vim
 ---------
 
@@ -109,7 +112,7 @@ You are now back on the server:
     $ vim .bashrc
 
     # enter insert mode (i) and add the following:
-    # alias 'pygers'='/jukebox/LAB/YOURDIRECTORY/pygers_workshop'
+    # alias 'pygers'='cd /jukebox/LAB/YOURDIRECTORY/pygers_workshop'
     # go back to command mode (esc)
     # :x to save and exit
 
@@ -120,6 +123,10 @@ You are now back on the server:
 
 Setup a pygers conda environment
 --------------------------------
+
+Note: We didn't get to this in week 1. Will start with conda environments at the beginning of week 2. 
+
+You will want to setup your conda environment in the same "location" as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). 
 
 .. code-block:: bash
 

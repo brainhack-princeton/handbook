@@ -37,6 +37,8 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 ----------------------------------------------------------------------
 `Week 1 Notes <./workshop_notes_week1.html>`_
 
+`Week 1 Recording <https://drive.google.com/file/d/13m0NUQYX5JDxHNQvTvfIzFUERdr0x34J/view?usp=sharing>`_
+
 **Date: Thursday, October 8 10-11am EST**
 
 **Topics Covered:**
@@ -45,8 +47,8 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 * how to use PNI's file server and cluster
 * `bash commands <https://appletree.or.kr/quick_reference_cards/Unix-Linux/Linux%20Command%20Line%20Cheat%20Sheet.pdf>`_
 * using `vim <https://vim.rtorr.com/>`_
-* setting up aliases in .bashrc
-* setting up a `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>`_ environment and installing packages
+* setting up aliases in .bash_profile and .bashrc
+* setting up a `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>`_ environment and installing packages (we didn't get to this in week 1; we will start with this at the beginning of week 2)
 
 **Preparation (try to complete these agenda items prior to the Thursday workshop):**
 
@@ -72,6 +74,7 @@ Week 2: Using Git and GitHub
 
 **Topics Covered:**
 
+* setting up a `conda <https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html>`_ environment and installing packages
 * initializing Git
 * setting up a GitHub repository
 * using .gitignore
@@ -79,7 +82,7 @@ Week 2: Using Git and GitHub
 
 **Preparation:**
 
-1. Sign up for an account on `GitHub <https://www.github.com/>`_ if you do not already have one
+1. Sign up for an account on `GitHub <https://www.github.com/>`_ if you don't have one already
 2. Background reading: `Overview of Git and version control <https://guides.github.com/introduction/git-handbook/>`_ 
 
 Week 3: Understanding MRI data formats and standardizing your dataset structure
