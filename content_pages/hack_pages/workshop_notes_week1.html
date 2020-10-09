@@ -171,6 +171,9 @@ $ module avail
 $ module load fsl
 $ module list
 $ module purge
+
+<span class="c1"># check out snapshot backups</span>
+$ ls .snapshot
 </pre></div>
 </div>
 </div>
@@ -213,7 +216,7 @@ $ <span class="nb">cd</span> ~
 $ vim .bashrc
 
 <span class="c1"># enter insert mode (i) and add the following:</span>
-<span class="c1"># alias &#39;pygers&#39;=&#39;/jukebox/LAB/YOURDIRECTORY/pygers_workshop&#39;</span>
+<span class="c1"># alias &#39;pygers&#39;=&#39;cd /jukebox/LAB/YOURDIRECTORY/pygers_workshop&#39;</span>
 <span class="c1"># go back to command mode (esc)</span>
 <span class="c1"># :x to save and exit</span>
 
@@ -226,6 +229,8 @@ $ <span class="nb">pwd</span>
 </div>
 <div class="section" id="setup-a-pygers-conda-environment">
 <h2>Setup a pygers conda environment<a class="headerlink" href="#setup-a-pygers-conda-environment" title="Permalink to this headline">¶</a></h2>
+<p>Note: We didn’t get to this in week 1. Will start with conda environments at the beginning of week 2.</p>
+<p>You will want to setup your conda environment in the same “location” as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install latest miniconda</span>
 $ <span class="nb">cd</span> ~
 $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
