@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pygers Workshop Notes - Week 1 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <title>Pygers Workshop Notes - Week 2 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -14,7 +14,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/workshop_notes_week1.html" />
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/workshop_notes_week2.html" />
     <link rel="shortcut icon" href="../../_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -31,8 +31,8 @@
   </style>
 
   
-  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week1/"/>
-  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week1">
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week2/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week2">
   
 
   <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Pygers Workshop Notes - Week 1 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:title" content="Pygers Workshop Notes - Week 2 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -89,9 +89,7 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Pygers Workshop Notes - Week 1 (Fall 2020)</a><ul>
-<li><a class="reference internal" href="#basic-bash-commands">Basic bash commands</a></li>
-<li><a class="reference internal" href="#using-vim">Using vim</a></li>
+<li><a class="reference internal" href="#">Pygers Workshop Notes - Week 2 (Fall 2020)</a><ul>
 <li><a class="reference internal" href="#setup-a-pygers-conda-environment">Setup a pygers conda environment</a></li>
 </ul>
 </li>
@@ -125,111 +123,11 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="pygers-workshop-notes-week-1-fall-2020">
-<h1>Pygers Workshop Notes - Week 1 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-1-fall-2020" title="Permalink to this headline">¶</a></h1>
-<style> .blue {color:blue} </style><p><a class="reference external" href="https://appletree.or.kr/quick_reference_cards/Unix-Linux/Linux%20Command%20Line%20Cheat%20Sheet.pdf">Linux command line cheatsheet</a></p>
-<p><a class="reference external" href="https://vim.rtorr.com/">Vim cheatsheet</a></p>
-<p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a></p>
-<p><a class="reference external" href="../06-03-glossary.html">Glossary</a></p>
-<div class="section" id="basic-bash-commands">
-<h2>Basic bash commands<a class="headerlink" href="#basic-bash-commands" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># login to the server</span>
-$ ssh -XY netID@scotty.pni.princeton.edu
-$ <span class="nb">pwd</span>
-
-$ <span class="nb">cd</span> /jukebox/LAB/YOURDIRECTORY
-$ <span class="nb">pwd</span>
-$ ls
-$ ls -l
-$ ls -a
-
-<span class="c1"># make a workshop directory</span>
-$ mkdir pygers_workshop
-$ ls
-
-<span class="c1"># copy new_study_template from pygers to your workshop directory, call it sample_study</span>
-$ cp -r /jukebox/norman/pygers/handbook/new_study_template pygers_workshop/sample_study
-
-<span class="c1"># explore sample_study</span>
-$ tree
-$ <span class="nb">cd</span> sample_study/code
-$ ls
-
-<span class="c1"># rename something</span>
-$ mv -v task task_code
-$ ls
-
-<span class="c1"># delete something</span>
-$ rm -r task_code
-$ ls
-
-<span class="c1"># make a new directory</span>
-$ mkdir task
-
-<span class="c1"># see which modules are available on the cluster</span>
-$ module avail
-$ module load fsl
-$ module list
-$ module purge
-
-<span class="c1"># check out snapshot backups</span>
-$ ls .snapshot
-</pre></div>
-</div>
-</div>
-<div class="section" id="using-vim">
-<h2>Using vim<a class="headerlink" href="#using-vim" title="Permalink to this headline">¶</a></h2>
-<p>From your server terminal window:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> preprocessing
-
-<span class="c1"># print contents of file</span>
-$ cat globals.sh
-
-<span class="c1"># practice going from command mode to insert mode</span>
-$ vim globals.sh
-
-<span class="c1"># i to go to insert mode; esc to go to command mode</span>
-<span class="c1"># :q to quit without saving</span>
-</pre></div>
-</div>
-<p>Open a LOCAL terminal window:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># if you are running Catalina OS, you need to change your default shell</span>
-<span class="c1"># This only has to be done one time!!</span>
-$ chsh -s /bin/bash
-
-<span class="c1"># edit local .bash_profile to add aliases</span>
-$ vim .bash_profile
-
-<span class="c1"># enter insert mode (i) and add the following:</span>
-<span class="c1"># alias &#39;scotty&#39;=&#39;ssh -XY netID@scotty.pni.princeton.edu&#39;</span>
-<span class="c1"># alias &#39;spock&#39;=&#39;ssh -XY netID@spock.pni.princeton.edu&#39;</span>
-<span class="c1"># go back to command mode (esc)</span>
-<span class="c1"># :x to save and exit</span>
-
-$ <span class="nb">source</span> .bash_profile
-$ scotty
-</pre></div>
-</div>
-<p>You are now back on the server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># edit your linux .bashrc on the server</span>
-$ <span class="nb">cd</span> ~
-$ vim .bashrc
-
-<span class="c1"># enter insert mode (i) and add the following:</span>
-<span class="c1"># alias &#39;pygers&#39;=&#39;cd /jukebox/LAB/YOURDIRECTORY/pygers_workshop&#39;</span>
-<span class="c1"># go back to command mode (esc)</span>
-<span class="c1"># :x to save and exit</span>
-
-$ pygers <span class="c1">#this shouldn&#39;t work yet, you need to source your .bashrc</span>
-$ <span class="nb">source</span> .bashrc
-$ pygers
-$ <span class="nb">pwd</span>
-</pre></div>
-</div>
-</div>
+  <div class="section" id="pygers-workshop-notes-week-2-fall-2020">
+<h1>Pygers Workshop Notes - Week 2 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-2-fall-2020" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style><p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a></p>
 <div class="section" id="setup-a-pygers-conda-environment">
 <h2>Setup a pygers conda environment<a class="headerlink" href="#setup-a-pygers-conda-environment" title="Permalink to this headline">¶</a></h2>
-<p>Note: We didn’t get to this in week 1. We will start with conda environments at the beginning of week 2.</p>
 <p>You should setup your conda environment in the same “location” as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.</p>
 <p>Server installation:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for Linux in your home directory</span>
