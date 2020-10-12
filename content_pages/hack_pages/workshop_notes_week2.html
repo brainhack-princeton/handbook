@@ -90,7 +90,11 @@
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Pygers Workshop Notes - Week 2 (Fall 2020)</a><ul>
-<li><a class="reference internal" href="#setup-a-pygers-conda-environment">Setup a pygers conda environment</a></li>
+<li><a class="reference internal" href="#what-is-conda-why-do-we-use-it">What is conda? Why do we use it?</a></li>
+<li><a class="reference internal" href="#set-up-a-pygers-conda-environment">Set up a pygers conda environment</a></li>
+<li><a class="reference internal" href="#what-is-git-and-why-should-we-use-it-and-what-is-github">What is Git and why should we use it? And what is GitHub?</a></li>
+<li><a class="reference internal" href="#practice-demo-familiarize-yourself-with-git">Practice Demo: Familiarize yourself with Git!</a></li>
+<li><a class="reference internal" href="#using-git-github-with-our-sample-project">Using Git/GitHub with our Sample Project</a></li>
 </ul>
 </li>
 </ul>
@@ -125,9 +129,14 @@
             
   <div class="section" id="pygers-workshop-notes-week-2-fall-2020">
 <h1>Pygers Workshop Notes - Week 2 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-2-fall-2020" title="Permalink to this headline">¶</a></h1>
-<style> .blue {color:blue} </style><p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a></p>
-<div class="section" id="setup-a-pygers-conda-environment">
-<h2>Setup a pygers conda environment<a class="headerlink" href="#setup-a-pygers-conda-environment" title="Permalink to this headline">¶</a></h2>
+<style> .blue {color:blue} </style><div class="section" id="what-is-conda-why-do-we-use-it">
+<h2>What is conda? Why do we use it?<a class="headerlink" href="#what-is-conda-why-do-we-use-it" title="Permalink to this headline">¶</a></h2>
+<p><em>Conda</em> is a <strong>package manager</strong>, similar to brew, apt, or pip. This package manager allows us to keep track of your python versions and keep all dependencies encapsulated in an <strong>environment</strong>, that can be easily shared or reproduced. This is especially helpful if you have multiple projects that require different package versions. Importantly, this prevents things from breaking if you have packages for different projects that can cause conflicts with one another.</p>
+<p><em>Anaconda</em> is a free and open source <strong>software distribution</strong> for scientific computing that is managed by conda. It is pretty large to download, so you might want to use <em>Miniconda</em> instead. Miniconda is a minimal version of Anaconda.</p>
+<p>Here is a <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a> that you can use as you familiarize yourself with this package manager.</p>
+</div>
+<div class="section" id="set-up-a-pygers-conda-environment">
+<h2>Set up a pygers conda environment<a class="headerlink" href="#set-up-a-pygers-conda-environment" title="Permalink to this headline">¶</a></h2>
 <p>You should setup your conda environment in the same “location” as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.</p>
 <p>Server installation:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for Linux in your home directory</span>
@@ -206,6 +215,80 @@ $ python -c <span class="s2">&quot;import pandas; print(pandas.__version__)&quot
 
 <span class="c1"># deactivate conda environment</span>
 $ conda deactivate
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-is-git-and-why-should-we-use-it-and-what-is-github">
+<h2>What is Git and why should we use it? And what is GitHub?<a class="headerlink" href="#what-is-git-and-why-should-we-use-it-and-what-is-github" title="Permalink to this headline">¶</a></h2>
+<p><em>Git</em> is a <strong>version control system</strong>, which means that it is a way in which project files can be manages and tracked over time. This is important because this means that Git can track the entire history of whatever files you are working on. Messed something up and wish you could go back in time? With Git, this is actually possible! Here is a <a class="reference external" href="https://education.github.com/git-cheat-sheet-education.pdf">git cheatsheet</a> that you can use as you familiarize yourself with this version control system.</p>
+<p><em>GitHub</em> is a <strong>web-based service</strong> that allows you to do version control using Git. It has an easy-to-use web interface that allows you to clearly see your file history (in part, by highlighting additions and deletions to your files) and do many other cool things. For more information about Git and GitHub, check out <a class="reference external" href="https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f">this article</a>!</p>
+</div>
+<div class="section" id="practice-demo-familiarize-yourself-with-git">
+<h2>Practice Demo: Familiarize yourself with Git!<a class="headerlink" href="#practice-demo-familiarize-yourself-with-git" title="Permalink to this headline">¶</a></h2>
+<p><em>add here</em></p>
+</div>
+<div class="section" id="using-git-github-with-our-sample-project">
+<h2>Using Git/GitHub with our Sample Project<a class="headerlink" href="#using-git-github-with-our-sample-project" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Create a new GitHub repository (<a class="reference external" href="https://docs.github.com/en/enterprise/2.15/user/articles/create-a-repo">link</a> to instructions) where you will track the files inside <span class="blue">pygers_workshop/sample_project/code/</span>.</p></li>
+<li><p>Our sample project, which you copied last week, already has a .git attached to it that is <a class="reference external" href="https://github.com/brainhack-princeton/handbook-code">linked</a> to a repo on our Pygers GitHub account:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the URL that Git has stored in local repo</span>
+$ git remote -v
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#   origin    https://github.com/brainhack-princeton/handbook-code.git (fetch)</span>
+<span class="c1">#   origin    https://github.com/brainhack-princeton/handbook-code.git (push)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>You want to remove the link to the Pygers GitHub account and link it to the repo you created in Step 1 in your own GitHub account:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="o">[</span>YOUR_LOCAL_PATH<span class="o">]</span>/pygers_workshop/sample_project/code/
+$ git remote -v
+$ git remote rm origin
+$ git remote add origin <span class="o">[</span>URL_TO_YOUR-REPO<span class="o">]</span>
+<span class="c1"># confirm that your origin remote is linked to your github repo</span>
+$ git remote -v
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Push the changes to your GitHub repo (in a way to automatically push to your repo in the future).</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git push -u origin master
+</pre></div>
+</div>
+<p>Refresh your GitHub page online. You should be able to see the contents inside <span class="blue">pygers_workshop/sample_project/code/</span> on the repo.</p>
+<ol class="arabic simple" start="5">
+<li><p>Add .DS_Store to your your .gitignore and push it to your GitHub.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status <span class="c1"># .DS_Store should appear in the list of untracked files</span>
+$ vim .gitignore
+$ .DS_Store
+$ git add .gitignore
+$ git commit -m <span class="s1">&#39;adding gitignore&#39;</span>
+$ git push
+$ git status <span class="c1"># .DS_Store should NOT appear in the list of untracked files</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>There are several things you need to change in the <span class="blue">globals.sh</span> file. Edit these things using vim (<cite>vim preprocessing/globals.sh</cite>)</p></li>
+</ol>
+<ul class="simple">
+<li><p>Comment out <cite>module load anacondapy/5.3.1</cite></p></li>
+<li><dl class="simple">
+<dt>Set the <strong>scanner_dir</strong> to the location where the data lives:</dt><dd><ul>
+<li><p>for PNI folks, the location is <span class="blue">/jukebox/norman/pygers/conquest</span></p></li>
+<li><p>fot non-PNI folks, this should be the path to where you downloaded and saved the sample data</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Edit <strong>project_dir</strong> to where you have the sample_study code (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)</p></li>
+</ul>
+<p>Now, you need to commit and push the changes to your globals.sh file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add preprocessing/globals.sh
+$ git commit -m <span class="s1">&#39;updating globals directory&#39;</span>
+$ git push
 </pre></div>
 </div>
 <p><a class="reference external" href="./syllabus2020.html">Return to workshop info</a></p>
