@@ -70,6 +70,8 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 
 Week 2: Using Git and GitHub
 ----------------------------
+`Week 2 Notes <./workshop_notes_week2.html>`_
+
 **Date: Thursday, October 15 10-11am EST**
 
 **Topics Covered:**
