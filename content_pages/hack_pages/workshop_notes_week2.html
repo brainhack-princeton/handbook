@@ -90,11 +90,11 @@
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Pygers Workshop Notes - Week 2 (Fall 2020)</a><ul>
-<li><a class="reference internal" href="#what-is-conda-why-do-we-use-it">What is conda? Why do we use it?</a></li>
+<li><a class="reference internal" href="#what-is-conda-why-do-we-use-it">What is Conda? Why do we use it?</a></li>
 <li><a class="reference internal" href="#set-up-a-pygers-conda-environment">Set up a pygers conda environment</a></li>
 <li><a class="reference internal" href="#what-is-git-and-why-should-we-use-it-and-what-is-github">What is Git and why should we use it? And what is GitHub?</a></li>
-<li><a class="reference internal" href="#practice-demo-familiarize-yourself-with-git">Practice Demo: Familiarize yourself with Git!</a></li>
-<li><a class="reference internal" href="#using-git-github-with-our-sample-project">Using Git/GitHub with our Sample Project</a></li>
+<li><a class="reference internal" href="#demo-familiarize-yourself-with-git">Demo: familiarize yourself with Git!</a></li>
+<li><a class="reference internal" href="#using-git-github-with-our-sample-project">Using Git/GitHub with our sample project</a></li>
 </ul>
 </li>
 </ul>
@@ -130,14 +130,14 @@
   <div class="section" id="pygers-workshop-notes-week-2-fall-2020">
 <h1>Pygers Workshop Notes - Week 2 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-2-fall-2020" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style><div class="section" id="what-is-conda-why-do-we-use-it">
-<h2>What is conda? Why do we use it?<a class="headerlink" href="#what-is-conda-why-do-we-use-it" title="Permalink to this headline">¶</a></h2>
-<p><em>Conda</em> is a <strong>package manager</strong>, similar to brew, apt, or pip. This package manager allows us to keep track of your python versions and keep all dependencies encapsulated in an <strong>environment</strong>, that can be easily shared or reproduced. This is especially helpful if you have multiple projects that require different package versions. Importantly, this prevents things from breaking if you have packages for different projects that can cause conflicts with one another.</p>
-<p><em>Anaconda</em> is a free and open source <strong>software distribution</strong> for scientific computing that is managed by conda. It is pretty large to download, so you might want to use <em>Miniconda</em> instead. Miniconda is a minimal version of Anaconda.</p>
-<p>Here is a <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a> that you can use as you familiarize yourself with this package manager.</p>
+<h2>What is Conda? Why do we use it?<a class="headerlink" href="#what-is-conda-why-do-we-use-it" title="Permalink to this headline">¶</a></h2>
+<p><em>Conda</em> is a <strong>package manager</strong>, similar to brew, apt, or pip. This package manager keeps track of your Python installation, versions, and dependencies in an encapsulated <strong>environment</strong> that can be easily shared or reproduced. This is helpful if you have multiple projects that require different (potentially conflicting) software versions. You can activate and deactivate conda environments, and we’ll use conda to install new packages into our environment.</p>
+<p><em>Anaconda</em> is a free and open source <strong>software distribution</strong> for scientific computing that is managed by conda. <em>Miniconda</em> is a minimal version of Anaconda.</p>
+<p>Here’s a <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a> you can use to familiarize yourself with this package manager.</p>
 </div>
 <div class="section" id="set-up-a-pygers-conda-environment">
 <h2>Set up a pygers conda environment<a class="headerlink" href="#set-up-a-pygers-conda-environment" title="Permalink to this headline">¶</a></h2>
-<p>You should setup your conda environment in the same “location” as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.</p>
+<p>You should setup your conda environment on the same computer as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.</p>
 <p>Server installation:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for Linux in your home directory</span>
 $ <span class="nb">cd</span> ~
@@ -157,7 +157,7 @@ $ vim .bashrc
 $ rm -r Miniconda3-latest-Linux-x86_64.sh
 </pre></div>
 </div>
-<p>Local installation:</p>
+<p>Local installation (on MacOSX):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for MacOSX in your downloads directory</span>
 $ <span class="nb">cd</span> ~/Downloads
 $ curl -O  https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
@@ -220,15 +220,191 @@ $ conda deactivate
 </div>
 <div class="section" id="what-is-git-and-why-should-we-use-it-and-what-is-github">
 <h2>What is Git and why should we use it? And what is GitHub?<a class="headerlink" href="#what-is-git-and-why-should-we-use-it-and-what-is-github" title="Permalink to this headline">¶</a></h2>
-<p><em>Git</em> is a <strong>version control system</strong>, which means that it is a way in which project files can be manages and tracked over time. This is important because this means that Git can track the entire history of whatever files you are working on. Messed something up and wish you could go back in time? With Git, this is actually possible! Here is a <a class="reference external" href="https://education.github.com/git-cheat-sheet-education.pdf">git cheatsheet</a> that you can use as you familiarize yourself with this version control system.</p>
-<p><em>GitHub</em> is a <strong>web-based service</strong> that allows you to do version control using Git. It has an easy-to-use web interface that allows you to clearly see your file history (in part, by highlighting additions and deletions to your files) and do many other cool things. For more information about Git and GitHub, check out <a class="reference external" href="https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f">this article</a>!</p>
+<p><em>Git</em> is a <strong>version control system</strong> for tracking changes to your code over time. Git can track the history of your code; this means that if you mess something up, you can go back in time and recover a previous version of your code. Providing the full provenance of your code also makes your workflow more transparent for others. Here’s a <a class="reference external" href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheatsheet</a> to familiarize yourself with version control using Git.</p>
+<p><em>GitHub</em> is a <strong>web platform</strong> that hosts collaborative software development and distribution using Git. The web interface allows you to see the history of your code and share your code with others. For more information about Git and GitHub, check out <a class="reference external" href="https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f">this article</a>!</p>
 </div>
-<div class="section" id="practice-demo-familiarize-yourself-with-git">
-<h2>Practice Demo: Familiarize yourself with Git!<a class="headerlink" href="#practice-demo-familiarize-yourself-with-git" title="Permalink to this headline">¶</a></h2>
-<p><em>add here</em></p>
+<div class="section" id="demo-familiarize-yourself-with-git">
+<h2>Demo: familiarize yourself with Git!<a class="headerlink" href="#demo-familiarize-yourself-with-git" title="Permalink to this headline">¶</a></h2>
+<p>In the following, we’ll work through a simple exercise of version control with Git. We’ll use a simple Python script to demo staging and committing changes, viewing your history, going back in time, and sharing code via GitHub.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate conda environment and check git version</span>
+$ conda activate pygers
+$ git --version
+
+<span class="c1"># check if git identity is configured</span>
+
+$ git config --list <span class="c1"># check for user.name and user.email</span>
+
+<span class="c1"># otherwise configure your name and email</span>
+$ git config --global --add user.name <span class="s2">&quot;FirstName LastName&quot;</span>
+
+$ git config --global --add user.email youremail@blah.com
+
+
+<span class="c1"># create a git demo directory in pygers_workshop</span>
+$ mkdir git-demo
+$ <span class="nb">cd</span> git-demo
+
+<span class="c1"># initialize a git repository (repo) in this directory</span>
+$ git init
+
+<span class="c1"># create silly example python script</span>
+$ vim division.py
+
+<span class="c1"># enter this into your text editor:</span>
+<span class="nv">n</span> <span class="o">=</span> int<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter numerator: &quot;</span><span class="o">))</span>
+<span class="nv">d</span> <span class="o">=</span> int<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter denominator: &quot;</span><span class="o">))</span>
+print<span class="o">(</span>n / d<span class="o">)</span>
+
+<span class="c1"># check git status now that we have a new file</span>
+$ git status
+
+<span class="c1"># add the new file to the staging area</span>
+$ git add division.py
+$ git status
+
+<span class="c1"># commit the new changes with an informative message</span>
+$ git commit -m “Create division.py to cause me headaches later”
+
+<span class="c1"># check the git log to see the commit history so far</span>
+$ git status
+$ git log <span class="c1"># also try `git log -p -n 1` or `git log --oneline`</span>
+
+<span class="c1"># try running our silly python script</span>
+$ python division.py <span class="c1"># enter some numbers</span>
+
+<span class="c1"># note that floats break this script</span>
+<span class="c1"># check your python version then try division with remainder</span>
+<span class="c1"># if you&#39;re using python 3, the ouput should be a fractional float</span>
+<span class="c1"># if you&#39;re using python 2, the default is integer division (yikes)</span>
+
+<span class="c1"># let&#39;s make an adjustment to our script</span>
+$ vim division.py
+
+<span class="c1"># enter this into your text editor:</span>
+def num<span class="o">(</span>n<span class="o">)</span>:
+    try:
+        <span class="k">return</span> int<span class="o">(</span>n<span class="o">)</span>
+    except ValueError:
+        <span class="k">return</span> float<span class="o">(</span>n<span class="o">)</span>
+
+<span class="nv">n</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter numerator: &quot;</span><span class="o">))</span>
+<span class="nv">d</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter denominator: &quot;</span><span class="o">))</span>
+print<span class="o">(</span>n / d<span class="o">)</span>
+
+<span class="c1"># add and commit new changes</span>
+$ git status
+$ git add division.py <span class="c1"># or git add -u</span>
+$ git commit -m “Update division.py to tolerate floats”
+
+<span class="c1"># let&#39;s add a shebang to script</span>
+$ vim division.py
+
+<span class="c1"># enter this into your text editor:</span>
+<span class="c1">#!/usr/bin/env python</span>
+
+def num<span class="o">(</span>n<span class="o">)</span>:
+    try:
+        <span class="k">return</span> int<span class="o">(</span>n<span class="o">)</span>
+    except ValueError:
+        <span class="k">return</span> float<span class="o">(</span>n<span class="o">)</span>
+
+<span class="nv">n</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter numerator: &quot;</span><span class="o">))</span>
+<span class="nv">d</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter denominator: &quot;</span><span class="o">))</span>
+print<span class="o">(</span>n / d<span class="o">)</span>
+
+<span class="c1"># and commit this third change</span>
+$ git add division.py
+$ git commit -m <span class="s2">&quot;Add python shebang to division.py&quot;</span>
+
+<span class="c1"># how is git tracking all this</span>
+$ ls -al <span class="c1"># see hidden .git dot-files</span>
+
+<span class="c1"># view differences between commits</span>
+$ git log
+$ git diff SHA SHA <span class="c1"># diff between two commit hashes</span>
+
+<span class="c1"># snoop around in the past using git checkout</span>
+$ git checkout SHA <span class="c1"># go back to your first commit</span>
+$ less division.py <span class="c1"># our script is in its previous state</span>
+$ git log <span class="c1"># the log is in its previous state</span>
+
+<span class="c1"># okay let&#39;s go back to the future</span>
+$ git checkout master
+
+<span class="c1"># undo recent commit(s) using reset</span>
+$ git log
+$ git reset --mixed SHA
+$ git log <span class="c1"># git log is in previous state</span>
+
+<span class="c1"># modify the script for a new commit</span>
+$ vim division.py <span class="c1"># our prior changes are still present</span>
+
+<span class="c1"># modify this line in your text editor:</span>
+<span class="c1">#!/usr/bin/env python3 # update our shebang to python3</span>
+
+<span class="c1"># commit this version instead</span>
+$ git add division.py
+$ git commit -m <span class="s2">&quot;Add python3 shebang to division.py&quot;</span>
+$ git log
+
+<span class="c1"># we can still find our orphaned commit (for now)</span>
+$ git reflog <span class="c1"># get commit hash for “Update…”</span>
+$ git checkout SHA <span class="c1"># or git reset to return to this commit</span>
+$ git checkout master
+
+<span class="c1"># create empty repository with no README, LICENSE on GitHub</span>
+$ git remote add origin https://github.com/snastase/git-demo.git
+$ git push -u origin master
+
+<span class="c1"># create README on GitHub</span>
+$ git pull
+$ ls
+
+<span class="c1"># on GitHub, click “Add file”, type LICENSE, and then click Choose license</span>
+$ git pull
+$ ls
+
+<span class="c1"># switch to another computer and clone repo from GitHub</span>
+$ git clone https://github.com/snastase/git-demo.git
+
+<span class="c1"># make some changes on your other computer</span>
+$ vim division.py
+
+<span class="c1"># update the script in your text editor:</span>
+<span class="c1">#!/usr/bin/env python3</span>
+
+def num<span class="o">(</span>n<span class="o">)</span>:
+    try:
+        <span class="k">return</span> int<span class="o">(</span>n<span class="o">)</span>
+    except ValueError:
+        <span class="k">return</span> float<span class="o">(</span>n<span class="o">)</span>
+
+<span class="nv">n</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter numerator: &quot;</span><span class="o">))</span>
+<span class="nv">d</span> <span class="o">=</span> num<span class="o">(</span>input<span class="o">(</span><span class="s2">&quot;Enter denominator: &quot;</span><span class="o">))</span>
+print<span class="o">(</span>f<span class="s2">&quot;Result: {n / d}&quot;</span><span class="o">)</span>
+
+<span class="c1"># commit and push changes to GitHub</span>
+$ git add division.py
+$ git commit -m <span class="s2">&quot;Update result output format&quot;</span>
+$ git push
+
+<span class="c1"># switch back to other computer and synchronize changes</span>
+$ git pull
+
+<span class="c1"># rename a file with git mv</span>
+$ git mv division.py divide.py
+
+<span class="c1"># untrack tracked file</span>
+$ git rm --cached division.py
+
+<span class="c1"># amend previous commit message</span>
+$ git commit --amend
+</pre></div>
+</div>
+<p>This is only a thin slice of Git functionality; there are many other powerful features. For example, check out the “<a class="reference internal" href="../06-02-contributing.html#contribute"><span class="std std-ref">How to contribute</span></a>” page of our handbook to familiarize yourself with the workflow for using Git to contribute to an existing software package.</p>
 </div>
 <div class="section" id="using-git-github-with-our-sample-project">
-<h2>Using Git/GitHub with our Sample Project<a class="headerlink" href="#using-git-github-with-our-sample-project" title="Permalink to this headline">¶</a></h2>
+<h2>Using Git/GitHub with our sample project<a class="headerlink" href="#using-git-github-with-our-sample-project" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Create a new GitHub repository (<a class="reference external" href="https://docs.github.com/en/enterprise/2.15/user/articles/create-a-repo">link</a> to instructions) where you will track the files inside <span class="blue">pygers_workshop/sample_project/code/</span>.</p></li>
 <li><p>Our sample project, which you copied last week, already has a .git attached to it that is <a class="reference external" href="https://github.com/brainhack-princeton/handbook-code">linked</a> to a repo on our Pygers GitHub account:</p></li>
