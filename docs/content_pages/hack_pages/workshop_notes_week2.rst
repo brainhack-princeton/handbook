@@ -10,20 +10,20 @@ Pygers Workshop Notes - Week 2 (Fall 2020)
 
 .. role:: blue
 
-What is conda? Why do we use it?
+What is Conda? Why do we use it?
 --------------------------------
 
-*Conda* is a **package manager**, similar to brew, apt, or pip. This package manager allows us to keep track of your python versions and keep all dependencies encapsulated in an **environment**, that can be easily shared or reproduced. This is especially helpful if you have multiple projects that require different package versions. Importantly, this prevents things from breaking if you have packages for different projects that can cause conflicts with one another.
+*Conda* is a **package manager**, similar to brew, apt, or pip. This package manager keeps track of your Python installation, versions, and dependencies in an encapsulated **environment** that can be easily shared or reproduced. This is helpful if you have multiple projects that require different (potentially conflicting) software versions. You can activate and deactivate conda environments, and we'll use conda to install new packages into our environment.
 
 
-*Anaconda* is a free and open source **software distribution** for scientific computing that is managed by conda. It is pretty large to download, so you might want to use *Miniconda* instead. Miniconda is a minimal version of Anaconda.
+*Anaconda* is a free and open source **software distribution** for scientific computing that is managed by conda. *Miniconda* is a minimal version of Anaconda.
 
-Here is a `conda cheatsheet <https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html>`_ that you can use as you familiarize yourself with this package manager.
+Here's a `conda cheatsheet <https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html>`_ you can use to familiarize yourself with this package manager.
 
 Set up a pygers conda environment
 ---------------------------------
 
-You should setup your conda environment in the same "location" as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.
+You should setup your conda environment on the same computer as your pygers_workshop working directory (i.e. either on your local machine if you are working locally, or on the server if you are working on the server). Follow the correct installation instructions below.
 
 Server installation:
 
@@ -46,7 +46,7 @@ Server installation:
     # you can delete the installation file if you want
     $ rm -r Miniconda3-latest-Linux-x86_64.sh
 
-Local installation:
+Local installation (on MacOSX):
 
 .. code-block:: bash
 
@@ -113,15 +113,190 @@ Everybody can now continue the conda setup following the same set of instruction
 What is Git and why should we use it? And what is GitHub?
 ---------------------------------------------------------
 
-*Git* is a **version control system**, which means that it is a way in which project files can be manages and tracked over time. This is important because this means that Git can track the entire history of whatever files you are working on. Messed something up and wish you could go back in time? With Git, this is actually possible! Here is a `git cheatsheet <https://education.github.com/git-cheat-sheet-education.pdf>`_ that you can use as you familiarize yourself with this version control system.
+*Git* is a **version control system** for tracking changes to your code over time. Git can track the history of your code; this means that if you mess something up, you can go back in time and recover a previous version of your code. Providing the full provenance of your code also makes your workflow more transparent for others. Here's a `Git cheatsheet <https://education.github.com/git-cheat-sheet-education.pdf>`_ to familiarize yourself with version control using Git.
 
-*GitHub* is a **web-based service** that allows you to do version control using Git. It has an easy-to-use web interface that allows you to clearly see your file history (in part, by highlighting additions and deletions to your files) and do many other cool things. For more information about Git and GitHub, check out `this article <https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f>`_!
+*GitHub* is a **web platform** that hosts collaborative software development and distribution using Git. The web interface allows you to see the history of your code and share your code with others. For more information about Git and GitHub, check out `this article <https://codeburst.io/git-and-github-in-a-nutshell-b0a3cc06458f>`_!
 
-Practice Demo: Familiarize yourself with Git!
+Demo: familiarize yourself with Git!
 ---------------------------------------------
-*add here*
+In the following, we'll work through a simple exercise of version control with Git. We'll use a simple Python script to demo staging and committing changes, viewing your history, going back in time, and sharing code via GitHub.
 
-Using Git/GitHub with our Sample Project
+.. code-block:: bash
+
+    # activate conda environment and check git version
+    $ conda activate pygers
+    $ git --version
+
+    # check if git identity is configured 
+    $ git config --list # check for user.name and user.email
+
+    # otherwise configure your name and email
+    $ git config --global --add user.name "FirstName LastName" 
+    $ git config --global --add user.email youremail@blah.com 
+
+    # create a git demo directory in pygers_workshop
+    $ mkdir git-demo
+    $ cd git-demo
+
+    # initialize a git repository (repo) in this directory
+    $ git init
+
+    # create silly example python script
+    $ vim division.py
+
+    # enter this into your text editor:
+    n = int(input("Enter numerator: "))
+    d = int(input("Enter denominator: "))
+    print(n / d)
+
+    # check git status now that we have a new file
+    $ git status
+
+    # add the new file to the staging area
+    $ git add division.py
+    $ git status
+
+    # commit the new changes with an informative message
+    $ git commit -m “Create division.py to cause me headaches later”
+
+    # check the git log to see the commit history so far
+    $ git status
+    $ git log # also try `git log -p -n 1` or `git log --oneline`
+
+    # try running our silly python script
+    $ python division.py # enter some numbers
+
+    # note that floats break this script
+    # check your python version then try division with remainder
+    # if you're using python 3, the ouput should be a fractional float
+    # if you're using python 2, the default is integer division (yikes)
+
+    # let's make an adjustment to our script
+    $ vim division.py
+
+    # enter this into your text editor:
+    def num(n):
+        try:
+            return int(n)
+        except ValueError:
+            return float(n)
+
+    n = num(input("Enter numerator: "))
+    d = num(input("Enter denominator: "))
+    print(n / d)
+
+    # add and commit new changes
+    $ git status
+    $ git add division.py # or git add -u
+    $ git commit -m “Update division.py to tolerate floats”
+
+    # let's add a shebang to script
+    $ vim division.py
+
+    # enter this into your text editor:
+    #!/usr/bin/env python
+
+    def num(n):
+        try:
+            return int(n)
+        except ValueError:
+            return float(n)
+
+    n = num(input("Enter numerator: "))
+    d = num(input("Enter denominator: "))
+    print(n / d)
+
+    # and commit this third change
+    $ git add division.py
+    $ git commit -m "Add python shebang to division.py"
+
+    # how is git tracking all this
+    $ ls -al # see hidden .git dot-files
+
+    # view differences between commits
+    $ git log
+    $ git diff SHA SHA # diff between two commit hashes
+
+    # snoop around in the past using git checkout
+    $ git checkout SHA # go back to your first commit
+    $ less division.py # our script is in its previous state
+    $ git log # the log is in its previous state
+
+    # okay let's go back to the future
+    $ git checkout master
+
+    # undo recent commit(s) using reset
+    $ git log
+    $ git reset --mixed SHA
+    $ git log # git log is in previous state
+
+    # modify the script for a new commit
+    $ vim division.py # our prior changes are still present
+
+    # modify this line in your text editor:
+    #!/usr/bin/env python3 # update our shebang to python3
+
+    # commit this version instead
+    $ git add division.py
+    $ git commit -m "Add python3 shebang to division.py"
+    $ git log
+
+    # we can still find our orphaned commit (for now)
+    $ git reflog # get commit hash for “Update…”
+    $ git checkout SHA # or git reset to return to this commit
+    $ git checkout master
+
+    # create empty repository with no README, LICENSE on GitHub
+    $ git remote add origin https://github.com/snastase/git-demo.git
+    $ git push -u origin master
+
+    # create README on GitHub
+    $ git pull
+    $ ls
+
+    # on GitHub, click “Add file”, type LICENSE, and then click Choose license
+    $ git pull
+    $ ls
+
+    # switch to another computer and clone repo from GitHub
+    $ git clone https://github.com/snastase/git-demo.git
+
+    # make some changes on your other computer
+    $ vim division.py
+
+    # update the script in your text editor:
+    #!/usr/bin/env python3
+
+    def num(n):
+        try:
+            return int(n)
+        except ValueError:
+            return float(n)
+
+    n = num(input("Enter numerator: "))
+    d = num(input("Enter denominator: "))
+    print(f"Result: {n / d}")
+
+    # commit and push changes to GitHub
+    $ git add division.py
+    $ git commit -m "Update result output format"
+    $ git push
+
+    # switch back to other computer and synchronize changes
+    $ git pull
+
+    # rename a file with git mv
+    $ git mv division.py divide.py
+
+    # untrack tracked file
+    $ git rm --cached division.py
+
+    # amend previous commit message
+    $ git commit --amend
+
+This is only a thin slice of Git functionality; there are many other powerful features. For example, check out the ":ref:`How to contribute<contribute>`" page of our handbook to familiarize yourself with the workflow for using Git to contribute to an existing software package.
+
+Using Git/GitHub with our sample project
 ----------------------------------------
 
 1. Create a new GitHub repository (`link <https://docs.github.com/en/enterprise/2.15/user/articles/create-a-repo>`_ to instructions) where you will track the files inside :blue:`pygers_workshop/sample_project/code/`.
