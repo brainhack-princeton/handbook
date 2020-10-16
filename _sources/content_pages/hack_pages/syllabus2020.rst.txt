@@ -72,6 +72,8 @@ Week 2: Using Git and GitHub
 ----------------------------
 `Week 2 Notes <./workshop_notes_week2.html>`_
 
+`Week 2 Recording <https://drive.google.com/file/d/1ZOHSzpozPh2OP8Nvq2h1lDbMdmuUuT0Q/view?usp=sharing>`_
+
 **Date: Thursday, October 15 10-11am EST**
 
 **Topics Covered:**
