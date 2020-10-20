@@ -84,10 +84,11 @@ Before we move on, let's revisit some of what was covered in weeks 1 and 2 (cond
 
 .. code-block:: bash
 
-    # update our conda environment and install the pydeface package
+    # update our conda environment and install the pydeface and tmux packages
     $ conda update -n base -c defaults conda
     $ conda activate pygers
     $ pip install pydeface
+    $ conda install -c conda-forge tmux #you only need to install this package if you are working in a local (not PNI server) environment
 
     # Make your life easier!
     # add a conquest alias to .bashrc or .bash_profile
