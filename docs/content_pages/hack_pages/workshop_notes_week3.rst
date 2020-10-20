@@ -20,6 +20,8 @@ ReproIn: Setting yourself up for success
 
 The easiest way to get started on the BIDS path is to setup your program card on the scanner (prior to data acquisition!) following the `ReproIn <https://github.com/ReproNim/reproin>`_ heuristic. This is something that will take you 30 min or less to do, and will make your life infinitely easier going forward. When you follow the ReproIn `heuristic <https://github.com/nipy/heudiconv/blob/master/heudiconv/heuristics/reproin.py>`_ on your program card, you will be able to use HeuDiConv later on to automatically convert your raw data off the scanner to BIDS format and add it to your BIDS dataset. 
 
+If you have already acquired data that does not follow the ReproIn heuristic, don't despair! You can still "manually" `convert your data to the BIDS standard <http://reproducibility.stanford.edu/bids-tutorial-series-part-1a/>`_. However, this does take more effort than using HeuDiConv, so if you have not yet acquired data, you should definitely setup your program card using the ReproIn heuristic. 
+
 This is an example of how I have my program card setup:
 
 .. figure:: ../../images/reproin_program_card.png
