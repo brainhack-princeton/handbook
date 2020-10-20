@@ -84,10 +84,11 @@ Before we move on, let's revisit some of what was covered in weeks 1 and 2 (cond
 
 .. code-block:: bash
 
-    # update our conda environment and install the pydeface package
+    # update our conda environment and install the pydeface (and tmux) package(s)
     $ conda update -n base -c defaults conda
     $ conda activate pygers
     $ pip install pydeface
+    $ conda install -c conda-forge tmux #you only need to install this package if you are working in a local (not PNI server) environment
 
     # Make your life easier!
     # add a conquest alias to .bashrc or .bash_profile
@@ -133,6 +134,19 @@ Before we move on, let's revisit some of what was covered in weeks 1 and 2 (cond
     $ git add deface.sh
     $ git add deface_template.sh
     $ git commit -m "remove module load pydeface"
+    
+    # don't remove .heudiconv in step1_preproc.sh
+    $ vim step1_preproc.sh
+
+    # enter insert mode (i) and update line 61:
+    # remove or comment out rm -rf $bids_dir/.heudiconv
+    # go back to command mode (esc)
+    # :x to save and exit
+    
+    # commit and push changes using git
+    $ git status
+    $ git add step1_preproc.sh
+    $ git commit -m "don't delete .heudiconv"
     $ git status
     $ git push -u origin master
 
