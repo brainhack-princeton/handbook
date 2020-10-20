@@ -201,6 +201,8 @@
 </div>
 <div class="section" id="week-3-understanding-mri-data-formats-and-standardizing-your-dataset-structure">
 <h3>Week 3: Understanding MRI data formats and standardizing your dataset structure<a class="headerlink" href="#week-3-understanding-mri-data-formats-and-standardizing-your-dataset-structure" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="./workshop_notes_week3.html">Week 3 Notes</a></p>
+<p>Week 3 Recording (not yet available)</p>
 <p><strong>Date: Thursday, October 22 10-11am EST</strong></p>
 <p><strong>Topics Covered:</strong></p>
 <ul class="simple">
@@ -215,14 +217,12 @@
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=K9hVAr5fvJg&amp;feature=youtu.be&amp;ab_channel=OHBMOpenScienceSIG">The benefits of BIDS</a>. This is Sam’s OHBM TrainTrack presentation (~70 minutes).</p></li>
 <li><p>Handbook reading: <a class="reference external" href="./tmux.html">Using tmux to create persistent server sessions</a></p></li>
-<li><p><em>If you do not have PNI server access</em>, build your own HeuDiConv singularity image</p></li>
+<li><p><em>If you do not have PNI server access</em>, install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a>.</p></li>
+<li><p><em>Optional: If you are working on your home institution’s server</em>: If <a class="reference external" href="https://sylabs.io/singularity/">Singularity</a> is available on your server, you can use it to build your own heudiconv Singularity image that can live on your instiution’s server.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>we will provide code here
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity pull docker://nipy/heudiconv
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p><em>If you do not have PNI server access</em>, install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a>.</p></li>
-</ol>
 </div>
 <div class="section" id="week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep">
 <h3>Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)<a class="headerlink" href="#week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep" title="Permalink to this headline">¶</a></h3>
@@ -238,6 +238,7 @@
 <p><strong>Preparation:</strong></p>
 <ol class="arabic simple">
 <li><p>Install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a> and/or <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html">AFNI</a> (your choice!)</p></li>
+<li><p><a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/registration.html">Download a FreeSurfer license key</a> and save it in your <span class="blue">pygers_workshop/sample_study/code/preprocessing</span> directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.</p></li>
 <li><p><em>If you do not have PNI server access</em>, build your own MRIQC and fMRIPrep singularity images</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>we will provide code here

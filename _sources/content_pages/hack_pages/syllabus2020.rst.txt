@@ -91,6 +91,10 @@ Week 2: Using Git and GitHub
 
 Week 3: Understanding MRI data formats and standardizing your dataset structure
 -------------------------------------------------------------------------------
+`Week 3 Notes <./workshop_notes_week3.html>`_
+
+Week 3 Recording (not yet available)
+
 **Date: Thursday, October 22 10-11am EST**
 
 **Topics Covered:**
@@ -105,15 +109,16 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 **Preparation:**
 
 1. `The benefits of BIDS <https://www.youtube.com/watch?v=K9hVAr5fvJg&feature=youtu.be&ab_channel=OHBMOpenScienceSIG>`_. This is Sam's OHBM TrainTrack presentation (~70 minutes). 
+
 2. Handbook reading: `Using tmux to create persistent server sessions <./tmux.html>`_
 
-3. *If you do not have PNI server access*, build your own HeuDiConv singularity image
+3. *If you do not have PNI server access*, install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_.
+
+4. *Optional: If you are working on your home institution's server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own heudiconv Singularity image that can live on your instiution's server. 
 
 .. code-block:: bash
 
-	we will provide code here
-
-4. *If you do not have PNI server access*, install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_. 
+	singularity pull docker://nipy/heudiconv 
 
 Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
@@ -131,7 +136,9 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 
 1. Install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ and/or `AFNI <https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html>`_ (your choice!)
 
-2. *If you do not have PNI server access*, build your own MRIQC and fMRIPrep singularity images
+2. `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.   
+
+3. *If you do not have PNI server access*, build your own MRIQC and fMRIPrep singularity images
 
 .. code-block:: bash
 

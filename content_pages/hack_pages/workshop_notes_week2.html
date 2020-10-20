@@ -439,9 +439,14 @@ $ git remote -v
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status <span class="c1"># .DS_Store should appear in the list of untracked files</span>
 $ vim .gitignore
-$ .DS_Store
+
+<span class="c1"># enter insert mode (i) and add the following:</span>
+<span class="c1"># .DS_Store</span>
+<span class="c1"># go back to command mode (esc)</span>
+<span class="c1"># :x to save and exit</span>
+
 $ git add .gitignore
-$ git commit -m <span class="s1">&#39;adding gitignore&#39;</span>
+$ git commit -m <span class="s2">&quot;adding gitignore&quot;</span>
 $ git push
 $ git status <span class="c1"># .DS_Store should NOT appear in the list of untracked files</span>
 </pre></div>
@@ -459,11 +464,11 @@ $ git status <span class="c1"># .DS_Store should NOT appear in the list of untra
 </dd>
 </dl>
 </li>
-<li><p>Edit <strong>project_dir</strong> to where you have the sample_study code (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)</p></li>
+<li><p>Edit <strong>project_dir</strong> to where you have the sample_study directory (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)</p></li>
 </ul>
 <p>Now, you need to commit and push the changes to your globals.sh file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add preprocessing/globals.sh
-$ git commit -m <span class="s1">&#39;updating globals directory&#39;</span>
+$ git commit -m <span class="s2">&quot;updating globals directory&quot;</span>
 $ git push
 </pre></div>
 </div>

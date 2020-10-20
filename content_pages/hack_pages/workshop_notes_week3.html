@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pygers Workshop Notes - Week 3 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/workshop_notes_week3.html" />
+    <link rel="shortcut icon" href="../../_static/tigerBrain_favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week3/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week3">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Pygers Workshop Notes - Week 3 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../../index.html">
+    <img class="logo" width="500" src="../../_static/tigerBrain.png" title="The Princeton Handbook on Reproducible Neuroimaging"/>
+  </a>
+</p>
+
+<!-- <p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p> -->
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> -->
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pygers Workshop Notes - Week 3 (Fall 2020)</a><ul>
+<li><a class="reference internal" href="#what-is-bids-why-do-we-use-it">What is BIDS? Why do we use it?</a></li>
+<li><a class="reference internal" href="#reproin-setting-yourself-up-for-success">ReproIn: Setting yourself up for success</a></li>
+<li><a class="reference internal" href="#dicom-and-nifti-formats">DICOM and NIfTI formats</a></li>
+<li><a class="reference internal" href="#some-maintenance-steps">Some maintenance steps</a></li>
+<li><a class="reference internal" href="#running-heudiconv">Running HeuDiConv</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="pygers-workshop-notes-week-3-fall-2020">
+<h1>Pygers Workshop Notes - Week 3 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-3-fall-2020" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style><div class="section" id="what-is-bids-why-do-we-use-it">
+<h2>What is BIDS? Why do we use it?<a class="headerlink" href="#what-is-bids-why-do-we-use-it" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://bids.neuroimaging.io/">The Brain Imaging Data Structure</a>, or <em>BIDS</em>, is a <strong>standardized way of organizing and describing neuroimaging datasets</strong>. This helps to make data accessible and usable by different researchers over time. BIDS also standardizes metadata (i.e. the details of the task or imaging protocol) in a machine-readable way to promote automated analysis workflows, which enhances reproducibility and efficiency. When your data are in BIDS format, you can also use BIDS apps (e.g. the BIDS validator to verify the consistency and completeness of your dataset, fMRIPrep to preprocess your MRI data, and MRIQC for data quality assurance).</p>
+</div>
+<div class="section" id="reproin-setting-yourself-up-for-success">
+<h2>ReproIn: Setting yourself up for success<a class="headerlink" href="#reproin-setting-yourself-up-for-success" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to get started on the BIDS path is to setup your program card on the scanner (prior to data acquisition!) following the <a class="reference external" href="https://github.com/ReproNim/reproin">ReproIn</a> heuristic. This is something that will take you 30 min or less to do, and will make your life infinitely easier going forward. When you follow the ReproIn <a class="reference external" href="https://github.com/nipy/heudiconv/blob/master/heudiconv/heuristics/reproin.py">heuristic</a> on your program card, you will be able to use HeuDiConv later on to automatically convert your raw data off the scanner to BIDS format and add it to your BIDS dataset.</p>
+<p>If you have already acquired data that does not follow the ReproIn heuristic, don’t despair! You can still “manually” <a class="reference external" href="http://reproducibility.stanford.edu/bids-tutorial-series-part-1a/">convert your data to the BIDS standard</a>. However, this does take more effort than using HeuDiConv, so if you have not yet acquired data, you should definitely setup your program card using the ReproIn heuristic.</p>
+<p>This is an example of how I have my program card set up:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/reproin_program_card.png"><img alt="reproin example" src="../../_images/reproin_program_card.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="section" id="dicom-and-nifti-formats">
+<h2>DICOM and NIfTI formats<a class="headerlink" href="#dicom-and-nifti-formats" title="Permalink to this headline">¶</a></h2>
+<p>Your data comes off the scanner in DICOM format (DICOM = Digital Imaging and Communications in Medicine). There is one DICOM file for every volume of data collected (e.g. one DICOM for each TR).</p>
+<p>At PNI, data from the scanner is transferred to a directory on jukebox called ‘conquest’. The full path to conquest is <span class="blue">/jukebox/dicom/conquest</span>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># take a look around conquest</span>
+$ <span class="nb">cd</span> /jukebox/dicom/conquest
+$ ls
+$ <span class="nb">cd</span> Skyra-AWP45031/NormaL/2020/
+$ ls <span class="c1">#RIP scanning in 2020</span>
+
+<span class="c1"># for our sample data, we have made a &quot;fake&quot; conquest directory</span>
+$ <span class="nb">cd</span> /jukebox/norman/pygers/conquest/
+$ ls
+$ <span class="nb">cd</span> 0219191_mystudy-0219-1114/dcm
+$ ls
+</pre></div>
+</div>
+<p>The important thing to remember about DICOM files is they contain identifying information about the subject!! e.g. date and time of the scan and birthdate. In other words, you probably do not want to share DICOM files publicly unless you have specific permission to do so (or have removed identifying information from the headers).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can use AFNI to read dicom header information</span>
+<span class="c1"># NOTE: your dicoms need to be unzipped first (we will do this in the step1_preproc step below)</span>
+$ module load afni
+$ dicom_hdr FILENAME.dcm
+</pre></div>
+</div>
+<p>You can also use Matlab to read DICOM header information, but we are not going to do that today. From the Matlab command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt; <span class="nv">info</span> <span class="o">=</span> dicominfo<span class="o">(</span><span class="s1">&#39;FILENAME.dcm&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You most likely will want to work with your data in <a class="reference external" href="https://brainder.org/2012/09/23/the-nifti-file-format/">NIfTI file format</a> (NIfTI = Neuroimaging Informatics Technology Initiative). NIfTI essentially concatenates your DICOM files to make one 3D or 4D file per scan. The first three dimensions define the three spatial dimensions (x, y, and z), and the fourth dimension is time. For example, anatomical scans typically have the three spatial dimensions only, whereas functional scans will have four dimensions (i.e. 3D spatial information captured at multiple timepoints).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can use AFNI to read NIfTI header information</span>
+$ nifti_tool -disp_hdr -infiles FILENAME.nii.gz
+
+<span class="c1"># you can also use FSL</span>
+$ module load fsl
+$ fslhd FILENAME.nii.gz <span class="c1">#full header information</span>
+$ fslinfo FILENAME.nii.gz <span class="c1">#abbreviated header information</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="some-maintenance-steps">
+<h2>Some maintenance steps<a class="headerlink" href="#some-maintenance-steps" title="Permalink to this headline">¶</a></h2>
+<p>Before we move on, let’s revisit some of what was covered in weeks 1 and 2 (conda, vim, aliases, git). We are going to install a new package in our conda environment, add a new alias to our <cite>.bashrc</cite>, update a few lines of code in our preprocessing scripts, and commit and push those changes to GitHub.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># update our conda environment and install the pydeface (and tmux) package(s)</span>
+$ conda update -n base -c defaults conda
+$ conda activate pygers
+$ pip install pydeface
+$ conda install -c conda-forge tmux <span class="c1">#you only need to install this package if you are working in a local (not PNI server) environment</span>
+
+<span class="c1"># Make your life easier!</span>
+<span class="c1"># add a conquest alias to .bashrc or .bash_profile</span>
+$ vim ~/.bashrc <span class="c1">#if you are on the server</span>
+<span class="c1"># vim ~/.bash_profile if you are on your local machine</span>
+
+<span class="c1"># enter insert mode (i) and add the following:</span>
+<span class="c1"># alias &#39;conquest&#39;=&#39;ls /jukebox/norman/pygers/conquest&#39;</span>
+<span class="c1"># go back to command mode (esc)</span>
+<span class="c1"># :x to save and exit</span>
+
+$ <span class="nb">source</span> .bashrc
+$ conquest
+
+<span class="c1"># update the version of heudiconv in run_heudiconv.py</span>
+$ pygers <span class="c1">#this is an alias to cd to your pygers_workshop directory!</span>
+$ <span class="nb">cd</span> sample_study/code/preprocessing
+$ vim run_heudiconv.py
+
+<span class="c1"># enter insert mode (i) and update line 18:</span>
+<span class="c1"># &quot;/jukebox/hasson/singularity/heudiconv/heudiconv-v0.8.0.simg &quot;</span>
+<span class="c1"># go back to command mode (esc)</span>
+<span class="c1"># :x to save and exit</span>
+
+<span class="c1"># commit those changes using git</span>
+$ git status
+$ git add run_heudiconv.py
+$ git commit -m <span class="s2">&quot;update heudiconv version&quot;</span>
+
+<span class="c1"># remove module load pydeface from deface.sh</span>
+$ vim deface.sh
+
+<span class="c1"># enter insert mode (i) and update line 6:</span>
+<span class="c1"># remove or comment out module load pydeface/2.0.0</span>
+<span class="c1"># go back to command mode (esc)</span>
+<span class="c1"># :x to save and exit</span>
+
+<span class="c1"># do the same for deface_template.sh</span>
+$ vim deface_template.sh
+
+<span class="c1"># commit and push changes using git</span>
+$ git status
+$ git add deface.sh
+$ git add deface_template.sh
+$ git commit -m <span class="s2">&quot;remove module load pydeface&quot;</span>
+
+<span class="c1"># don&#39;t remove .heudiconv in step1_preproc.sh</span>
+$ vim step1_preproc.sh
+
+<span class="c1"># enter insert mode (i) and update line 61:</span>
+<span class="c1"># remove or comment out rm -rf $bids_dir/.heudiconv</span>
+<span class="c1"># go back to command mode (esc)</span>
+<span class="c1"># :x to save and exit</span>
+
+<span class="c1"># commit and push changes using git</span>
+$ git status
+$ git add step1_preproc.sh
+$ git commit -m <span class="s2">&quot;don&#39;t delete .heudiconv&quot;</span>
+$ git status
+$ git push -u origin master
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-heudiconv">
+<h2>Running HeuDiConv<a class="headerlink" href="#running-heudiconv" title="Permalink to this headline">¶</a></h2>
+<p><em>HeuDiConv</em> (i.e. the <a class="reference external" href="https://heudiconv.readthedocs.io/en/latest/">Heuristic DICOM Converter</a>) is a <strong>package that we use to convert DICOM files to a BIDS-formatted dataset structure</strong>. HeuDiConv (1) uses <cite>dcm2niix</cite> under the hood to automatically convert your DICOM files to NIfTI, (2) places metadata for each scan into a <cite>.json</cite> sidecar file, (3) creates an empty <cite>events.tsv</cite> file for each functional scan (that you will eventually need to populate with information about your task events and timing), and (4) organizes all of these files following the BIDS directory structure.</p>
+<p>Example BIDS directory structure based on the program card above:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├── bids
+│   ├── CHANGES
+│   ├── dataset_description.json
+│   ├── derivatives
+│   ├── participants.tsv
+│   ├── README
+│   ├── sub-101
+│   │   ├── ses-00
+│   │   │   ├── anat
+│   │   │   │   ├── sub-101_ses-00_T1w.json
+│   │   │   │   └── sub-101_ses-00_T1w.nii.gz
+│   │   │   ├── fmap
+│   │   │   │   ├── sub-101_ses-00_dir-AP_magnitude.json
+│   │   │   │   ├── sub-101_ses-00_dir-AP_magnitude.nii.gz
+│   │   │   │   ├── sub-101_ses-00_dir-PA_magnitude.json
+│   │   │   │   └── sub-101_ses-00_dir-PA_magnitude.nii.gz
+│   │   │   ├── func
+│   │   │   │   ├── sub-101_ses-00_task-localizer_run-01_bold.json
+│   │   │   │   ├── sub-101_ses-00_task-localizer_run-01_bold.nii.gz
+│   │   │   │   ├── sub-101_ses-00_task-localizer_run-01_events.tsv
+│   │   │   └── sub-101_ses-00_scans.tsv
+│   │   ├── ses-01
+│   │   │   ├── anat
+│   │   │   │   ├── sub-101_ses-01_T1w.json
+│   │   │   │   └── sub-101_ses-01_T1w.nii.gz
+│   │   │   ├── fmap
+│   │   │   │   ├── sub-101_ses-01_dir-AP_magnitude.json
+│   │   │   │   ├── sub-101_ses-01_dir-AP_magnitude.nii.gz
+│   │   │   │   ├── sub-101_ses-01_dir-PA_magnitude.json
+│   │   │   │   └── sub-101_ses-01_dir-PA_magnitude.nii.gz
+│   │   │   ├── func
+│   │   │   │   ├── sub-101_ses-01_task-study_run-01_bold.json
+│   │   │   │   ├── sub-101_ses-01_task-study_run-01_bold.nii.gz
+│   │   │   │   ├── sub-101_ses-01_task-study_run-01_events.tsv
+│   │   │   └── sub-101_ses-01_scans.tsv
+│   │   └── ses-02
+│   │       ├── anat
+│   │       │   ├── sub-101_ses-02_T1w.json
+│   │       │   ├── sub-101_ses-02_T1w.nii.gz
+│   │       │   ├── sub-101_ses-02_T2w.json
+│   │       │   └── sub-101_ses-02_T2w.nii.gz
+│   │       ├── fmap
+│   │       │   ├── sub-101_ses-02_dir-AP_magnitude.json
+│   │       │   ├── sub-101_ses-02_dir-AP_magnitude.nii.gz
+│   │       │   ├── sub-101_ses-02_dir-PA_magnitude.json
+│   │       │   └── sub-101_ses-02_dir-PA_magnitude.nii.gz
+│   │       ├── func
+│   │       │   ├── sub-101_ses-02_task-postscenes_run-01_bold.json
+│   │       │   ├── sub-101_ses-02_task-postscenes_run-01_bold.nii.gz
+│   │       │   ├── sub-101_ses-02_task-postscenes_run-01_events.tsv
+│   │       └── sub-101_ses-02_scans.tsv
+│   ├── task-decision_bold.json
+│   ├── task-familiarization_bold.json
+│   ├── task-localizer_bold.json
+│   └── task-postfaces_bold.json
+│   └── task-postscenes_bold.json
+│   └── task-reward_bold.json
+│   └── task-study_bold.json
+</pre></div>
+</div>
+<p>There are a few steps that need to be taken before we can run HeuDiConv. We have packaged these steps into a script called <span class="blue">step1_preproc.sh</span>. There is detailed documentation of the <span class="blue">step1_preproc.sh</span> script on our <a class="reference external" href="../03-01-converting.html">Converting data to BIDS using HeuDiConv</a> handbook page. In short, <span class="blue">step1_preproc.sh</span> does five things for you:</p>
+<ol class="arabic simple">
+<li><p>copies your DICOM files from conquest and place them in your study directory (in <span class="blue">/data/dicom</span>)</p></li>
+<li><p>counts the number of volumes in each run so you can double check that your data transfer was successful</p></li>
+<li><p>unzips the DICOMs in your study directory</p></li>
+<li><p>runs HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIfTI files (.nii)</p></li>
+<li><p>defaces your T1w anatomical image and set it aside in your derivatives directory (in <span class="blue">/data/bids/derivatives/deface</span>)</p></li>
+</ol>
+<p>You can run <span class="blue">step1_preproc.sh</span> as soon as your data have finished transferring from the scanner to conquest. I typically finish my last scan, start the data transfer to conquest, and by the time I have wrapped up with the participant and cleaned up at the scanner, my data transfer has finished. I then begin running <span class="blue">step1_preproc.sh</span> and my data are available in NIfTI format in my study directory approximately 30 min later!</p>
+<p>We recommend running the <span class="blue">step1_preproc.sh</span> script in a tmux window. Tmux is a way to create a persistent server session, which means that if I close my laptop or lose connection to the server, the script will keep running uninterrupted. In the scenario above, this is really useful because I can begin running <span class="blue">step1_preproc.sh</span> before I leave the scanner room, then I can close my laptop and walk back to my office, go get lunch, etc. and the script will keep running. Be sure to checkout our handbook <a class="reference external" href="./tmux.html">guide to using tmux</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a tmux session called heudiconv</span>
+$ tmux new -s heudiconv
+
+<span class="c1"># practice using tmux:</span>
+<span class="c1"># detach using ctrl+b, d</span>
+<span class="c1"># attach to an existing session</span>
+$ tmux a -t heudiconv
+
+<span class="c1"># in your tmux window, make sure you are in your code/preprocessing directory</span>
+$ <span class="nb">pwd</span>
+
+<span class="c1"># activate your conda environment in your tmux session!</span>
+$ conda activate pygers
+
+<span class="c1"># get the name of the conquest directory that contains the dicom files you want to convert</span>
+$ conquest <span class="c1">#using our alias!</span>
+
+<span class="c1"># run step1_preproc.sh with 3 inputs:</span>
+<span class="c1"># (1) subject ID -- this is how you want this subject listed in your BIDS directory</span>
+<span class="c1"># (2) session ID -- this should match how your runs were named on the scanner console</span>
+<span class="c1"># (3) conquest directory -- the name of the folder that contains your DICOM files for this subject, this session</span>
+
+$ ./step1_preproc.sh <span class="m">001</span> <span class="m">01</span> 0219191_mystudy-0219-1114
+</pre></div>
+</div>
+<p>We can let HeuDiConv run in our tmux session and next week we will explore the output of HeuDiConv!</p>
+<p><a class="reference external" href="./syllabus2020.html">Return to workshop info</a></p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+<div class="footer">
+  <div style="text-align: left;" id="waldo-tag-2171"></div>
+  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+</div>
+
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>
