@@ -336,9 +336,14 @@ Refresh your GitHub page online. You should be able to see the contents inside :
 
     $ git status # .DS_Store should appear in the list of untracked files
     $ vim .gitignore
-    $ .DS_Store
+
+    # enter insert mode (i) and add the following:
+    # .DS_Store
+    # go back to command mode (esc)
+    # :x to save and exit
+
     $ git add .gitignore
-    $ git commit -m 'adding gitignore'
+    $ git commit -m "adding gitignore"
     $ git push
     $ git status # .DS_Store should NOT appear in the list of untracked files
 
@@ -348,14 +353,14 @@ Refresh your GitHub page online. You should be able to see the contents inside :
 - Set the **scanner_dir** to the location where the data lives:
     - for PNI folks, the location is :blue:`/jukebox/norman/pygers/conquest`
     - fot non-PNI folks, this should be the path to where you downloaded and saved the sample data
-- Edit **project_dir** to where you have the sample_study code (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)
+- Edit **project_dir** to where you have the sample_study directory (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)
 
 Now, you need to commit and push the changes to your globals.sh file:
 
 .. code-block:: bash
 
     $ git add preprocessing/globals.sh
-    $ git commit -m 'updating globals directory'
+    $ git commit -m "updating globals directory"
     $ git push
 
 
