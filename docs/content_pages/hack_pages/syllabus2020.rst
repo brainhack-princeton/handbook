@@ -93,7 +93,7 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 -------------------------------------------------------------------------------
 `Week 3 Notes <./workshop_notes_week3.html>`_
 
-Week 3 Recording (not yet available)
+`Week 3 Recording <https://drive.google.com/file/d/1a5qXJWU2FTJr6ZdK2I1RRkd1-ReZNhBb/view?usp=sharing>`_
 
 **Date: Thursday, October 22 10-11am EST**
 
@@ -114,7 +114,7 @@ Week 3 Recording (not yet available)
 
 3. *If you do not have PNI server access*, install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_.
 
-4. *Optional: If you are working on your home institution's server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own heudiconv Singularity image that can live on your instiution's server. 
+4. *Optional: If you are working on your home institution's server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own heudiconv Singularity image that can live on your institution's server. 
 
 .. code-block:: bash
 
@@ -134,15 +134,23 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 
 **Preparation:**
 
-1. Install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ and/or `AFNI <https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/background_install/install_instructs/index.html>`_ (your choice!)
+1. `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.  
 
-2. `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.   
-
-3. *If you do not have PNI server access*, build your own MRIQC and fMRIPrep singularity images
+2. *Everybody, even if you have been working on the PNI server*: If you do not have a version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ installed locally, then we recommend creating a conda environment on your local machine (you can follow the instructions for Local installation in our `Week 2 Notes <./workshop_notes_week2.html>`_). After installing conda and creating a new conda environment, you can install the FSLeyes package (you don't need to install the git, numpy, pandas, jupyter packages unless you want to). 
 
 .. code-block:: bash
 
-	we will provide code here
+	conda install -c conda-forge fsleyes
+
+3. *Optional: If you are working on your home institution's server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own MRIQC and fMRIPrep Singularity images that can live on your institution's server. 
+
+.. code-block:: bash
+
+	singularity build mriqc-0.15.1.simg docker://poldracklab/mriqc:0.15.1
+
+	singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
+
+4. *If you want to run MRIQC and fMRIPrep on your local machine*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_. 
 
 Week 5: Understanding MRIQC and fMRIPrep outputs
 ------------------------------------------------
