@@ -143,10 +143,13 @@ Helpful SLURM commands:
 
 .. code-block:: bash
 
-    $ sbatch            #submit a job
-    $ squeue            #list all jobs running
-    $ squeue -u <netID> #list your jobs
-    $ scancel <jobID>   #cancel a job
+    $ sbatch <script.sh>        #submit a job
+    $ squeue                    #list all jobs running
+    $ squeue -u <netID>         #list your jobs
+    $ scancel <jobID>           #cancel a job
+    $ scancel -u <netID>        #cancel all your jobs
+    $ scontrol hold <jobID>     #hold a job from being scheduled
+    $ scontrol release <jobID>  #release a job to be scheduled
 
 `Return to workshop info <./syllabus2020.html>`_
 
