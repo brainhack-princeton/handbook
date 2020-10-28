@@ -122,11 +122,15 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 
 Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
+`Week 4 Notes <./workshop_notes_week4.html>`_
+
+Week 4 Recording (not yet available)
+
 **Date: Thursday, October 29 10-11am EST**
 
 **Topics Covered:**
 
-* Data visualization
+* Data visualization using FSLeyes and AFNI
 * Using the `BIDS Validator <https://bids-standard.github.io/bids-validator/>`_
 * Using SLURM to schedule jobs on the PNI server
 * Running `MRIQC <https://mriqc.readthedocs.io/en/stable/>`_
@@ -134,9 +138,9 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 
 **Preparation:**
 
-1. `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.  
+1. *Everybody*: `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.  
 
-2. *Everybody, even if you have been working on the PNI server*: If you do not have a version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_ installed locally, then we recommend creating a conda environment on your local machine (you can follow the instructions for Local installation in our `Week 2 Notes <./workshop_notes_week2.html>`_). After installing conda and creating a new conda environment, you can install the FSLeyes package (you don't need to install the git, numpy, pandas, jupyter packages unless you want to). 
+2. *Everybody, even if you have been working on the PNI server*: We recommend that you have a local version of FSLeyes available. This is because *remotely* accessing the module on the PNI server to view images is quite slow and clunky. It is much faster to use a local version of FSLeyes. You can either a) install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_, which includes FSLeyes (if you already have a local FSL installed after last week you are good to go!) OR b) install conda on your local machine (you can follow the instructions for Local installation in our `Week 2 Notes <./workshop_notes_week2.html>`_) and create a new local conda environment. After creating your new conda environment, you can install the FSLeyes package (you don't need to install the git, numpy, pandas, jupyter packages from Week 2 unless you want to). 
 
 .. code-block:: bash
 
@@ -150,7 +154,7 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 
 	singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
 
-4. *If you want to run MRIQC and fMRIPrep on your local machine*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_. 
+4. *Optional: If you want to run MRIQC and fMRIPrep on your local machine*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_. 
 
 Week 5: Understanding MRIQC and fMRIPrep outputs
 ------------------------------------------------

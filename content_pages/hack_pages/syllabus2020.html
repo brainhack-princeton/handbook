@@ -226,10 +226,12 @@
 </div>
 <div class="section" id="week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep">
 <h3>Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)<a class="headerlink" href="#week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="./workshop_notes_week4.html">Week 4 Notes</a></p>
+<p>Week 4 Recording (not yet available)</p>
 <p><strong>Date: Thursday, October 29 10-11am EST</strong></p>
 <p><strong>Topics Covered:</strong></p>
 <ul class="simple">
-<li><p>Data visualization</p></li>
+<li><p>Data visualization using FSLeyes and AFNI</p></li>
 <li><p>Using the <a class="reference external" href="https://bids-standard.github.io/bids-validator/">BIDS Validator</a></p></li>
 <li><p>Using SLURM to schedule jobs on the PNI server</p></li>
 <li><p>Running <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/">MRIQC</a></p></li>
@@ -237,8 +239,8 @@
 </ul>
 <p><strong>Preparation:</strong></p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/registration.html">Download a FreeSurfer license key</a> and save it in your <span class="blue">pygers_workshop/sample_study/code/preprocessing</span> directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.</p></li>
-<li><p><em>Everybody, even if you have been working on the PNI server</em>: If you do not have a version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a> installed locally, then we recommend creating a conda environment on your local machine (you can follow the instructions for Local installation in our <a class="reference external" href="./workshop_notes_week2.html">Week 2 Notes</a>). After installing conda and creating a new conda environment, you can install the FSLeyes package (you don’t need to install the git, numpy, pandas, jupyter packages unless you want to).</p></li>
+<li><p><em>Everybody</em>: <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/registration.html">Download a FreeSurfer license key</a> and save it in your <span class="blue">pygers_workshop/sample_study/code/preprocessing</span> directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.</p></li>
+<li><p><em>Everybody, even if you have been working on the PNI server</em>: We recommend that you have a local version of FSLeyes available. This is because <em>remotely</em> accessing the module on the PNI server to view images is quite slow and clunky. It is much faster to use a local version of FSLeyes. You can either a) install a local version of <a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX">FSL</a>, which includes FSLeyes (if you already have a local FSL installed after last week you are good to go!) OR b) install conda on your local machine (you can follow the instructions for Local installation in our <a class="reference external" href="./workshop_notes_week2.html">Week 2 Notes</a>) and create a new local conda environment. After creating your new conda environment, you can install the FSLeyes package (you don’t need to install the git, numpy, pandas, jupyter packages from Week 2 unless you want to).</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge fsleyes
 </pre></div>
@@ -252,7 +254,7 @@ singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p><em>If you want to run MRIQC and fMRIPrep on your local machine</em>, it is recommended you use Docker. <a class="reference external" href="https://mriqc.readthedocs.io/en/0.15.1/docker.html#">MRIQC Docker instruction are found here</a>. <a class="reference external" href="https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity">fMRIPrep Docker  instructions are found here</a>.</p></li>
+<li><p><em>Optional: If you want to run MRIQC and fMRIPrep on your local machine</em>, it is recommended you use Docker. <a class="reference external" href="https://mriqc.readthedocs.io/en/0.15.1/docker.html#">MRIQC Docker instruction are found here</a>. <a class="reference external" href="https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity">fMRIPrep Docker  instructions are found here</a>.</p></li>
 </ol>
 </div>
 <div class="section" id="week-5-understanding-mriqc-and-fmriprep-outputs">
