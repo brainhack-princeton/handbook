@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pygers Workshop Notes - Week 4 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <title>Pygers Workshop Notes - Week 5 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -14,7 +14,7 @@
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/language_data.js"></script>
-    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/workshop_notes_week4.html" />
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/workshop_notes_week5.html" />
     <link rel="shortcut icon" href="../../_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -31,8 +31,8 @@
   </style>
 
   
-  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week4/"/>
-  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week4">
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week5/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/workshop_notes_week5">
   
 
   <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Pygers Workshop Notes - Week 4 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:title" content="Pygers Workshop Notes - Week 5 (Fall 2020) &#8212; The Princeton Handbook for Reproducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -89,11 +89,9 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Pygers Workshop Notes - Week 4 (Fall 2020)</a><ul>
-<li><a class="reference internal" href="#exploring-the-outputs-of-heudiconv">Exploring the outputs of HeuDiConv</a></li>
-<li><a class="reference internal" href="#looking-at-sam-s-brain">Looking at Sam’s brain!</a></li>
+<li><a class="reference internal" href="#">Pygers Workshop Notes - Week 5 (Fall 2020)</a><ul>
 <li><a class="reference internal" href="#using-the-bids-validator">Using the BIDS validator</a><ul>
-<li><a class="reference internal" href="#to-be-continued-week-5">To be continued (week 5)…</a></li>
+<li><a class="reference internal" href="#picking-up-where-we-left-off-last-week">Picking up where we left off last week…</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#preparing-to-run-mriqc-and-fmriprep">Preparing to run MRIQC and fMRIPrep</a></li>
@@ -130,85 +128,12 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="pygers-workshop-notes-week-4-fall-2020">
-<h1>Pygers Workshop Notes - Week 4 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-4-fall-2020" title="Permalink to this headline">¶</a></h1>
-<style> .blue {color:blue} </style><div class="section" id="exploring-the-outputs-of-heudiconv">
-<h2>Exploring the outputs of HeuDiConv<a class="headerlink" href="#exploring-the-outputs-of-heudiconv" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check the status of step1_preproc.sh in your tmux session</span>
-$ tmux ls <span class="c1">#list available tmux windows</span>
-$ tmux a -t heudiconv <span class="c1">#attach to heudiconv tmux window</span>
-<span class="c1"># ctrl + b, d to detach from tmux window</span>
-
-<span class="c1"># explore data/dicom</span>
-$ pygers <span class="c1">#cd to pygers directory</span>
-$ <span class="nb">cd</span> sample_study/data/dicom
-$ ls
-$ ls check_volumes/
-$ cat check_volumes/001_01_index.csv
-$ ls 0219191_mystudy-0219-1114/dcm/ <span class="c1">#unzipped dicoms!</span>
-
-<span class="c1"># explore data/bids</span>
-$ <span class="nb">cd</span> ../bids/
-$ tree
-$ ls -a
-$ <span class="nb">cd</span> .heudiconv/001/ses-01/info
-$ ls
-
-<span class="c1"># look at a nifti header</span>
-$ module load fsl
-$ <span class="nb">cd</span> sub-001/ses-01/func/
-$ fslhd sub-001_ses-01_task-story_run-01_bold.nii.gz
-$ fslinfo sub-001_ses-01_task-story_run-01_bold.nii.gz
-</pre></div>
-</div>
-</div>
-<div class="section" id="looking-at-sam-s-brain">
-<h2>Looking at Sam’s brain!<a class="headerlink" href="#looking-at-sam-s-brain" title="Permalink to this headline">¶</a></h2>
-<p>Make sure you have mounted a server volume (via Finder) so that you can access files on the server from a <em>local</em> Terminal.</p>
-<p>Now open a <em>local</em> Terminal and work from there:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate local conda environment (see week 4 preparation)</span>
-$ conda activate pygers
-$ conda list <span class="c1">#check that fsleyes package is installed</span>
-<span class="c1"># if fsleyes package is NOT installed:</span>
-$ conda install -c conda-forge fsleyes
-
-<span class="c1"># open original T1w and defaced T1w in FSLeyes</span>
-$ <span class="nb">cd</span> /Volumes/LAB/YOURDIRECTORY/pygers_workshop/sample_study/data/bids
-$ fsleyes derivatives/deface/sub-001_ses-01_T1w_defaced.nii.gz sub-001/ses-01/anat/sub-001_ses-01_T1w.nii.gz <span class="p">&amp;</span>
-
-<span class="c1"># open a functional time-series</span>
-$ fsleyes sub-001/ses-01/func/sub-001_ses-01_task-story_run-01_bold.nii.gz <span class="p">&amp;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="using-the-bids-validator">
+  <div class="section" id="pygers-workshop-notes-week-5-fall-2020">
+<h1>Pygers Workshop Notes - Week 5 (Fall 2020)<a class="headerlink" href="#pygers-workshop-notes-week-5-fall-2020" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style><div class="section" id="using-the-bids-validator">
 <h2>Using the BIDS validator<a class="headerlink" href="#using-the-bids-validator" title="Permalink to this headline">¶</a></h2>
-<p>You can always use the <a class="reference external" href="https://bids-standard.github.io/bids-validator/">browser version</a> of the BIDS validator. However, if you have a large dataset to validate, this could take awhile.</p>
-<p>We are going to use our own installation of the BIDS validator on the server. Go back to your <em>scotty</em> Terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conda activate pygers
-$ node -v <span class="c1">#check your version of node</span>
-$ conda install -c conda-forge <span class="nv">nodejs</span><span class="o">=</span><span class="m">11</span> <span class="c1">#install a newer version of node</span>
-$ node -v <span class="c1">#check new version (11.14.0)</span>
-$ npm install -g bids-validator
-$ which bids-validator
-$ bids-validator -v <span class="c1">#1.5.7</span>
-
-<span class="c1"># run bids-validator; input is a bids directory</span>
-$ pygers
-$ bids-validator sample_study/data/bids/
-</pre></div>
-</div>
-<p>Examine the ERRORS (red) and WARNINGS (yellow). Errors need to be fixed before proceeding! Warnings should be fixed before publishing.</p>
-<p>First we will fill in fields with “TODO” in the following three files:</p>
-<ul class="simple">
-<li><p><span class="blue">/data/bids/task-faces_bold.json</span></p></li>
-<li><p><span class="blue">/data/bids/task-sound_bold.json</span></p></li>
-<li><p><span class="blue">/data/bids/task-story_bold.json</span></p></li>
-</ul>
-<p><a class="reference external" href="https://www.cognitiveatlas.org/tasks/a/">Cognitive Atlas</a> to lookup tasks for <cite>CogAtlasID</cite> field.</p>
-<p><strong>This is where we ended week 4! The remaining content on this page will be covered in week 5.</strong></p>
-<div class="section" id="to-be-continued-week-5">
-<h3>To be continued (week 5)…<a class="headerlink" href="#to-be-continued-week-5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="picking-up-where-we-left-off-last-week">
+<h3>Picking up where we left off last week…<a class="headerlink" href="#picking-up-where-we-left-off-last-week" title="Permalink to this headline">¶</a></h3>
 <p>Next, open and edit <span class="blue">/code/preprocessing/step2_preproc.sh</span>. This script will delete scout and _dup scans, as well as add the <cite>IntendedFor</cite> field to the fieldmap <cite>.json</cite> files. Since we did not collect fieldmap scans for our sample dataset, we don’t need the <cite>IntendedFor</cite> field and will comment out lines 20-66. Don’t forget to git commit your changes to <span class="blue">step2_preproc.sh</span>!</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> code/preprocessing/
 $ git status
