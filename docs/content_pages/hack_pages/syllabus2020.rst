@@ -124,7 +124,7 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
 `Week 4 Notes <./workshop_notes_week4.html>`_
 
-Week 4 Recording (not yet available)
+`Week 4 Recording <https://drive.google.com/file/d/1A5MQlOHGeQ4JE_NmcxT04g2waoI98YcE/view?usp=sharing>`_
 
 **Date: Thursday, October 29 10-11am EST**
 
@@ -161,11 +161,13 @@ Week 5 Recording (not yet available)
 
 **Preparation:**
 
-1. *Everybody*: Make sure you are caught up thru week 4!
+1. *Everybody*: Make sure you are caught up thru week 4!   
 
 2. *Everybody*: `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.
 
-3. *Optional: If you are working on a non-PNI server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own MRIQC and fMRIPrep Singularity images that can live on your institution's server. 
+3. *Everybody, Optional*: If you want to get a head start on week 5 content, follow the instructions in the section titled, "Preparing to run MRIQC and fMRIPrep" in the `Week 5 notes <./workshop_notes_week5.html>`_ to (i) setup your work directory on `scratch` and (ii) edit the following scripts: `globals.sh`, `deface_template.sh`, `run_mriqc.sh`, `run_mriqc_group.sh`, `run_fmriprep.sh`.
+
+4. *Optional: If you are working on a non-PNI server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own MRIQC and fMRIPrep Singularity images that can live on your institution's server. 
 
 .. code-block:: bash
 
@@ -173,7 +175,7 @@ Week 5 Recording (not yet available)
 
 	singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
 
-4. *Optional: If you want to run MRIQC and fMRIPrep on your local machine*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_.
+5. *Optional: If you want to run MRIQC and fMRIPrep locally*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_.
 
 Week 6: Version controlling your data
 -------------------------------------

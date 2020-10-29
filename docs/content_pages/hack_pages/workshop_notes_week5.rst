@@ -65,7 +65,28 @@ Open the following scripts in your text editor and make the following edits:
     scratch_dir=/jukebox/scratch/YOURDIRECTORY/work/pygers
     # if you are not at PNI, this will be the path to sample_study/data/work
 
-For the next three scripts, there are some substantial modifications we need to make in order to use the newest versions of MRIQC and fMRIPrep. Instead of listing each individual change, I have copied each script below. You should modify your copy of each of these scripts to match. 
+For the next four scripts, there are some substantial modifications we need to make in order to use the newest versions of MRIQC and fMRIPrep. Instead of listing each individual change, I have copied each script below. You should modify your copy of each of these scripts to match. 
+
+* :blue:`deface_template.sh`
+
+.. code-block:: bash
+
+    #! /bin/bash
+
+    # LOAD GLOBAL VARIABLES AND MODULES ON THE CLUSTER
+    source globals.sh   
+    module load fsl/6.0.2
+    module load pydeface/2.0.0
+
+    sid=$1
+
+    subj_dir=sub-$sid
+
+    T1=$bids_dir/derivatives/fmriprep/$subj_dir/ses-01/anat/${subj_dir}_ses-01_desc-preproc_T1w.nii.gz
+    pydeface $T1
+
+    T1_defaced=$bids_dir/derivatives/fmriprep/$subj_dir/ses-01/anat/${subj_dir}_ses-01_desc-preproc_T1w_defaced.nii.gz
+    mv $T1_defaced $defaced_dir
 
 * :blue:`run_mriqc.sh`
 
@@ -137,6 +158,8 @@ Commit your changes!
     $ git status
     $ git add globals.sh
     $ git commit -m "add scratch_dir"
+    $ git add deface_template.sh
+    $ git commit -m "update fmriprep anat directory"
     $ git add run_mriqc.sh
     $ git add run_mriqc_group.sh
     $ git commit -m "update MRIQC version; send work to scratch"
@@ -151,7 +174,7 @@ Open the following scripts in your text editor and make the following edits:
 
 * :blue:`slurm_mriqc.sh`: (Line 25) add your email address.
 
-* :blue:`slurm_fmriprep.sh`: (Line 12) reduce requested time to 12:00:00; (Line 25) add your email address.
+* :blue:`slurm_fmriprep.sh`: (Line 12) reduce requested time to 18:00:00; (Line 25) add your email address.
 
 Commit your changes! 
 
