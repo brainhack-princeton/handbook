@@ -1,7 +1,7 @@
 :orphan:
 
 ==========================================
-Pygers Workshop Notes - Week 4 (Fall 2020)
+Pygers Workshop Notes - Week 5 (Fall 2020)
 ==========================================
 
 .. raw:: html
@@ -10,97 +10,11 @@ Pygers Workshop Notes - Week 4 (Fall 2020)
 
 .. role:: blue
 
-
-Exploring the outputs of HeuDiConv
-----------------------------------
-
-.. code-block:: bash
-
-    # check the status of step1_preproc.sh in your tmux session
-    $ tmux ls #list available tmux windows
-    $ tmux a -t heudiconv #attach to heudiconv tmux window
-    # ctrl + b, d to detach from tmux window
-
-    # explore data/dicom
-    $ pygers #cd to pygers directory
-    $ cd sample_study/data/dicom
-    $ ls
-    $ ls check_volumes/
-    $ cat check_volumes/001_01_index.csv
-    $ ls 0219191_mystudy-0219-1114/dcm/ #unzipped dicoms!
-
-    # explore data/bids
-    $ cd ../bids/
-    $ tree
-    $ ls -a
-    $ cd .heudiconv/001/ses-01/info
-    $ ls
-
-    # look at a nifti header
-    $ module load fsl
-    $ cd sub-001/ses-01/func/
-    $ fslhd sub-001_ses-01_task-story_run-01_bold.nii.gz
-    $ fslinfo sub-001_ses-01_task-story_run-01_bold.nii.gz
-
-Looking at Sam's brain!
------------------------
-
-Make sure you have mounted a server volume (via Finder) so that you can access files on the server from a *local* Terminal. 
-
-Now open a *local* Terminal and work from there: 
-
-.. code-block:: bash
-
-    # activate local conda environment (see week 4 preparation)
-    $ conda activate pygers
-    $ conda list #check that fsleyes package is installed
-    # if fsleyes package is NOT installed:
-    $ conda install -c conda-forge fsleyes
-
-    # open original T1w and defaced T1w in FSLeyes
-    $ cd /Volumes/LAB/YOURDIRECTORY/pygers_workshop/sample_study/data/bids
-    $ fsleyes derivatives/deface/sub-001_ses-01_T1w_defaced.nii.gz sub-001/ses-01/anat/sub-001_ses-01_T1w.nii.gz &
-
-    # open a functional time-series
-    $ fsleyes sub-001/ses-01/func/sub-001_ses-01_task-story_run-01_bold.nii.gz &
-
 Using the BIDS validator
 ------------------------
 
-You can always use the `browser version <https://bids-standard.github.io/bids-validator/>`_ of the BIDS validator. However, if you have a large dataset to validate, this could take awhile. 
-
-We are going to use our own installation of the BIDS validator on the server. Go back to your *scotty* Terminal: 
-
-.. code-block:: bash
-
-    $ conda activate pygers
-    $ node -v #check your version of node
-    $ conda install -c conda-forge nodejs=11 #install a newer version of node
-    $ node -v #check new version (11.14.0)
-    $ npm install -g bids-validator
-    $ which bids-validator
-    $ bids-validator -v #1.5.7
-
-    # run bids-validator; input is a bids directory
-    $ pygers
-    $ bids-validator sample_study/data/bids/
-
-Examine the ERRORS (red) and WARNINGS (yellow). Errors need to be fixed before proceeding! Warnings should be fixed before publishing. 
-
-First we will fill in fields with "TODO" in the following three files: 
-
-* :blue:`/data/bids/task-faces_bold.json`
-
-* :blue:`/data/bids/task-sound_bold.json`
-
-* :blue:`/data/bids/task-story_bold.json`
-
-`Cognitive Atlas <https://www.cognitiveatlas.org/tasks/a/>`_ to lookup tasks for `CogAtlasID` field. 
-
-**This is where we ended week 4! The remaining content on this page will be covered in week 5.** 
-
-To be continued (week 5)...
-***************************
+Picking up where we left off last week...
+*****************************************
 
 Next, open and edit :blue:`/code/preprocessing/step2_preproc.sh`. This script will delete scout and _dup scans, as well as add the `IntendedFor` field to the fieldmap `.json` files. Since we did not collect fieldmap scans for our sample dataset, we don't need the `IntendedFor` field and will comment out lines 20-66. Don't forget to git commit your changes to :blue:`step2_preproc.sh`! 
 

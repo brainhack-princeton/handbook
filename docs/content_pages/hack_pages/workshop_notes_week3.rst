@@ -126,13 +126,9 @@ Before we move on, let's revisit some of what was covered in weeks 1 and 2 (cond
     # go back to command mode (esc)
     # :x to save and exit
 
-    # do the same for deface_template.sh
-    $ vim deface_template.sh
-
     # commit and push changes using git
     $ git status
     $ git add deface.sh
-    $ git add deface_template.sh
     $ git commit -m "remove module load pydeface"
     
     # don't remove .heudiconv in step1_preproc.sh
