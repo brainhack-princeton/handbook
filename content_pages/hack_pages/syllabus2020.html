@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fall 2020 Pygers Workshop &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -97,7 +97,8 @@
 <li><a class="reference internal" href="#week-3-understanding-mri-data-formats-and-standardizing-your-dataset-structure">Week 3: Understanding MRI data formats and standardizing your dataset structure</a></li>
 <li><a class="reference internal" href="#week-4-preparing-your-data-to-run-bids-apps-mriqc-and-fmriprep">Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)</a></li>
 <li><a class="reference internal" href="#week-5-running-mriqc-and-fmriprep">Week 5: Running MRIQC and fMRIPrep</a></li>
-<li><a class="reference internal" href="#week-6-version-controlling-your-data">Week 6: Version controlling your data</a></li>
+<li><a class="reference internal" href="#week-6-exploring-mriqc-and-fmriprep-outputs">Week 6: Exploring MRIQC and fMRIPrep outputs</a></li>
+<li><a class="reference internal" href="#week-7-version-controlling-your-data">Week 7: Version controlling your data</a></li>
 </ul>
 </li>
 </ul>
@@ -246,15 +247,13 @@
 <div class="section" id="week-5-running-mriqc-and-fmriprep">
 <h3>Week 5: Running MRIQC and fMRIPrep<a class="headerlink" href="#week-5-running-mriqc-and-fmriprep" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="./workshop_notes_week5.html">Week 5 Notes</a></p>
-<p>Week 5 Recording (not yet available)</p>
+<p><a class="reference external" href="https://drive.google.com/file/d/1QUdsO85v9ElmsAbOTgWBAr6KL7w3zrkC/view?usp=sharing">Week 5 Recording</a></p>
 <p><strong>Date: Thursday, November 5 10-11am EST</strong></p>
 <p><strong>Topics Covered:</strong></p>
 <ul class="simple">
 <li><p>Using SLURM to schedule jobs on the PNI server</p></li>
 <li><p>Running <a class="reference external" href="https://mriqc.readthedocs.io/en/stable/">MRIQC</a> for data quality control</p></li>
 <li><p>Running <a class="reference external" href="https://fmriprep.org/en/stable/">fMRIPrep</a> for data preprocessing</p></li>
-<li><p>Exploring MRIQC outputs</p></li>
-<li><p>Exploring fMRIPrep outputs</p></li>
 </ul>
 <p><strong>Preparation:</strong></p>
 <ol class="arabic simple">
@@ -272,9 +271,24 @@ singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
 <li><p><em>Optional: If you want to run MRIQC and fMRIPrep locally</em>, it is recommended you use Docker. <a class="reference external" href="https://mriqc.readthedocs.io/en/0.15.1/docker.html#">MRIQC Docker instruction are found here</a>. <a class="reference external" href="https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity">fMRIPrep Docker  instructions are found here</a>.</p></li>
 </ol>
 </div>
-<div class="section" id="week-6-version-controlling-your-data">
-<h3>Week 6: Version controlling your data<a class="headerlink" href="#week-6-version-controlling-your-data" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="week-6-exploring-mriqc-and-fmriprep-outputs">
+<h3>Week 6: Exploring MRIQC and fMRIPrep outputs<a class="headerlink" href="#week-6-exploring-mriqc-and-fmriprep-outputs" title="Permalink to this headline">¶</a></h3>
+<p>Week 6 Recording (not yet available)</p>
 <p><strong>Date: Thursday, November 12 10-11am EST</strong></p>
+<p><strong>Topics Covered:</strong></p>
+<ul class="simple">
+<li><p>What are the different quality control metrics?</p></li>
+<li><p>Understanding different output spaces</p></li>
+</ul>
+<p><strong>Preparation:</strong></p>
+<ol class="arabic simple">
+<li><p>Make sure you are caught up thru week 5!</p></li>
+<li><p>Check out <a class="reference external" href="https://fmriprep.org/en/stable/outputs.html">documentation about fMRIPrep outputs</a>!</p></li>
+</ol>
+</div>
+<div class="section" id="week-7-version-controlling-your-data">
+<h3>Week 7: Version controlling your data<a class="headerlink" href="#week-7-version-controlling-your-data" title="Permalink to this headline">¶</a></h3>
+<p><strong>Date: Thursday, November 19 10-11am EST</strong></p>
 <p><strong>Topics Covered:</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.datalad.org/">DataLad</a> for data version control</p></li>

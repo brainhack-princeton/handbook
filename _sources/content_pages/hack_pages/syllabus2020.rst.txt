@@ -147,7 +147,7 @@ Week 5: Running MRIQC and fMRIPrep
 
 `Week 5 Notes <./workshop_notes_week5.html>`_
 
-Week 5 Recording (not yet available)
+`Week 5 Recording <https://drive.google.com/file/d/1QUdsO85v9ElmsAbOTgWBAr6KL7w3zrkC/view?usp=sharing>`_
 
 **Date: Thursday, November 5 10-11am EST**
 
@@ -156,8 +156,6 @@ Week 5 Recording (not yet available)
 * Using SLURM to schedule jobs on the PNI server
 * Running `MRIQC <https://mriqc.readthedocs.io/en/stable/>`_ for data quality control
 * Running `fMRIPrep <https://fmriprep.org/en/stable/>`_ for data preprocessing
-* Exploring MRIQC outputs
-* Exploring fMRIPrep outputs
 
 **Preparation:**
 
@@ -177,9 +175,27 @@ Week 5 Recording (not yet available)
 
 5. *Optional: If you want to run MRIQC and fMRIPrep locally*, it is recommended you use Docker. `MRIQC Docker instruction are found here <https://mriqc.readthedocs.io/en/0.15.1/docker.html#>`_. `fMRIPrep Docker  instructions are found here <https://fmriprep.org/en/stable/installation.html#container-technologies-docker-and-singularity>`_.
 
-Week 6: Version controlling your data
--------------------------------------
+Week 6: Exploring MRIQC and fMRIPrep outputs
+--------------------------------------------
+
+Week 6 Recording (not yet available)
+
 **Date: Thursday, November 12 10-11am EST**
+
+**Topics Covered:**
+
+* What are the different quality control metrics?
+* Understanding different output spaces
+
+**Preparation:**
+
+1. Make sure you are caught up thru week 5!
+
+2. Check out `documentation about fMRIPrep outputs <https://fmriprep.org/en/stable/outputs.html>`_!
+
+Week 7: Version controlling your data
+-------------------------------------
+**Date: Thursday, November 19 10-11am EST**
 
 **Topics Covered:**
 
