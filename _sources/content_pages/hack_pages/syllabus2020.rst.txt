@@ -178,7 +178,7 @@ Week 5: Running MRIQC and fMRIPrep
 Week 6: Exploring MRIQC and fMRIPrep outputs
 --------------------------------------------
 
-Week 6 Recording (not yet available)
+`Week 6 Recording <https://drive.google.com/file/d/1bgnDcWzEY2VRn7p1ZRo8Etkpm944S-VC/view?usp=sharing>`_
 
 **Date: Thursday, November 12 10-11am EST**
 
@@ -191,7 +191,9 @@ Week 6 Recording (not yet available)
 
 1. Make sure you are caught up thru week 5!
 
-2. Check out `documentation about fMRIPrep outputs <https://fmriprep.org/en/stable/outputs.html>`_!
+2. Check out the `documentation about MRIQC outputs <https://mriqc.readthedocs.io/en/latest/reports.html>`_!
+
+3. Check out the `documentation about fMRIPrep outputs <https://fmriprep.org/en/stable/outputs.html>`_!
 
 Week 7: Version controlling your data
 -------------------------------------
