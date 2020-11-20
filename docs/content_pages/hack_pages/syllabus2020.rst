@@ -197,6 +197,9 @@ Week 6: Exploring MRIQC and fMRIPrep outputs
 
 Week 7: Version controlling your data
 -------------------------------------
+
+`Week 7 Recording <https://drive.google.com/file/d/1H-mS2E8h-GsNf3jrTWgxRbotpftTvX3K/view?usp=sharing>`_
+
 **Date: Thursday, November 19 10-11am EST**
 
 **Topics Covered:**
