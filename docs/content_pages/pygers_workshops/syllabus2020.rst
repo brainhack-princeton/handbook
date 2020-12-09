@@ -35,7 +35,7 @@ Workshop Overview
 
 Week 1: Intro to high performance computing at PNI and Terminal basics
 ----------------------------------------------------------------------
-`Week 1 Notes <./workshop_notes_week1.html>`_
+`Week 1 Notes <./fall_2020/workshop_notes_week1.html>`_
 
 `Week 1 Recording <https://drive.google.com/file/d/13m0NUQYX5JDxHNQvTvfIzFUERdr0x34J/view?usp=sharing>`_
 
@@ -70,7 +70,7 @@ Week 1: Intro to high performance computing at PNI and Terminal basics
 
 Week 2: Using Git and GitHub
 ----------------------------
-`Week 2 Notes <./workshop_notes_week2.html>`_
+`Week 2 Notes <./fall_2020/workshop_notes_week2.html>`_
 
 `Week 2 Recording <https://drive.google.com/file/d/1ZOHSzpozPh2OP8Nvq2h1lDbMdmuUuT0Q/view?usp=sharing>`_
 
@@ -91,7 +91,7 @@ Week 2: Using Git and GitHub
 
 Week 3: Understanding MRI data formats and standardizing your dataset structure
 -------------------------------------------------------------------------------
-`Week 3 Notes <./workshop_notes_week3.html>`_
+`Week 3 Notes <./fall_2020/workshop_notes_week3.html>`_
 
 `Week 3 Recording <https://drive.google.com/file/d/1a5qXJWU2FTJr6ZdK2I1RRkd1-ReZNhBb/view?usp=sharing>`_
 
@@ -122,7 +122,7 @@ Week 3: Understanding MRI data formats and standardizing your dataset structure
 
 Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 -----------------------------------------------------------------
-`Week 4 Notes <./workshop_notes_week4.html>`_
+`Week 4 Notes <./fall_2020/workshop_notes_week4.html>`_
 
 `Week 4 Recording <https://drive.google.com/file/d/1A5MQlOHGeQ4JE_NmcxT04g2waoI98YcE/view?usp=sharing>`_
 
@@ -136,7 +136,7 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 
 **Preparation:**
 
-1. *Everybody, even if you have been working on the PNI server*: We recommend that you have a local version of FSLeyes available. This is because *remotely* accessing the module on the PNI server to view images is quite slow and clunky. It is much faster to use a local version of FSLeyes. You can either a) install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_, which includes FSLeyes (if you already have a local FSL installed after last week you are good to go!) OR b) install conda on your local machine (you can follow the instructions for Local installation in our `Week 2 Notes <./workshop_notes_week2.html>`_) and create a new local conda environment. After creating your new conda environment, you can install the FSLeyes package (you don't need to install the git, numpy, pandas, jupyter packages from Week 2 unless you want to). 
+1. *Everybody, even if you have been working on the PNI server*: We recommend that you have a local version of FSLeyes available. This is because *remotely* accessing the module on the PNI server to view images is quite slow and clunky. It is much faster to use a local version of FSLeyes. You can either a) install a local version of `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation/MacOsX>`_, which includes FSLeyes (if you already have a local FSL installed after last week you are good to go!) OR b) install conda on your local machine (you can follow the instructions for Local installation in our `Week 2 Notes <./fall_2020/workshop_notes_week2.html>`_) and create a new local conda environment. After creating your new conda environment, you can install the FSLeyes package (you don't need to install the git, numpy, pandas, jupyter packages from Week 2 unless you want to). 
 
 .. code-block:: bash
 
@@ -145,7 +145,7 @@ Week 4: Preparing your data to run BIDS apps (MRIQC and fMRIPrep)
 Week 5: Running MRIQC and fMRIPrep
 ----------------------------------
 
-`Week 5 Notes <./workshop_notes_week5.html>`_
+`Week 5 Notes <./fall_2020/workshop_notes_week5.html>`_
 
 `Week 5 Recording <https://drive.google.com/file/d/1QUdsO85v9ElmsAbOTgWBAr6KL7w3zrkC/view?usp=sharing>`_
 
@@ -163,7 +163,7 @@ Week 5: Running MRIQC and fMRIPrep
 
 2. *Everybody*: `Download a FreeSurfer license key <https://surfer.nmr.mgh.harvard.edu/registration.html>`_ and save it in your :blue:`pygers_workshop/sample_study/code/preprocessing` directory. If you have previously downloaded a FreeSurfer license, you can simply save a copy of the same license file in this location.
 
-3. *Everybody, Optional*: If you want to get a head start on week 5 content, follow the instructions in the section titled, "Preparing to run MRIQC and fMRIPrep" in the `Week 5 notes <./workshop_notes_week5.html>`_ to (i) setup your work directory on `scratch` and (ii) edit the following scripts: `globals.sh`, `deface_template.sh`, `run_mriqc.sh`, `run_mriqc_group.sh`, `run_fmriprep.sh`.
+3. *Everybody, Optional*: If you want to get a head start on week 5 content, follow the instructions in the section titled, "Preparing to run MRIQC and fMRIPrep" in the `Week 5 notes <./fall_2020/workshop_notes_week5.html>`_ to (i) setup your work directory on `scratch` and (ii) edit the following scripts: `globals.sh`, `deface_template.sh`, `run_mriqc.sh`, `run_mriqc_group.sh`, `run_fmriprep.sh`.
 
 4. *Optional: If you are working on a non-PNI server*: If `Singularity <https://sylabs.io/singularity/>`_ is available on your server, you can use it to build your own MRIQC and fMRIPrep Singularity images that can live on your institution's server. 
 
