@@ -1,7 +1,7 @@
 .. _designExp:
 
-Principles when designing your fMRI experiment
-----------------------------------------------
+Designing your fMRI experiment
+------------------------------
 
 Add here!
 

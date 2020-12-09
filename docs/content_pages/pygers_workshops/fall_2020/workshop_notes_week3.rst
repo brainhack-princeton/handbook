@@ -24,7 +24,7 @@ If you have already acquired data that does not follow the ReproIn heuristic, do
 
 This is an example of how I have my program card set up:
 
-.. figure:: ../../images/reproin_program_card.png
+.. figure:: ../../../images/reproin_program_card.png
   :width: 500px
   :align: center
   :alt: reproin example
