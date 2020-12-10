@@ -147,8 +147,8 @@ Keep everything synchronized! Follow this workflow when working from computer1 o
 
 .. code-block:: bash
 
-	# make sure you are working with current version of code
-	$ git pull #pull changes from GitHub
+    # make sure you are working with current version of code
+    $ git pull #pull changes from GitHub
 
     # then make some changes...
     # edit a file, add new files, etc.
@@ -166,3 +166,30 @@ Keep everything synchronized! Follow this workflow when working from computer1 o
 
 Git cheat sheet
 ===============
+
+.. code-block:: bash
+
+    $ git init                       #start git tracking in a directory
+    $ git remote add origin <github-repo-url> #link local repo to GitHub repo
+    $ git remote -v                  #verify remote URL
+    $ git clone <github-repo-url>    #copy GitHub repo to local machine
+
+    $ git remote add <shortname> <url> #add a new remote and give it a name
+
+    $ git pull                       #GitHub -> local repo
+    $ git status                     #list modified and untracked files
+    $ git add <filename>             #stage a specific file for commit
+    $ git add --all                  #stage all changes
+    $ git add --update               #stage modified (but not untracked) files
+    $ git commit -m "useful message" #save everything in staging area
+    $ git commit --amend             #edit last commit
+    $ git push -u <remote> <branch>  #local repo -> GitHub, specifying which remote and which branch you want to push to
+    $ git push                       #local repo -> GitHub
+
+    $ git rm --cached <filename>     #untrack a file or directory
+    $ git mv <filename>              #move or rename a file or directory
+
+    $ git log                        #show commit history
+    $ git log --oneline              #show commit history with one line for each commit
+    $ git log -n 1                   #show only last commit
+    $ git log -p                     #show detailed log
