@@ -21,3 +21,5 @@ urllib3
 sphinxcontrib-svg2pdfconverter
 sphinxcontrib-plantuml
 -e git://github.com/mih/autorunrecord.git@cf6a545152f49f0f9e59d3d66d8ffe1bdb46c823#egg=autorunrecord
+sphinxcontrib-bibtex
+pybtex-apa-style
