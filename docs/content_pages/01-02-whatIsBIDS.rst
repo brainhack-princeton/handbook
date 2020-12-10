@@ -11,7 +11,7 @@ What is BIDS (Brain Imaging Data Structure)?
 .. role:: blue
 .. role:: red
 
-Many of the best practices we encourage in this handbook revolve around the Brain Imaging Data Structure (BIDS) [Gorgolewski2016]_. Neuroimaging research relies on complex multimodal data and different software packages have historically used different naming and organization conventions. Different labs and different researchers use idiosyncratic conventions---even the same researcher may use different conventions from experiment to experiment. The goal of `BIDS <https://bids-specification.readthedocs.io/en/stable/>`_ is to create an easy-to-adopt community standard for organizing neuroimaging data. BIDS facilitates:
+Many of the best practices we encourage in this handbook revolve around the Brain Imaging Data Structure (BIDS) [Gorgolewski2016]_. Neuroimaging research relies on complex multimodal data and different software packages have historically used different naming and organization conventions. Different labs and different researchers use idiosyncratic conventions---even the same researcher may use different conventions from experiment to experiment. The goal of `BIDS <https://bids-specification.readthedocs.io/en/stable/>`_ is to create an easy-to-adopt community standard for organizing neuroimaging data. BIDS facilitates: `check`<:ref:`openNeuro`>_
 
 * **Data validation:** Data often has "bugs"---just like software. The `BIDS-Validator <https://github.com/bids-standard/bids-validator>`_ can be used to check the integrity of your BIDS dataset, allowing you to identify potential errors or inconsistencies in the data structure.
 
