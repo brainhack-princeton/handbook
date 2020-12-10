@@ -187,11 +187,6 @@ Resources
 practiCAL fMRI, “Comparing fMRI Protocols”
 https://practicalfmri.blogspot.com/2011/01/comparing-fmri-protocols.html
 
-The BIDS Specification
-https://bids-specification.readthedocs.io/en/stable/02-common-principles.html
-
-ReproIn walkthrough on Siemens Prisma console
-https://github.com/ReproNim/reproin/blob/master/docs/walkthrough-1.md
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
