@@ -73,50 +73,9 @@ underscores separate *entities* (e.g., key–value pairs like “task-study”
 and “run-1”), where as hyphens separate the *suffix* and *extension* of
 each key–value pair (e.g., “run” and “1”).
 
-References
-^^^^^^^^^^
-
-Deichmann, R., Gottfried, J. A., Hutton, C., & Turner, R. (2003).
-Optimized EPI for fMRI studies of the orbitofrontal cortex.
-*NeuroImage*, *19*\ (2), 430-441.
-https://doi.org/10.1016/S1053-8119(03)00073-9
-
-Demetriou, L., Kowalczyk, O. S., Tyson, G., Bello, T., Newbould, R. D.,
-& Wall, M. B. (2018). A comprehensive evaluation of increasing temporal
-resolution with multiband-accelerated protocols and effects on
-statistical outcome measures in fMRI. *NeuroImage*, *176*, 404–416.
-https://doi.org/10.1016/j.neuroimage.2018.05.011
-
-Gardumi, A., Ivanov, D., Hausfeld, L., Valente, G., Formisano, E., &
-Uludağ, K. (2016). The effect of spatial resolution on decoding
-accuracy in fMRI multivariate pattern analysis. *NeuroImage*, *132*,
-32–42. https://doi.org/10.1016/j.neuroimage.2016.02.033
-
-Sengupta, A., Yakupov, R., Speck, O., Pollmann, S., & Hanke, M. (2017).
-The effect of acquisition resolution on orientation decoding from V1
-BOLD fMRI at 7 T. *NeuroImage*, *148*,64–76.
-https://doi.org/10.1016/j.neuroimage.2016.12.040
-
-Mandelkow, H., de Zwart, J. A., & Duyn, J. H. (2017). Effects of
-spatial fMRI resolution on the classification of naturalistic movies.
-*NeuroImage*, *162*, 45–55.
-https://doi.org/10.1016/j.neuroimage.2017.08.053
-
-Weiskopf, N., Hutton, C., Josephs, O., Turner, R., & Deichmann, R.
-(2007). Optimized EPI for fMRI studies of the orbitofrontal cortex:
-compensation of susceptibility-induced gradients in the readout
-direction. *Magnetic Resonance Materials in Physics, Biology and
-Medicine*, *20*\ (1), 39. https://doi.org/10.1007/s10334-006-0067-6
-
-Welvaert, M., & Rosseel, Y. (2013). On the definition of signal-to-noise
-ratio and contrast-to-noise ratio for fMRI data. *PLOS ONE*, *8*\ (11),
-e77089. https://doi.org/10.1371/journal.pone.0077089
 
 Resources
 ^^^^^^^^^
-
-practiCAL fMRI, “Comparing fMRI Protocols”
-https://practicalfmri.blogspot.com/2011/01/comparing-fmri-protocols.html
 
 The BIDS Specification
 https://bids-specification.readthedocs.io/en/stable/02-common-principles.html
