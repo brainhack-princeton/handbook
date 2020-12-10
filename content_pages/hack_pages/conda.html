@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using conda to manage software environments &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/hack_pages/conda.html" />
+    <link rel="shortcut icon" href="../../_static/tigerBrain_favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/hack_pages/conda/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/hack_pages/conda">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Using conda to manage software environments &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../../index.html">
+    <img class="logo" width="500" src="../../_static/tigerBrain.png" title="The Princeton Handbook on Reproducible Neuroimaging"/>
+  </a>
+</p>
+
+<!-- <p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p> -->
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> -->
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using conda to manage software environments</a><ul>
+<li><a class="reference internal" href="#what-is-conda-why-do-we-use-it">What is Conda? Why do we use it?</a></li>
+<li><a class="reference internal" href="#installing-miniconda">Installing Miniconda</a></li>
+<li><a class="reference internal" href="#create-a-new-conda-environment">Create a new conda environment</a></li>
+<li><a class="reference internal" href="#install-packages">Install packages</a></li>
+<li><a class="reference internal" href="#conda-cheat-sheet">Conda cheat sheet</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="using-conda-to-manage-software-environments">
+<h1>Using conda to manage software environments<a class="headerlink" href="#using-conda-to-manage-software-environments" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style><p>Here we will walk you through the steps to setup a “pygers” conda environment with recommended packages installed.</p>
+<div class="section" id="what-is-conda-why-do-we-use-it">
+<h2>What is Conda? Why do we use it?<a class="headerlink" href="#what-is-conda-why-do-we-use-it" title="Permalink to this headline">¶</a></h2>
+<p><em>Conda</em> is a <strong>package manager</strong>, similar to brew, apt, or pip. This package manager keeps track of your Python installation, versions, and dependencies in an encapsulated <strong>environment</strong> that can be easily shared or reproduced. This is helpful if you have multiple projects that require different (potentially conflicting) software versions. You can activate and deactivate conda environments, and we’ll use conda to install new packages into our environment.</p>
+<p><em>Anaconda</em> is a free and open source <strong>software distribution</strong> for scientific computing that is managed by conda. <em>Miniconda</em> is a minimal version of Anaconda.</p>
+<p>Here’s a <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html">conda cheatsheet</a> you can use to familiarize yourself with this package manager.</p>
+</div>
+<div class="section" id="installing-miniconda">
+<h2>Installing Miniconda<a class="headerlink" href="#installing-miniconda" title="Permalink to this headline">¶</a></h2>
+<p>You only need to install Miniconda once; you can create multiple conda environments based off of this Miniconda installation. You can setup a conda environment on your local machine and/or on the PNI server. Follow the correct set of installation instructions below.</p>
+<p>Server installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for Linux in your home directory</span>
+$ <span class="nb">cd</span> ~
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+<span class="c1"># run installation</span>
+$ bash Miniconda3-latest-Linux-x86_64.sh
+
+<span class="c1"># if you don&#39;t want this base environment automatically loaded when you login:</span>
+$ conda config --set auto_activate_base <span class="nb">false</span>
+
+<span class="c1"># source your .bashrc</span>
+$ <span class="nb">source</span> .bashrc
+
+<span class="c1"># you can delete the installation file if you want</span>
+$ rm -r Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Local installation (on MacOSX):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># download latest miniconda for MacOSX in your downloads directory</span>
+$ <span class="nb">cd</span> ~/Downloads
+$ curl -O  https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+
+<span class="c1"># run installation (it should install in your home directory by default)</span>
+$ bash Miniconda3-latest-MacOSX-x86_64.sh
+
+<span class="c1"># if you don&#39;t want this base environment automatically loaded when you login:</span>
+$ conda config --set auto_activate_base <span class="nb">false</span>
+
+<span class="c1"># source your .bash_profile</span>
+$ <span class="nb">cd</span> ~
+$ <span class="nb">source</span> .bash_profile
+
+<span class="c1"># you can delete the installation file if you want</span>
+$ rm -r ~/Downloads/Miniconda3-latest-MacOSX-x86_64.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-new-conda-environment">
+<h2>Create a new conda environment<a class="headerlink" href="#create-a-new-conda-environment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check your conda setup</span>
+$ <span class="nb">cd</span> ~
+$ which conda <span class="c1">#see where it is installed</span>
+$ conda env list <span class="c1">#you should see a base environment listed</span>
+$ conda --version <span class="c1">#latest is 4.9.2 as of Dec-9-2020</span>
+$ conda --help <span class="c1">#useful commands</span>
+
+<span class="c1"># if you need to update conda</span>
+$ conda update -n base -c defaults conda
+
+<span class="c1"># create a new environment called pygers that runs python 3.9</span>
+$ conda create -n pygers <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+$ conda env list
+<span class="c1"># note you could choose to create a conda environment with python=2.7 or any other python version</span>
+
+<span class="c1"># activate your pygers environment</span>
+$ conda activate pygers
+
+<span class="c1"># check your python version</span>
+$ python --version
+
+<span class="c1"># if you need to update python:</span>
+$ conda update python
+
+<span class="c1"># if you want to upgrade between major python versions like 3.8 to 3.9</span>
+$ conda install <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9
+$ python --version
+</pre></div>
+</div>
+<p>Now any time you want to use this conda environment, you will need to <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">pygers</span></code>. When you are done using the environment, you should <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>.</p>
+</div>
+<div class="section" id="install-packages">
+<h2>Install packages<a class="headerlink" href="#install-packages" title="Permalink to this headline">¶</a></h2>
+<p>We recommend you install the following packages into your pygers conda environment as a good starting point. You can always add packages as you need them!</p>
+<p>Recommended packages: git, numpy, pandas, jupyter, nodejs, bids-validator, datalad, pydeface and fsleyes. Note you only need to install pydeface and fsleyes in <em>local</em> conda environments because the PNI server already has pydeface and fsleyes modules available for us to use.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure your pygers environment is activated</span>
+$ conda activate pygers
+
+<span class="c1"># install first four packages</span>
+$ conda install git numpy pandas jupyter
+
+<span class="c1"># check your install; versions listed are latest as of Dec-09-2020</span>
+$ conda list
+$ git --version <span class="c1">#2.29.2</span>
+$ jupyter --version <span class="c1">#core is 4.7.0</span>
+$ python -c <span class="s2">&quot;import numpy; print(numpy.version.version)&quot;</span> <span class="c1">#1.19.4</span>
+$ python -c <span class="s2">&quot;import pandas; print(pandas.__version__)&quot;</span> <span class="c1">#1.1.5</span>
+
+<span class="c1"># install nodejs</span>
+$ conda install -c conda-forge <span class="nv">nodejs</span><span class="o">=</span><span class="m">11</span>
+$ node -v <span class="c1">#check node version (11.14.0)</span>
+
+<span class="c1"># install bids-validator</span>
+$ npm install -g bids-validator
+$ which bids-validator <span class="c1">#shows your installation location</span>
+$ bids-validator -v <span class="c1">#1.5.7</span>
+
+<span class="c1"># install datalad</span>
+$ conda install -c conda-forge datalad
+$ datalad --version <span class="c1">#0.13.5</span>
+
+<span class="c1"># install pydeface and fsleyes (local environment only)</span>
+$ pip install pydeface
+$ pydeface --help <span class="c1">#2.0.0</span>
+$ conda install -c conda-forge fsleyes
+$ fsleyes --version <span class="c1">#0.34.2</span>
+
+<span class="c1"># take a look at all installed packages in pygers environment</span>
+$ conda list
+</pre></div>
+</div>
+</div>
+<div class="section" id="conda-cheat-sheet">
+<h2>Conda cheat sheet<a class="headerlink" href="#conda-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># list available conda environments</span>
+$ conda env list
+$ conda info --envs
+
+<span class="c1"># create a new environment</span>
+$ conda create -n <span class="nv">$myenv</span> <span class="nv">python</span><span class="o">=</span><span class="nv">$version</span>
+
+<span class="c1"># remove a conda environment</span>
+$ conda env remove --name <span class="nv">$myenv</span>
+
+<span class="c1"># activate and deactivate</span>
+$ conda activate <span class="nv">$myenv</span>
+$ conda deactivate
+
+<span class="c1"># update conda</span>
+$ conda --version
+$ conda update -n base -c defaults conda
+
+<span class="c1"># remove a package in the current environment</span>
+$ conda remove <span class="nv">$package</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+<div class="footer">
+  <div style="text-align: left;" id="waldo-tag-2171"></div>
+  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+</div>
+
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>
