@@ -16,102 +16,61 @@ Using DataLad to version control your data
 
 Before we begin, you should be aware that there is already an amazing `DataLad Handbook <http://handbook.datalad.org/en/latest/>`_ with super detailed documentation and tutorials. We definitely recommend you start there when learning about DataLad. The goal of this page is to help you apply DataLad commands and principles to your own BIDS-formatted dataset on your institution's server. 
 
-Do this once: Setup a DataLad conda environment 
-===============================================
+Do this once: Install DataLad in a conda environment 
+====================================================
 
 We recommend installing DataLad in a conda environment on the server. This will allow you to use DataLad to track data you are storing and modifying on the server. 
 
-First, we will have you install the latest version of Miniconda in your home directory in case the conda on the server is not up to date (step 1a). Following the directions below will modify your .bashrc file and make this installation of conda your default when you login to the server. However, we provide commands you can run if you don't want this conda environment automatically activated when you login to the server (step 1b).   
+If you have already setup a pygers conda environment following the instructions on our `conda tip page <hack_pages/conda.html>`_, you are good to go! The DataLad package was installed as part of the setup. Go ahead and login to the server, activate your pygers environment and proceed. 
 
 .. code-block:: bash
 
-    # login to spock (or scotty)
-    $ ssh -XY username@spock.pni.princeton.edu
-    
-    # make sure you do not have any modules loaded:
-    $ module purge
-    
-    # step 1a: install Miniconda
-    $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    $ bash Miniconda3-latest-Linux-x86_64.sh
-    $ source ~/.bashrc
-
-    # step 1b: if you don't want this (base) conda environment automatically activated when you login
-    $ conda config --set auto_activate_base false
-    
-    # check that you see your new miniconda3 environment listed
-    $ conda env list
-
-You should see this new environment listed as 'base'
-
-.. code-block:: bash
-
-    base        */usr/people/netID/miniconda3
-
-After you have the latest version of conda, you are ready to create a datalad conda environment (step 2a). Then you will install DataLad into your datalad conda environment (step 2b). Going forward, any time you want to work with DataLad, you will activate your datalad conda environment and be good to go! 
-
-.. code-block:: bash
-
-    # step 2a: create a new conda environment and name it datalad
-    $ conda create -n datalad
-
-    # check that you see your new datalad conda environment listed
-    $ conda env list
-
-You should see datalad listed as one of the environments built off of your miniconda3 base environment:
-
-.. code-block:: bash
-
-    base        /usr/people/netID/miniconda3
-    datalad     /usr/people/netID/miniconda3/envs/datalad
-
-Now go ahead and activate your datalad conda environment and install DataLad:
-
-.. code-block:: bash
-
-    # activate your datalad conda environment
-    $ conda activate datalad #you should see (datalad) at the beginning of your command line 
-
-    # step 2b: install DataLad as part of your datalad conda environment
-    (datalad) $ conda install -c conda-forge datalad
-
+    # login to scotty or spock
+    # activate pygers environment
+    $ conda activate pygers
     # test it out!
-    (datalad) $ datalad --version
-    (datalad) $ datalad --help
+    $ datalad --version
+    $ datalad --help   
 
-If you haven't done this in the past, you should configure your git identity. 
+If you already have Miniconda installed and want to create a new, datalad-only conda environment:
+
+.. code-block:: bash
+
+    # login to scotty or spock
+    # create a new conda environment and name it datalad
+    $ conda create -n datalad
+    $ conda activate datalad
+    # install DataLad
+    $ conda install -c conda-forge datalad
+    # test it out!
+    $ datalad --version
+    $ datalad --help   
+
+If you want to install datalad as part of one of your other, pre-existing conda environments:
+
+.. code-block:: bash
+
+    # login to scotty or spock
+    $ conda activate <myenv>
+    # install DataLad
+    $ conda install -c conda-forge datalad
+    # test it out!
+    $ datalad --version
+    $ datalad --help   
+
+Finally, if you haven't done this in the past, you should configure your Git identity. 
 
 .. code-block:: bash
 
     # check if your git identity is already configured
-    (datalad) $ git config --list 
-    #if you are already configured, you should see your user.name and user.email listed
+    $ git config --list 
+    # if you are already configured, you should see your user.name and user.email listed
 
     # if you still need to configure
-    (datalad) $ git config --global --add user.name "FirstName LastName" 
-    (datalad) $ git config --global --add user.email youremail@blah.com
+    $ git config --global --add user.name "FirstName LastName" 
+    $ git config --global --add user.email youremail@blah.com
 
 Great! Now you are ready to start using DataLad on the server! 
-
-Before we move on, here are some helpful conda commands to keep in your back pocket:
-
-.. code-block:: bash
-
-    # list your available conda environments
-    $ conda info --envs
-
-    # activate a conda environment
-    $ conda activate myenv #replace myenv with the actual name of environment
-
-    # deactivate a conda environment
-    $ conda deactivate myenv #replace myenv with actual name of environment
-
-    # update conda
-    $ conda update -n base conda #update conda in your (base) environment
-
-    # remove a conda environment
-    $ conda env remove --name myenv #replace myenv with actual name of environment
-
 
 Start tracking existing data with DataLad
 =========================================
@@ -123,7 +82,7 @@ If you are practicing with our sample dataset, make sure you have already worked
 .. code-block:: bash
 
 	# copy sample output to your personal directory and call it sample_project
-	$ cp -r /jukebox/norman/pygers/handbook/sample_project_output_v1.4.0 /jukebox/YOURLAB/USERNAME/sample_project
+	$ cp -r /jukebox/norman/pygers/handbook/sample_project_output_v20.2.0 /jukebox/YOURLAB/USERNAME/sample_project
 
 The (abbreviated) structure of the :blue:`/sample_project` directory should be the following:
 
@@ -143,8 +102,8 @@ The (abbreviated) structure of the :blue:`/sample_project` directory should be t
                    └── fmriprep
                    └── freesurfer
                    └── mriqc
-                   └── work
            └── dicom
+           └── work
 
 We will make :blue:`/sample_project` our highest level dataset (we will refer to this as the "superdataset"). Then we will create a series of "subdatasets". Subdatasets are really standalone datasets, with their own git log history and .gitignore files. For example, this will allow others (or your future self) to clone a subdataset alone, without cloning your entire dataset. In this demo, we will make the following directories their own (sub)datasets: 
 
@@ -160,9 +119,9 @@ We will make :blue:`/sample_project` our highest level dataset (we will refer to
 
 * :blue:`/derivatives/mriqc`  
 
-There are also some files and directories that we want to ignore (or leave "untracked"). This is either because we aren't worried about version controlling certain directories (e.g., :blue:`/derivatives/work`) or because files might contain sensitive information that we don't want to share or make publicly available (e.g., :blue:`/data/dicom` and anatomical scans that have not been defaced). We will make sure to add directories and files that we do not want to track into the appropriate dataset's .gitignore file. 
+There are also some files and directories that we want to ignore (or leave "untracked"). This is either because we aren't worried about version controlling certain directories (e.g., :blue:`/data/work`) or because files might contain sensitive information that we don't want to share or make publicly available (e.g., :blue:`/data/dicom` and anatomical scans that have not been defaced). We will make sure to add directories and files that we do not want to track into the appropriate dataset's .gitignore file. 
 
-Let's get started! First, make sure you have activated your datalad conda environment and navigate to the :blue:`/sample_project` in your personal directory. Notice on the command line, :orange:`(` datalad :orange:`)` indicates you are working in your datalad conda environment. The working directory is included in :orange:`[` brackets :orange:`]`.   
+Let's get started! First, make sure you have activated your datalad conda environment and navigate to the :blue:`/sample_project` in your personal directory. Notice on the command line, :orange:`(` datalad :orange:`)` indicates you are working in your datalad conda environment (this could also say :orange:`(` pygers :orange:`)` if you are working in your pygers conda environment). The working directory is included in :orange:`[` brackets :orange:`]`.   
 
 .. code-block:: bash
 
@@ -217,6 +176,7 @@ After modifying your .gitignore file, you will commit your modification using a 
     # Add the following to your gitignore:
     # *.DS_Store
     # data/dicom
+    # data/work
 
     # commit .gitignore modification
     (datalad) [sample_project]$ datalad save -m "add gitignore" .gitignore
@@ -298,7 +258,7 @@ Great! Now let's start looking at the code dataset.
     (datalad) [code]$ datalad status # see which files/directories are untracked
     (datalad) [code]$ git log
 
-You should see three commits in the git history. One of them is from our old, pre-covid lifetime (Feb 20 2020)! This is because the code from the original sample dataset (before you copied to your own directory) was setup with git tracking. Then you can see there are the two commits corresponding to creating this new dataset and the ``-c text2git`` command we included when we ran ``datalad create``. Notice that this dataset has a completely new git history independent of the superdataset!    
+You should see several commits in the git history, going all the way back to our old, pre-covid lifetime (Feb 20 2020)! This is because the code from the original sample dataset (before you copied to your own directory) was setup with git tracking. Then you can see there are the two commits corresponding to creating this new dataset and the ``-c text2git`` command we included when we ran ``datalad create``. Notice that this dataset has a completely new git history independent of the superdataset!    
 
 .. code-block:: bash
 
@@ -313,6 +273,8 @@ You should see three commits in the git history. One of them is from our old, pr
     Date:   Wed Aug 12 17:06:21 2020 -0400
 
         [DATALAD] new dataset
+
+    # ...many other commits...
 
     commit 7e1fddcd5e17a72b93a570a88475fcf3ded2f30b
     Author: Elizabeth McDevitt <eam7@scotty.pni.Princeton.EDU>
@@ -417,7 +379,6 @@ Now we will add the :blue:`/data/bids` directory as its own (sub)dataset. Ultima
 
     # add the following to your gitignore:
     # *.DS_Store
-    # derivatives/work
     # */*/anat/*T1w.nii.gz
 
     # commit .gitignore modification only
@@ -438,13 +399,13 @@ If you want to check that you setup your .gitignore correctly, you can run a cou
 
     (datalad) [bids]$ datalad status derivatives/*
 
-You should see :blue:`/deface`, :blue:`/fmriprep`, :blue:`/freesurfer`, and :blue:`/mriqc` listed as untracked directories. You should **NOT** see :blue:`/work` listed as a directory because you added that to .gitignore.  
+You should see :blue:`/deface`, :blue:`/fmriprep`, :blue:`/freesurfer`, and :blue:`/mriqc` listed as untracked directories.  
 
 .. code-block:: bash
 
     (datalad) [bids]$ datalad status */*/anat/*
 
-You should see the :blue:`T1w.json` file listed as untracked, but NOT the :blue:`T1w.nii.gz` file listed. 
+You should see the :blue:`T1w.json` file listed as untracked, but NOT the :blue:`T1w.nii.gz` file listed because you added the :blue:`T1w.nii.gz` file to .gitignore. 
 
 *Step 4: Setup your /derivatives/deface dataset*
 ------------------------------------------------
@@ -543,13 +504,13 @@ You have now finished adding the deface dataset, including tracking the contents
 
     # add the following to your gitignore:
     # *.DS_Store
-    # */anat/*T1w.nii.gz
+    # */*/anat/*T1w.nii.gz
 
     # commit .gitignore only
     (datalad) [fmriprep]$ datalad save -m "add gitignore" .gitignore
 
     # check that anat files are actually ignored
-    (datalad) [fmriprep]$ datalad status */anat/*
+    (datalad) [fmriprep]$ datalad status */*/anat/*
 
     # commit the contents of derivatives/fmriprep
     (datalad) [fmriprep]$ datalad save -m "add fmriprep output files"
