@@ -142,8 +142,8 @@ perform SDC based on an average field map atlas (and does not require a
 field map acquisition).
 
 
-References
-^^^^^^^^^^
+References for more information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Deichmann, R., Gottfried, J. A., Hutton, C., & Turner, R. (2003).
 Optimized EPI for fMRI studies of the orbitofrontal cortex.
