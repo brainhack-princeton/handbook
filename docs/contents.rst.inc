@@ -85,7 +85,6 @@ Appendix
    content_pages/06-04-contributing
    content_pages/06-05-glossary
    content_pages/06-06-resources
-   content_pages/06-07-references
 
 * :ref:`genindex`
 * :ref:`search`
