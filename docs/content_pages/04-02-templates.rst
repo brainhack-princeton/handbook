@@ -63,8 +63,8 @@ This is a type of Atlas where brain regions are clustered and labelled. Here is 
 * `Glasser <https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal>`_
 * `Powers 2011 <https://www.jonathanpower.net/2011-neuron-bigbrain.html>`_
 
-References
-----------
+References for more information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Desikan, R. S., Ségonne, F., Fischl, B., Quinn, B. T., Dickerson, B. C., Blacker, D., Buckner, R. L., Dale, A. M., Maguire, R. P., Hyman, B. T., Albert, M. S., & Killiany, R. J. (2006). An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest. NeuroImage, 31(3), 968–980. https://doi.org/10.1016/j.neuroimage.2006.01.021
 
