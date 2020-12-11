@@ -438,6 +438,44 @@ Now that you have a general sense of how the repo is organized (and how you will
   :alt: screenshot of deleting a branch
   :class: with-border
 
+*Contributing cheatsheet*
+-------------------------
+Here is a condensed version of the previous section, delineating the steps you typically need to execute when contributing to the website. 
+
+.. code-block:: bash
+
+    # activate the conda environment
+    conda activate princeton_handbook
+    
+    # confirm you're in the correct working directory
+    pwd # should be [PATH TO HANDBOOK]/handbook
+    
+    # confirm that you're in the master branch
+    git branch # 'master' should be highlighted green
+    
+    # NOTE: if not in the master branch, switch to it!
+    git checkout master
+
+    # fetch and merge remote changes to local files, and push
+    git pull --ff-only
+    git push origin master
+
+    # create new branch where you'll do your work
+    git checkout -b [new-feature]
+    
+    # make sure you're in the new branch
+    git branch # '[new-feature]' should be highlighted green
+
+    # build website locally
+    make build
+
+    # check modifications, add them, make a message, and push
+    git status
+    git add docs/content_pages/[filename].rst
+    git commit -m "[MESSAGE]"
+    git push --set-upstream origin [new-feature]
+
+    # submit a pull request and then delete the branch
 
 Github cheat sheet
 ==================
