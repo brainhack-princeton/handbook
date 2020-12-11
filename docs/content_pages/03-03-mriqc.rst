@@ -12,27 +12,50 @@ Quality control with MRIQC
 .. role:: blue
 .. role:: red
 
-To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) BIDS app.
+To get an idea of the quality of your data, you can use the MRI Quality Check (MRIQC) BIDS app.
 
 Running MRIQC
 =============
 
-The ``slurm_mriqc.sh`` script (which you can find in the :blue:`code/preprocessing/` directory) will run MRIQC on the cluster using the SLURM scheduler. It first computes metrics for all runs for an individual subject, followed by the group summary statistics. 
+The ``slurm_mriqc.sh`` script (which you can find in the :blue:`code/preprocessing/` directory) will run MRIQC on the cluster using the Slurm scheduler. It first computes metrics for all runs for an individual subject, followed by the group summary statistics. 
 
 This script will use the following two scripts:
 
 * ``run_mriqc.sh`` (this runs MRIQC at the subject level)
 * ``run_mriqc_group.sh`` (this compiles group summary statistics)
 
-*Before running for the first time*
------------------------------------
+*Running MRIQC for the first time*
+----------------------------------
+
+Because of a weird quirk in how MRIQC uses TemplateFlow, the first time each *user* runs MRIQC on the PNI server, MRIQC will need access to the internet to download some TemplateFlow files. The problem is that our compute nodes (i.e. the nodes used by Slurm) do not have access to the internet. However, the head node does. What this means is the first time each *individual user* runs MRIQC, you should run it on the head node, not using Slurm. After that, any subsequent time you run MRIQC (even if it is for a different project), you can use Slurm. 
+
+In order to run on the head node: 
+
+.. code-block:: bash
+
+    # log into scotty
+    ssh -XY username@scotty.pni.princeton.edu
+
+    # navigate to your code/preprocessing directory
+    cd /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing/
+
+    # open a tmux session
+    tmux new -s mriqc
+
+    # in your tmux window, run mriqc with subject ID (e.g. 001) as the input
+    $ ./run_mriqc.sh 001
+
+*Running MRIQC using Slurm*
+---------------------------
+
+After running on the head one time - and one time only per user! - you can run follow these instructions to run MRIQC using Slurm.
 
 * Open slurm_mriqc.sh and update the array number to list the subjects you want to run through MRIQC. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH --array=001,002,003,004).
 
 * Update the #SBATCH --mail-user line to include your email address if you want to get email alerts when the job begins, ends, or fails.
 
 .. TIP::
-    Remember, in SLURM scripts, lines that start with ``#SBATCH`` are SLURM commands, not comments! All other lines that start with ``#`` are regular comments. 
+    Remember, in Slurm scripts, lines that start with ``#SBATCH`` are Slurm commands, not comments! All other lines that start with ``#`` are regular comments. 
 
 *Submit your MRIQC job*
 -----------------------
