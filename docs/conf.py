@@ -17,6 +17,19 @@ import sys
 from pathlib import Path
 import json
 import dataladhandbook_support
+import re
+
+try:
+    from pybtex.style.formatting import BaseStyle, toplevel
+    from pybtex.style.template import (
+        field, first_of, href, join, names, optional, optional_field, sentence,
+        tag, together, words, node, FieldIsMissing
+    )
+    from pybtex.richtext import Text, Symbol
+
+except ModuleNotFoundError:
+    raise ModuleNotFoundError("Re-run 'pip install -r requirements.txt' "
+                              "to get new modules!")
 
 # pull out author list from all-contributors spec
 authors = [
@@ -365,16 +378,6 @@ def setup(app):
 
 
 ## lots of code to format the references in APA style: https://git.naeka.fr/naeka-org/pybtex-apa-style/-/blob/master/apastyle.py
-import re
-
-from pybtex.style.formatting import BaseStyle, toplevel
-from pybtex.style.template import (
-    field, first_of, href, join, names, optional, optional_field, sentence,
-    tag, together, words, node, FieldIsMissing
-)
-
-from pybtex.richtext import Text, Symbol
-
 
 def format_pages(text):
     dash_re = re.compile(r'-+')
