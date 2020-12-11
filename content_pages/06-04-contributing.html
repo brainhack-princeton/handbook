@@ -97,6 +97,7 @@
 <li><a class="reference internal" href="#things-to-set-up-once"><em>Things to set up once</em></a></li>
 <li><a class="reference internal" href="#organization-of-the-repo"><em>Organization of the repo</em></a></li>
 <li><a class="reference internal" href="#editing-the-website"><em>Editing the website</em></a></li>
+<li><a class="reference internal" href="#contributing-cheatsheet"><em>Contributing cheatsheet</em></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></li>
@@ -421,6 +422,44 @@ git branch -d &lt;branch_name&gt;
 <li><p>Find the branch you want to delete, and press the trash can icon.</p></li>
 </ul>
 <a class="with-border reference internal image-reference" href="../_images/delete_branch.png"><img alt="screenshot of deleting a branch" class="with-border align-center" src="../_images/delete_branch.png" style="width: 700px;" /></a>
+</div>
+<div class="section" id="contributing-cheatsheet">
+<h3><em>Contributing cheatsheet</em><a class="headerlink" href="#contributing-cheatsheet" title="Permalink to this headline">¶</a></h3>
+<p>Here is a condensed version of the previous section, delineating the steps you typically need to execute when contributing to the website.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the conda environment</span>
+conda activate princeton_handbook
+
+<span class="c1"># confirm you&#39;re in the correct working directory</span>
+<span class="nb">pwd</span> <span class="c1"># should be [PATH TO HANDBOOK]/handbook</span>
+
+<span class="c1"># confirm that you&#39;re in the master branch</span>
+git branch <span class="c1"># &#39;master&#39; should be highlighted green</span>
+
+<span class="c1"># NOTE: if not in the master branch, switch to it!</span>
+git checkout master
+
+<span class="c1"># fetch and merge remote changes to local files, and push</span>
+git pull --ff-only
+git push origin master
+
+<span class="c1"># create new branch where you&#39;ll do your work</span>
+git checkout -b <span class="o">[</span>new-feature<span class="o">]</span>
+
+<span class="c1"># make sure you&#39;re in the new branch</span>
+git branch <span class="c1"># &#39;[new-feature]&#39; should be highlighted green</span>
+
+<span class="c1"># build website locally</span>
+make build
+
+<span class="c1"># check modifications, add them, make a message, and push</span>
+git status
+git add docs/content_pages/<span class="o">[</span>filename<span class="o">]</span>.rst
+git commit -m <span class="s2">&quot;[MESSAGE]&quot;</span>
+git push --set-upstream origin <span class="o">[</span>new-feature<span class="o">]</span>
+
+<span class="c1"># submit a pull request and then delete the branch</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="github-cheat-sheet">
