@@ -4,7 +4,6 @@
 Glossary
 ********
 
-
 Computing
 ---------
 
@@ -111,8 +110,14 @@ Computing at PNI
     bucket/jukebox
         PNI's fileserver. Each lab has a volume on the fileserver, and all the lab volumes are accessible via apps, spock and scotty.
 
+    Conquest
+        location on PNI's fileserver where files are transferred from the MRI scanner
+
     scotty
         use this for interactive sessions on the server. Scotty is well-equipped for developing software to run on spock, as well as facilitating interactive workloads that are a poor fit for the computational clusters (e.g. using a gui).
+
+    scratch
+        location on PNI's fileserver that is not backed up. This is the ideal place for *intermediate* files that you are generating but do not need backed up, which ends up saving space.
 
     SLURM
         program used to schedule jobs and manage resource utilization on the computational cluster (i.e. spock). SLURM will allocate your job to one or multiple nodes on spock. 
@@ -205,6 +210,9 @@ Open science
     `CC <https://creativecommons.org/licenses/>`_
         Creative Commons; family of licenses with varying types of restriction; e.g., CC0 (unrestricted release into public domain); CC-BY (requires attribution), CC-SA (requires share-alike)
 
+    `Code Ocean <https://codeocean.com/>`_
+        open access platform for computational reproducibility
+
     `git <https://git-scm.com/>`_
         free and open-source version control software for tracking code changes
 
@@ -220,6 +228,9 @@ Open science
     `Jupyter <https://jupyter.org/>`_
         open-source web-based interactive computational environment for Python, R, Julia, etc; includes "Jupyter Notebook" and "Jupyter Lab"; derivative of IPython
 
+    LaTeX
+        typesetting designed for the production of technical and scientific documents
+
     `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_
         lightweight, minimal Python distribution relying on the conda package manager; contrast with Anaconda; see conda
 
@@ -231,6 +242,12 @@ Open science
 
     `OSF <https://osf.io/>`_
         Open Science Framework, free and open source project management tool (often used for preregistration of research hypotheses and task designs during or before data acquisition)
+
+    `Overleaf <https://www.overleaf.com/>`_
+        collaborative LaTex manuscript editor
+
+    `Protocols.io <https://www.protocols.io/>`_
+        open access repository of protocols
 
     `PsyArXiv <https://psyarxiv.com/>`_
         preprint repository for posting psychology manuscripts prior to peer-reviewed publicationo; hosted by the Center for Open Science
