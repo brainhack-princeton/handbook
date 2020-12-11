@@ -43,7 +43,7 @@ How to get started
 3. Create an accout with your Princeton email address
 
 Getting set up
-`Getting Started with OSF <https://www.cos.io/blog/getting-started-osf>`_Getting Started with OSF [`2min video <https://youtu.be/2TV21gOzfhw>`_ | `55min video <https://www.youtube.com/watch?v=dLEIhJESIQA>`_]
+`Getting Started with OSF <https://www.cos.io/blog/getting-started-osf>`_ Getting Started with OSF [`2min video <https://youtu.be/2TV21gOzfhw>`_ | `55min video <https://www.youtube.com/watch?v=dLEIhJESIQA>`_]
 Using OSF to Share Data: A Step-by-Step Guide (Princeton NetID required)
 Open and Reproducible Research on Open Science Framework
 
