@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tips for finding your data on the Princeton server &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <title>Tips for navigating the PNI server &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -40,7 +40,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Tips for finding your data on the Princeton server &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:title" content="Tips for navigating the PNI server &#8212; The Princeton Handbook for Reproducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -89,12 +89,15 @@
 <progress id="progressbar" value="0" max="100"></progress>
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Tips for finding your data on the Princeton server</a><ul>
-<li><a class="reference internal" href="#creating-a-new-tmux-session">Creating a new <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session</a></li>
-<li><a class="reference internal" href="#attaching-and-detaching-existing-sessions">Attaching and detaching existing sessions</a></li>
-<li><a class="reference internal" href="#navigating-multiple-windows-and-panes">Navigating multiple windows and panes</a></li>
-<li><a class="reference internal" href="#customizing-your-tmux-configuration">Customizing your <code class="docutils literal notranslate"><span class="pre">tmux</span></code> configuration</a></li>
-<li><a class="reference internal" href="#tmux-commands-cheat-sheet"><code class="docutils literal notranslate"><span class="pre">tmux</span></code> commands cheat sheet</a></li>
+<li><a class="reference internal" href="#">Tips for navigating the PNI server</a><ul>
+<li><a class="reference internal" href="#connecting-to-the-server">Connecting to the server</a><ul>
+<li><a class="reference internal" href="#ssh-via-the-terminal-mac">ssh via the Terminal (Mac)</a></li>
+<li><a class="reference internal" href="#mount-a-volume-via-finder-mac">Mount a volume via Finder (Mac)</a></li>
+<li><a class="reference internal" href="#mount-a-volume-via-another-file-browser-windows">Mount a volume via another file browser (Windows)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#restoring-data-from-snapshots">Restoring data from snapshots</a></li>
+<li><a class="reference internal" href="#finding-your-mri-data-on-conquest">Finding your MRI data on ‘conquest’</a></li>
 </ul>
 </li>
 </ul>
@@ -127,67 +130,125 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="tips-for-finding-your-data-on-the-princeton-server">
-<h1>Tips for finding your data on the Princeton server<a class="headerlink" href="#tips-for-finding-your-data-on-the-princeton-server" title="Permalink to this headline">¶</a></h1>
-<style> .blue {color:blue} </style><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code> is a command-line terminal multiplexer for Unix-like systems. When working on a remote server, you can use <code class="docutils literal notranslate"><span class="pre">tmux</span></code> to create persistent remote sessions. If you get disconnected from the remote server, the <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session will keep running. You can attach and detach from these remote sessions, and create multiple windows or panes in a given session. You can control <code class="docutils literal notranslate"><span class="pre">tmux</span></code> using key combinations; you first type a prefix key combination (by default <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span></code>) followed by additional command keys. The full <code class="docutils literal notranslate"><span class="pre">tmux</span></code> documentation can be found <a class="reference external" href="http://man.openbsd.org/OpenBSD-current/man1/tmux.1">here</a>. The GNU <code class="docutils literal notranslate"><span class="pre">screen</span></code> program provides similar functionality (<a class="reference external" href="https://www.gnu.org/software/screen/manual/screen.html">documentation</a>).</p>
-<div class="section" id="creating-a-new-tmux-session">
-<h2>Creating a new <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session<a class="headerlink" href="#creating-a-new-tmux-session" title="Permalink to this headline">¶</a></h2>
-<p>Typically, you want to create a tmux session on a remote server. You can also create a tmux on your local machine to use the multiplexing functionality, but the session will not persist if you shut down your local machine.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># login to the server and create a new session called &quot;mysession&quot;</span>
-$ ssh -X username@server
-$ tmux new -s mysession
+  <div class="section" id="tips-for-navigating-the-pni-server">
+<h1>Tips for navigating the PNI server<a class="headerlink" href="#tips-for-navigating-the-pni-server" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style><div class="section" id="connecting-to-the-server">
+<h2>Connecting to the server<a class="headerlink" href="#connecting-to-the-server" title="Permalink to this headline">¶</a></h2>
+<p>If you are not on campus, make sure you have <a class="reference external" href="https://princeton.service-now.com/service?sys_id=6023&amp;id=kb_article">connected to the Princeton network via VPN</a>.</p>
+<div class="section" id="ssh-via-the-terminal-mac">
+<h3>ssh via the Terminal (Mac)<a class="headerlink" href="#ssh-via-the-terminal-mac" title="Permalink to this headline">¶</a></h3>
+<p>Open a new Terminal window. You can choose to login to:</p>
+<ul class="simple">
+<li><p>apps (use this if you are simply navigating the fileserver, copying files, etc.)</p></li>
+<li><p>spock (the ‘compute cluster’)</p></li>
+<li><p>scotty (for interactive sessions)</p></li>
+</ul>
+<p>Generally, you probably want to use scotty most of the time for debugging scripts or doing any sort of interactive work on the cluster.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Login to apps or Spock or Scotty</span>
+$ ssh username@apps.pni.princeton.edu
+$ ssh -XY username@spock.pni.princeton.edu
+$ ssh -XY username@scotty.pni.princeton.edu
 </pre></div>
 </div>
-<p>Here, the argument <code class="docutils literal notranslate"><span class="pre">new</span></code> (or <code class="docutils literal notranslate"><span class="pre">new-session</span></code>) creates a new session and the flag <code class="docutils literal notranslate"><span class="pre">-s</span></code> indicates a session name (<code class="docutils literal notranslate"><span class="pre">mysession</span></code>) of your choice. You are now inside the tmux session <code class="docutils literal notranslate"><span class="pre">mysession</span></code>, and this session will persist whether you’re attached to it or not. You may want to create and name separate tmux sessions for different experiments or tasks (e.g., <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">narratives</span></code>). You may need to reload Linux environment <code class="docutils literal notranslate"><span class="pre">modules</span></code> or reactivate <code class="docutils literal notranslate"><span class="pre">conda</span></code> environments in a new tmux session.</p>
-</div>
-<div class="section" id="attaching-and-detaching-existing-sessions">
-<h2>Attaching and detaching existing sessions<a class="headerlink" href="#attaching-and-detaching-existing-sessions" title="Permalink to this headline">¶</a></h2>
-<p>When you log onto a server (via ssh), you can check if you have any existing session running.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># list existing tmux sessions</span>
-$ tmux ls
+<p>You can now explore and access files from apps, spock, and scotty by using the following commands and paths from your Terminal command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /jukebox/YOURLAB/
+$ <span class="nb">cd</span> /jukebox/scratch/
+$ <span class="nb">pwd</span> <span class="c1">#print working directory</span>
+$ ls <span class="c1">#list files in working directory</span>
+$ <span class="nb">cd</span> .. <span class="c1">#move back a level in directory structure</span>
 </pre></div>
 </div>
-<p>You can reattach to an existing session to pick up where you left off.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># attach to an existing tmux session</span>
-$ tmux a -t mysession
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can add aliases for each of these ssh commands to your <em>.bash_profile</em> on your local machine. Then, each time you want to login to the server, you can simply type <code class="docutils literal notranslate"><span class="pre">scotty</span></code> (for example), and this will call the ssh command without having to type out the whole thing! When editing your <em>.bash_profile</em>, you will need to use the vim for text editing.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># open .bash_profile</span>
+$ vim ~/.bash_profile
+
+<span class="c1"># using the vim text editor, add the following:</span>
+<span class="c1"># alias &#39;apps&#39;=&#39;ssh netID@scotty.pni.princeton.edu&#39;</span>
+<span class="c1"># alias &#39;spock&#39;=&#39;ssh -XY netID@scotty.pni.princeton.edu&#39;</span>
+<span class="c1"># alias &#39;scotty&#39;=&#39;ssh -XY netID@scotty.pni.princeton.edu&#39;</span>
+
+<span class="c1"># source your .bash_profile for changes to take effect</span>
+$ <span class="nb">source</span> ~./bash_profile
 </pre></div>
 </div>
-<p>Here, the argument <code class="docutils literal notranslate"><span class="pre">a</span></code> is used to “attach” to a session, and the flag <code class="docutils literal notranslate"><span class="pre">-t</span></code> indicates the “target” session (<code class="docutils literal notranslate"><span class="pre">mysession</span></code>).</p>
-<p>To detach from the current session (i.e. the session you’re currently attached to, or “in”), you can use the prefix combination followed by <code class="docutils literal notranslate"><span class="pre">d</span></code> (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">d</span></code>) or using <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">detach</span></code>.</p>
-<p>Your tmux sessions will persist indefinitely on a remote server unless you terminate them (or the server is rebooted). You can terminate an existing <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session without being attached to that session.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># terminate an existing tmux session</span>
-tmux kill-session -t mysession
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are working on a MacOS, you will use <em>.bash_profile</em>. If you are working on Linux (e.g. the server), the equivalent is <em>.bashrc</em>. Keep in mind you can also setup aliases in your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file on the server!</p>
+</div>
+</div>
+<div class="section" id="mount-a-volume-via-finder-mac">
+<h3>Mount a volume via Finder (Mac)<a class="headerlink" href="#mount-a-volume-via-finder-mac" title="Permalink to this headline">¶</a></h3>
+<p>You can also navigate the fileservers (jukebox or scratch) more easily by mounting your lab volume on your local computer.</p>
+<p>Open Finder, Go → Connect to Server</p>
+<a class="reference internal image-reference" href="../../_images/connect-to-server1.png"><img alt="connect to server1" class="align-center" src="../../_images/connect-to-server1.png" style="width: 300px;" /></a>
+<p>Server Address:</p>
+<p>To access <em>jukebox</em>:
+<a class="reference external" href="smb://bucket.pni.princeton.edu/[YOURLAB">smb://bucket.pni.princeton.edu/[YOURLAB</a>]</p>
+<p>To access <em>scratch</em>:
+<a class="reference external" href="smb://sink/scratch">smb://sink/scratch</a></p>
+<p>Click “Connect”</p>
+<a class="reference internal image-reference" href="../../_images/connect-to-server2.png"><img alt="connect to server2" class="align-center" src="../../_images/connect-to-server2.png" style="width: 600px;" /></a>
+<p>If it’s your first time, you will be asked to enter your Princeton netID and password (PU password).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It may be more convenient to mount the volume and open files on your local computer for certain tasks, such as opening/editing your scripts and visualizing data (e.g. using fsleyes).</p>
+<p>In order to access files on the mounted volume via a Terminal on your <em>local machine</em> (not from servers like spock, scotty, apps), your directory paths will be as follows:</p>
+<ul class="simple">
+<li><p>Lab volume on jukebox: <code class="docutils literal notranslate"><span class="pre">/Volumes/YOURLAB/YOURDIR</span></code></p></li>
+<li><p>Scratch: <code class="docutils literal notranslate"><span class="pre">/Volumes/scratch/YOURDIR</span></code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="mount-a-volume-via-another-file-browser-windows">
+<h3>Mount a volume via another file browser (Windows)<a class="headerlink" href="#mount-a-volume-via-another-file-browser-windows" title="Permalink to this headline">¶</a></h3>
+<p>From Windows Explorer, select “Map Network Drive” and enter the share name using one of the paths below. Select “Connect using a different user name”. Authenticate with your NetID and PU password. When prompted for your username, enter PRINCETONnetid (note that PRINCETON can be upper or lower case) where netid is your PU NetID.</p>
+<p>Paths to use:</p>
+<p>To access <em>jukebox</em>: <code class="docutils literal notranslate"><span class="pre">\\bucket\YOURLAB</span></code></p>
+<p>To access <em>scratch</em>: <code class="docutils literal notranslate"><span class="pre">\\sink\scratch\</span></code></p>
+<p>OR <code class="docutils literal notranslate"><span class="pre">\\sink\scratch\YOURDIR</span></code> (your personal scratch volume if you’ve already created it)</p>
+</div>
+</div>
+<div class="section" id="restoring-data-from-snapshots">
+<h2>Restoring data from snapshots<a class="headerlink" href="#restoring-data-from-snapshots" title="Permalink to this headline">¶</a></h2>
+<p>At PNI, each lab has a volume on the <span class="blue">/jukebox</span> file server. Jukebox (or bucket) has a snapshot feature that enables users to restore, by themselves, files that they have mistakenly deleted. All lab volumes retain snapshots. Snapshots are taken daily and weekly. For lab volumes, daily snapshots are kept for 14 days and weekly snapshots for 4 weeks. Snapshots are taken overnight (at different times depending on the volume), so this feature can only capture files that are present when the snapshot is taken. Data created and then deleted in a single day will not be captured in a snapshot.</p>
+<p>The <span class="blue">/scratch</span> volume does not have snapshots and is not backed up. It is recommended that you save your working files (with lots of intermediate files) and data undergoing analyses in <span class="blue">/scratch</span>, and then save your final results to lab volumes on <span class="blue">/jukebox</span>.</p>
+<p>In order to access snapshots:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># cd to the directory where the data you need to restore (used to) live:</span>
+$ <span class="nb">cd</span> /jukebox/YOURLAB/YOURDIR/
+
+<span class="c1"># snapshots are hidden files, in order to see them:</span>
+$ ls .snapshot
+
+<span class="c1"># choose the snapshot (the version of your files) you want to restore</span>
+<span class="c1"># and move into that directory</span>
+$ <span class="nb">cd</span> .snapshot/norman_daily_2020_12-06-_01-15/
+$ ls <span class="c1">#list files in this snapshot version</span>
+
+<span class="c1"># copy the snapshot version of a file back to your main directory (or wherever you want it)</span>
+$ cp -r &lt;snapshot-filename&gt; &lt;path-to-copy-to&gt;
 </pre></div>
 </div>
-<p>You can also terminate the session you’re currently attached to using the prefix key combination followed by <code class="docutils literal notranslate"><span class="pre">x</span></code> (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">x</span></code>; confirm with <code class="docutils literal notranslate"><span class="pre">y</span></code>), or by exiting the shell normally using <code class="docutils literal notranslate"><span class="pre">exit</span></code>.</p>
 </div>
-<div class="section" id="navigating-multiple-windows-and-panes">
-<h2>Navigating multiple windows and panes<a class="headerlink" href="#navigating-multiple-windows-and-panes" title="Permalink to this headline">¶</a></h2>
-<p>Within a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session, you can create multiple “windows” and within each window you can create multiple “panes”. You can create a new “window” within your current <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session using the prefix key combination and <code class="docutils literal notranslate"><span class="pre">c</span></code> (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">c</span></code>) or <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new-window</span></code>. You can navigate directly to this window using the prefix key combination and the window number (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">[0-9]</span></code>), or you can flip to the next (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">n</span></code>) or the previous (<code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">p</span></code>) windows.</p>
-<p>You can split a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> window into multiple panes. The key combination <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">%</span></code> splits a window vertically into two side-by-side panes, whereas <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">&quot;</span></code> splits the window horizontally into upper and lower panes. You can use <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b,</span> <span class="pre">[arrow-key]</span></code> to navigate between panes.</p>
-</div>
-<div class="section" id="customizing-your-tmux-configuration">
-<h2>Customizing your <code class="docutils literal notranslate"><span class="pre">tmux</span></code> configuration<a class="headerlink" href="#customizing-your-tmux-configuration" title="Permalink to this headline">¶</a></h2>
-<p>You can modify your <code class="docutils literal notranslate"><span class="pre">tmux</span></code> functionality by creating a <span class="blue">.tmux.config</span> file. This file should be located in your home directory (<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> on a Unix-like machine)—i.e., in your home directory on the server for using <code class="docutils literal notranslate"><span class="pre">tmux</span></code> on the server. Common modifications include changing the prefix key combination from <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span></code> to the more ergonomic <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">a</span></code> from GNU <code class="docutils literal notranslate"><span class="pre">screen</span></code>, or increasing the number of lines tmux keeps in the history. You can find example <span class="blue">.tmux.config</span> files online, or copy mine on scotty into your home directory: <span class="blue">/usr/people/snastase/.tmux.conf</span></p>
-<p>There are many ways of customizing your <code class="docutils literal notranslate"><span class="pre">tmux</span></code> configuration, as well as renaming, navigating, and otherwise manipulations windows and panes. You can explore the full functionality of <code class="docutils literal notranslate"><span class="pre">tmux</span></code> (on a Unix-like machine) using <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">tmux</span></code>. For common commands (e.g., manipulating windows, panes, etc.), you can find many cheat sheets online, as well a concise list of useful commands below.</p>
-</div>
-<div class="section" id="tmux-commands-cheat-sheet">
-<h2><code class="docutils literal notranslate"><span class="pre">tmux</span></code> commands cheat sheet<a class="headerlink" href="#tmux-commands-cheat-sheet" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-RST notranslate"><div class="highlight"><pre><span></span>tmux new -s [name]          # start a new tmux session
-tmux ls                     # list existing sessions
-tmux a -t [name]            # attach to an existing session
-tmux kill-session -t [name] # terminate target (-t) session
-ctrl + b, x                 # terminate current session
-ctrl + b, d                 # detach from current session
-ctrl + b, c                 # create new window in current section
-ctrl + b, [0-9]             # switch to numbered window
-ctrl + b, n                 # switch to next window
-ctrl + b, p                 # switch to previous window
-ctrl + b, %                 # split window horizontally into panes
-ctrl + b, &quot;                 # split window vertically into panes
-ctrl + b, [arrow-key]       # navigate panes using arrow keys
+<div class="section" id="finding-your-mri-data-on-conquest">
+<h2>Finding your MRI data on ‘conquest’<a class="headerlink" href="#finding-your-mri-data-on-conquest" title="Permalink to this headline">¶</a></h2>
+<p>At the end of each of your data collection sessions at the PNI scanners, you are supposed to transfer your data to “conquest.” Conquest is a directory on the PNI fileserver (aka jukebox or bucket). You can find your transferred data using the following steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Login to the server</span>
+<span class="c1"># then navigate to the conquest directory</span>
+
+<span class="c1"># for data collected at Skyra</span>
+$ <span class="nb">cd</span> /jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR
+
+<span class="c1"># for data collected at Prisma</span>
+$ <span class="nb">cd</span> /jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR
+
+$ ls
 </pre></div>
 </div>
+<p>You can see that raw MR data are named by the session ([Scan ID]-[Date of the Scan]-[Start Time]). Inside each of the directories, there is a folder named <em>dcm</em> - this is where your raw data (DICOM files) are saved. It takes a little bit of time (depends on the amount of data) to complete the transfer from the scanner, so it is recommended that you wait until all of your raw data have been transferred before moving onto the next steps.</p>
+<p>You’ll want to copy the data from <span class="blue">/conquest</span> to your study directory (fyi, data are deleted from <span class="blue">/conquest</span> after ~8 weeks). But wait! You don’t have to do this manually. If you’re planning to proceed with using HeuDiConv to convert your DICOM data to BIDS-formatted Nifti files, you should follow the step-by-step instructions on our <a class="reference external" href="../03-02-converting.html">Converting data to BIDS using HeuDiConv</a> page.</p>
 <p><a class="reference external" href="../06-01-tipsSplashPage.html">Return to tips and tricks</a></p>
 </div>
 </div>

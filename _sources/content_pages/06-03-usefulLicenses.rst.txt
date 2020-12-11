@@ -1,7 +1,7 @@
 .. _usefulLicenses:
 
 =======================================================
-Useful software site licenses for Princeton researchers
+Research tools for Princeton researchers
 =======================================================
 
 .. raw:: html
@@ -11,3 +11,11 @@ Useful software site licenses for Princeton researchers
 
 .. role:: blue
 .. role:: red
+
+The `Princeton University Library <https://library.princeton.edu/>`_ and `Princeton Research Data Service <https://researchdata.princeton.edu/>`_ have purchsaed licenses, subscriptions, or institutional memberships to a number of reearch tools which can help researchers open their workflows. Below you will find a list of research tools that are currently supported. 
+
+* `Code Ocean <research_tools/code_ocean.html>`_
+* `Open Science Framework <research_tools/osf.html>`_
+* `Overleaf <research_tools/overleaf.html>`_
+* `Protocols.io <research_tools/protocols_io.html>`_
+

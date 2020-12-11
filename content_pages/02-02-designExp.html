@@ -88,7 +88,18 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Designing your fMRI experiment</a><ul>
+<li><a class="reference internal" href="#block-or-event-related-tasks">Block or event-related tasks</a></li>
+<li><a class="reference internal" href="#resting-state">Resting-state</a></li>
+<li><a class="reference internal" href="#naturalistic-paradigms">Naturalistic paradigms</a></li>
+<li><a class="reference internal" href="#references-and-resources">References and resources</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -121,12 +132,70 @@
             
   <div class="section" id="designing-your-fmri-experiment">
 <span id="designexp"></span><h1>Designing your fMRI experiment<a class="headerlink" href="#designing-your-fmri-experiment" title="Permalink to this headline">¶</a></h1>
-<p>Add here!</p>
-<p>You have important decisions to make</p>
-<p>Will your final analysis be univariate or multicarite.
-For a functional localizer you probably want to use a block design</p>
-<p>TR-locking, not TR-locking
-how far apart should my events be?</p>
+<p>A full treatment of experimental design for fMRI research is beyond the scope of this handbook, but we try to provide a high-level summary with pointers to other resources; e.g. cite:<cite>huettel2014functional</cite>. Make sure to plan out your analyses prior to collecting data, as your planned analyses will ultimately constrain your design.</p>
+<p>Most fMRI experiments fall into one of three categories: (1) <a class="reference internal" href="#block-or-event-related-tasks">block or event-related tasks</a>, (2) <a class="reference internal" href="#resting-state">resting-state</a>, or (3) <a class="reference internal" href="#naturalistic-paradigms">naturalistic paradigms</a>. You probably already have a general idea which kind of paradigm(s) you need, and many projects use multiple paradigms (e.g. collecting both task and resting-state runs). Each of these categories has some special considerations to keep in mind.</p>
+<div class="section" id="block-or-event-related-tasks">
+<h2>Block or event-related tasks<a class="headerlink" href="#block-or-event-related-tasks" title="Permalink to this headline">¶</a></h2>
+<p>Traditional task fMRI typically uses block or rapid event-related designs to measure differences in brain responses resulting from a particular experimental manipulation. These experiments typically contrast two or more stimuli or tasks that differ according to some variable of interest (e.g. images of different object categories), or parametrically vary some particular stimulus feature (e.g. visual orientation or eccentricity). Stimuli are either presented in extended blocks (block design), brief interleaved events (event-related design), or a mixture of both (mixed block/event-related design). These types of experiments typically rely on well-controlled stimuli and tasks, as well as well-specified specific timing and trial order.</p>
+<p><strong>Special considerations for typical task designs:</strong></p>
+<ul class="simple">
+<li><p>Make sure to map out the full structure of your task: How many conditions are in your experiment? How many stimulus exemplars per condition? How many times does each stimulus, trial, or event occur per run? What is the duration of each trial or event? What is (average) latency between each event (i.e. inter-trial interval, ITI)? What is the duration of each run? How many runs are in your experiment?</p></li>
+<li><p>What kind of behavioral responses will you collect (e.g. button-presses, verbal responses)? How will you analyze the behavioral responses (e.g. accuracy, reaction time)?  For more passive tasks, will you include catch trials to ensure the participant is paying attention? How many catch trials per run?</p></li>
+<li><p>Remember that the BOLD response typically peaks after ~5 seconds and does not return to baseline for 15+ seconds. Rapid event-related designs will result in overlapping hemodynamic responses for each event, although responses for each event can be partly disentangled using the GLM. Closer-spaced events result in more overlap, but may also allow for more densely sampling stimuli/conditions; i.e. a condition-rich design <a class="bibtex reference internal" href="#kriegeskorte2008representational" id="id1">[Kriegeskorte et al., 2008]</a>.</p></li>
+<li><p>In most block and event-related designs, the experimenter hopes to neutralize any order effects. The typical solution is to use randomized trial order, but trial order can be more strictly counterbalanced using e.g. <a class="reference external" href="https://cfn.upenn.edu/aguirre/wiki/public:t1i1_sequences">T1I1</a> or <a class="reference external" href="https://cfn.upenn.edu/aguirre/wiki/public:de_bruijn">de Bruijn</a> sequences <a class="bibtex reference internal" href="#aguirre2007continuous" id="id2">[Aguirre, 2007]</a> <a class="bibtex reference internal" href="#aguirre2011bruijn" id="id3">[Aguirre et al., 2011]</a>.</p></li>
+<li><p>Event-related designs typically use jittered (or stochastic) stimulus onset timing to ensure the participant isn’t entrained to a fixed “rhythm” of onsets. Although jittering onsets by intervals of the TR may simplify analysis (referred to as “TR-locking”), this can result in artifacts, and using a continuous range of onsets is better. Typically interstimulus intervals are sampled (FreeSurfer’s <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/optseq/">optseq</a>, AFNI’s <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/doc/program_help/make_random_timing.py.html">make_random_timing.py</a> and <a class="reference external" href="https://afni.nimh.nih.gov/pub/dist/edu/data/CD.expanded/AFNI_data6/ht03/&#64;stim_analyze">&#64;stim_analyze</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="resting-state">
+<h2>Resting-state<a class="headerlink" href="#resting-state" title="Permalink to this headline">¶</a></h2>
+<p>In resting-state experiments, participants are not presented with any particular stimuli and are simply asked to keep still. Given the absence of an external stimulus or task, resting-state data are typically analyzed according to the covariation of intrinsic fluctuations among groups of voxels—i.e. functional connectivity and network analysis. The functional connectivity analyses used with resting-state data are especially sensitive to head motion and physiological noise, and therefore rely on more stringent noise mitigation; e.g. confound regression, scrubbing <a class="bibtex reference internal" href="#power2014methods" id="id4">[Power et al., 2014]</a> <a class="bibtex reference internal" href="#ciric2017benchmarking" id="id5">[Ciric et al., 2017]</a>.</p>
+<p><strong>Special considerations for resting-state:</strong></p>
+<ul class="simple">
+<li><p>What is the duration of your resting-state scans? Note that longer scans (e.g. 10 minutes) yield more reliable connectivity estimates <a class="bibtex reference internal" href="#birn2013effect" id="id6">[Birn et al., 2013]</a>.</p></li>
+<li><p>What are your explicit “task” instructions? For example, will participants be instructed to keep their eyes open and maintain fixation? <a class="bibtex reference internal" href="#patriat2013effect" id="id7">[Patriat et al., 2013]</a>.</p></li>
+<li><p>Will you use online motion monitoring (e.g. <a class="reference external" href="https://nousimaging.com/">FIRMM</a>) during acquisition?</p></li>
+</ul>
+</div>
+<div class="section" id="naturalistic-paradigms">
+<h2>Naturalistic paradigms<a class="headerlink" href="#naturalistic-paradigms" title="Permalink to this headline">¶</a></h2>
+<p>Rather than using tightly controlled task designs, some researchers use more naturalistic stimuli (e.g. movies, stories) in hopes of increasing the ecological validity of their findings. Naturalistic stimuli are difficult to exhaustively model and any given variable of interest is likely correlated with other variables. While traditional task data are typically designed to test a particular hypothesis, naturalistic data are typically rich enough to inform a variety of hypotheses.</p>
+<p><strong>Special considerations for naturalistic paradigms:</strong></p>
+<ul class="simple">
+<li><p>Many naturalistic stimuli (e.g. movies) are quite long. How are you going to break up the stimuli? For example, you may wish to divide a 2-hour movie into eight ~15 minute segments.</p></li>
+<li><p>Naturalistic paradigms typically have lower statistical power to detect a specific effect than controlled experiments designed to isolate that effect <a class="bibtex reference internal" href="#hamilton2020revolution" id="id8">[Hamilton &amp; Huth, 2020]</a>. Nonetheless, you should pick a naturalistic stimulus that includes variation along your variable(s) of interest.</p></li>
+</ul>
+</div>
+<div class="section" id="references-and-resources">
+<h2>References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-content_pages/02-02-designExp-0"><dl class="citation">
+<dt class="bibtex label" id="aguirre2007continuous"><span class="brackets"><a class="fn-backref" href="#id2">Aguirre, 2007</a></span></dt>
+<dd><p>Aguirre, G. K. (2007). Continuous carry-over designs for fmri. <em>Neuroimage</em>, <em>35</em>(4), 1480–1494.</p>
+</dd>
+<dt class="bibtex label" id="aguirre2011bruijn"><span class="brackets"><a class="fn-backref" href="#id3">Aguirre et al., 2011</a></span></dt>
+<dd><p>Aguirre, G. K., Mattar, M. G., &amp; Magis-Weinberg, L. (2011). De bruijn cycles for neural decoding. <em>NeuroImage</em>, <em>56</em>(3), 1293–1300.</p>
+</dd>
+<dt class="bibtex label" id="birn2013effect"><span class="brackets"><a class="fn-backref" href="#id6">Birn et al., 2013</a></span></dt>
+<dd><p>Birn, R. M., Molloy, E. K., Patriat, R., Parker, T., Meier, T. B., Kirk, G. R., … Prabhakaran, V. (2013). The effect of scan length on the reliability of resting-state fmri connectivity estimates. <em>Neuroimage</em>, <em>83</em>, 550–558.</p>
+</dd>
+<dt class="bibtex label" id="ciric2017benchmarking"><span class="brackets"><a class="fn-backref" href="#id5">Ciric et al., 2017</a></span></dt>
+<dd><p>Ciric, R., Wolf, D. H., Power, J. D., Roalf, D. R., Baum, G. L., Ruparel, K., … others. (2017). Benchmarking of participant-level confound regression strategies for the control of motion artifact in studies of functional connectivity. <em>Neuroimage</em>, <em>154</em>, 174–187.</p>
+</dd>
+<dt class="bibtex label" id="hamilton2020revolution"><span class="brackets"><a class="fn-backref" href="#id8">Hamilton &amp; Huth, 2020</a></span></dt>
+<dd><p>Hamilton, L. S., &amp; Huth, A. G. (2020). The revolution will not be controlled: natural stimuli in speech neuroscience. <em>Language, Cognition and Neuroscience</em>, <em>35</em>(5), 573–582.</p>
+</dd>
+<dt class="bibtex label" id="kriegeskorte2008representational"><span class="brackets"><a class="fn-backref" href="#id1">Kriegeskorte et al., 2008</a></span></dt>
+<dd><p>Kriegeskorte, N., Mur, M., &amp; Bandettini, P. A. (2008). Representational similarity analysis—connecting the branches of systems neuroscience. <em>Frontiers in systems neuroscience</em>, <em>2</em>, 4.</p>
+</dd>
+<dt class="bibtex label" id="patriat2013effect"><span class="brackets"><a class="fn-backref" href="#id7">Patriat et al., 2013</a></span></dt>
+<dd><p>Patriat, R., Molloy, E. K., Meier, T. B., Kirk, G. R., Nair, V. A., Meyerand, M. E., … Birn, R. M. (2013). The effect of resting condition on resting-state fmri reliability and consistency: a comparison between resting with eyes open, closed, and fixated. <em>Neuroimage</em>, <em>78</em>, 463–473.</p>
+</dd>
+<dt class="bibtex label" id="power2014methods"><span class="brackets"><a class="fn-backref" href="#id4">Power et al., 2014</a></span></dt>
+<dd><p>Power, J. D., Mitra, A., Laumann, T. O., Snyder, A. Z., Schlaggar, B. L., &amp; Petersen, S. E. (2014). Methods to detect, characterize, and remove motion artifact in resting state fmri. <em>Neuroimage</em>, <em>84</em>, 320–341.</p>
+</dd>
+</dl>
+</p>
+<a class="reference external image-reference" href="01-05-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
 </div>
 
 

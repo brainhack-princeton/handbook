@@ -20,4 +20,5 @@ Here are some tutorials for optimizing your workflow! These hacks come from vari
 * `Slurm: Schedule your jobs on the server <hack_pages/slurm.html>`_
 * `Jupyter: Using Jupyter notebooks for Python programming <hack_pages/jupyter.html>`_
 * `ipdb: A workflow for debugging in IPython <hack_pages/debugging-workflow.html>`_
+* `Plotly: Sample code for making interactive plots and visualizations <https://github.com/emcdevitt/plotly-demo>`_
 * `Navigating the PNI server <hack_pages/find-your-data.html>`_
