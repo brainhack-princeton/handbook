@@ -235,8 +235,8 @@ $ ls
 <h2>General Git workflow<a class="headerlink" href="#general-git-workflow" title="Permalink to this headline">¶</a></h2>
 <p>Initialize Git in an empty or exisiting code directory on computer1 (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>). Setup a corresponding new repository on GitHub. Add GitHub as the remote to your computer1 repo (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">&lt;url&gt;</span></code>). Clone the GitHub repo to computer2 (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;url&gt;</span></code>).</p>
 <p>Keep everything synchronized! Follow this workflow when working from computer1 or computer2 (or computer3, etc.).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># make sure you are working with current version of code</span>
-    $ git pull <span class="c1">#pull changes from GitHub</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure you are working with current version of code</span>
+$ git pull <span class="c1">#pull changes from GitHub</span>
 
 <span class="c1"># then make some changes...</span>
 <span class="c1"># edit a file, add new files, etc.</span>
@@ -256,6 +256,32 @@ $ git log <span class="c1">#see commit history</span>
 </div>
 <div class="section" id="git-cheat-sheet">
 <h2>Git cheat sheet<a class="headerlink" href="#git-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git init                       <span class="c1">#start git tracking in a directory</span>
+$ git remote add origin &lt;github-repo-url&gt; <span class="c1">#link local repo to GitHub repo</span>
+$ git remote -v                  <span class="c1">#verify remote URL</span>
+$ git clone &lt;github-repo-url&gt;    <span class="c1">#copy GitHub repo to local machine</span>
+
+$ git remote add &lt;shortname&gt; &lt;url&gt; <span class="c1">#add a new remote and give it a name</span>
+
+$ git pull                       <span class="c1">#GitHub -&gt; local repo</span>
+$ git status                     <span class="c1">#list modified and untracked files</span>
+$ git add &lt;filename&gt;             <span class="c1">#stage a specific file for commit</span>
+$ git add --all                  <span class="c1">#stage all changes</span>
+$ git add --update               <span class="c1">#stage modified (but not untracked) files</span>
+$ git commit -m <span class="s2">&quot;useful message&quot;</span> <span class="c1">#save everything in staging area</span>
+$ git commit --amend             <span class="c1">#edit last commit</span>
+$ git push -u &lt;remote&gt; &lt;branch&gt;  <span class="c1">#local repo -&gt; GitHub, specifying which remote and which branch you want to push to</span>
+$ git push                       <span class="c1">#local repo -&gt; GitHub</span>
+
+$ git rm --cached &lt;filename&gt;     <span class="c1">#untrack a file or directory</span>
+$ git mv &lt;filename&gt;              <span class="c1">#move or rename a file or directory</span>
+
+$ git log                        <span class="c1">#show commit history</span>
+$ git log --oneline              <span class="c1">#show commit history with one line for each commit</span>
+$ git log -n <span class="m">1</span>                   <span class="c1">#show only last commit</span>
+$ git log -p                     <span class="c1">#show detailed log</span>
+</pre></div>
+</div>
 </div>
 </div>
 

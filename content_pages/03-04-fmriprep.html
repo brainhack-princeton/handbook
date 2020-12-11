@@ -137,20 +137,14 @@
 <style> .blue {color:blue} </style>
 <style> .red {color:red} </style><p>Once you’ve converted your fMRI data to BIDS, you can begin preprocessing the data using fMRIPrep (<a class="reference external" href="https://doi.org/10.1101/306951">Esteban et al 2019</a>). FMRIprep is a BIDS App—a tool specifically designed to capitalize on the standardized format and rich metadata of BIDS.</p>
 <p>Each version of fMRIPrep is released as a <a class="reference external" href="https://www.docker.com/">Docker</a> container (an encapsulated software environment containing all dependencies). For most purposes, we recommend running fMRIPrep on your institution’s server (instead of locally). To run fMRIPrep on a server without administrative privileges, we use <a class="reference external" href="https://www.sylabs.io/docs/">Singularity</a> (<a class="reference external" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177459">Kurtzer et al 2017</a>) instead of Docker. Singularity must be installed on the server to build and run Singularity images such as fMRIPrep. The fMRIPrep Docker image can be converted to a Singularity image for use on the server by running Singularity’s build command on Poldrack Lab’s fMRIPrep Docker image on Docker Hub:</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Building the Singularity image:</dt><dd><ul>
-<li><p>singularity build fmriprep.sqsh docker://poldracklab/fmriprep</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>NOTE: At Princeton, Singularity images have been made for us! The sample scripts use Singularity images that already exist, so you do NOT need to build your own fmriprep Singularity image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ singularity build fmriprep-v20.2.0.simg docker://poldracklab/fmriprep:20.2.0
+</pre></div>
+</div>
+<p>NOTE: At Princeton, Singularity images have been made for us! The sample scripts use Singularity images that already exist, so you do NOT need to build your own fMRIPrep Singularity image.</p>
 <p>Running fMRIPrep on a single subject may take several hours. To run the fMRIPrep on the server, we recommend using your institution’s job scheduler (at Princeton, we use <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>).</p>
 <div class="section" id="running-fmriprep">
 <h2>Running fMRIPrep<a class="headerlink" href="#running-fmriprep" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">slurm_fmriprep.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run fMRIPrep on the cluster using the SLURM scheduler. It first runs fMRIprep for an individual subject, and then defaces the preprocessed “template” T1w image that is output by fMRIPrep.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">slurm_fmriprep.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run fMRIPrep on the cluster using the Slurm scheduler. It first runs fMRIprep for an individual subject, and then defaces the preprocessed “template” T1w image that is output by fMRIPrep.</p>
 <p>This script will use the following two scripts:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">run_fmriprep.sh</span></code> (this runs fMRIPrep)</p></li>
@@ -160,12 +154,12 @@
 <h3><em>Before running for the first time</em><a class="headerlink" href="#before-running-for-the-first-time" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Customize your fMRIprep command line argument by understanding all the different options in the <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/usage.html">fMRIPrep documentation</a>!</p></li>
-<li><p>Open slurm_fmriprep.sh and update the array number to list the subjects you want to run through MRIQC. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH –array=001,002,003,004).</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">slurm_fmriprep.sh</span></code> and update the array number to list the subjects you want to run through fMRIPrep. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH –array=001,002,003,004).</p></li>
 <li><p>Update the #SBATCH –mail-user line to include your email address if you want to get email alerts when the job begins, ends, or fails.</p></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Remember, in SLURM scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are SLURM commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
+<p>Remember, in Slurm scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are Slurm commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
 </div>
 </div>
 <div class="section" id="submit-your-fmriprep-job">
@@ -185,8 +179,8 @@ sbatch slurm_fmriprep.sh
 <div class="section" id="fmriprep-report">
 <h2>fMRIPrep Report<a class="headerlink" href="#fmriprep-report" title="Permalink to this headline">¶</a></h2>
 <p>fMRIPrep outputs will live in <span class="blue">/data/bids/derivatives/fmriprep/</span></p>
-<p>To have a quick look at the output of fMIRprep and make sure it ran without issues, check the .html output file for that subject. The .html file begins with a brief summary, including info about which structural images and resampling targets were used, and which functional runs were analyzed. For functional runs, make sure that slice-timing correction and susceptibility distortion correction were applied if that is what you want to happen!</p>
-<p>For more details check <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/outputs.html#visual-reports">here</a>. Here are some general things to look for:</p>
+<p>To have a quick look at the output of fMIRprep and make sure it ran without issues, check the <em>.html</em> output file for that subject. The <em>.html</em> file begins with a brief summary, including info about which structural images and resampling targets were used, and which functional runs were analyzed. For functional runs, make sure that slice-timing correction and susceptibility distortion correction were applied if that is what you wanted to happen!</p>
+<p>Here are some general things to look for:</p>
 <ul class="simple">
 <li><p>The images are dynamic and portray before/afters.</p></li>
 <li><p>Summary of the flags used in the actual fMRIprep analysis and all the collected confounds are summarized for each run.</p></li>
@@ -194,6 +188,7 @@ sbatch slurm_fmriprep.sh
 <li><p>The section on the correlations among nuisance regressors can guide the decisions on removing confounds.</p></li>
 <li><p>Any errors that may have occurred during preprocessing will be listed at the end of the .html report.</p></li>
 </ul>
+<p>For more details on fMRIPrep outputs, check <a class="reference external" href="https://fmriprep.readthedocs.io/en/stable/outputs.html#visual-reports">fMRIPrep docs</a> or our <a class="reference external" href="./03-05-fmriprepOutputs.html">Understanding your fMRIPrep outputs</a> page.</p>
 <a class="reference external image-reference" href="01-05-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
 </div>
 </div>

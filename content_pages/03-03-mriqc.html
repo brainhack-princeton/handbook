@@ -93,7 +93,8 @@
   <ul>
 <li><a class="reference internal" href="#">Quality control with MRIQC</a><ul>
 <li><a class="reference internal" href="#running-mriqc">Running MRIQC</a><ul>
-<li><a class="reference internal" href="#before-running-for-the-first-time"><em>Before running for the first time</em></a></li>
+<li><a class="reference internal" href="#running-mriqc-for-the-first-time"><em>Running MRIQC for the first time</em></a></li>
+<li><a class="reference internal" href="#running-mriqc-using-slurm"><em>Running MRIQC using Slurm</em></a></li>
 <li><a class="reference internal" href="#submit-your-mriqc-job"><em>Submit your MRIQC job</em></a></li>
 </ul>
 </li>
@@ -135,24 +136,43 @@
   <div class="section" id="quality-control-with-mriqc">
 <span id="mriqc"></span><h1>Quality control with MRIQC<a class="headerlink" href="#quality-control-with-mriqc" title="Permalink to this headline">¶</a></h1>
 <style> .blue {color:blue} </style>
-<style> .red {color:red} </style><p>To get an idea of the quality of your fMRI data, you can use the MRI Quality Check (MRIQC) BIDS app.</p>
+<style> .red {color:red} </style><p>To get an idea of the quality of your data, you can use the MRI Quality Check (MRIQC) BIDS app.</p>
 <div class="section" id="running-mriqc">
 <h2>Running MRIQC<a class="headerlink" href="#running-mriqc" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">slurm_mriqc.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run MRIQC on the cluster using the SLURM scheduler. It first computes metrics for all runs for an individual subject, followed by the group summary statistics.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">slurm_mriqc.sh</span></code> script (which you can find in the <span class="blue">code/preprocessing/</span> directory) will run MRIQC on the cluster using the Slurm scheduler. It first computes metrics for all runs for an individual subject, followed by the group summary statistics.</p>
 <p>This script will use the following two scripts:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">run_mriqc.sh</span></code> (this runs MRIQC at the subject level)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run_mriqc_group.sh</span></code> (this compiles group summary statistics)</p></li>
 </ul>
-<div class="section" id="before-running-for-the-first-time">
-<h3><em>Before running for the first time</em><a class="headerlink" href="#before-running-for-the-first-time" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="running-mriqc-for-the-first-time">
+<h3><em>Running MRIQC for the first time</em><a class="headerlink" href="#running-mriqc-for-the-first-time" title="Permalink to this headline">¶</a></h3>
+<p>Because of a weird quirk in how MRIQC uses TemplateFlow, the first time each <em>user</em> runs MRIQC on the PNI server, MRIQC will need access to the internet to download some TemplateFlow files. The problem is that our compute nodes (i.e. the nodes used by Slurm) do not have access to the internet. However, the head node does. What this means is the first time each <em>individual user</em> runs MRIQC, you should run it on the head node, not using Slurm. After that, any subsequent time you run MRIQC (even if it is for a different project), you can use Slurm.</p>
+<p>In order to run on the head node:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># log into scotty</span>
+ssh -XY username@scotty.pni.princeton.edu
+
+<span class="c1"># navigate to your code/preprocessing directory</span>
+<span class="nb">cd</span> /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing/
+
+<span class="c1"># open a tmux session</span>
+tmux new -s mriqc
+
+<span class="c1"># in your tmux window, run mriqc with subject ID (e.g. 001) as the input</span>
+$ ./run_mriqc.sh <span class="m">001</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-mriqc-using-slurm">
+<h3><em>Running MRIQC using Slurm</em><a class="headerlink" href="#running-mriqc-using-slurm" title="Permalink to this headline">¶</a></h3>
+<p>After running on the head one time - and one time only per user! - you can run follow these instructions to run MRIQC using Slurm.</p>
 <ul class="simple">
 <li><p>Open slurm_mriqc.sh and update the array number to list the subjects you want to run through MRIQC. You can run multiple subjects in parallel by using arrays (e.g., #SBATCH –array=001,002,003,004).</p></li>
 <li><p>Update the #SBATCH –mail-user line to include your email address if you want to get email alerts when the job begins, ends, or fails.</p></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Remember, in SLURM scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are SLURM commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
+<p>Remember, in Slurm scripts, lines that start with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> are Slurm commands, not comments! All other lines that start with <code class="docutils literal notranslate"><span class="pre">#</span></code> are regular comments.</p>
 </div>
 </div>
 <div class="section" id="submit-your-mriqc-job">
