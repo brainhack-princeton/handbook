@@ -1,8 +1,8 @@
 :orphan:
 
-===================================================
-Tips for finding your data on the Princeton server
-===================================================
+==================================
+Tips for navigating the PNI server
+==================================
 
 .. raw:: html
 
@@ -10,82 +10,156 @@ Tips for finding your data on the Princeton server
 
 .. role:: blue
 
-``tmux`` is a command-line terminal multiplexer for Unix-like systems. When working on a remote server, you can use ``tmux`` to create persistent remote sessions. If you get disconnected from the remote server, the ``tmux`` session will keep running. You can attach and detach from these remote sessions, and create multiple windows or panes in a given session. You can control ``tmux`` using key combinations; you first type a prefix key combination (by default ``ctrl + b``) followed by additional command keys. The full ``tmux`` documentation can be found `here <http://man.openbsd.org/OpenBSD-current/man1/tmux.1>`_. The GNU ``screen`` program provides similar functionality (`documentation <https://www.gnu.org/software/screen/manual/screen.html>`_).
 
-Creating a new ``tmux`` session
-===============================
 
-Typically, you want to create a tmux session on a remote server. You can also create a tmux on your local machine to use the multiplexing functionality, but the session will not persist if you shut down your local machine.
+Connecting to the server
+========================
 
-.. code-block:: bash
+If you are not on campus, make sure you have `connected to the Princeton network via VPN <https://princeton.service-now.com/service?sys_id=6023&id=kb_article>`_. 
 
-    # login to the server and create a new session called "mysession"
-    $ ssh -X username@server
-    $ tmux new -s mysession
-    
-Here, the argument ``new`` (or ``new-session``) creates a new session and the flag ``-s`` indicates a session name (``mysession``) of your choice. You are now inside the tmux session ``mysession``, and this session will persist whether you’re attached to it or not. You may want to create and name separate tmux sessions for different experiments or tasks (e.g., ``tmux new -s narratives``). You may need to reload Linux environment ``modules`` or reactivate ``conda`` environments in a new tmux session.
+ssh via the Terminal (Mac)
+--------------------------
 
-Attaching and detaching existing sessions
-=========================================
+Open a new Terminal window. You can choose to login to:
 
-When you log onto a server (via ssh), you can check if you have any existing session running.
+* apps (use this if you are simply navigating the fileserver, copying files, etc.) 
+* spock (the 'compute cluster')
+* scotty (for interactive sessions)
+
+Generally, you probably want to use scotty most of the time for debugging scripts or doing any sort of interactive work on the cluster.
 
 .. code-block:: bash
 
-    # list existing tmux sessions
-    $ tmux ls
+    # Login to apps or Spock or Scotty
+    $ ssh username@apps.pni.princeton.edu
+    $ ssh -XY username@spock.pni.princeton.edu
+    $ ssh -XY username@scotty.pni.princeton.edu
 
-You can reattach to an existing session to pick up where you left off.
-
-.. code-block:: bash
-
-    # attach to an existing tmux session
-    $ tmux a -t mysession
-
-Here, the argument ``a`` is used to "attach" to a session, and the flag ``-t`` indicates the "target" session (``mysession``).
-
-To detach from the current session (i.e. the session you're currently attached to, or "in"), you can use the prefix combination followed by ``d`` (``ctrl + b, d``) or using ``tmux detach``.
-
-Your tmux sessions will persist indefinitely on a remote server unless you terminate them (or the server is rebooted). You can terminate an existing ``tmux`` session without being attached to that session.
+You can now explore and access files from apps, spock, and scotty by using the following commands and paths from your Terminal command line: 
 
 .. code-block:: bash
 
-    # terminate an existing tmux session
-    tmux kill-session -t mysession
+    $ cd /jukebox/YOURLAB/
+    $ cd /jukebox/scratch/
+    $ pwd #print working directory
+    $ ls #list files in working directory
+    $ cd .. #move back a level in directory structure
 
-You can also terminate the session you're currently attached to using the prefix key combination followed by ``x`` (``ctrl + b, x``; confirm with ``y``), or by exiting the shell normally using ``exit``.
+.. TIP::
+    You can add aliases for each of these ssh commands to your *.bash_profile* on your local machine. Then, each time you want to login to the server, you can simply type ``scotty`` (for example), and this will call the ssh command without having to type out the whole thing! When editing your *.bash_profile*, you will need to use the vim for text editing. 
 
-Navigating multiple windows and panes
-=====================================
+.. code-block:: bash
 
-Within a ``tmux`` session, you can create multiple "windows" and within each window you can create multiple "panes". You can create a new "window" within your current ``tmux`` session using the prefix key combination and ``c`` (``ctrl + b, c``) or ``tmux new-window``. You can navigate directly to this window using the prefix key combination and the window number (``ctrl + b, [0-9]``), or you can flip to the next (``ctrl + b, n``) or the previous (``ctrl + b, p``) windows. 
+    # open .bash_profile
+    $ vim ~/.bash_profile
 
-You can split a ``tmux`` window into multiple panes. The key combination ``ctrl + b, %`` splits a window vertically into two side-by-side panes, whereas ``ctrl + b, "`` splits the window horizontally into upper and lower panes. You can use ``ctrl + b, [arrow-key]`` to navigate between panes.
+    # using the vim text editor, add the following:
+    # alias 'apps'='ssh netID@scotty.pni.princeton.edu'
+    # alias 'spock'='ssh -XY netID@scotty.pni.princeton.edu'
+    # alias 'scotty'='ssh -XY netID@scotty.pni.princeton.edu'
 
-Customizing your ``tmux`` configuration
-=======================================
+    # source your .bash_profile for changes to take effect
+    $ source ~./bash_profile
 
-You can modify your ``tmux`` functionality by creating a :blue:`.tmux.config` file. This file should be located in your home directory (``cd ~`` on a Unix-like machine)—i.e., in your home directory on the server for using ``tmux`` on the server. Common modifications include changing the prefix key combination from ``ctrl + b`` to the more ergonomic ``ctrl + a`` from GNU ``screen``, or increasing the number of lines tmux keeps in the history. You can find example :blue:`.tmux.config` files online, or copy mine on scotty into your home directory: :blue:`/usr/people/snastase/.tmux.conf`
+.. NOTE::
+    If you are working on a MacOS, you will use *.bash_profile*. If you are working on Linux (e.g. the server), the equivalent is *.bashrc*. Keep in mind you can also setup aliases in your ``~/.bashrc`` file on the server!
 
-There are many ways of customizing your ``tmux`` configuration, as well as renaming, navigating, and otherwise manipulations windows and panes. You can explore the full functionality of ``tmux`` (on a Unix-like machine) using ``man tmux``. For common commands (e.g., manipulating windows, panes, etc.), you can find many cheat sheets online, as well a concise list of useful commands below.
+Mount a volume via Finder (Mac)
+-------------------------------
 
-``tmux`` commands cheat sheet
+You can also navigate the fileservers (jukebox or scratch) more easily by mounting your lab volume on your local computer. 
+
+Open Finder, Go → Connect to Server 
+
+.. image:: ../../images/connect-to-server1.png
+  :width: 300
+  :align: center
+  :alt: connect to server1
+
+Server Address:
+
+To access *jukebox*:
+smb://bucket.pni.princeton.edu/[YOURLAB]
+
+To access *scratch*:
+smb://sink/scratch
+
+Click “Connect” 
+
+.. image:: ../../images/connect-to-server2.png
+  :width: 600
+  :align: center
+  :alt: connect to server2
+
+If it’s your first time, you will be asked to enter your Princeton netID and password (PU password). 
+
+.. NOTE::
+    It may be more convenient to mount the volume and open files on your local computer for certain tasks, such as opening/editing your scripts and visualizing data (e.g. using fsleyes). 
+ 
+    In order to access files on the mounted volume via a Terminal on your *local machine* (not from servers like spock, scotty, apps), your directory paths will be as follows:
+
+    * Lab volume on jukebox: ``/Volumes/YOURLAB/YOURDIR``
+    * Scratch: ``/Volumes/scratch/YOURDIR``
+
+Mount a volume via another file browser (Windows)
+-------------------------------------------------
+
+From Windows Explorer, select "Map Network Drive" and enter the share name using one of the paths below. Select "Connect using a different user name". Authenticate with your NetID and PU password. When prompted for your username, enter PRINCETON\netid (note that PRINCETON can be upper or lower case) where netid is your PU NetID.
+
+Paths to use:
+
+To access *jukebox*: ``\\bucket\YOURLAB``
+
+To access *scratch*: ``\\sink\scratch\`` 
+
+OR ``\\sink\scratch\YOURDIR`` (your personal scratch volume if you've already created it)
+
+Restoring data from snapshots
 =============================
-.. code-block:: RST
 
-    tmux new -s [name]          # start a new tmux session
-    tmux ls                     # list existing sessions
-    tmux a -t [name]            # attach to an existing session
-    tmux kill-session -t [name] # terminate target (-t) session
-    ctrl + b, x                 # terminate current session
-    ctrl + b, d                 # detach from current session
-    ctrl + b, c                 # create new window in current section
-    ctrl + b, [0-9]             # switch to numbered window
-    ctrl + b, n                 # switch to next window
-    ctrl + b, p                 # switch to previous window
-    ctrl + b, %                 # split window horizontally into panes
-    ctrl + b, "                 # split window vertically into panes
-    ctrl + b, [arrow-key]       # navigate panes using arrow keys
+At PNI, each lab has a volume on the :blue:`/jukebox` file server. Jukebox (or bucket) has a snapshot feature that enables users to restore, by themselves, files that they have mistakenly deleted. All lab volumes retain snapshots. Snapshots are taken daily and weekly. For lab volumes, daily snapshots are kept for 14 days and weekly snapshots for 4 weeks. Snapshots are taken overnight (at different times depending on the volume), so this feature can only capture files that are present when the snapshot is taken. Data created and then deleted in a single day will not be captured in a snapshot.
+
+The :blue:`/scratch` volume does not have snapshots and is not backed up. It is recommended that you save your working files (with lots of intermediate files) and data undergoing analyses in :blue:`/scratch`, and then save your final results to lab volumes on :blue:`/jukebox`.
+
+In order to access snapshots: 
+
+.. code-block:: bash
+
+    # cd to the directory where the data you need to restore (used to) live:
+    $ cd /jukebox/YOURLAB/YOURDIR/
+
+    # snapshots are hidden files, in order to see them:
+    $ ls .snapshot
+
+    # choose the snapshot (the version of your files) you want to restore
+    # and move into that directory
+    $ cd .snapshot/norman_daily_2020_12-06-_01-15/
+    $ ls #list files in this snapshot version
+    
+    # copy the snapshot version of a file back to your main directory (or wherever you want it)
+    $ cp -r <snapshot-filename> <path-to-copy-to>
+
+
+Finding your MRI data on 'conquest'
+===================================
+At the end of each of your data collection sessions at the PNI scanners, you are supposed to transfer your data to “conquest.” Conquest is a directory on the PNI fileserver (aka jukebox or bucket). You can find your transferred data using the following steps: 
+
+.. code-block:: bash
+
+    # Login to the server
+    # then navigate to the conquest directory
+
+    # for data collected at Skyra
+    $ cd /jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR
+
+    # for data collected at Prisma
+    $ cd /jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR
+
+    $ ls
+
+You can see that raw MR data are named by the session ([Scan ID]-[Date of the Scan]-[Start Time]). Inside each of the directories, there is a folder named *dcm* - this is where your raw data (DICOM files) are saved. It takes a little bit of time (depends on the amount of data) to complete the transfer from the scanner, so it is recommended that you wait until all of your raw data have been transferred before moving onto the next steps. 
+
+You’ll want to copy the data from :blue:`/conquest` to your study directory (fyi, data are deleted from :blue:`/conquest` after ~8 weeks). But wait! You don’t have to do this manually. If you’re planning to proceed with using HeuDiConv to convert your DICOM data to BIDS-formatted Nifti files, you should follow the step-by-step instructions on our `Converting data to BIDS using HeuDiConv <../03-02-converting.html>`_ page.
 
 `Return to tips and tricks <../06-01-tipsSplashPage.html>`_
 

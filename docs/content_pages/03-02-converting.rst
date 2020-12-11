@@ -24,19 +24,19 @@ The specific steps to copy the folder using the terminal are as follows:
 .. code-block:: bash
 
     # log into spock or scotty
-    ssh -XY username@spock.pni.princeton.edu
-    ssh -XY username@scotty.pni.princeton.edu
+    $ ssh -XY username@spock.pni.princeton.edu
+    $ ssh -XY username@scotty.pni.princeton.edu
     
     # copy the study template to your own directory
-    cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/USERNAME/
+    $ cp -r /jukebox/norman/pygers/handbook/new_study_template /jukebox/YOURLAB/USERNAME/
 
     # rename new_study_template with your study name
-    cd /jukebox/YOURLAB/USERNAME
-    mv new_study_template [STUDYNAME]
+    $ cd /jukebox/YOURLAB/USERNAME
+    $ mv new_study_template [STUDYNAME]
 
     # if you are working with our sample data, called it sample_project:
-    cd /jukebox/YOURLAB/USERNAME
-    mv new_study_template sample_project
+    $ cd /jukebox/YOURLAB/USERNAME
+    $ mv new_study_template sample_project
     # from now on, replace YOURSTUDY in path examples with 'sample_project'
 
 Here is the hierarchy of the folders in the :blue:`new_study_template` folder.
@@ -87,24 +87,26 @@ IMPORTANT NOTES:
     $ mkdir work/YOURSTUDY
 
 * After copying the template directory for your new study, you need to update the paths in :blue:`globals.sh`. Open :blue:`globals.sh` and update the following three directories:
-    * scanner_dir
-    * project_dir
-    * scratch_dir
+    * scanner_dir (see note)
+    * project_dir (path to your root study directory)
+    * scratch_dir (path to where you want your work files to live for this project)
 
 .. NOTE::
+    ``scanner_dir`` is the path to the conquest directory where your file end up after transferring off the scanner.
+
     If you are following these steps to practice using BIDS with our **sample project**, you should make sure scanner_dir is set to copy the sample dataset from our "fake" scanner directory: 
     
     ``scanner_dir=/jukebox/norman/pygers/conquest``
     
-    Otherwise, if you are setting this up for your own study, scanner_dir should point to the directory where your raw data are sent when you transfer data off the scanner. At PNI, this is either:
+    Otherwise, if you are setting this up for your own study, scanner_dir should point to the directory where your raw data are sent when you transfer data off the scanner. At PNI, if you scanned on Skyra, this is:
 
     ``scanner_dir=/jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR``
     
-    OR
+    OR if you scanned on Prisma:
     
     ``scanner_dir=/jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR``
 
-* Before running fMRIprep for the first time, you will need to download a FreeSurfer license file and save it in your :blue:`/code/preprocessing/` directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update line 9 (--fs-license-file) of :blue:`run_fmriprep.sh` with the correct license file location.
+* Before running fMRIprep for the first time, you will need to download a FreeSurfer license file and save it in your :blue:`/code/preprocessing/` directory. If you decide to save it somewhere else (which is totally fine!), then you will need to update the ``--fs-license-file`` line of :blue:`run_fmriprep.sh` with the correct license file location.
 
     * `Get a FreeSurfer license here <https://surfer.nmr.mgh.harvard.edu/registration.html>`_
 
@@ -130,7 +132,7 @@ The script :blue:`step1_preproc.sh` will do five things for you:
 
 3. unzip the DICOMs in your study directory
 
-4. run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted NIFTI files (.nii)
+4. run HeuDiConv to convert your DICOMs (.dcm) to BIDS-formatted Nifti files (.nii)
 
 5. Deface your T1w anatomical image and set it aside in your derivatives directory (:blue:`/data/bids/derivatives/deface`)
 
@@ -144,18 +146,20 @@ The script takes three inputs:
 * sessionID
 * the name of the data folder that contains your DICOM-images for that subject/session (at Princeton, this is in the “conquest” directory). You can get this information by listing the files in the conquest directory:
 
-  * from **Skyra**: ``ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020``
-  * from **Prisma**: ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020``
+  * from **Skyra**: ``ls /jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR``
+  * from **Prisma**: ``ls /jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR``
   * **sample project**: ``ls /jukebox/norman/pygers/conquest``
 
 .. TIP::
     Add the above ``ls`` command as an alias in your .bashrc file to easily get this info when you need it:
     
-    ``alias 'conquest'='ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020'``
+    ``alias 'conquest'='ls /jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR'``
 
     Then instead of typing out the full conquest path every time you want to see the files in that directory, you can simply type *conquest* on your command line!
 
-Whatever subjectID you use as your first input will correspond to how your BIDS subject folders are named (eg., inputting 999 above will result in a directory called sub-999). SessionID (second input) should match how your runs were named on the scanner (e.g., input 01 for sessionID if your runs were named :blue:`func_ses-01_task-study_run-01`). *If your study doesn't include multiple sessions per subject, you will need to make some modifications to these scripts to remove the session information.* 
+Whatever subjectID you use as your first input will correspond to how your BIDS subject folders are named (eg., inputting 999 above will result in a directory called sub-999). 
+
+SessionID (second input) should match how your runs were named on the scanner (e.g., input 01 for sessionID if your runs were named :blue:`func_ses-01_task-study_run-01`). *If your study doesn't include multiple sessions per subject, you will need to make some modifications to these scripts to remove the session information.* 
 
 .. TIP::
     If you need to, run :blue:`step1_preproc.sh` line by line to check that the correct paths will go into :blue:`run_heudiconv.py`. If there is a problem with your paths, check your :blue:`globals.sh` file.
@@ -170,30 +174,31 @@ We recommended running :blue:`step1_preproc.sh` in a tmux window so you don’t 
 .. code-block:: bash
 
     # create a new tmux window
-    tmux new -s step1
+    $ tmux new -s step1
 
     # OR attach to an existing tmux window
-    tmux a -t step1
+    $ tmux a -t step1
 
     # make sure you are in your study's code/preprocessing directory
-    cd /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing
+    $ cd /jukebox/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing
 
     # list files available in conquest directory to get data folder name for input 3
-    ls /jukebox/dicom/conquest/Skyra-AWP45031/NormaL/2020
+    $ ls /jukebox/dicom/conquest/Skyra-AWP45031/YOURLAB/YEAR
     # OR
-    ls /jukebox/dicom/conquest/Prisma-MSTZ400D/NormaL/2020
+    $ ls /jukebox/dicom/conquest/Prisma-MSTZ400D/YOURLAB/YEAR
     # OR (sample project)
-    ls /jukebox/norman/pygers/conquest
+    $ ls /jukebox/norman/pygers/conquest
 
     # run the script step1_preproc.sh for subject XXX, session xx
     # replace XXX with your subject ID
     # replace xx with your session ID
-    ./step1_preproc.sh XXX xx [conquest folder]
+    $ ./step1_preproc.sh XXX xx [conquest folder]
 
     # NOTE: For the sample project, use the following command:
-    ./step1_preproc.sh 001 01 0219191_mystudy-0219-1114
+    $ ./step1_preproc.sh 001 01 0219191_mystudy-0219-1114
 
-If HeuDiConv is failing, check that your original dicoms are only zipped one time (meaning only one .gz extension instead of .gz.gz). If your dicoms are zipped multiple times (sometimes this happens!), add another line for gunzipping again. Basically do this until your files only have the .dcm extension.
+.. TIP::
+  If HeuDiConv is failing, check that your original dicoms are only zipped one time (meaning only one .gz extension instead of .gz.gz). If your dicoms are zipped multiple times (sometimes this happens!), add another line for gunzipping again. Basically do this until your files only have the .dcm extension.
 
 *Step 2: Get your data ready to pass the bids-validator*
 --------------------------------------------------------
@@ -223,10 +228,10 @@ If you run bids-validator and get any warnings and/or errors, put any modificati
 .. code-block:: bash
 
     # run the script (step2_preproc.sh), e.g. for subject XXX
-    ./step2_preproc.sh XXX
+    $ ./step2_preproc.sh XXX
 
     # NOTE: For our sample project, use the following command
-    ./step2_preproc.sh 001
+    $ ./step2_preproc.sh 001
 
 *Step 3: Run the BIDS validator*
 --------------------------------
@@ -236,19 +241,41 @@ Any non-BIDS formatted files should go into your :blue:`../bids/derivatives` dir
 
 You can run the BIDS validator `from your browser <http://bids-standard.github.io/bids-validator/>`_.  
 
-OR you can install the bids-validator in a conda environment and run it directly on the server or locally (recommended):
+OR (recommended) you can install the bids-validator in a conda environment and run it directly on the server or locally:
 
-* First, make sure you have Node.js (10.11.0 or above) installed on your local machine. Open a local terminal window and from your home directory type: 
+If you have already setup a pygers conda environment following the instructions on our `conda tip page <hack_pages/conda.html>`_, then you are good to go! The pygers conda environment already has the bids-validator package installed.  
 
-UPDATE WITH BIDS-VALIDATOR CONDA INFO
+If you have another conda environment and you want to add the bids-validator to that conda environment, follow these steps:
 
-Read the red “errors” and yellow "warnings". At the bare minimum, you will need to fix the "errors" before you continue. Re-run until the Validator is appeased. Note that “warnings” can be ignored, but you’ll probably want to fix them at some point.
+.. code-block:: bash
+
+    $ conda activate <myenv>
+    
+    # first, update or install nodejs
+    $ conda install -c conda-forge nodejs=11
+    $ node -v #check node version (11.14.0)
+    
+    # install bids-validator
+    $ npm install -g bids-validator
+    $ which bids-validator #shows your installation location
+    $ bids-validator -v #1.5.7 as of Dec-10-2020
+
+In order to run the bids-validator, you need to give it a bids dataset as the input. Make sure you have your conda environment activated, and navigate to your project directory. 
+
+.. code-block:: bash
+
+    $ conda activate <myenv>
+    $ cd /jukebox/YOURLAB/USERNAME/YOURSTUDY
+    $ bids-validator data/bids
+
+Read the red “errors” and yellow "warnings". You should try to fix the red "errors" before you continue. Re-run until the bids-validator is appeased. Note that “warnings” can be ignored for now, but you’ll probably want to fix them at some point.
 
 *Step 4: Deface anatomical images*
 ----------------------------------
-Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won't mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the :blue:`../data/bids/derivatives/deface` so they are available whenever you need them. 
 
-IMPORTANT: This defacing step is included in :blue:`step1_preproc.sh`! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of :blue:`step1_preproc.sh`.
+**IMPORTANT**: The defacing step is included in :blue:`step1_preproc.sh`! We are including additional instructions here in case you would like to run it separately. However, you do not need to continue with this step if you left it as is as part of :blue:`step1_preproc.sh`.
+
+Eventually, if you want to share de-identified data, you will need to deface anatomical images. You do not want to use the defaced images for any further preprocessing step (unless you are certain it won't mess up a downstream preprocessing or analysis step). So after defacing the images, we will set them aside in the :blue:`../data/bids/derivatives/deface` so they are available whenever you need them. 
 
 The :blue:`deface.sh` script will run `pydeface <https://github.com/poldracklab/pydeface>`_ to deface the T1w structural images and move the defaced image into your :blue:`../data/bids/derivatives/deface` directory. It takes two inputs:
 
@@ -273,15 +300,15 @@ To run pydeface on the head node, we recommend using a tmux window (it takes ~9 
     # call deface script
     ./deface.sh XXX xx #example is subject XXX, session xx
 
-You can also run pydeface using SLURM, which is especially useful if you want to run this step for multiple subjects and/or multiple sessions all at once. The script that we will call to run a job on SLURM is :blue:`code/preprocessing/slurm_deface.sh`.
+You can also run pydeface using Slurm, which is especially useful if you want to run this step for multiple subjects and/or multiple sessions all at once. The script that we will call to run a job on SLURM is :blue:`code/preprocessing/slurm_deface.sh`.
 
 * Update lines in slurm_deface.sh: 
-    * Line 7: array number should be equal to all the subject numbers you want to run the script on (if you enter multiple, it will run them all in parallel) e.g., array=101,102,104 
+    * Line 7: array number should be equal to all the subject numbers you want to run the script on (if you enter multiple, it will run them all in parallel) e.g., array=001,002,003 
     * Lines 23 -24: update if you want to get an email with the update on the code
-    * Line 39: change if you want to run on a different session besides session 1
+    * Line 34: change if you want to run on a different session besides session 1
 
 .. TIP::
-    In SLURM scripts, lines that start with ``#SBATCH`` are SLURM commands, not comments! All other lines that start with ``#`` are regular comments. 
+    In Slurm scripts, lines that start with ``#SBATCH`` are Slurm commands, not comments! All other lines that start with ``#`` are regular comments. 
 
 To submit the job:
 
@@ -294,28 +321,6 @@ To submit the job:
     sbatch slurm_deface.sh
 
 Note you don't have to include the subjectID and sessionID inputs here because you defined this information in the :blue:`slurm_deface.sh` script itself. 
-
-*Running pydeface on your local machine:*
-
-Make sure `pydeface <https://github.com/poldracklab/pydeface>`_ is installed on your local machine. Pydeface will only work if python 3 is the default on your machine (not python 2.7). To install:
-
-.. code-block:: bash
-
-    git clone https://github.com/poldracklab/pydeface.git
-    cd pydeface
-    python setup.py install
-
-`Mount jukebox on your desktop <https://npcdocs.princeton.edu/index.php/Mounting_the_PNI_file_server_on_your_desktop>`_. 
-
-Then, from a *local* Terminal window:
-
-.. code-block:: bash
-
-    # move into your code/preprocessing directory
-    cd /Volumes/YOURLAB/USERNAME/YOURSTUDY/code/preprocessing
-
-    # run deface script with 2 inputs
-    ./deface.sh 999 01 #example is subject 999, session 01
 
 .. image:: ../images/return_to_timeline.png
   :width: 300
