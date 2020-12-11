@@ -16,7 +16,7 @@ The goal of these `sample data <https://zenodo.org/record/3677090>`_ is to provi
 
 Sample data description
 -----------------------
-This public dataset was acquired (with informed consent) specifically for use with this handbook [Nastase2020]_. The data were acquired using the `ReproIn <https://github.com/ReproNim/reproin>`_ naming convention on a Siemens Skyra 3T MRI scanner. Many public fMRI datasets contain anonymized NIfTI images and have already been converted to BIDS format, making it difficult to learn best practices in data acquisition and standardization in a hands-on fashion. This dataset, on the other hand, contains raw, non-anonymized DICOM images intended to mimic data directly from the scanner. The dataset includes four functional runs with the `"Pretty Mouth and Green My Eyes" <https://openneuro.org/crn/datasets/ds002345/files/stimuli:prettymouth_audio.wav>`_ naturalistic spoken story stimulus (available as part of the `Narratives <https://openneuro.org/datasets/ds002345>`_ data collection) [Yeshurun2017]_ [Nastase2019]_, one functional run with a block-design emotional faces task [Chai2015]_, a T1-weighted anatomical image, and auxiliary scans (e.g., scout, soundcheck). The brain data are contributed by author S.A.N. and are authorized for non-anonymized distribution.
+This public dataset was acquired (with informed consent) specifically for use with this handbook :cite:`samuel_a_nastase_2020_3677090`. The data were acquired using the `ReproIn <https://github.com/ReproNim/reproin>`_ naming convention on a Siemens Skyra 3T MRI scanner. Many public fMRI datasets contain anonymized NIfTI images and have already been converted to BIDS format, making it difficult to learn best practices in data acquisition and standardization in a hands-on fashion. This dataset, on the other hand, contains raw, non-anonymized DICOM images intended to mimic data directly from the scanner. The dataset includes four functional runs with the `"Pretty Mouth and Green My Eyes" <https://openneuro.org/crn/datasets/ds002345/files/stimuli:prettymouth_audio.wav>`_ naturalistic spoken story stimulus (available as part of the `Narratives <https://openneuro.org/datasets/ds002345>`_ data collection) :cite:`yeshurun2017same` :cite:`nastase2019database`, one functional run with a block-design emotional faces task :cite:`chai2015functional`, a T1-weighted anatomical image, and auxiliary scans (e.g., scout, soundcheck). The brain data are contributed by author S.A.N. and are authorized for non-anonymized distribution.
 
 The tasks are labeled as follows:
 
@@ -67,13 +67,14 @@ Resources
 References
 ^^^^^^^^^^
 
-.. |nbsp| unicode:: 0xA0
-   :trim:
+.. bibliography:: ../refs.bib
+  :style: apa
+  :filter: docname in docnames
 
-.. [Chai2015] |nbsp| Chai, X. J., Hirshfeld-Becker, D., Biederman, J., Uchida, M., Doehrmann, O., Leonard, J. A., Salvatore, J., Kenworthy, T., Brown, A., Kagan, E., de los Angeles, C., Whitfield-Gabrieli, S., & Gabrieli, J. D. E. (2015). Functional and structural brain correlates of risk for major depression in children with familial depression. *NeuroImage: Clinical*, *8*, 398–407. https://doi.org/10.1016/j.nicl.2015.05.004
+.. image:: ../images/return_to_timeline.png
+  :width: 300
+  :align: center
+  :alt: return to timeline
+  :target: 01-05-overview.html
 
-.. [Nastase2019] |nbsp| Nastase, S. A., Liu, Y.-F., Hillman, H., Zadbood, A., Hasenfratz, L., Keshavarzian, N., Chen, J., Honey, C. J., Yeshurun, Y., Regev, M., Nguyen, M., Chang, C. H. C., Baldassano, C. B., Lositsky, O., Simony, E., Chow, M. A., Leong, Y. C., Brooks, P. P., Micciche, E., Choe, G., Goldstein, A., Halchenko, Y. O., Norman, K. A., & Hasson, U. (2019). Narratives: fMRI data for evaluating models of naturalistic language comprehension. https://doi.org/10.18112/openneuro.ds002345.v1.0.1
 
-.. [Nastase2020] |nbsp| Nastase, S. A., Mennen, A. C., Brooks, P. P., & McDevitt, E., A. (2020). Princeton Handbook for Reproducible Neuroimaging: Sample Data. *Zenodo* https://doi.org/10.5281/zenodo.3677090
-
-.. [Yeshurun2017] |nbsp| Yeshurun, Y., Swanson, S., Simony, E., Chen, J., Lazaridi, C., Honey, C. J., & Hasson, U. (2017). Same story, different story: the neural representation of interpretive frameworks. *Psychological Science*, *28*\(3), 307–319. https://doi.org/10.1177%2F0956797616682029
