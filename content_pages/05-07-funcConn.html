@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functional connectivity analyses &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/05-07-funcConn.html" />
+    <link rel="shortcut icon" href="../_static/tigerBrain_favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tips and tricks to hack your workflow" href="06-01-tipsSplashPage.html" />
+    <link rel="prev" title="Diffusion-weighted imaging" href="05-06-diffusion.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/05-07-funcConn/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/05-07-funcConn">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Functional connectivity analyses &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" width="500" src="../_static/tigerBrain.png" title="The Princeton Handbook on Reproducible Neuroimaging"/>
+  </a>
+</p>
+
+<!-- <p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p> -->
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> -->
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Functional connectivity analyses</a><ul>
+<li><a class="reference internal" href="#confound-regression">Confound regression</a></li>
+<li><a class="reference internal" href="#seed-based-exploration">Seed-based exploration</a></li>
+<li><a class="reference internal" href="#pairwise-connectivity-between-rois">Pairwise connectivity between ROIs</a></li>
+<li><a class="reference internal" href="#computing-correlation-matrices-from-a-set-of-rois">Computing correlation matrices from a set of ROIs</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="05-06-diffusion.html" title="previous chapter">Diffusion-weighted imaging</a></li>
+      <li>Next: <a href="06-01-tipsSplashPage.html" title="next chapter">Tips and tricks to hack your workflow</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="functional-connectivity-analyses">
+<span id="funcconn"></span><h1>Functional connectivity analyses<a class="headerlink" href="#functional-connectivity-analyses" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><p>We have examined <a class="reference external" href="https://brainhack-princeton.github.io/handbook/content_pages/05-01-univariate.html">evoked BOLD responses</a> and <a class="reference external" href="https://brainhack-princeton.github.io/handbook/content_pages/05-02-mvpa.html">spatial patterns of activity</a>, but sometimes information can be represented more globally at a network level. One measure of interactions between brain areas that are physically distant is functional connectivity. Functional connectivity is usually measured by a Pearson correlation between the BOLD time courses extracted from two distinct areas in the brain. In this section, we will demonstrate basic steps for functional connectivity analyses by using the ‘story’ task data from the sample dataset.</p>
+<p>This section is developed based on the Intro to Functional Connectivity workbook designed by Michael Arcaro as part of NEU502.</p>
+<div class="section" id="confound-regression">
+<h2>Confound regression<a class="headerlink" href="#confound-regression" title="Permalink to this headline">¶</a></h2>
+<p>Confound regression is crucial for functional connectivity analyses because connectivity measures are affected by artifacts that systematically shape BOLD timeseries, such as head motion, scanner-induced artifacts, respiratory artifacts, etc. Unfortunately, there is no gold standard for confound regression (i.e. which variables to regress out, whether to use scrubbing), but there is much information about pros and cons of different pipelines [e.g., Parkes et al. 2018, Ciric et al. 2017].</p>
+<p>Here, we demonstrate one procedure to perform confound regression (also see this page). We assume you have followed the instructions for fMRIPrep and preprocessed the data already. Let’s take the preprocessed data (i.e., fMRIPrep-ed data). For each run, extract regressor columns from the confounds_regressors.tsv file. You can regress out CSF, WM, global signal, and motion (e.g., 6-, 12-, 24-parameter), aCompCor components, and/or AROMA outputs.</p>
+<p>Preprocessed BOLD data (in MNI space) and confound regressors for each run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">func_file</span><span class="o">=</span>BIDS_DIR/derivatives/fmriprep/sub-001/ses-01/func/sub-001_ses-01_task-story_run-1_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz
+<span class="nv">confound_file</span><span class="o">=</span>BIDS_DIR/derivatives/fmriprep/sub-001/ses-01/func/sub-001_ses-01_task-story_run-1_desc-confounds_regressors.tsv
+</pre></div>
+</div>
+<p>Extract confound regressor columns and save to a 1D file, using AFNI’s 1dcat:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load afni
+1dcat <span class="nv">$confound_file</span><span class="s1">&#39;[HEADER1, HEADER2,...]&#39;</span> &gt; confounds_ortvec_run-1.1D
+</pre></div>
+</div>
+<p>The following code performs confound regression, spatial/temporal smoothing, and censoring in a single step, using AFNI’s 3dTproject. Here, we demonstrate how to include polynomial orthogonalization (-polort 2), confound regressors (-ort FILENAME), spatial smoothing with a 4mm kernel (-blur 4), bandpass filtering (-bandpass 0.01 0.1), and censoring (-censor and -cenmode). Feel free to include a subset of these options.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dTproject <span class="se">\</span>
+-polort <span class="m">2</span> <span class="se">\</span>
+-input <span class="nv">$func_file</span> <span class="se">\</span>
+-ort confounds_ortvec_run-1.1D <span class="se">\</span>
+-blur <span class="m">4</span> <span class="se">\</span>
+-bandpass <span class="m">0</span>.01 <span class="m">0</span>.1 <span class="se">\</span>
+-censor CENSOR_FILE -cenmode ZERO <span class="se">\</span>
+-prefix OUTPUT_FILENAME
+</pre></div>
+</div>
+<p>Here’s a sample script to repeat the steps above for all four runs and concatenate them. This script filters out CSF, WM, global signal, and 24-parameter motion and does not perform any temporal/spatial smoothing or censoring.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+module load afni
+
+<span class="nv">PROJECT_DIR</span><span class="o">=</span>/jukebox/YOURLAB/USERNAME/sample_project
+<span class="nv">BIDS_DIR</span><span class="o">=</span><span class="nv">$PROJECT_DIR</span>/data/bids
+
+<span class="c1"># set paths to your directories</span>
+<span class="nv">func_dir</span><span class="o">=</span><span class="nv">$BIDS_DIR</span>/derivatives/fmriprep/sub-001/ses-01/func
+<span class="nv">out_dir</span><span class="o">=[</span>your output directory<span class="o">]</span>
+
+<span class="c1"># confound regression</span>
+<span class="k">for</span> runidx in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+<span class="k">do</span>
+        <span class="c1"># for each run, extract columns of interest from the confounds file</span>
+        <span class="nv">confoundfile</span><span class="o">=</span><span class="nv">$func_dir</span>/sub-001_ses-01_task-story_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>_desc-confounds_regressors.tsv
+        1dcat <span class="nv">$confoundfile</span><span class="s1">&#39;[csf,white_matter,global_signal,trans_x,trans_x_derivative1,trans_x_derivative1_power2,trans_x_power2,trans_y,trans_y_derivative1,trans_y_derivative1_power2,trans_y_power2,trans_z,trans_z_derivative1,trans_z_derivative1_power2,trans_z_power2,rot_x,rot_x_derivative1,rot_x_derivative1_power2,rot_x_power2,rot_y,rot_y_derivative1,rot_y_power2,rot_y_derivative1_power2,rot_z,rot_z_derivative1,rot_z_derivative1_power2,rot_z_power2]&#39;</span> &gt; <span class="nv">$out_dir</span>/confounds_ortvec_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>.1D
+
+        <span class="c1">#  regress out and save the &#39;denoised&#39; file into the output directory</span>
+        3dTproject -polort <span class="m">2</span> -input <span class="nv">$func_dir</span>/sub-001_ses-01_task-story_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz        <span class="se">\</span>
+                   -ort <span class="nv">$out_dir</span>/confounds_ortvec_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>.1D <span class="se">\</span>
+                   -prefix <span class="nv">$out_dir</span>/sub-001_ses-01_task-story_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>_space-MNI152NLin2009cAsym_desc-denoised.nii.gz
+<span class="k">done</span>
+
+<span class="c1"># concatenate all four runs into a single file</span>
+3dTcat -prefix <span class="nv">$out_dir</span>/sub-001-denoised.nii.gz <span class="se">\</span>
+           <span class="nv">$out_dir</span>/sub-001_ses-01_task-story_run-01_space-MNI152NLin2009cAsym_desc-denoised.nii.gz <span class="se">\</span>
+           <span class="nv">$out_dir</span>/sub-001_ses-01_task-story_run-02_space-MNI152NLin2009cAsym_desc-denoised.nii.gz <span class="se">\</span>
+           <span class="nv">$out_dir</span>/sub-001_ses-01_task-story_run-03_space-MNI152NLin2009cAsym_desc-denoised.nii.gz <span class="se">\</span>
+           <span class="nv">$out_dir</span>/sub-001_ses-01_task-story_run-04_space-MNI152NLin2009cAsym_desc-denoised.nii.gz
+
+<span class="c1"># copy T1w image for visualization</span>
+cp <span class="o">[</span>sample_project directory<span class="o">]</span>/data/bids/derivatives/fmriprep/sub-001/anat/sub-001_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz <span class="nv">$out_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="seed-based-exploration">
+<h2>Seed-based exploration<a class="headerlink" href="#seed-based-exploration" title="Permalink to this headline">¶</a></h2>
+<p>AFNI provides a way of exploring functional connectivity in your dataset through a simple seed-based correlation analysis via the InstaCorr program.</p>
+<p>Go to your output directory, and launch AFNI.
+.. code-block:: bash</p>
+<blockquote>
+<div><p>$ cd [output directory]
+$ afni &amp;</p>
+</div></blockquote>
+<p>In the AFNI window, click on ‘UnderLay’ and select the anatomical image copied from the BIDS directory (“sub-001_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz”).</p>
+<ul class="simple">
+<li><p>Click ‘Define Overlay’ to expand the window.</p></li>
+<li><p>Click on the ‘Setup ICorr’ in top right corner to reveal this new window:</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/funcConn-1-instacorr.png"><img alt="InstaCorr" class="align-center" src="../_images/funcConn-1-instacorr.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>Select ‘Choose Dataset’ &amp; Select ‘sub-001-denoised.nii.gz’</p></li>
+<li><p>Increase ‘Blur’ to 4</p></li>
+<li><p>In the ‘Mask’ row, change ‘Automask’ to No</p></li>
+<li><p>Use the default Bandpass setup (Lower 0.01; Upper 0.1) since bandpass filtering was not done on the data.</p></li>
+<li><p>Click ‘[A] Setup+Keep’ (DO NOT CLICK AROUND WHILE RUNNING!)</p></li>
+<li><p>Wait for correlations to finish. You should see this line in the terminal: ++ InstaCorr setup: 245245 voxels ready for work</p></li>
+<li><p>In the anatomical image, move the cursor to the point you want to test. For example, I moved the cursor to a point in the primary visual cortex.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/funcConn-2-screenshot1.png"><img alt="demo screenshot 1" class="align-center" src="../_images/funcConn-2-screenshot1.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>Near the cursor, right click (and hold) in any window to reveal a hidden drop down menu.</p></li>
+<li><p>Select ‘InstaCorr Set’</p></li>
+<li><p>Change threshold in main window to .3</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/funcConn-3-screenshot2.png"><img alt="demo screenshot 2" class="align-center" src="../_images/funcConn-3-screenshot2.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>You should see a correlation pattern that looks like this:</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/funcConn-4-screenshot3.png"><img alt="demo screenshot 3" class="align-center" src="../_images/funcConn-4-screenshot3.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>Move the cursor to another point. Here I selected a point from the frontoparietal attention network (or “Dorsal Attention Network”). And redo ‘InstalCorr Set’. Then you will see the network revealted (as positively correlated) in this subject, as well as some anti-correlated regions. Feel free to play around with the threshold (higher or lower).</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/funcConn-5-screenshot4.png"><img alt="demo screenshot 4" class="align-center" src="../_images/funcConn-5-screenshot4.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>There are a few other options that you can try in the Setup InstaCorr window, such as Blur and SeedRad (you need to check ‘Misc Opts’). Change the options and rerun the correlations by clicking ‘[A] Setup+Keep’.</p></li>
+</ul>
+</div>
+<div class="section" id="pairwise-connectivity-between-rois">
+<h2>Pairwise connectivity between ROIs<a class="headerlink" href="#pairwise-connectivity-between-rois" title="Permalink to this headline">¶</a></h2>
+<p>We are going to create two spherical ROIs by using the procedures described in <a class="reference external" href="https://youtu.be/JwNGRVJlt-I">Andy’s Brain Blog</a>.</p>
+<p>For practice, we will choose one ROI in the frontal lobe and another ROI in the parietal lobe, which are highly correlated (both areas are part of the so-called Dorsal Attention Network). As a control, we will choose one additional area in the parietal-temporal lobe that is not part of the same network. All these ROIs are in the right hemisphere (this is why there is a little ‘r’ in the file name).</p>
+<p>In your output directory, make a text file for each of the following coordinates:</p>
+<p>rFrontal.txt
+.. code-block:: bash</p>
+<blockquote>
+<div><p>28 -9 53</p>
+</div></blockquote>
+<p>rParietal.txt
+.. code-block:: bash</p>
+<blockquote>
+<div><p>28 -71 32</p>
+</div></blockquote>
+<p>rControl.txt
+.. code-block:: bash</p>
+<blockquote>
+<div><p>51 -47 17</p>
+</div></blockquote>
+<p>Create spherical ROIs around those coordinates using AFNI’s 3dUndump:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>3dUndump -prefix rFrontal -master sub-001-denoised.nii.gz -srad 6 -xyz rFrontal.txt
+3dUndump -prefix rParietal -master sub-001-denoised.nii.gz -srad 6 -xyz rParietal.txt
+3dUndump -prefix rControl -master sub-001-denoised.nii.gz -srad 6 -xyz rControl.txt</p>
+</div></blockquote>
+<p>Basic input and options:
+* -prefix    specify output filename
+* -master    specify a reference file. ROIs will use the same grid information. Because we will extract BOLD timeseries, the code above uses the BOLD file (output of 3dTproject).
+* -srad    radius, size of the spherical ROI (in mm)
+* -xyz     coordinate of the ROI</p>
+<p>Visually inspect whether your ROIs are created in the right location:</p>
+<a class="reference internal image-reference" href="../_images/funcConn-6-rois.png"><img alt="visualize ROIs" class="align-center" src="../_images/funcConn-6-rois.png" style="width: 600px;" /></a>
+<p>Extract time courses (across the four runs) from the three ROIs and save each into a 1D file.
+.. code-block:: bash</p>
+<blockquote>
+<div><p>3dmaskave -mask rFrontal+tlrc sub-001-denoised.nii.gz &gt; rFrontal-denoised.1D
+3dmaskave -mask rParietal+tlrc sub-001-denoised.nii.gz &gt; rParietal-denoised.1D
+3dmaskave -mask rControl+tlrc sub-001-denoised.nii.gz &gt; rControl-denoised.1D</p>
+</div></blockquote>
+<p>Now you have BOLD timeseries extracted from each ROI. You can load these files in MATLAB, Python, R, etc. and calculate Pearson correlations between each of the possible pairs.</p>
+</div>
+<div class="section" id="computing-correlation-matrices-from-a-set-of-rois">
+<h2>Computing correlation matrices from a set of ROIs<a class="headerlink" href="#computing-correlation-matrices-from-a-set-of-rois" title="Permalink to this headline">¶</a></h2>
+<p>Combine ROIs into a map and assign each of the ROIs a different value (1 = rFrontal, 2 = rParietal, 3 = rControl).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dcalc <span class="se">\</span>
+-a rFrontal+tlrc <span class="se">\</span>
+-b rParietal+tlrc <span class="se">\</span>
+-c rControl+tlrc <span class="se">\</span>
+-expr <span class="s1">&#39;a+b*2+c*3&#39;</span> <span class="se">\</span>
+-prefix ROImap
+</pre></div>
+</div>
+<p>Calculate a correlation matrix from the ROI map</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dNetCorr <span class="se">\</span>
+-inset sub-001-denoised.nii.gz <span class="se">\</span>
+-in_rois ROImap+tlrc <span class="se">\</span>
+-fish_z <span class="se">\</span>
+-ts_wb_corr <span class="se">\</span>
+-prefix ROImap_matrix
+</pre></div>
+</div>
+<p>Basic input and options:
+* -inset        BOLD data file
+* -in_rois   A map of ROIs. You can also use a whole-brain parcellation map and generate whole-brain correlation matrices
+* -fish_z     include if you want to obtain Fisher-transformed correlation values as well
+* -ts_wb_corr include if you want to obtain a whole-brain correlation map for each of the ROIs in the ROI map
+* -prefix      specify output filename</p>
+<a class="reference external image-reference" href="01-05-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="05-06-diffusion.html" title="Previous document">Diffusion-weighted imaging</a>
+        </li>
+        <li>
+          <a href="06-01-tipsSplashPage.html" title="Next document">Tips and tricks to hack your workflow</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+<div class="footer">
+  <div style="text-align: left;" id="waldo-tag-2171"></div>
+  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+</div>
+
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

@@ -97,7 +97,7 @@
 <li><a class="reference internal" href="#things-to-set-up-once"><em>Things to set up once</em></a></li>
 <li><a class="reference internal" href="#organization-of-the-repo"><em>Organization of the repo</em></a></li>
 <li><a class="reference internal" href="#editing-the-website"><em>Editing the website</em></a></li>
-<li><a class="reference internal" href="#contributing-cheatsheet"><em>Contributing cheatsheet</em></a></li>
+<li><a class="reference internal" href="#contributing-cheat-sheet"><em>Contributing cheat sheet</em></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></li>
@@ -144,6 +144,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#submitting-an-issue">Submitting an issue</a></p></li>
 <li><p><a class="reference internal" href="#submitting-a-pull-request">Submitting a pull request</a></p></li>
+<li><p><a class="reference internal" href="#contributing-cheat-sheet">Contributing cheat sheet</a></p></li>
 <li><p><a class="reference internal" href="#github-cheat-sheet">Github cheat sheet</a></p></li>
 </ul>
 <style> .blue {color:blue} </style>
@@ -423,8 +424,8 @@ git branch -d &lt;branch_name&gt;
 </ul>
 <a class="with-border reference internal image-reference" href="../_images/delete_branch.png"><img alt="screenshot of deleting a branch" class="with-border align-center" src="../_images/delete_branch.png" style="width: 700px;" /></a>
 </div>
-<div class="section" id="contributing-cheatsheet">
-<h3><em>Contributing cheatsheet</em><a class="headerlink" href="#contributing-cheatsheet" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="contributing-cheat-sheet">
+<h3><em>Contributing cheat sheet</em><a class="headerlink" href="#contributing-cheat-sheet" title="Permalink to this headline">¶</a></h3>
 <p>Here is a condensed version of the previous section, delineating the steps you typically need to execute when contributing to the website.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate the conda environment</span>
 conda activate princeton_handbook
@@ -457,7 +458,14 @@ git add docs/content_pages/<span class="o">[</span>filename<span class="o">]</sp
 git commit -m <span class="s2">&quot;[MESSAGE]&quot;</span>
 git push --set-upstream origin <span class="o">[</span>new-feature<span class="o">]</span>
 
-<span class="c1"># submit a pull request and then delete the branch</span>
+<span class="c1"># submit a pull request</span>
+<span class="c1">## go to the URL that shows up after the previous step</span>
+<span class="c1">## it&#39;s under &quot;Create a pull request for &#39;[new-feature]&#39; on GitHub by visiting:&quot;</span>
+<span class="c1">## and submit the pull request from the website</span>
+
+<span class="c1">#  delete your local copy of the branch, after going to the master branch</span>
+git checkout master
+git branch -d <span class="o">[</span>new-feature<span class="o">]</span>
 </pre></div>
 </div>
 </div>

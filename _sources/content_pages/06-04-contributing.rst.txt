@@ -12,6 +12,7 @@ On this page, we will address the following topics to help you contribute to the
 
 * `Submitting an issue`_
 * `Submitting a pull request`_
+* `Contributing cheat sheet`_
 * `Github cheat sheet`_
 
 .. raw:: html
@@ -438,8 +439,8 @@ Now that you have a general sense of how the repo is organized (and how you will
   :alt: screenshot of deleting a branch
   :class: with-border
 
-*Contributing cheatsheet*
--------------------------
+*Contributing cheat sheet*
+--------------------------
 Here is a condensed version of the previous section, delineating the steps you typically need to execute when contributing to the website. 
 
 .. code-block:: bash
@@ -475,7 +476,14 @@ Here is a condensed version of the previous section, delineating the steps you t
     git commit -m "[MESSAGE]"
     git push --set-upstream origin [new-feature]
 
-    # submit a pull request and then delete the branch
+    # submit a pull request
+    ## go to the URL that shows up after the previous step
+    ## it's under "Create a pull request for '[new-feature]' on GitHub by visiting:"
+    ## and submit the pull request from the website
+
+    #  delete your local copy of the branch, after going to the master branch
+    git checkout master
+    git branch -d [new-feature]
 
 Github cheat sheet
 ==================

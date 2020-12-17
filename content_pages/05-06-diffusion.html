@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diffusion-weighted imaging &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/05-06-diffusion.html" />
+    <link rel="shortcut icon" href="../_static/tigerBrain_favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functional connectivity analyses" href="05-07-funcConn.html" />
+    <link rel="prev" title="Physiology data analysis" href="05-05-physiology.html" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    div.body {
+      min-width: initial;
+      max-width: initial;
+    }
+  </style>
+
+  
+  <link rel="canonical" href="https://handbook.datalad.org/content_pages/05-06-diffusion/"/>
+  <meta property="og:url" content="https://handbook.datalad.org/content_pages/05-06-diffusion">
+  
+
+  <link rel="icon" type="image/png" href="https://media.readthedocs.org/images/favicon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
+  <meta property="og:title" content="Diffusion-weighted imaging &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:type" content="article">
+  
+  <meta property="og:description" content="">
+
+
+  </head><body>
+  <script type="text/javascript">
+
+  $(window).scroll(function () {
+    var s = $(window).scrollTop(),
+          d = $(document).height(),
+          c = $(window).height();
+          scrollPercent = (s / (d-c)) * 100;
+          var position = scrollPercent;
+
+     $("#progressbar").attr('value', position);
+  });
+  </script>
+
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="../index.html">
+    <img class="logo" width="500" src="../_static/tigerBrain.png" title="The Princeton Handbook on Reproducible Neuroimaging"/>
+  </a>
+</p>
+
+<!-- <p style="margin-left:auto; margin-right: auto;"><iframe src="https://ghbtns.com/github-btn.html?repo=book&user=datalad-handbook&type=star&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe></p> -->
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> -->
+<style>
+.algolia-autocomplete{
+  width: 100%;
+  height: 1.5em
+}
+.algolia-autocomplete a{
+  border-bottom: none !important;
+}
+#doc_search{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Diffusion-weighted imaging</a><ul>
+<li><a class="reference internal" href="#scanning-microstructural-plasticity-with-dwmri">Scanning microstructural plasticity with dwMRI</a></li>
+<li><a class="reference internal" href="#choosing-your-scanning-acquisition-parameters">Choosing your scanning acquisition parameters</a></li>
+<li><a class="reference internal" href="#references-and-resources">References and resources</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="05-05-physiology.html" title="previous chapter">Physiology data analysis</a></li>
+      <li>Next: <a href="05-07-funcConn.html" title="next chapter">Functional connectivity analyses</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><!-- Alabaster (krTheme++) Hacks -->
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            <div style="display:block;position:relative; margin-bottom: 1em;">
+              <div style="display:block;width:100%;padding-top:12.5%;"></div>
+              <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
+            </div>
+            
+  <div class="section" id="diffusion-weighted-imaging">
+<span id="diffusion"></span><h1>Diffusion-weighted imaging<a class="headerlink" href="#diffusion-weighted-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Diffusion-weighted MRI measures the diffusion of water molecules to capture microstructural properties of brain tissue (e.g. white matter tractography).</p>
+<div class="section" id="scanning-microstructural-plasticity-with-dwmri">
+<h2>Scanning microstructural plasticity with dwMRI<a class="headerlink" href="#scanning-microstructural-plasticity-with-dwmri" title="Permalink to this headline">¶</a></h2>
+<p>Imaging plasticity in humans has long been restricted to macrostructural changes that take weeks or months to develop. Recent developments in neuroimaging have made it possible to assess rapid microstructural plasticity in the human brain <a class="bibtex reference internal" href="#sagi2012learning" id="id1">[Sagi et al., 2012]</a>. Mean diffusivity, a marker of undirected diffusion strength, can reveal microstructural plasticity already hours after a learning experience <a class="bibtex reference internal" href="#sagi2012learning" id="id2">[Sagi et al., 2012]</a> <a class="bibtex reference internal" href="#brodt2018fast" id="id3">[Brodt et al., 2018]</a> <a class="bibtex reference internal" href="#jacobacci2020rapid" id="id4">[Jacobacci et al., 2020]</a>, and the amount of learning-induced change in this marker of brain microstructure correlates with behavioral memory performance. Decreases in mean diffusivity reflect mechanisms of learning-dependent plasticity, such as astrocyte, myelin, or synaptic remodeling. Synapse density, BDNF expression, and astrocyte activation increase after learning at sites where mean diffusivity decreases, suggesting a tight link to experience induced structural plasticity <a class="bibtex reference internal" href="#blumenfeld2011diffusion" id="id5">[Blumenfeld-Katzir et al., 2011]</a> <a class="bibtex reference internal" href="#johansen2012human" id="id6">[Johansen-Berg et al., 2012]</a> <a class="bibtex reference internal" href="#sagi2012learning" id="id7">[Sagi et al., 2012]</a>.</p>
+<p>If you want to measure microstructural plasticity induced by your behavioral task, you have to take at least two scans of brain microstructure: one before and one after your behavioral intervention. Ideally, you should also have a no-learning control condition, where you measure your participant’s or a control group’s brain microstructure at the same temporal delays.</p>
+<p>Some things you need to be aware of before planning your experiment:
+* Mean diffusivity fluctuates across the day; e.g. circadian and sleep-related effects <a class="bibtex reference internal" href="#bernardi2016sleep" id="id8">[Bernardi et al., 2016]</a>.
+* Mean diffusivity differs globally between wakefulness and NREM sleep. The extracellular space widens in slow wave sleep, an effect associated with metabolite clearance.
+* Effect sizes for changes in mean diffusivity are small. Percent signal change is estimated to lie between 0.5%-2%. Given greater variability, sample sizes need to be larger than in your regular fMRI experiment if you want to get a meaningful result (start planning at 30-40 participants per group).</p>
+<p>You thus ideally want to measure all your participants at approximately the same time of day, or even better, at the same relative point of their circadian rhythm. You also will need to make sure that no one falls asleep during the diffusion scan. Ask your participants to keep their eyes open at all times and monitor their state of consciousness via an eye tracker.</p>
+</div>
+<div class="section" id="choosing-your-scanning-acquisition-parameters">
+<h2>Choosing your scanning acquisition parameters<a class="headerlink" href="#choosing-your-scanning-acquisition-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The signal-to-noise ratio (SNR) of dwMRI sequences is generally lower than for traditional BOLD sequences. You thus 1) want your voxels larger and you 2) want to measure multiple repetitions of your images.</p>
+<ul class="simple">
+<li><p><strong>Voxel size.</strong> Going below 2 mm isotropic in voxel size may be risky. The larger your voxel size the better your signal estimates. Variability gets high with smaller voxels and meaningful signal drops. Having much larger voxels is equally tricky. Since diffusivity measures vary drastically in brain matter and the cerebrospinal fluid (CSF), you want to make sure to exclude voxels that may contain CSF. If you are interested in hippocampal plasticity, picking a voxel size larger than 2 mm isotropic will leave you little tissue to analyze after you excluded the boundary voxels that may still contain signal influenced by CSF.</p></li>
+<li><p><strong>Number of gradient directions.</strong> Variability across participants and repeated measurements within one participant decreases when you measure more gradient directions (although we analyze the mean diffusion tensor). This effect asymptotes once you have sufficient measurement precision. 30 gradient directions (whole-sphere) seem sufficient for signal quality.</p></li>
+<li><p><strong>Number of shells and b0 images.</strong> To assess changes in mean diffusivity, you only have to measure one shell. A commonly used b-value for this is 1000 s/mm2. It makes sense to acquire multiple b0 images interspersed throughout your image acquisition.</p></li>
+<li><p><strong>Repetition number and encoding directions.</strong> Since SNR is low, you need to collect repeated diffusion scans, in both A-P and P-A encoding directions. Six repetitions (A-P, P-A, A-P, P-A, A-P, P-A) may be a good SNR-time tradeoff (one repetition takes approx. 2 min to acquire).</p></li>
+</ul>
+<p>You can acquire diffusion weighted images using multi-band sequences provided by the University of Minnesota Center for Magnetic Resonance Research. Following the recommendations listed above, you may want to measure six acquisitions of a monopolar sequence (cmrr_mbep2d_diff, 3000ms TR; 53ms TE; 90° FA; b=1000s/mm2; 30 whole-sphere gradient directions; 6 interspersed b0 images; 220mm FOV; 110 voxel matrix size; 2mm isotropic voxel size; 70 transversal slices with interleaved slice acquisition; PAT 2 (GRAPPA); MB 2). Using alternating anterior-to-posterior and posterior-to-anterior phase encoding direction for these acquisitions will allow you to use FSL’s distortion correction tools during later processing.</p>
+</div>
+<div class="section" id="references-and-resources">
+<h2>References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
+<p id="bibtex-bibliography-content_pages/05-06-diffusion-0"><dl class="citation">
+<dt class="bibtex label" id="bernardi2016sleep"><span class="brackets"><a class="fn-backref" href="#id8">Bernardi et al., 2016</a></span></dt>
+<dd><p>Bernardi, G., Cecchetti, L., Siclari, F., Buchmann, A., Yu, X., Handjaras, G., … others. (2016). Sleep reverts changes in human gray and white matter caused by wake-dependent training. <em>Neuroimage</em>, <em>129</em>, 367–377.</p>
+</dd>
+<dt class="bibtex label" id="blumenfeld2011diffusion"><span class="brackets"><a class="fn-backref" href="#id5">Blumenfeld-Katzir et al., 2011</a></span></dt>
+<dd><p>Blumenfeld-Katzir, T., Pasternak, O., Dagan, M., &amp; Assaf, Y. (2011). Diffusion mri of structural brain plasticity induced by a learning and memory task. <em>PloS one</em>, <em>6</em>(6), e20678.</p>
+</dd>
+<dt class="bibtex label" id="brodt2018fast"><span class="brackets"><a class="fn-backref" href="#id3">Brodt et al., 2018</a></span></dt>
+<dd><p>Brodt, S., Gais, S., Beck, J., Erb, M., Scheffler, K., &amp; Schönauer, M. (2018). Fast track to the neocortex: a memory engram in the posterior parietal cortex. <em>Science</em>, <em>362</em>(6418), 1045–1048.</p>
+</dd>
+<dt class="bibtex label" id="jacobacci2020rapid"><span class="brackets"><a class="fn-backref" href="#id4">Jacobacci et al., 2020</a></span></dt>
+<dd><p>Jacobacci, F., Armony, J. L., Yeffal, A., Lerner, G., Amaro, E., Jovicich, J., … Della-Maggiore, V. (2020). Rapid hippocampal plasticity supports motor sequence learning. <em>Proceedings of the National Academy of Sciences</em>, <em>117</em>(38), 23898–23903.</p>
+</dd>
+<dt class="bibtex label" id="johansen2012human"><span class="brackets"><a class="fn-backref" href="#id6">Johansen-Berg et al., 2012</a></span></dt>
+<dd><p>Johansen-Berg, H., Baptista, C. S., &amp; Thomas, A. G. (2012). Human structural plasticity at record speed. <em>Neuron</em>, <em>73</em>(6), 1058–1060.</p>
+</dd>
+<dt class="bibtex label" id="sagi2012learning"><span class="brackets">Sagi et al., 2012</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id7">3</a>)</span></dt>
+<dd><p>Sagi, Y., Tavor, I., Hofstetter, S., Tzur-Moryosef, S., Blumenfeld-Katzir, T., &amp; Assaf, Y. (2012). Learning in the fast lane: new insights into neuroplasticity. <em>Neuron</em>, <em>73</em>(6), 1195–1203.</p>
+</dd>
+</dl>
+</p>
+<a class="reference external image-reference" href="01-05-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="05-05-physiology.html" title="Previous document">Physiology data analysis</a>
+        </li>
+        <li>
+          <a href="05-07-funcConn.html" title="Next document">Functional connectivity analyses</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+<div class="footer">
+  <div style="text-align: left;" id="waldo-tag-2171"></div>
+  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+</div>
+
+
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

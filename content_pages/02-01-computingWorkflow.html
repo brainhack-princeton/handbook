@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Setting up your computing workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
+    <title>Best practices for building a reproducible workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -42,7 +42,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="twitter:image" content="https://handbook.datalad.org/_static/social-card.jpg">
   <meta property="og:image" content="https://handbook.datalad.org/_static/social-card.jpg">
-  <meta property="og:title" content="Setting up your computing workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging">
+  <meta property="og:title" content="Best practices for building a reproducible workflow &#8212; The Princeton Handbook for Reproducible Neuroimaging">
   <meta property="og:type" content="article">
   
   <meta property="og:description" content="">
@@ -88,7 +88,40 @@
 }
 </style>
 
-<progress id="progressbar" value="0" max="100"></progress><div class="relations">
+<progress id="progressbar" value="0" max="100"></progress>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Best practices for building a reproducible workflow</a><ul>
+<li><a class="reference internal" href="#setting-up-your-computing-environment">Setting up your computing environment</a></li>
+<li><a class="reference internal" href="#prepare-for-data-acquisition">Prepare for data acquisition</a></li>
+<li><a class="reference internal" href="#data-collection">Data collection</a></li>
+<li><a class="reference internal" href="#data-analysis">Data analysis</a></li>
+<li><a class="reference internal" href="#publishing-and-data-sharing">Publishing and data sharing</a><ul>
+<li><a class="reference internal" href="#tips-for-using-the-command-line">Tips for using the command line</a></li>
+<li><a class="reference internal" href="#conda-environments">Conda environments</a></li>
+<li><a class="reference internal" href="#git-and-github">Git and GitHub</a></li>
+<li><a class="reference internal" href="#get-started-programming-with-python">Get started programming with Python</a></li>
+<li><a class="reference internal" href="#using-slurm">Using Slurm</a></li>
+<li><a class="reference internal" href="#preregister-your-study">Preregister your study</a></li>
+<li><a class="reference internal" href="#design-your-scan-sequences">Design your scan sequences</a></li>
+<li><a class="reference internal" href="#setup-your-program-card-using-reproin">Setup your program card using ReproIn</a></li>
+<li><a class="reference internal" href="#setup-your-protocol">Setup your protocol</a></li>
+<li><a class="reference internal" href="#convert-your-raw-data-to-bids">Convert your raw data to BIDS</a></li>
+<li><a class="reference internal" href="#data-quality-assurance">Data quality assurance</a></li>
+<li><a class="reference internal" href="#preprocessing">Preprocessing</a></li>
+<li><a class="reference internal" href="#data-version-control">Data version control</a></li>
+<li><a class="reference internal" href="#data-visualization">Data visualization</a></li>
+<li><a class="reference internal" href="#fmri-analysis-software-packages">fMRI analysis software packages</a></li>
+<li><a class="reference internal" href="#python-packages">Python packages</a></li>
+<li><a class="reference internal" href="#brainiak-tutorials">BrainIAK tutorials</a></li>
+<li><a class="reference internal" href="#overleaf">Overleaf</a></li>
+<li><a class="reference internal" href="#code-ocean">Code Ocean</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
@@ -119,9 +152,150 @@
               <div class="rpad" data-unit="8x1" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;"></div>
             </div>
             
-  <div class="section" id="setting-up-your-computing-workflow">
-<span id="computingworkflow"></span><h1>Setting up your computing workflow<a class="headerlink" href="#setting-up-your-computing-workflow" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="best-practices-for-building-a-reproducible-workflow">
+<span id="computingworkflow"></span><h1>Best practices for building a reproducible workflow<a class="headerlink" href="#best-practices-for-building-a-reproducible-workflow" title="Permalink to this headline">¶</a></h1>
+<style> .blue {color:blue} </style>
+<style> .red {color:red} </style><p>There are many resources and tools available to us for making our science more open and reproducible. However, it can be quite overwhelming thinking about how to incorporate each thing in your daily workflow!</p>
+<p>Below we have outlined some of the tools we think are most useful to learn or become acquainted with, organized by the “stage” in your workflow you would want to think about incorporating these tools. For many of these tools, we have linked handbook pages with tips or tutorials to help you get started using them.</p>
+<p>Another great way to get started with several of these tools is by following along with our <a class="reference external" href="pygers_workshops/syllabus2020.html">Pygers Workshop recordings and notes</a>.</p>
+<div class="section" id="setting-up-your-computing-environment">
+<h2>Setting up your computing environment<a class="headerlink" href="#setting-up-your-computing-environment" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#tips-for-using-the-command-line"><span class="std std-ref">Tips for using the command line</span></a> (tmux, vim)</p></li>
+<li><p><a class="reference internal" href="#conda-environments"><span class="std std-ref">Conda environments</span></a></p></li>
+<li><p><a class="reference internal" href="#git-and-github"><span class="std std-ref">Git and GitHub</span></a></p></li>
+<li><p><a class="reference internal" href="#get-started-programming-with-python"><span class="std std-ref">Get started programming with Python</span></a> (Jupyter notebooks, iPython debugger)</p></li>
+<li><p><a class="reference internal" href="#using-slurm"><span class="std std-ref">Using Slurm</span></a></p></li>
+</ol>
+</div>
+<div class="section" id="prepare-for-data-acquisition">
+<h2>Prepare for data acquisition<a class="headerlink" href="#prepare-for-data-acquisition" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="6">
+<li><p><a class="reference internal" href="#preregister-your-study"><span class="std std-ref">Preregister your study</span></a> (OSF, AsPredicted)</p></li>
+<li><p><a class="reference internal" href="#design-your-scan-sequences"><span class="std std-ref">Design your scan sequences</span></a></p></li>
+<li><p><a class="reference internal" href="#setup-your-program-card-using-reproin"><span class="std std-ref">Setup your program card using ReproIn</span></a></p></li>
+<li><p><a class="reference internal" href="#setup-your-protocol"><span class="std std-ref">Setup your protocol</span></a> (Protocols.io)</p></li>
+</ol>
+</div>
+<div class="section" id="data-collection">
+<h2>Data collection<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="10">
+<li><p><a class="reference internal" href="#convert-your-raw-data-to-bids"><span class="std std-ref">Convert your raw data to BIDS</span></a> (HeuDiConv)</p></li>
+<li><p><a class="reference internal" href="#data-quality-assurance"><span class="std std-ref">Data quality assurance</span></a> (MRIQC)</p></li>
+<li><p><a class="reference internal" href="#preprocessing"><span class="std std-ref">Preprocessing</span></a> (fMRIPrep)</p></li>
+<li><p><a class="reference internal" href="#data-version-control"><span class="std std-ref">Data version control</span></a> (DataLad)</p></li>
+<li><p><a class="reference internal" href="#data-visualization"><span class="std std-ref">Data visualization</span></a></p></li>
+</ol>
+</div>
+<div class="section" id="data-analysis">
+<h2>Data analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="15">
+<li><p><a class="reference internal" href="#fmri-analysis-software-packages"><span class="std std-ref">fMRI analysis software packages</span></a> (AFNI, FSL)</p></li>
+<li><p><a class="reference internal" href="#python-packages"><span class="std std-ref">Python packages</span></a> (Nilearn, scikitlearn, Nibabel, BrainIAK)</p></li>
+<li><p><a class="reference internal" href="#brainiak-tutorials"><span class="std std-ref">BrainIAK tutorials</span></a></p></li>
+</ol>
+</div>
+<div class="section" id="publishing-and-data-sharing">
+<h2>Publishing and data sharing<a class="headerlink" href="#publishing-and-data-sharing" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="18">
+<li><p><a class="reference internal" href="#overleaf"><span class="std std-ref">Overleaf</span></a></p></li>
+<li><p><a class="reference internal" href="#code-ocean"><span class="std std-ref">Code Ocean</span></a></p></li>
+</ol>
+<div class="section" id="tips-for-using-the-command-line">
+<span id="id1"></span><h3>Tips for using the command line<a class="headerlink" href="#tips-for-using-the-command-line" title="Permalink to this headline">¶</a></h3>
+<p>The sooner you become comfortable using the command line the better! Here are some helpful tips for using the command line to <a class="reference external" href="hack_pages/find-your-data.html">navigate the PNI server</a>.</p>
+<p><strong>tmux:</strong> When working on a remote server (like scotty at PNI), you can use tmux to create persistent remote sessions. If you get disconnected from the remote server, the tmux session will keep running. You can attach and detach from these remote sessions, and create multiple windows or panes in a given session. You can control tmux using key combinations; you first type a prefix key combination (by default ctrl + b) followed by additional command keys. See our <a class="reference external" href="hack_pages/tmux.html">tmux tip page</a> for a tutorial on using tmux.</p>
+<p><strong>Vim:</strong></p>
+</div>
+<div class="section" id="conda-environments">
+<span id="id2"></span><h3>Conda environments<a class="headerlink" href="#conda-environments" title="Permalink to this headline">¶</a></h3>
+<p>Conda is a <strong>package manager</strong>, similar to brew, apt, or pip. This package manager keeps track of your Python installation, versions, and dependencies in an encapsulated <strong>environment</strong> that can be easily shared or reproduced. This is helpful if you have multiple projects that require different (potentially conflicting) software versions. You can easily switch between different conda environments.</p>
+<p><strong>Best practice recommendation</strong>: Setup a new conda environment for each of your projects; always use that conda environment when working on that project. This way you can ensure your software versions are consistent within a project and you can easily report which specific versions you used.</p>
+<p>See our <a class="reference external" href="hack_pages/conda.html">conda tip page</a> for instructions to setup a “pygers” conda environment with our recommended packages installed.</p>
+</div>
+<div class="section" id="git-and-github">
+<span id="id3"></span><h3>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h3>
+<p>See our <a class="reference external" href="hack_pages/git.html">git tip page</a> for a tutorial on using Git and GitHub.</p>
+</div>
+<div class="section" id="get-started-programming-with-python">
+<span id="id4"></span><h3>Get started programming with Python<a class="headerlink" href="#get-started-programming-with-python" title="Permalink to this headline">¶</a></h3>
+<p><strong>Jupyter notebooks</strong>:</p>
+<p>See our <a class="reference external" href="hack_pages/jupyter.html">Jupyter notebook tip page</a> for a tutorial on using Jupyter notebook.</p>
+<p><strong>iPython debugger</strong>:</p>
+<p>See our <a class="reference external" href="hack_pages/debugging-workflow.html">ipdb tip page</a> for a tutorial on using the iPython debugger.</p>
+</div>
+<div class="section" id="using-slurm">
+<span id="id5"></span><h3>Using Slurm<a class="headerlink" href="#using-slurm" title="Permalink to this headline">¶</a></h3>
+<p>See our <a class="reference external" href="hack_pages/slurm.html">Slurm tip page</a> for a tutorial on using Slurm.</p>
+</div>
+<div class="section" id="preregister-your-study">
+<span id="id6"></span><h3>Preregister your study<a class="headerlink" href="#preregister-your-study" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="research_tools/osf.html">Open Science Framework</a>.</p>
+</div>
+<div class="section" id="design-your-scan-sequences">
+<span id="id7"></span><h3>Design your scan sequences<a class="headerlink" href="#design-your-scan-sequences" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./02-03-acquisitionParams.html">Choosing your acquisition parameters</a>.</p>
+</div>
+<div class="section" id="setup-your-program-card-using-reproin">
+<span id="id8"></span><h3>Setup your program card using ReproIn<a class="headerlink" href="#setup-your-program-card-using-reproin" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./02-04-reproin.html">Using ReproIn</a>.</p>
+</div>
+<div class="section" id="setup-your-protocol">
+<span id="id9"></span><h3>Setup your protocol<a class="headerlink" href="#setup-your-protocol" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="research_tools/protocols_io.html">Protocols.io</a>.</p>
+</div>
+<div class="section" id="convert-your-raw-data-to-bids">
+<span id="id10"></span><h3>Convert your raw data to BIDS<a class="headerlink" href="#convert-your-raw-data-to-bids" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./03-02-converting.html">Using HeuDiConv</a>.</p>
+</div>
+<div class="section" id="data-quality-assurance">
+<span id="id11"></span><h3>Data quality assurance<a class="headerlink" href="#data-quality-assurance" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./03-03-mriqc.html">Using MRIQC</a>.</p>
+</div>
+<div class="section" id="preprocessing">
+<span id="id12"></span><h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./03-04-fmriprep.html">Using fMRIPrep</a>.</p>
+</div>
+<div class="section" id="data-version-control">
+<span id="id13"></span><h3>Data version control<a class="headerlink" href="#data-version-control" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="./03-06-sampleProjectWithDatalad.html">Using DataLad</a>.</p>
+</div>
+<div class="section" id="data-visualization">
+<span id="id14"></span><h3>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+</div>
+<div class="section" id="fmri-analysis-software-packages">
+<span id="id15"></span><h3>fMRI analysis software packages<a class="headerlink" href="#fmri-analysis-software-packages" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+</div>
+<div class="section" id="python-packages">
+<span id="id16"></span><h3>Python packages<a class="headerlink" href="#python-packages" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+</div>
+<div class="section" id="brainiak-tutorials">
+<span id="id17"></span><h3>BrainIAK tutorials<a class="headerlink" href="#brainiak-tutorials" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="https://brainiak.org/tutorials/">Link to BrainIAK tutorials</a></p>
+</div>
+<div class="section" id="overleaf">
+<span id="id18"></span><h3>Overleaf<a class="headerlink" href="#overleaf" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="research_tools/overleaf.html">Using Overleaf at Princeton</a>.</p>
+</div>
+<div class="section" id="code-ocean">
+<span id="id19"></span><h3>Code Ocean<a class="headerlink" href="#code-ocean" title="Permalink to this headline">¶</a></h3>
+<p>Add description</p>
+<p><a class="reference external" href="research_tools/code_ocean.html">Using Code Ocean</a>.</p>
 <a class="reference external image-reference" href="01-05-overview.html"><img alt="return to timeline" class="align-center" src="../_images/return_to_timeline.png" style="width: 300px;" /></a>
+</div>
+</div>
 </div>
 
 
