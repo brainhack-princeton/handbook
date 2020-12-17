@@ -12,8 +12,8 @@ On this page, we will address the following topics to help you contribute to the
 
 * `Submitting an issue`_
 * `Submitting a pull request`_
-* `Github cheat sheet`_
 * `Contributing cheat sheet`_
+* `Github cheat sheet`_
 
 .. raw:: html
 
@@ -440,7 +440,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :class: with-border
 
 *Contributing cheat sheet*
--------------------------
+--------------------------
 Here is a condensed version of the previous section, delineating the steps you typically need to execute when contributing to the website. 
 
 .. code-block:: bash
