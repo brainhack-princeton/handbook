@@ -20,24 +20,23 @@ Code Ocean
 
 Extras available to Princeton researchers  
 =========================================
-* 30 GB storage
-* 20 hours of compute time per month
-* Assistance uploading large data files
-
+* Unlimited storage
+* Unlimited compute time
+* Priority support support@codeocean.com 
 
 Good to know  
 =========================================
 * Data must be present in Code Ocean
 * If working with very large data files, Code Ocean will work with you to import the data into Code Ocean. 
 
-
-How to get started 
+Create an account
 =========================================
 1. Go to `Code Ocean <https://codeocean.com/>`_ 
 2. Create an account using your Princeton email address
-3. Guide to `Getting Started <https://help.codeocean.com/en/collections/500072-getting-started>`_ 
 
-Of interest: '`Reproducible fMRI analysis with Code Ocean <https://www.fmrwhy.com/2018/10/31/reproducible-fmri-codeocean/>`_
+Getting started
+===============
+* Guide to `Getting Started <https://help.codeocean.com/en/collections/500072-getting-started>`_ 
 
 Examples of work at Princeton
 =============================
@@ -45,4 +44,6 @@ Examples of work at Princeton
 * Betsy Levy Paluck, Seth Ariel Green, Donald P. Green (2019) The contact hypothesis re-evaluated: code and data [Source Code]. https://doi.org/10.24433/CO.4024382.v7 
 * Nicole S. Rafidi, Justin C. Hulbert, Paula Pacheco, Kenneth A. Norman (2018) Competition EEG [Source Code]. https://doi.org/10.24433/CO.3032d861-7539-45c9-b83d-59f8c8ea6a15.v4 
 
-
+Of Interest
+=============================
+Of interest: `Reproducible fMRI analysis with Code Ocean <https://www.fmrwhy.com/2018/10/31/reproducible-fmri-codeocean/>`_

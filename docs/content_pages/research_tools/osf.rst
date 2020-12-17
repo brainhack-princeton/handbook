@@ -18,11 +18,11 @@ Open Science Framework
 
 `Open Science Framework or OSF <https://osf.io/dashboard>`_ is a free and open-source project management tool that helps researchers manage, store, and share research material (documents, code, data, pre-registration, preprints, etc) throughout the entire research lifecycle. 
 
-* OSF HOME: A personal repository of public or private ‘projects’. Each project contains a wiki, file storage, ‘components’ (file structure), and tracks changes. Users also have the option to assign the project tags, copyright license, create a DOI, and integrate a number of ‘Add-Ons’  including GitHub, figshare, DropBox, Google Drive, Amazon S3, etc. The integration of Add-Ons allows the user to have an OSF repository without the need to duplicate research materials already available in other tools (such as data in a GitHub repository). 
+**OSF HOME:** A personal repository of public or private ‘projects’. Each project contains a wiki, file storage, ‘components’ (file structure), and tracks changes. Users also have the option to assign the project tags, copyright license, create a DOI, and integrate a number of ‘Add-Ons’  including GitHub, figshare, DropBox, Google Drive, Amazon S3, etc. The integration of Add-Ons allows the user to have an OSF repository without the need to duplicate research materials already available in other tools (such as data in a GitHub repository). 
 
-* OSF REGISTRIES:  An open repository of pre-registrations for experimental science. Pre-registrations do not need to be discipline or subject-specific and can follow a number of templates including AsPredicted.org, Registered Report Protocols, Replication Recipe (Brandt et al., 2013), Post-Completion, etc. 
+**OSF REGISTRIES:**  An open repository of pre-registrations for experimental science. Pre-registrations do not need to be discipline or subject-specific and can follow a number of templates including AsPredicted.org, Registered Report Protocols, Replication Recipe (Brandt et al., 2013), Post-Completion, etc. 
 
-* OSF PREPRINTS: An open preprint repository. Preprints do not need to be from a specific subject or discipline. However, a number of preprint repositories use OSF’s open-source infrastructure, including PsyArXiv, MetaArXiv, and MindRxiv
+**OSF PREPRINTS:** An open preprint repository. Preprints do not need to be from a specific subject or discipline. However, a number of preprint repositories use OSF’s open-source infrastructure, including PsyArXiv, MetaArXiv, and MindRxiv
 
 Extras available to Princeton researchers  
 =========================================
@@ -36,16 +36,16 @@ Good to know
 * Storage limit per public project: 50GB
 * Additional storage can be added through the use of Add-Ons such as GitHub, figshare, or Dataverse
 
-How to get started  
+Create an account
 =========================================
 1. Go to `OSF <https://osf.io/dashboard>`_
 2. Click 'Sign in through institution'
 3. Create an accout with your Princeton email address
 
-Getting set up
-`Getting Started with OSF <https://www.cos.io/blog/getting-started-osf>`_ Getting Started with OSF [`2min video <https://youtu.be/2TV21gOzfhw>`_ | `55min video <https://www.youtube.com/watch?v=dLEIhJESIQA>`_]
-Using OSF to Share Data: A Step-by-Step Guide (Princeton NetID required)
-Open and Reproducible Research on Open Science Framework
+Getting started
+===============
+* `Getting Started with OSF <https://www.cos.io/blog/getting-started-osf>`_ Getting Started with OSF [`2min video <https://youtu.be/2TV21gOzfhw>`_ | `55min video <https://www.youtube.com/watch?v=dLEIhJESIQA>`_] 
+* `Open and Reproducible Research on Open Science Framework <https://currentprotocols.onlinelibrary.wiley.com/doi/full/10.1002/cpet.32>`_
 
 
 Examples of work at Princeton 
