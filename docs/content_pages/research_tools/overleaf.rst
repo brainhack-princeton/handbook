@@ -26,13 +26,13 @@ Extras available to Princeton researchers
 
 Good to know  
 =========================================
-* Uses LaTeX, a typesetting designed for the production of technical and scientific documents
+* Uses LaTeX, a typesetting designed for the production of technical and scientific documents.
 * `LaTex Crash Course <https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1>`_
 
 Create an account
 =========================================
 1. Go to `Overleaf <https://www.overleaf.com/edu/princeton>`_
-2. Create an account with your Princeton email address
+2. Create an account with your Princeton email address.
 
 Getting started
 ===============

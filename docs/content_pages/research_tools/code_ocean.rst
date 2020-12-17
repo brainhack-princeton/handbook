@@ -32,7 +32,7 @@ Good to know
 Create an account
 =========================================
 1. Go to `Code Ocean <https://codeocean.com/>`_ 
-2. Create an account using your Princeton email address
+2. Create an account using your Princeton email address. 
 
 Getting started
 ===============

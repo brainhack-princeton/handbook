@@ -22,7 +22,7 @@ Open Science Framework
 
 **OSF REGISTRIES:**  An open repository of pre-registrations for experimental science. Pre-registrations do not need to be discipline or subject-specific and can follow a number of templates including AsPredicted.org, Registered Report Protocols, Replication Recipe (Brandt et al., 2013), Post-Completion, etc. 
 
-**OSF PREPRINTS:** An open preprint repository. Preprints do not need to be from a specific subject or discipline. However, a number of preprint repositories use OSF’s open-source infrastructure, including PsyArXiv, MetaArXiv, and MindRxiv
+**OSF PREPRINTS:** An open preprint repository. Preprints do not need to be from a specific subject or discipline. However, a number of preprint repositories use OSF’s open-source infrastructure, including PsyArXiv, MetaArXiv, and MindRxiv.
 
 Extras available to Princeton researchers  
 =========================================

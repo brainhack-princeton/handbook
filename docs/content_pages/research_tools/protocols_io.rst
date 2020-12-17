@@ -34,7 +34,7 @@ Good to know
 Create an account
 =========================================
 1. Go to `Protocols.io <https://www.protocols.io/>`_
-2. Create an account with your Princeton email. Existing users, go `here <https://www.protocols.io/organizations/princeton>`_ to upgrade your account.
+2. Create an account with your Princeton email. Existing users, go `here <https://www.protocols.io/organizations/princeton>`_ to upgrade your account. 
 
 Getting started
 ===============

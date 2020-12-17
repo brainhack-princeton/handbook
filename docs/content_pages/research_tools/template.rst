@@ -16,7 +16,7 @@ Name of Research Tool
 .. role:: orange
 .. role:: green
 
-`Open Science Framework or OSF <https://osf.io/dashboard>`_ is a free and open-source project management tool that helps researchers manage, store, and share research material (documents, code, data, pre-registration, preprints, etc) throughout the entire research lifecycle. 
+`Open Science Framework or OSF <https://osf.io/dashboard>`_ is a free and open-source project management tool that helps researchers manage, store, and share research material (documents, code, data, pre-registration, preprints, etc) throughout the entire research lifecycle.  
 
 
 
