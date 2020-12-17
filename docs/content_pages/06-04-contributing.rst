@@ -227,7 +227,7 @@ Now that you have a general sense of how the repo is organized (and how you will
     $ git checkout -b [new-feature]
       e.g., git checkout -b testing
 
-4. Using your favorite text editor, **make changes to the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs` or :blue:`handbook/docs/content_pages`.
+4. Using your favorite text editor, **make changes to the document you want to modify**. Remember, you should be modifying the .rst files located in :blue:`handbook/docs` or :blue:`handbook/docs/content_pages`.github
 
 5. Next, you will want to **render the handbook locally** so that you can get a sense of the impact of the changes you make on the website. Run the following command from your top-level handbook directory: 
 
@@ -300,7 +300,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
     Before you submit a pull request, make sure you have used ``make build`` to check that your code renders the handbook locally on your computer!!
 
-* On the Github page of your forked repo, make sure that you pushed the changes you committed (see where the arrow is pointing below) and that you are in the correct new-feature branch (in the dotted circle). **Press 'new pull request'** to initiate a new pull request (in the solid box).
+* On the Github page of your forked repo, make sure that (1) you pushed the changes you committed, (2) changed the branch from master to the new-feature branch you are working in, then (3) Click **Compare & pull request** to initiate a new pull request (in the solid box).
 
 .. image:: ../images/github_page_after_push.png
   :width: 600px
@@ -308,7 +308,7 @@ Now that you have a general sense of how the repo is organized (and how you will
   :alt: screenshot of forked repo before pull request
   :class: with-border
 
-8. Leave any comments in the text box and then **submit the pull request by pressing 'Create pull request'**, which is boxed in below.
+8. Leave any comments in the text box and then **submit the pull request by clicking 'Create pull request'**, which is boxed in below.
 
 .. image:: ../images/making_pull_request.png
   :width: 600px
