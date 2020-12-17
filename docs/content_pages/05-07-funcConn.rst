@@ -107,7 +107,7 @@ In the AFNI window, click on ‘UnderLay’ and select the anatomical image copi
 * Click ‘Define Overlay’ to expand the window. 
 * Click on the ‘Setup ICorr’ in top right corner to reveal this new window:
 
-.. image:: ../../images/funcConn-1-instacorr.png
+.. image:: ../images/funcConn-1-instacorr.png
   :width: 600
   :align: center
   :alt: InstaCorr
@@ -121,7 +121,7 @@ In the AFNI window, click on ‘UnderLay’ and select the anatomical image copi
 * Wait for correlations to finish. You should see this line in the terminal: ++ InstaCorr setup: 245245 voxels ready for work
 * In the anatomical image, move the cursor to the point you want to test. For example, I moved the cursor to a point in the primary visual cortex.
 
-.. image:: ../../images/funcConn-2-screenshot1.png
+.. image:: ../images/funcConn-2-screenshot1.png
   :width: 600
   :align: center
   :alt: demo screenshot 1
@@ -130,21 +130,21 @@ In the AFNI window, click on ‘UnderLay’ and select the anatomical image copi
 * Select ‘InstaCorr Set’
 * Change threshold in main window to .3
 
-.. image:: ../../images/funcConn-3-screenshot2.png
+.. image:: ../images/funcConn-3-screenshot2.png
   :width: 600
   :align: center
   :alt: demo screenshot 2
 
 * You should see a correlation pattern that looks like this:
 
-.. image:: ../../images/funcConn-4-screenshot3.png
+.. image:: ../images/funcConn-4-screenshot3.png
   :width: 600
   :align: center
   :alt: demo screenshot 3
 
 * Move the cursor to another point. Here I selected a point from the frontoparietal attention network (or “Dorsal Attention Network”). And redo ‘InstalCorr Set’. Then you will see the network revealted (as positively correlated) in this subject, as well as some anti-correlated regions. Feel free to play around with the threshold (higher or lower). 
 
-.. image:: ../../images/funcConn-5-screenshot4.png
+.. image:: ../images/funcConn-5-screenshot4.png
   :width: 600
   :align: center
   :alt: demo screenshot 4
@@ -192,7 +192,7 @@ Basic input and options:
 
 Visually inspect whether your ROIs are created in the right location:
 
-.. image:: ../../images/funcConn-6-rois.png
+.. image:: ../images/funcConn-6-rois.png
   :width: 600
   :align: center
   :alt: visualize ROIs
