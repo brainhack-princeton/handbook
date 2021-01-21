@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/05-03-surfaceBased.html" />
     <link rel="shortcut icon" href="../_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -149,8 +148,8 @@
 <p>Here is an example of a call to 3dDeconvolve using an event related design:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3dDeconvolve -polort A -jobs <span class="o">{</span>how many CPU cores you want the job to run on<span class="o">}</span> <span class="se">\</span>
   -input <span class="o">{</span>a list of the image files that you wish to process<span class="o">}</span> <span class="se">\</span>
-  -local_times -num_stimts <span class="o">{</span>how many events you have in your design<span class="o">}</span> -stim_times <span class="m">1</span> <span class="o">{</span>text file containing the timing of each instance of event A in seconds, with a new line <span class="k">for</span> each run<span class="o">}</span> ‘GAM’ <span class="o">(</span>this specifies that the program should fit a gamma <span class="k">function</span> to your data, different functions are available<span class="o">)</span> -stim_label <span class="m">1</span> <span class="o">{</span>Event Label A<span class="o">}</span><span class="se">\</span>
-  -stim_times <span class="m">2</span> <span class="o">{</span>timing files in .txt format<span class="o">}</span> ‘GAM’ -stim_label <span class="m">2</span> <span class="o">{</span>Event Label B<span class="o">}</span><span class="se">\</span>
+  -local_times -num_stimts <span class="o">{</span>how many events you have <span class="k">in</span> your design<span class="o">}</span> -stim_times <span class="m">1</span> <span class="o">{</span>text file containing the timing of each instance of event A <span class="k">in</span> seconds, with a new line <span class="k">for</span> each run<span class="o">}</span> ‘GAM’ <span class="o">(</span>this specifies that the program should fit a gamma <span class="k">function</span> to your data, different functions are available<span class="o">)</span> -stim_label <span class="m">1</span> <span class="o">{</span>Event Label A<span class="o">}</span><span class="se">\</span>
+  -stim_times <span class="m">2</span> <span class="o">{</span>timing files <span class="k">in</span> .txt format<span class="o">}</span> ‘GAM’ -stim_label <span class="m">2</span> <span class="o">{</span>Event Label B<span class="o">}</span><span class="se">\</span>
   -gltsym <span class="s1">&#39;SYM: {Event A} -{Event B}&#39;</span> -glt_label <span class="m">1</span> <span class="o">{</span>Event Label A<span class="o">}</span>-<span class="o">{</span>Event Label B<span class="o">}</span> <span class="se">\</span>
   -ortvec <span class="o">{</span>A matrix of noise variables that you want to regress out<span class="o">}</span> <span class="se">\</span>
   -fout -tout <span class="se">\</span>
@@ -185,7 +184,7 @@
   -surf_A smoothwm <span class="se">\</span>
   -input <span class="o">{</span>the raw data files that you want smoothed<span class="o">}</span> <span class="se">\</span>
   -met HEAT_07 <span class="se">\</span>
-  -target_fwhm <span class="o">{</span>the degree of blur that you want to see in the output. <span class="m">6</span> is common<span class="o">}</span> <span class="se">\</span>
+  -target_fwhm <span class="o">{</span>the degree of blur that you want to see <span class="k">in</span> the output. <span class="m">6</span> is common<span class="o">}</span> <span class="se">\</span>
   -blurmaster <span class="o">{</span>the errts output from running your first GLM<span class="o">}</span> <span class="se">\</span>
   -Niter -1 <span class="se">\</span>
   -no_detrend_master <span class="se">\</span>
@@ -282,7 +281,7 @@
   </div>
 <div class="footer">
   <div style="text-align: left;" id="waldo-tag-2171"></div>
-  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+  <p>&copy;2021 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
 </div>
 
 

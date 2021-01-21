@@ -13,7 +13,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="canonical" href="https://brainhack-princeton.github.io/handbook//content_pages/05-07-funcConn.html" />
     <link rel="shortcut icon" href="../_static/tigerBrain_favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -173,7 +172,7 @@ module load afni
 <span class="nv">out_dir</span><span class="o">=[</span>your output directory<span class="o">]</span>
 
 <span class="c1"># confound regression</span>
-<span class="k">for</span> runidx in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
+<span class="k">for</span> runidx <span class="k">in</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span>
 <span class="k">do</span>
         <span class="c1"># for each run, extract columns of interest from the confounds file</span>
         <span class="nv">confoundfile</span><span class="o">=</span><span class="nv">$func_dir</span>/sub-001_ses-01_task-story_run-0<span class="si">${</span><span class="nv">runidx</span><span class="si">}</span>_desc-confounds_regressors.tsv
@@ -337,7 +336,7 @@ $ afni &amp;</p>
   </div>
 <div class="footer">
   <div style="text-align: left;" id="waldo-tag-2171"></div>
-  <p>&copy;2020 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
+  <p>&copy;2021 CC-BY-SA - <a href="website_info.html">Website Info</a></p>
 </div>
 
 
