@@ -46,5 +46,5 @@ Getting started
 Templates for Princeton Researchers
 =========================================
 * `Princeton Thesis and Dissertation Template <https://www.overleaf.com/latex/templates/phd-thesis-and-dissertation-latex-templates-for-harvard-princeton-and-new-york-university-nyu/wkzvtymyxqvv#.VUuB5rMzqFl.twitter>`_
-* `Princeton Research Poster Template Horizontal <https://www.overleaf.com/project/5d6d69bf502afd54fb56317d>`_ created by Qihong Lu
-* `Princeton Research Poster Template Vertical <https://www.overleaf.com/project/5bf050a953071f07e9d56194>`_ created by Qihong Lu
+* `Princeton Research Poster Template Horizontal <https://www.overleaf.com/read/txvvksjydrbb>`_ created by Qihong Lu
+* `Princeton Research Poster Template Vertical <https://www.overleaf.com/read/jndcrvhnytnm>`_ created by Qihong Lu
