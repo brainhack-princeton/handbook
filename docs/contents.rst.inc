@@ -71,6 +71,7 @@ Into the Wild West of analyses
    content_pages/05-04-group
    content_pages/05-05-physiology
    content_pages/05-06-diffusion
+   content_pages/05-07-funcConn 
 
 ########
 Appendix
