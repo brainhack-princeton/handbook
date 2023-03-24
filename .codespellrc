@@ -1,0 +1,6 @@
+[codespell]
+skip = .git,*.pdf,*.svg,versioneer.py,*.psyexp
+# TE -- echo time
+# whos -- some command in debug workflow
+# Sepulcre -- name
+ignore-words-list =  te,whos,sepulcre
