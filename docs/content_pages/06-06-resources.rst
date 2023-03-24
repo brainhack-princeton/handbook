@@ -53,7 +53,7 @@ Useful Toolboxes
 * `PySurfer <http://pysurfer.github.io/>`_
 	Python library for visualizing cortical surface representations of neuroimaging data.
 * `scikit-learn <https://scikit-learn.org/stable/>`_
-	Software machine learning library for Python that featurs various classification, regression, and clustering algorithms.
+	Software machine learning library for Python that features various classification, regression, and clustering algorithms.
 * `SciPy <https://www.scipy.org/>`_
 	Python-based ecosystem of open-source software for mathematics, science, and engineering. Its core packages include NumPy, SciPy, Matplotlib, iPython, and pandas.
 

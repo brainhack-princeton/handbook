@@ -77,7 +77,7 @@ fprintf(['* rtData: ' num2str(rtData) '\n']);
 fprintf(['* debug: ' num2str(debug) '\n']);
 fprintf('*********************************************\n\n');
 
-%% Initalizing scanner parameters
+%% Initializing scanner parameters
 
 disdaqs = 15; % how many seconds to drop at the beginning of the run
 TR = 1.5; % seconds per volume

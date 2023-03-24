@@ -141,7 +141,7 @@ As one last step, examine ``git log`` in both your original and second computer 
 General Git workflow
 ====================
 
-Initialize Git in an empty or exisiting code directory on computer1 (``git init``). Setup a corresponding new repository on GitHub. Add GitHub as the remote to your computer1 repo (``git remote add origin <url>``). Clone the GitHub repo to computer2 (``git clone <url>``). 
+Initialize Git in an empty or existing code directory on computer1 (``git init``). Setup a corresponding new repository on GitHub. Add GitHub as the remote to your computer1 repo (``git remote add origin <url>``). Clone the GitHub repo to computer2 (``git clone <url>``). 
 
 Keep everything synchronized! Follow this workflow when working from computer1 or computer2 (or computer3, etc.). 
 

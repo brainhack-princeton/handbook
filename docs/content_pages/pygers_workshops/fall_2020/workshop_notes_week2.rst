@@ -168,7 +168,7 @@ In the following, we'll work through a simple exercise of version control with G
 
     # note that floats break this script
     # check your python version then try division with remainder
-    # if you're using python 3, the ouput should be a fractional float
+    # if you're using python 3, the output should be a fractional float
     # if you're using python 2, the default is integer division (yikes)
 
     # let's make an adjustment to our script

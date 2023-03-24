@@ -40,7 +40,7 @@ Create an account
 =========================================
 1. Go to `OSF <https://osf.io/dashboard>`_
 2. Click 'Sign in through institution'
-3. Create an accout with your Princeton email address
+3. Create an account with your Princeton email address
 
 Getting started
 ===============

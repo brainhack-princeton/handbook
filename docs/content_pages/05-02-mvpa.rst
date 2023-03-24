@@ -38,7 +38,7 @@ In this case, you would set up a GLM with the motion confounds (or whichever oth
 
 **(2b) - Regressing out motion and setting up a GLM with task stimuli**
 
-In this case, you want to do MVPA on *beta coefficients* instead of BOLD activation. You need to set up your design matrix so that each trial/TR is separate. However many stimulus labels you set (plus constrasts) will determine how many betas your model will calculate. So if you want to train on faces vs. scenes, do not only make 1 face label and 1 scene label. If you did this, you will only get 1 beta value/voxel for face and 1 beta value/voxel for scene. This is usually not enough samples to train for MVPA, unless you’re doing some across subject analysis. Thus, you should probably make face_TR1, face_TR2, etc. separate labels so you get an abbreviate time series out of your results to use for MVPA.
+In this case, you want to do MVPA on *beta coefficients* instead of BOLD activation. You need to set up your design matrix so that each trial/TR is separate. However many stimulus labels you set (plus contrasts) will determine how many betas your model will calculate. So if you want to train on faces vs. scenes, do not only make 1 face label and 1 scene label. If you did this, you will only get 1 beta value/voxel for face and 1 beta value/voxel for scene. This is usually not enough samples to train for MVPA, unless you’re doing some across subject analysis. Thus, you should probably make face_TR1, face_TR2, etc. separate labels so you get an abbreviate time series out of your results to use for MVPA.
 
 Scikit-learn
 ------------
