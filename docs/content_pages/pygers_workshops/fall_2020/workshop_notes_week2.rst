@@ -168,7 +168,7 @@ In the following, we'll work through a simple exercise of version control with G
 
     # note that floats break this script
     # check your python version then try division with remainder
-    # if you're using python 3, the ouput should be a fractional float
+    # if you're using python 3, the output should be a fractional float
     # if you're using python 2, the default is integer division (yikes)
 
     # let's make an adjustment to our script
@@ -352,7 +352,7 @@ Refresh your GitHub page online. You should be able to see the contents inside :
 - Comment out `module load anacondapy/5.3.1`
 - Set the **scanner_dir** to the location where the data lives:
     - for PNI folks, the location is :blue:`/jukebox/norman/pygers/conquest`
-    - fot non-PNI folks, this should be the path to where you downloaded and saved the sample data
+    - for non-PNI folks, this should be the path to where you downloaded and saved the sample data
 - Edit **project_dir** to where you have the sample_study directory (e.g., /jukebox/LAB/YOURNAME/pygers_workshop/sample_study)
 
 Now, you need to commit and push the changes to your globals.sh file:

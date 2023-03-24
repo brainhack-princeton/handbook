@@ -164,7 +164,7 @@ SessionID (second input) should match how your runs were named on the scanner (e
 .. TIP::
     If you need to, run :blue:`step1_preproc.sh` line by line to check that the correct paths will go into :blue:`run_heudiconv.py`. If there is a problem with your paths, check your :blue:`globals.sh` file.
 
-We recommended running :blue:`step1_preproc.sh` in a tmux window so you don’t run into issues with losing connection to the server, etc. After ssh-ing into the server, create a new tmux window OR attach to an exisiting tmux window. After creating a new window, you can attach to that specific window/session in the future. In other words, you don't have to create a new window every time you run :blue:`step1_preproc.sh`. 
+We recommended running :blue:`step1_preproc.sh` in a tmux window so you don’t run into issues with losing connection to the server, etc. After ssh-ing into the server, create a new tmux window OR attach to an existing tmux window. After creating a new window, you can attach to that specific window/session in the future. In other words, you don't have to create a new window every time you run :blue:`step1_preproc.sh`. 
     * Create a new tmux window: ``tmux new -s [name]``
     * Attach to an existing window: ``tmux a -t [name]``
     * NOTE: replace ``[name]`` with whatever you want to name your tmux window -- we recommend naming it *step1*.
@@ -219,7 +219,7 @@ The script takes one input:
 .. NOTE::
   * This script will need to be customized for your study! Edit this script once at the beginning of your project so that all the filenames match your naming scheme, and so the fieldmaps are being applied to the correct functional runs. If you did not collect fieldmaps, then you can ignore the steps specific to fieldmaps.
 
-  * If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit :blue:`step2_preproc.sh` again to accomodate these differences. 
+  * If an individual subject deviates from your standard (e.g., has an extra set of fieldmaps or is missing functional runs), then you will need to edit :blue:`step2_preproc.sh` again to accommodate these differences. 
 
   * **Sample project**: The sample dataset does NOT include fieldmaps. Therefore, when you edit the :blue:`step2_preproc.sh` for the sample project, you can comment out the lines of code dealing with the fieldmaps. You should still run :blue:`step2_preproc.sh` to delete the extra (scout and dup) files. 
 

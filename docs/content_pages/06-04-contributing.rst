@@ -330,7 +330,7 @@ Now that you have a general sense of how the repo is organized (and how you will
 
 * However, this sometimes doesn't happen right away. The moderators might want you to make some changes before accepting your merge request. If this is the case, they will contact you.
 
-10. If your pull request gets approved and is merged to the offical handbook, **delete the branch** for the feature that was just approved. You can do this from the terminal or from the GitHub page for your forked repo.
+10. If your pull request gets approved and is merged to the official handbook, **delete the branch** for the feature that was just approved. You can do this from the terminal or from the GitHub page for your forked repo.
 
 *On terminal*:
 

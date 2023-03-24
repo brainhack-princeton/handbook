@@ -93,7 +93,7 @@ Group Level Analysis
 
 This part is the same for surfaces and volumes. Which AFNI command you use will depend on your specific analysis of interest. Two straightforward options are:
 
-* 3dttest++: `See documentation here <https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html>`_. AFNI’s command for performing ttests on imaging data. 
+* 3dttest++: `See documentation here <https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html>`_. AFNI’s command for performing t-tests on imaging data. 
 * 3dANOVA2: See `documentation here <https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dttest++.html>`_. Performs a two-factor ANOVA. Usually one factor is your IV of interest and the other is subject as a random variable.
 
 Regardless of what option you choose, make sure you output the results as a .gii file. This will store your stats on the same surfaces that we’ve been using up until now. 

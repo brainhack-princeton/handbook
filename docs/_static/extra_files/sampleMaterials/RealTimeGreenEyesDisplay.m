@@ -77,12 +77,12 @@ fprintf(['* rtData: ' num2str(rtData) '\n']);
 fprintf(['* debug: ' num2str(debug) '\n']);
 fprintf('*********************************************\n\n');
 
-%% Initalizing scanner parameters
+%% Initializing scanner parameters
 
 disdaqs = 15; % how many seconds to drop at the beginning of the run
 TR = 1.5; % seconds per volume
 % story duration is 11 minutes 52 seconds
-% sotry ends at 11 minutes 36.5 seconds
+% story ends at 11 minutes 36.5 seconds
 audioDur = 712; % seconds how long the entire autioclip is
 runDur = audioDur;
 nTRs_run = ceil(runDur/TR);

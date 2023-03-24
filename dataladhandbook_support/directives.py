@@ -51,7 +51,7 @@ class FindOutMore(BaseAdmonition):
     node_class = nodes.admonition
     # empty is no allowed
     has_content = True
-    # needs at least a one word titel
+    # needs at least a one word title
     required_arguments = 1
 
     def run(self):

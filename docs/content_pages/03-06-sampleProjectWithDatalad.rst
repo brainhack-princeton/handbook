@@ -366,7 +366,7 @@ Now we will add the :blue:`/data/bids` directory as its own (sub)dataset. Ultima
     # create a new dataset
     (datalad) [sample_project]$ datalad create -c text2git --description "Princeton pygers sample dataset raw BIDS files" -f -d^ ./data/bids
 
-    # edit the unuseful commit message
+    # edit the useless commit message
     (datalad) [sample_project]$ git commit --amend
 
     # edit commit message to say: [DATALAD] Add BIDS dataset

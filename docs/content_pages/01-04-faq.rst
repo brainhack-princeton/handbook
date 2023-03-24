@@ -184,7 +184,7 @@ PNI's `reference protocols <https://pni-facilities.princeton.edu/index.php/Refer
 
 	I try to avoid in-plane acceleration for fMRI, and instead opt for multi band acceleration. In-plane acceleration is more susceptible to movement (according to practicalMRI blog).
 
-	GRAPPA: For skyra, I wanted to avoid SMS for reasons above. I also was having a subject talk in the scanner, and worried that SMS was more sensitive to motion than inplane acceleration (see pratical MRI blog post on this - https://practicalfmri.blogspot.com/2012/03/grappa-and-multi-band-imaging-and.html). To get whole-brain coverage with even a large voxel/long TR (3mm voxel, 2 sec TR) you have to use inplane acceleration = 2. And this still results in quite a small slab. 
+	GRAPPA: For skyra, I wanted to avoid SMS for reasons above. I also was having a subject talk in the scanner, and worried that SMS was more sensitive to motion than inplane acceleration (see practical MRI blog post on this - https://practicalfmri.blogspot.com/2012/03/grappa-and-multi-band-imaging-and.html). To get whole-brain coverage with even a large voxel/long TR (3mm voxel, 2 sec TR) you have to use inplane acceleration = 2. And this still results in quite a small slab. 
 
 .. findoutmore:: "Do you use multiband acceleration (e.g., simultaneous multi-slice; SMS)? What acceleration factor do you use? Why do you or why do you not use multiband? Are there tradeoffs you are aware of?"
 	

@@ -104,7 +104,7 @@ For volumetric transformations, fmriprep uses a combination of Freesurfer, FSL, 
 * Transformations: this is really a two step transformation so you need two different matrices
 
 	* MNI → T1w .h5 transformation as described above
-	* T1w → EPI transformation: fmriprep saves this transformation in the :blue:`derivatives/work/fmriprep_wf` directory. Specifically, for subject 001 and task-story run 01, thie file would be located in 
+	* T1w → EPI transformation: fmriprep saves this transformation in the :blue:`derivatives/work/fmriprep_wf` directory. Specifically, for subject 001 and task-story run 01, this file would be located in 
 
 .. code-block:: bash
 
